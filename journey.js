@@ -9,7 +9,7 @@ const journeyData = {
             href: "./Monthly%20Payment/index.html",
         },
         secondaryCta: {
-            label: "Compare Lenders",
+            label: "View Lending Partners",
             href: "./Monthly%20Payment/lenders.html",
         },
         stages: [
@@ -119,7 +119,7 @@ const journeyData = {
         intro: "Start with the listing strategy, move through market activity and contract checkpoints, and finish the handoff without feeling blindsided.",
         modeLabel: "Seller Process",
         primaryCta: {
-            label: "Open Seller Net Sheet",
+            label: "Open Seller Proceeds Workbook",
             href: "./Seller%20Net/index.html",
         },
         secondaryCta: {

@@ -8,6 +8,10 @@
         name="description"
         content="Joe Pine is a REALTOR with Keller Williams Leading Edge | Platinum Real Estate Group, licensed in Rhode Island and Massachusetts and proudly serving buyers and sellers from Coventry to Worcester, Bridgewater, Mattapoisett, Southeastern Massachusetts, and Rhode Island's East Bay."
     >
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
     <link rel="stylesheet" href="site-frame.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -45,9 +49,11 @@
 
             <nav class="site-frame-nav" id="site-frame-nav-root">
                 <a href="./Monthly%20Payment/index.html">Monthly Payment</a>
-                <a href="./Seller%20Net/index.html">Seller Net</a>
+                <a href="./Seller%20Net/index.html">Seller Proceeds</a>
                 <a href="./journey.html">Process</a>
-                <a href="./Monthly%20Payment/lenders.html">Lenders</a>
+                <a href="./Monthly%20Payment/lenders.html">Lending Partners</a>
+                <a href="./inspectors.html">Inspectors</a>
+                <a href="./attorneys.html">Attorneys</a>
                 <a href="#about">About</a>
                 <a class="site-frame-cta" href="#contact">Contact Joe</a>
                 </nav>
@@ -61,7 +67,7 @@
                     <h1>Real estate decisions feel better when the numbers are clear.</h1>
                     <p class="hero-text">
                         I help buyers and sellers move with more confidence by pairing local guidance with practical tools.
-                        Start with your monthly payment, estimate your seller net, and then let&rsquo;s build the right plan from there.
+                        Start with your monthly payment, estimate your seller proceeds, and then let&rsquo;s build the right plan from there.
                     </p>
 
                     <div class="hero-actions">
@@ -93,14 +99,14 @@
                     </div>
 
                     <div class="spotlight-panel">
-                        <div class="spotlight-item">
+                        <a class="spotlight-item spotlight-link" href="./Monthly%20Payment/index.html">
                             <p>Monthly Payment Calculator</p>
                             <strong>Estimate your budget before you tour homes.</strong>
-                        </div>
-                        <div class="spotlight-item">
-                            <p>Seller Net Sheet</p>
+                        </a>
+                        <a class="spotlight-item spotlight-link" href="./Seller%20Net/index.html">
+                            <p>Seller Proceeds Workbook</p>
                             <strong>See what your sale may actually put in your pocket.</strong>
-                        </div>
+                        </a>
                         <div class="spotlight-item contact-chip">
                             <span>Call or text</span>
                             <a href="tel:4013270888">401.327.0888</a>
@@ -139,9 +145,9 @@
 
                 <article class="service-card">
                     <p class="card-kicker">For Sellers</p>
-                    <h3>Understand your net before you choose a list price.</h3>
+                    <h3>Understand your proceeds before you choose a list price.</h3>
                     <p>
-                        My seller net sheet gives you a cleaner view of commissions, transfer tax, mortgage payoff,
+                        My seller proceeds workbook gives you a cleaner view of commissions, transfer tax, mortgage payoff,
                         credits, and closing costs so your next move can be planned with fewer surprises.
                     </p>
                 </article>
@@ -161,29 +167,12 @@
                     <p class="eyebrow">Helpful Tools</p>
                     <h2>Start with the numbers that matter most.</h2>
                     <p>
-                        These calculators are here to make your first step easier. Run the estimate on your own, then
+                        These tools are here to make your first step easier. Run the estimate on your own, then
                         reach out if you want help turning it into a game plan.
                     </p>
                 </div>
 
                 <div class="tool-grid">
-                    <article class="tool-card tool-card-listings" data-reveal>
-                        <div class="tool-topline">
-                            <span>Home Search</span>
-                            <strong>Listings Page</strong>
-                        </div>
-                        <h3>Browse live search results from your KW website.</h3>
-                        <p>
-                            Visitors can preview your main Keller Williams search page inside your website wrapper, with browser-style controls and a direct open-in-new-tab fallback.
-                        </p>
-                        <ul class="tool-list">
-                            <li>Live KW search preview in your site shell</li>
-                            <li>Back, forward, reload, and reset controls</li>
-                            <li>Direct path into active listings</li>
-                        </ul>
-                        <a class="button button-primary" href="./listings.html">Open Listings</a>
-                    </article>
-
                     <article class="tool-card tool-card-warm" data-reveal>
                         <div class="tool-topline">
                             <span>Buyer Tool</span>
@@ -201,12 +190,12 @@
                         <a class="button button-primary" href="./Monthly%20Payment/index.html">Open Calculator</a>
                     </article>
 
-                    <article class="tool-card tool-card-dark" data-reveal>
+                    <article class="tool-card tool-card-ink" data-reveal>
                         <div class="tool-topline">
                             <span>Seller Tool</span>
-                            <strong>Seller Net Sheet</strong>
+                            <strong>Seller Proceeds Workbook</strong>
                         </div>
-                        <h3>See a cleaner estimate of what you may net from your sale.</h3>
+                        <h3>See a cleaner estimate of your projected sale proceeds.</h3>
                         <p>
                             Factor in commissions, taxes, mortgage payoff, credits, and other payoffs so you can plan your next move with more certainty.
                         </p>
@@ -215,13 +204,13 @@
                             <li>Additional payoff line items</li>
                             <li>Printable and shareable estimate output</li>
                         </ul>
-                        <a class="button button-secondary button-light" href="./Seller%20Net/index.html">Open Net Sheet</a>
+                        <a class="button button-ink" href="./Seller%20Net/index.html">Open Proceeds Workbook</a>
                     </article>
 
                     <article class="tool-card tool-card-sage" data-reveal>
                         <div class="tool-topline">
                             <span>Financing</span>
-                            <strong>Lender Page</strong>
+                            <strong>Lending Partners</strong>
                         </div>
                         <h3>Compare lender options before you start preapproval.</h3>
                         <p>
@@ -232,7 +221,46 @@
                             <li>Licensed state coverage at a glance</li>
                             <li>Easy next step from calculator to lender</li>
                         </ul>
-                        <a class="button button-primary" href="./Monthly%20Payment/lenders.html">Open Lender Page</a>
+                        <a class="button button-primary" href="./Monthly%20Payment/lenders.html">Open Lending Partners</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="partner-team-section">
+                <div class="section-heading" data-reveal>
+                    <p class="eyebrow">Partner Team</p>
+                    <h2>Build the rest of your support team with confidence.</h2>
+                    <p>
+                        When you are ready, compare lender, inspection, and attorney support so every part of the deal feels more organized from start to closing.
+                    </p>
+                </div>
+
+                <div class="service-grid">
+                    <article class="service-card partner-team-card" data-reveal>
+                        <p class="card-kicker">Financing</p>
+                        <h3>Compare lending partners before you start preapproval.</h3>
+                        <p>
+                            See which lender path may fit your timeline, goals, and the states where you plan to buy.
+                        </p>
+                        <a class="button button-primary" href="./Monthly%20Payment/lenders.html">View Lending Partners</a>
+                    </article>
+
+                    <article class="service-card partner-team-card" data-reveal>
+                        <p class="card-kicker">Inspection</p>
+                        <h3>Choose the right inspection support for the home and the deal.</h3>
+                        <p>
+                            Understand when to bring in a general inspector, when specialty follow-up matters, and how sellers can prep ahead.
+                        </p>
+                        <a class="button button-secondary" href="./inspectors.html">View Inspectors</a>
+                    </article>
+
+                    <article class="service-card partner-team-card" data-reveal>
+                        <p class="card-kicker">Closing</p>
+                        <h3>Know what kind of attorney support fits your transaction.</h3>
+                        <p>
+                            Get a clearer picture of buyer-side, seller-side, and more complex title or estate support before closing gets close.
+                        </p>
+                        <a class="button button-secondary" href="./attorneys.html">View Attorneys</a>
                     </article>
                 </div>
             </section>
@@ -304,6 +332,13 @@
                         </p>
                     </div>
 
+                    <figure class="about-photo-card" data-reveal>
+                        <img
+                            src="./Monthly%20Payment/Joe%20%281%29.JPG"
+                            alt="Joe Pine seated in a chair"
+                        >
+                    </figure>
+
                     <div class="about-panel" data-reveal>
                         <div class="about-detail">
                             <span>Brokerage</span>
@@ -319,7 +354,7 @@
                         </div>
                         <div class="about-detail">
                             <span>Main Service Area</span>
-                            <strong>Broad RI and MA coverage anchored by Coventry, Worcester, Bridgewater, Mattapoisett, Southeastern Massachusetts, and Rhode Island's East Bay</strong>
+                            <strong>Central and Northern RI, plus Central and Southeastern MA</strong>
                         </div>
                         <div class="about-detail">
                             <span>Office</span>
@@ -341,58 +376,70 @@
                         I proudly serve buyers and sellers across a broad Rhode Island and Massachusetts market area,
                         stretching west to Coventry, north to Worcester, east through Bridgewater and Mattapoisett,
                         and back through Southeastern Massachusetts and Rhode Island's East Bay, covering the many
-                        communities in between.
+                        communities in between, with especially strong focus in the towns where I have already
+                        helped clients close.
                     </p>
                 </div>
 
                 <div class="service-area-grid">
                     <article class="service-area-overview" data-reveal>
                         <p class="service-area-kicker">Core Coverage</p>
-                        <h3>From Coventry to Worcester, across Bridgewater and Mattapoisett, and back through the East Bay.</h3>
+                        <h3>Broad RI and MA coverage, with the strongest focus shaped by real transaction experience.</h3>
                         <p>
                             Whether you are buying your first home, selling to make your next move, or planning an
                             investment, I help clients navigate this entire corridor with clear advice, responsive
-                            communication, and local market perspective.
+                            communication, and local market perspective. The heaviest focus on the map follows towns
+                            where I have visible past sales and market activity, especially across East Providence,
+                            Riverside, Lincoln, Smithfield, North Smithfield, Woonsocket, Warwick, Coventry, and nearby markets.
                         </p>
 
-                        <div class="service-area-chips" aria-label="Primary service area anchors">
-                            <span>Coventry</span>
-                            <span>Worcester</span>
-                            <span>Bridgewater</span>
-                            <span>Mattapoisett</span>
-                            <span>Southeastern Massachusetts</span>
-                            <span>Rhode Island's East Bay</span>
+                        <div class="service-area-chip-group" aria-label="Broad service corridor">
+                            <p>Broad coverage</p>
+                            <div class="service-area-chips">
+                                <span>Coventry</span>
+                                <span>Worcester</span>
+                                <span>Bridgewater</span>
+                                <span>Mattapoisett</span>
+                                <span>Southeastern Massachusetts</span>
+                                <span>Rhode Island's East Bay</span>
+                            </div>
+                        </div>
+
+                        <div class="service-area-chip-group" aria-label="Markets with visible sales activity">
+                            <p>Sales-backed focus</p>
+                            <div class="service-area-chips service-area-chips-strong">
+                                <span>East Providence</span>
+                                <span>Riverside</span>
+                                <span>Lincoln</span>
+                                <span>Smithfield</span>
+                                <span>North Smithfield</span>
+                                <span>Woonsocket</span>
+                                <span>Warwick</span>
+                                <span>West Warwick</span>
+                                <span>Coventry</span>
+                            </div>
                         </div>
                     </article>
 
                     <div class="service-area-map-card" data-reveal>
-                        <div class="service-area-map">
-                            <div class="service-area-route" aria-hidden="true"></div>
-                            <div class="service-area-node service-area-node-west">
-                                <strong>Coventry</strong>
-                                <span>West</span>
-                            </div>
-                            <div class="service-area-node service-area-node-north">
-                                <strong>Worcester</strong>
-                                <span>North</span>
-                            </div>
-                            <div class="service-area-node service-area-node-east">
-                                <strong>Bridgewater</strong>
-                                <span>East</span>
-                            </div>
-                            <div class="service-area-node service-area-node-coast">
-                                <strong>Mattapoisett</strong>
-                                <span>Coastal</span>
-                            </div>
-                            <div class="service-area-node service-area-node-south">
-                                <strong>East Bay</strong>
-                                <span>Rhode Island</span>
-                            </div>
-                            <div class="service-area-center">
-                                <p>Primary Market Footprint</p>
-                                <strong>RI + MA</strong>
-                            </div>
+                        <div class="service-area-map-header">
+                            <p>Service Footprint Map</p>
+                            <strong>The red heatmap follows Joe's strongest sales-backed focus areas, while the outline shows the broader RI and MA corridor he serves.</strong>
                         </div>
+                        <div
+                            class="service-area-map"
+                            id="service-area-map"
+                            aria-label="Interactive map showing Joe Pine's Rhode Island and Massachusetts service area"
+                        ></div>
+                        <div class="service-area-map-legend" aria-label="Map legend">
+                            <span><i class="service-area-legend service-area-legend-heat" aria-hidden="true"></i> Sales-backed strongest focus</span>
+                            <span><i class="service-area-legend service-area-legend-shape" aria-hidden="true"></i> Overall service footprint</span>
+                            <span><i class="service-area-legend service-area-legend-point" aria-hidden="true"></i> Anchor markets</span>
+                        </div>
+                        <p class="service-area-map-note">
+                            Red intensity shows the markets where Joe has the strongest visible transaction footprint,
+                            while still supporting nearby communities throughout the full Rhode Island to Massachusetts corridor.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -440,6 +487,84 @@
                             <span>From first plan to final keys, I want the experience to feel like progress all the way through.</span>
                         </figcaption>
                     </figure>
+                </div>
+            </section>
+
+            <section class="reviews-section" id="reviews">
+                <div class="section-heading section-heading-tight" data-reveal>
+                    <p class="eyebrow">Reviews & Results</p>
+                    <h2>Real clients, real closings, and a track record people feel good about.</h2>
+                    <p>
+                        Public feedback on Zillow points to the same themes over and over: responsiveness, steady guidance,
+                        strong communication, and a process that feels clear from start to finish.
+                    </p>
+                </div>
+
+                <div class="review-stat-grid">
+                    <article class="review-stat-card" data-reveal>
+                        <span> Zillow rating </span>
+                        <strong>5.0</strong>
+                        <p>Five-star profile based on current public Zillow reviews.</p>
+                    </article>
+
+                    <article class="review-stat-card" data-reveal>
+                        <span> Reviews </span>
+                        <strong>5</strong>
+                        <p>Verified public client reviews across recent buyer and seller experiences.</p>
+                    </article>
+
+                    <article class="review-stat-card" data-reveal>
+                        <span> Sales last 12 months </span>
+                        <strong>4</strong>
+                        <p>Recent public closings shown directly on Joe's Zillow profile.</p>
+                    </article>
+
+                    <article class="review-stat-card" data-reveal>
+                        <span> Total sales </span>
+                        <strong>13</strong>
+                        <p>Public Zillow profile sales history visible as of March 16, 2026.</p>
+                    </article>
+                </div>
+
+                <div class="reviews-grid">
+                    <article class="review-card" data-reveal>
+                        <div class="review-stars" aria-hidden="true">*****</div>
+                        <p class="review-quote">"Incredible throughout the entire home buying journey."</p>
+                        <div class="review-meta">
+                            <strong>Buyer review</strong>
+                            <span>Zillow, February 2026</span>
+                        </div>
+                    </article>
+
+                    <article class="review-card" data-reveal>
+                        <div class="review-stars" aria-hidden="true">*****</div>
+                        <p class="review-quote">"Help get my house sold quickly."</p>
+                        <div class="review-meta">
+                            <strong>Seller review</strong>
+                            <span>Zillow, September 2023</span>
+                        </div>
+                    </article>
+
+                    <article class="review-card" data-reveal>
+                        <div class="review-stars" aria-hidden="true">*****</div>
+                        <p class="review-quote">"Always available to answer questions."</p>
+                        <div class="review-meta">
+                            <strong>Buy and sell review</strong>
+                            <span>Zillow, January 2023</span>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="review-actions" data-reveal>
+                    <p class="review-source">Short excerpts from public Zillow reviews on Joe's profile.</p>
+                    <a
+                        class="button button-primary"
+                        href="https://www.zillow.com/profile/JoePineRealtor"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Read Reviews on Zillow
+                    </a>
                 </div>
             </section>
 
@@ -496,6 +621,7 @@
         </footer>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
     <script src="site-frame.js"></script>
 </body>

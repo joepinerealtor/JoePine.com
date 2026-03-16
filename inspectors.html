@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lending Partners | Joe Pine</title>
-    <link rel="stylesheet" href="../site-frame.css">
+    <title>Home Inspector Partners | Joe Pine</title>
+    <link rel="stylesheet" href="./site-frame.css">
     <style>
         :root {
-            --kw-red: #CE011F;
+            --kw-red: #ce011f;
             --kw-red-deep: #930015;
-            --kw-red-bright: #E31837;
+            --kw-red-bright: #e31837;
             --kw-green: #198754;
             --kw-ink: #000000;
-            --kw-slate: #4D4D4D;
+            --kw-slate: #4d4d4d;
             --kw-muted: #828282;
-            --kw-line: #D9D9D9;
+            --kw-line: #d9d9d9;
             --surface: rgba(255, 255, 255, 0.96);
         }
 
@@ -24,7 +24,7 @@
 
         body {
             margin: 0;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             color: var(--kw-ink);
             background:
                 radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
@@ -42,88 +42,14 @@
             padding: 18px 18px 34px;
         }
 
-        .glass-card,
         .hero-panel,
-        .lender-card,
+        .partner-card,
         .info-panel,
         .cta-panel {
             border: 1px solid rgba(229, 231, 235, 0.95);
             background: var(--surface);
             box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
             backdrop-filter: blur(14px);
-        }
-
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            padding: 16px 20px;
-            border-radius: 24px;
-            margin-bottom: 22px;
-        }
-
-        .top-bar-left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            min-width: 0;
-        }
-
-        .headshot-wrap {
-            width: 68px;
-            height: 68px;
-            flex: 0 0 auto;
-            border-radius: 999px;
-            overflow: hidden;
-            border: 3px solid var(--kw-red);
-            box-shadow: 0 12px 24px -16px rgba(180, 1, 1, 0.55);
-        }
-
-        .headshot-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .identity h1 {
-            margin: 0 0 6px;
-            font-size: 30px;
-            line-height: 0.95;
-            letter-spacing: -0.04em;
-            text-transform: uppercase;
-            font-weight: 900;
-        }
-
-        .identity p {
-            margin: 0;
-            color: var(--kw-slate);
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        .top-bar-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 5px;
-            text-align: right;
-            font-size: 14px;
-            line-height: 1.3;
-            font-weight: 800;
-            color: var(--kw-slate);
-        }
-
-        .top-bar-right a {
-            text-decoration: none;
-        }
-
-        .top-bar-right .website-link {
-            color: var(--kw-red);
-            text-decoration: underline;
-            text-underline-offset: 3px;
         }
 
         .hero-panel {
@@ -201,7 +127,8 @@
         }
 
         .hero-actions .button,
-        .cta-actions .button {
+        .cta-actions .button,
+        .partner-actions .button {
             flex: 1 1 170px;
         }
 
@@ -282,14 +209,14 @@
             font-weight: 800;
         }
 
-        .lender-grid {
+        .partner-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
 
-        .lender-card {
+        .partner-card {
             border-radius: 26px;
             padding: 18px;
             display: flex;
@@ -298,14 +225,14 @@
             min-height: 100%;
         }
 
-        .lender-top {
+        .partner-top {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             gap: 14px;
         }
 
-        .lender-avatar {
+        .partner-avatar {
             width: 64px;
             height: 64px;
             border-radius: 18px;
@@ -313,24 +240,16 @@
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            font-size: 26px;
+            font-size: 24px;
             line-height: 1;
             font-weight: 900;
             letter-spacing: -0.05em;
             flex: 0 0 auto;
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
-            overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
-        .lender-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .lender-company {
+        .partner-company {
             margin: 0 0 6px;
             font-size: 12px;
             line-height: 1.2;
@@ -340,7 +259,7 @@
             font-weight: 800;
         }
 
-        .lender-name {
+        .partner-name {
             margin: 0 0 6px;
             font-size: 22px;
             line-height: 0.98;
@@ -349,7 +268,7 @@
             font-weight: 900;
         }
 
-        .lender-title {
+        .partner-title {
             margin: 0;
             font-size: 14px;
             line-height: 1.45;
@@ -357,13 +276,13 @@
             font-weight: 800;
         }
 
-        .license-stack {
+        .focus-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
 
-        .license-chip {
+        .focus-chip {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -381,7 +300,7 @@
             text-transform: uppercase;
         }
 
-        .lender-note {
+        .partner-note {
             margin: 0;
             padding: 12px 14px;
             border-radius: 18px;
@@ -393,7 +312,7 @@
             font-weight: 800;
         }
 
-        .lender-meta {
+        .partner-meta {
             display: grid;
             gap: 10px;
         }
@@ -429,18 +348,14 @@
             font-weight: 800;
         }
 
-        .meta-value a {
-            text-decoration: none;
-        }
-
-        .lender-actions {
+        .partner-actions {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 10px;
             margin-top: auto;
         }
 
-        .lender-actions .button {
+        .partner-actions .button {
             width: 100%;
         }
 
@@ -536,7 +451,7 @@
         @media (max-width: 980px) {
             .hero-content,
             .cta-panel,
-            .lender-grid {
+            .partner-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -546,23 +461,12 @@
         }
 
         @media (max-width: 760px) {
-            .top-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .top-bar-right,
-            .footer-copy {
-                align-items: center;
-                text-align: center;
-            }
-
             .section-heading {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .lender-actions {
+            .partner-actions {
                 grid-template-columns: 1fr;
             }
 
@@ -583,20 +487,16 @@
 
             .hero-banner,
             .hero-content,
-            .lender-card,
+            .partner-card,
             .cta-panel {
                 padding: 16px;
-            }
-
-            .identity h1 {
-                font-size: 24px;
             }
 
             .hero-banner h2 {
                 font-size: 30px;
             }
 
-            .lender-name {
+            .partner-name {
                 font-size: 22px;
             }
         }
@@ -606,9 +506,9 @@
     <div class="site-frame-wrap">
         <header class="site-frame-header">
             <div class="site-frame-top">
-                <a class="site-frame-brand" href="../index.html" aria-label="Joe Pine home">
+                <a class="site-frame-brand" href="./index.html" aria-label="Joe Pine home">
                     <span class="site-frame-photo">
-                        <img src="./Joe%20%281%29.JPG" alt="Joe Pine">
+                        <img src="./Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
                     </span>
                     <span class="site-frame-copy">
                         <strong>Joe Pine</strong>
@@ -620,7 +520,7 @@
                     class="site-frame-toggle"
                     type="button"
                     aria-expanded="false"
-                    aria-controls="site-frame-nav-lenders"
+                    aria-controls="site-frame-nav-inspectors"
                     data-site-nav-toggle
                 >
                     Menu
@@ -633,42 +533,42 @@
                 </div>
             </div>
 
-            <nav class="site-frame-nav" id="site-frame-nav-lenders">
-                <a href="../index.html">Home</a>
-                <a href="./index.html">Monthly Payment</a>
-                <a href="../Seller%20Net/index.html">Seller Proceeds</a>
-                <a href="../journey.html">Process</a>
-                <a href="./lenders.html" aria-current="page">Lending Partners</a>
-                <a href="../inspectors.html">Inspectors</a>
-                <a href="../attorneys.html">Attorneys</a>
-                <a class="site-frame-cta" href="../index.html#contact">Contact Joe</a>
+            <nav class="site-frame-nav" id="site-frame-nav-inspectors">
+                <a href="./index.html">Home</a>
+                <a href="./Monthly%20Payment/index.html">Monthly Payment</a>
+                <a href="./Seller%20Net/index.html">Seller Proceeds</a>
+                <a href="./journey.html">Process</a>
+                <a href="./Monthly%20Payment/lenders.html">Lending Partners</a>
+                <a href="./inspectors.html" aria-current="page">Inspectors</a>
+                <a href="./attorneys.html">Attorneys</a>
+                <a class="site-frame-cta" href="./index.html#contact">Contact Joe</a>
             </nav>
         </header>
     </div>
     <main class="page-shell">
         <section class="hero-panel">
             <div class="hero-banner">
-                <p class="eyebrow">Step 1 | Get Preapproved</p>
-                <h2>Choose the lender that fits your move, your timeline, and the states where you plan to buy.</h2>
+                <p class="eyebrow">Due Diligence | Inspection Prep</p>
+                <h2>Choose the inspection support that helps you understand the house, not just survive the report.</h2>
             </div>
             <div class="hero-content">
                 <div class="hero-copy">
-                    <p>Preapproval is where your affordability estimate becomes more real. A lender can review income, debts, credit, assets, and loan options so you know what may truly be possible before you start writing offers.</p>
-                    <p>This page is set up to make lender options easy to compare. Each card shows who the lender is, how to reach them, where they are licensed, and where to start the preapproval conversation.</p>
+                    <p>For buyers, inspections are where questions turn into facts. A strong inspector helps you separate real issues from normal homeownership items before contingencies expire and decisions get rushed.</p>
+                    <p>For sellers, the same process is useful because it shows what a buyer may focus on later and where a little prep can create fewer surprises once you are under contract.</p>
                     <div class="hero-actions">
-                        <a class="button button-primary" href="index.html">Back to Calculator</a>
-                        <a id="budgetSearchLink" class="button button-secondary" href="index.html">Set Budget In Calculator</a>
-                        <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Connect%20Me%20With%20A%20Lender">Have Joe Make an Intro</a>
+                        <a class="button button-primary" href="./journey.html#buyer">View Buyer Process</a>
+                        <a class="button button-secondary" href="./journey.html#seller">View Seller Process</a>
+                        <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Connect%20Me%20With%20An%20Inspector">Ask Joe For An Intro</a>
                     </div>
                 </div>
                 <div class="hero-side">
                     <div class="info-panel">
-                        <p class="info-label">What to Ask</p>
+                        <p class="info-label">What To Ask</p>
                         <ul>
-                            <li>Which loan programs may fit my goals?</li>
-                            <li>What cash to close should I plan for?</li>
-                            <li>Do I qualify for down payment or closing cost assistance?</li>
-                            <li>Which states are you licensed to lend in?</li>
+                            <li>What is included in your general inspection?</li>
+                            <li>How quickly does the report come back?</li>
+                            <li>Do you also handle radon, WDI, septic, or well testing?</li>
+                            <li>Can you explain which items are urgent versus routine upkeep?</li>
                         </ul>
                     </div>
                 </div>
@@ -677,26 +577,26 @@
 
         <section>
             <div class="section-heading">
-                <h3>Lender Partner Options</h3>
-                <p>Compare licensed coverage, contact details, and preapproval links before you choose who may be the best fit to start with.</p>
+                <h3>Home Inspection Support</h3>
+                <p>Pick the type of inspection help that fits the house, the contract, and how much clarity you want before moving forward.</p>
             </div>
-            <div id="lenderGrid" class="lender-grid"></div>
+            <div id="inspectorGrid" class="partner-grid"></div>
         </section>
 
         <section class="cta-panel">
             <div>
-                <h4>Need Help Choosing Who To Start With?</h4>
-                <p>If you want help deciding which lender may be the best fit for your timeline, loan type, or buying goals, Joe can help point you in the right direction before you begin the application.</p>
+                <h4>Not Sure What Level Of Inspection You Need?</h4>
+                <p>Joe can help you decide whether you need a straightforward general inspection, specialty follow-up testing, or a pre-listing walkthrough before the home ever hits the market.</p>
             </div>
             <div class="cta-actions">
                 <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
-                <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Help%20Me%20Choose%20A%20Lender">Email Joe</a>
+                <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Help%20Me%20Choose%20An%20Inspector">Email Joe</a>
             </div>
         </section>
 
         <footer class="brand-footer">
             <div class="footer-logo-slot footer-logo-slot-kw">
-                <img src="KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+                <img src="./Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
             </div>
             <div class="footer-copy">
                 <p>Joe Pine Realtor | REALTOR RI &amp; MA</p>
@@ -706,188 +606,112 @@
                 <p class="fine-print">Equal housing opportunity. Each office is independently owned and operated.</p>
             </div>
             <div class="footer-logo-slot footer-logo-slot-platinum">
-                <img src="Platinum Logo Black Transparent (1).png" alt="Platinum Real Estate Group">
+                <img src="./Monthly%20Payment/Platinum Logo Black Transparent (1).png" alt="Platinum Real Estate Group">
             </div>
         </footer>
     </main>
 
     <script>
-        const HOME_SEARCH_URL_PREFIX = "https://joepine.kw.com/search/sale?viewport=42.536786872843024%2C-69.92003930749948%2C41.089594667716725%2C-72.55675805749948&price=0%2C";
-        const HOME_SEARCH_URL_SUFFIX = "&property_subtype=HOUSE%2CTOWNHOUSE%2CCONDO%2CMANUFACTURED%2CMULTIFAMILY%2CCOOP%2CAPARTMENT";
-        const lenders = [
+        const inspectors = [
             {
-                name: "Darrin Ruzzano",
-                title: "Loan Officer",
-                company: "Primary Residential Mortgage",
-                phone: "(401) 447-6248",
-                phoneHref: "4014476248",
-                email: "druzzano@primeres.com",
-                websiteLabel: "View Profile",
-                websiteUrl: "https://primarylocal.com/team/darrin-ruzzano/",
-                preapprovalUrl: "https://application.primeres.com/dr/c/dhh46",
-                headshotUrl: "Darrin.png",
-                licensedStates: ["RI", "MA", "CT"],
-                accent: "linear-gradient(135deg, #CE011F 0%, #E31837 100%)",
-                note: "Darrin, with the help of Primary Residential Mortgage, Inc., is dedicated to helping his clients find the right loan for their unique financial needs. He keeps communication with clients and Realtor partners front and center while guiding buyers through the homebuying process, refinancing, or debt consolidation with competitive loan options and rates.",
-                nmls: "NMLS #111578",
-                office: "647 Oaklawn Ave, Cranston, RI 02920"
+                name: "Patrick Geddes",
+                title: "Home inspector with Home Inspections by Bob Geddes.",
+                company: "Home Inspections by Bob Geddes",
+                initials: "PG",
+                focusAreas: ["Buyers", "Condos", "Homes"],
+                accent: "linear-gradient(135deg, #ce011f 0%, #e31837 100%)",
+                note: "Patrick Geddes with Home Inspections by Bob Geddes is a real inspection partner on Joe's list and a solid fit when buyers want a straightforward home inspection conversation before contingencies expire.",
+                meta: [
+                    { label: "Best For", value: "Single-family, condo, and multifamily buyers who want the big-picture walkthrough." },
+                    { label: "Website", value: "<a href=\"https://homeinspectionsbybobgeddes.net\" target=\"_blank\" rel=\"noreferrer\">homeinspectionsbybobgeddes.net</a>" },
+                    { label: "Phone", value: "<a href=\"tel:4016039310\">(401) 603-9310</a>" },
+                    { label: "Email", value: "<a href=\"mailto:patrickd.geddes@gmail.com\">patrickd.geddes@gmail.com</a>" }
+                ],
+                primaryActionLabel: "Visit Website",
+                primaryActionUrl: "https://homeinspectionsbybobgeddes.net",
+                secondaryActionLabel: "Email Patrick",
+                secondaryActionUrl: "mailto:patrickd.geddes@gmail.com"
             },
             {
-                name: "James Procter",
-                title: "Sales Manager",
-                company: "loanDepot",
-                phone: "(508) 850-4008",
-                phoneHref: "5088504008",
-                email: "jprocter@loandepot.com",
-                websiteLabel: "View Profile",
-                websiteUrl: "https://www.loandepot.com/loan-officers/jprocter",
-                preapprovalUrl: "https://apply.myloandepot.com/mortgage/welcome",
-                headshotUrl: "James.png",
-                licensedStates: ["RI", "CT", "MA", "FL"],
-                accent: "linear-gradient(135deg, #000000 0%, #4D4D4D 100%)",
-                note: "James is a Sales Manager known for creating loan solutions tailored to specific mortgage needs. Working closely with his underwriting and processing team at loanDepot, he focuses on delivering a high level of service and helping each loan get funded on time with the right solution in place.",
-                nmls: "NMLS #23362",
-                office: "1615 Pontiac Ave STE 3, Cranston, RI 02920"
+                name: "Specialty Follow-Up Testing",
+                title: "Helpful when the home, the report, or the location points to a more specific concern.",
+                company: "Radon | WDI | Septic | Well",
+                initials: "SP",
+                focusAreas: ["Radon", "WDI", "Septic"],
+                accent: "linear-gradient(135deg, #202020 0%, #4d4d4d 100%)",
+                note: "Some homes need a little deeper due diligence. Radon, wood-destroying insect, septic, sewer, well, mold, or structural follow-up can be the difference between guessing and knowing.",
+                meta: [
+                    { label: "Best For", value: "Older homes, rural properties, or files where the first inspection flags something deeper." },
+                    { label: "Typical Timing", value: "As soon as the general inspection suggests a specialist may be worth bringing in." },
+                    { label: "Ask About", value: "Scope of work, scheduling speed, and whether separate reports are provided." },
+                    { label: "Joe Can Help", value: "Coordinate the right follow-up without slowing the contract down unnecessarily." }
+                ],
+                primaryActionLabel: "Need A Referral",
+                primaryActionUrl: "mailto:JoePine@KW.com?subject=Connect%20Me%20With%20A%20Specialty%20Inspector",
+                secondaryActionLabel: "Call Joe",
+                secondaryActionUrl: "tel:4013270888"
             },
             {
-                name: "Anthony E Rodrigues",
-                title: "Mortgage Loan Officer II",
-                company: "Navy Federal Credit Union | NE Region",
-                phone: "(401) 236-0441",
-                phoneHref: "4012360441",
-                email: "anthony_rodrigues@navyfederal.org",
-                websiteLabel: "",
-                websiteUrl: "",
-                preapprovalUrl: "tel:4012360441",
-                headshotUrl: "Anthony.jpg",
-                primaryActionLabel: "Call Anthony",
-                licensedStates: ["MA", "RI"],
+                name: "Pre-Listing Seller Walkthrough",
+                title: "A smart option for sellers who want fewer surprises once a buyer starts digging in.",
+                company: "Seller Prep Option",
+                initials: "PL",
+                focusAreas: ["Sellers", "Pre-List", "Prep"],
                 accent: "linear-gradient(135deg, #198754 0%, #157347 100%)",
-                note: "Anthony is an experienced mortgage professional with a strong background in financial services, including construction loans, certified mortgage planning, VA loans, FHA financing, and debt consolidation. He brings a thoughtful, solution-focused approach to helping buyers navigate financing options with confidence.",
-                nmls: "NMLS #5330",
-                office: "One Corporate Place, Middletown, RI 02842"
+                note: "A pre-listing inspection can help sellers understand likely buyer objections before the home goes live, prioritize repairs, and make pricing or disclosure conversations more informed.",
+                meta: [
+                    { label: "Best For", value: "Sellers who want to go to market with cleaner expectations and stronger prep." },
+                    { label: "Typical Timing", value: "Before photos, before launch, or before finalizing a repair plan." },
+                    { label: "Ask About", value: "What issues buyers usually react to most in your price range and area." },
+                    { label: "Joe Can Help", value: "Use the report to shape pricing strategy, repair choices, and listing prep." }
+                ],
+                primaryActionLabel: "Seller Strategy",
+                primaryActionUrl: "./Seller%20Net/index.html",
+                secondaryActionLabel: "Ask Joe",
+                secondaryActionUrl: "mailto:JoePine@KW.com?subject=Help%20Me%20With%20A%20Pre-Listing%20Inspection"
             }
         ];
 
-        const lenderGrid = document.getElementById('lenderGrid');
-        const budgetSearchLink = document.getElementById('budgetSearchLink');
-        const budgetParam = Number.parseInt(new URLSearchParams(window.location.search).get('budget') || '0', 10);
-        const searchBudget = Number.isFinite(budgetParam) && budgetParam > 0 ? budgetParam : 0;
+        const inspectorGrid = document.getElementById("inspectorGrid");
 
-        if (budgetSearchLink) {
-            if (searchBudget > 0) {
-                budgetSearchLink.href = `${HOME_SEARCH_URL_PREFIX}${searchBudget}${HOME_SEARCH_URL_SUFFIX}`;
-                budgetSearchLink.target = "_blank";
-                budgetSearchLink.rel = "noreferrer";
-                budgetSearchLink.textContent = "Browse Homes In Budget";
-            } else {
-                budgetSearchLink.href = "index.html";
-                budgetSearchLink.removeAttribute("target");
-                budgetSearchLink.removeAttribute("rel");
-                budgetSearchLink.textContent = "Set Budget In Calculator";
-            }
-        }
+        inspectorGrid.innerHTML = inspectors.map((partner) => {
+            const chips = partner.focusAreas
+                .map((area) => `<span class="focus-chip">${area}</span>`)
+                .join("");
 
-        lenderGrid.innerHTML = lenders.map((lender) => {
-            const initials = lender.name
-                .split(' ')
-                .slice(0, 2)
-                .map((part) => part.charAt(0))
-                .join('')
-                .toUpperCase();
-            const avatarContent = lender.headshotUrl
-                ? `<img src="${lender.headshotUrl}" alt="${lender.name} headshot">`
-                : initials;
-
-            const badges = lender.licensedStates
-                .map((state) => `<span class="license-chip">${state}</span>`)
-                .join('');
-
-            const phoneRow = lender.phone
-                ? `
-                        <div class="meta-row">
-                            <span class="meta-label">Phone</span>
-                            <span class="meta-value"><a href="tel:${lender.phoneHref}">${lender.phone}</a></span>
-                        </div>
-                  `
-                : '';
-
-            const emailRow = lender.email
-                ? `
-                        <div class="meta-row">
-                            <span class="meta-label">Email</span>
-                            <span class="meta-value"><a href="mailto:${lender.email}">${lender.email}</a></span>
-                        </div>
-                  `
-                : '';
-
-            const websiteRow = lender.websiteUrl
-                ? `
-                        <div class="meta-row">
-                            <span class="meta-label">Website</span>
-                            <span class="meta-value"><a href="${lender.websiteUrl}" target="_blank" rel="noreferrer">${lender.websiteLabel}</a></span>
-                        </div>
-                  `
-                : '';
-
-            const mobileRow = lender.mobile
-                ? `
-                        <div class="meta-row">
-                            <span class="meta-label">Mobile</span>
-                            <span class="meta-value"><a href="tel:${lender.mobileHref}">${lender.mobile}</a></span>
-                        </div>
-                  `
-                : '';
-
-            const officeRow = lender.office
-                ? `
-                        <div class="meta-row">
-                            <span class="meta-label">Office</span>
-                            <span class="meta-value">${lender.office}</span>
-                        </div>
-                  `
-                : '';
-
-            const secondaryAction = lender.email
-                ? `<a class="button button-secondary" href="mailto:${lender.email}?subject=I%20Would%20Like%20To%20Get%20Preapproved">Email Lender</a>`
-                : `<a class="button button-secondary" href="${lender.websiteUrl}" target="_blank" rel="noreferrer">View Profile</a>`;
-            const primaryActionLabel = lender.primaryActionLabel || 'Start Preapproval';
-            const primaryActionAttrs = /^https?:/i.test(lender.preapprovalUrl) ? 'target="_blank" rel="noreferrer"' : '';
+            const metaRows = partner.meta
+                .map((item) => `
+                    <div class="meta-row">
+                        <span class="meta-label">${item.label}</span>
+                        <span class="meta-value">${item.value}</span>
+                    </div>
+                `)
+                .join("");
 
             return `
-                <article class="lender-card">
-                    <div class="lender-top">
+                <article class="partner-card">
+                    <div class="partner-top">
                         <div>
-                            <p class="lender-company">${lender.company}</p>
-                            <h4 class="lender-name">${lender.name}</h4>
-                            <p class="lender-title">${lender.title}</p>
+                            <p class="partner-company">${partner.company}</p>
+                            <h4 class="partner-name">${partner.name}</h4>
+                            <p class="partner-title">${partner.title}</p>
                         </div>
-                        <div class="lender-avatar" style="background:${lender.accent};">${avatarContent}</div>
+                        <div class="partner-avatar" style="background:${partner.accent};">${partner.initials}</div>
                     </div>
                     <div>
-                        <p class="info-label">Licensed In</p>
-                        <div class="license-stack">${badges}</div>
+                        <p class="info-label">Best Fit</p>
+                        <div class="focus-stack">${chips}</div>
                     </div>
-                    <p class="lender-note">${lender.note}</p>
-                    <div class="lender-meta">
-                        ${phoneRow}
-                        ${mobileRow}
-                        ${emailRow}
-                        ${websiteRow}
-                        ${officeRow}
-                        <div class="meta-row">
-                            <span class="meta-label">License Info</span>
-                            <span class="meta-value">${lender.nmls}</span>
-                        </div>
-                    </div>
-                    <div class="lender-actions">
-                        <a class="button button-primary" href="${lender.preapprovalUrl}" ${primaryActionAttrs}>${primaryActionLabel}</a>
-                        ${secondaryAction}
+                    <p class="partner-note">${partner.note}</p>
+                    <div class="partner-meta">${metaRows}</div>
+                    <div class="partner-actions">
+                        <a class="button button-primary" href="${partner.primaryActionUrl}">${partner.primaryActionLabel}</a>
+                        <a class="button button-secondary" href="${partner.secondaryActionUrl}">${partner.secondaryActionLabel}</a>
                     </div>
                 </article>
             `;
-        }).join('');
+        }).join("");
     </script>
-    <script src="../site-frame.js"></script>
+    <script src="./site-frame.js"></script>
 </body>
 </html>
