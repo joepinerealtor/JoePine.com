@@ -433,6 +433,7 @@
 
     <script>
         let currentState = 'RI';
+        const EMBED_MODE = new URLSearchParams(window.location.search).has('embed');
         let listingCommType = 'percent';
         let buyerCommType = 'percent';
         let buyerCommBasis = 'gross';
@@ -679,7 +680,7 @@
 
             container.appendChild(row);
             toggleAdditionalPayoffEmptyState();
-            if (shouldFocus) {
+            if (shouldFocus && !EMBED_MODE) {
                 labelInput.focus();
             }
             calculate();

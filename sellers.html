@@ -49,6 +49,15 @@
 
         .hero-panel,
         .proof-panel,
+        .offer-panel,
+        .steps-panel,
+        .resource-panel,
+        .cta-panel {
+            scroll-margin-top: 132px;
+        }
+
+        .hero-panel,
+        .proof-panel,
         .proof-card,
         .offer-panel,
         .steps-panel,
@@ -157,6 +166,41 @@
             height: 7px;
             border-radius: 999px;
             background: var(--kw-red);
+        }
+
+        .jump-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 14px;
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.16);
+        }
+
+        .jump-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(206, 1, 31, 0.16);
+            background: rgba(206, 1, 31, 0.05);
+            color: var(--kw-ink);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            transition: background-color 160ms ease, transform 160ms ease;
+        }
+
+        .jump-link:hover,
+        .jump-link:focus-visible {
+            background: rgba(206, 1, 31, 0.12);
+            transform: translateY(-1px);
         }
 
         .hero-actions,
@@ -572,27 +616,13 @@
             </div>
         </section>
 
-        <section class="resource-panel" id="seller-proceeds">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow" style="color: var(--kw-red);">Seller Proceeds</p>
-                    <h2>Run your proceeds without leaving the page.</h2>
-                </div>
-                <p>
-                    Use the seller proceeds workbook here to estimate commission, transfer tax, mortgage payoff, and your likely net.
-                </p>
-            </div>
+        <nav class="jump-panel" aria-label="Seller resource sections">
+            <a class="jump-link" href="#seller-marketing">Marketing Edge</a>
+            <a class="jump-link" href="#seller-process">Seller Process</a>
+            <a class="jump-link" href="#seller-proceeds">Seller Proceeds</a>
+        </nav>
 
-            <iframe
-                class="resource-frame is-tool"
-                data-embed-target="seller-proceeds"
-                src="./Seller%20Net/index.html?embed=seller-proceeds"
-                title="Seller proceeds workbook"
-                loading="lazy"
-            ></iframe>
-        </section>
-
-        <section class="proof-panel">
+        <section class="proof-panel" id="seller-marketing">
             <div class="section-heading">
                 <div>
                     <p class="eyebrow" style="color: var(--kw-red);">Homes.com Membership Benefits</p>
@@ -732,10 +762,10 @@
             <div class="section-heading">
                 <div>
                     <p class="eyebrow" style="color: var(--kw-red);">Seller Process</p>
-                    <h2>Track the seller process in the same place.</h2>
+                    <h2>See what to expect from signed paperwork to sold.</h2>
                 </div>
                 <p>
-                    This seller-only process tracker walks through the path from signed paperwork to sold, so you can see what usually comes next without bouncing to another page.
+                    If you are getting ready to sell, this walks you through the major stages so you can understand what usually comes next and feel more prepared at each step.
                 </p>
             </div>
 
@@ -744,6 +774,26 @@
                 data-embed-target="seller-process"
                 src="./journey.html?embed=seller-process#seller"
                 title="Seller process tracker"
+                loading="lazy"
+            ></iframe>
+        </section>
+
+        <section class="resource-panel" id="seller-proceeds">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" style="color: var(--kw-red);">Seller Proceeds</p>
+                    <h2>Run your proceeds without leaving the page.</h2>
+                </div>
+                <p>
+                    Use the seller proceeds workbook here to estimate commission, transfer tax, mortgage payoff, and your likely net.
+                </p>
+            </div>
+
+            <iframe
+                class="resource-frame is-tool"
+                data-embed-target="seller-proceeds"
+                src="./Seller%20Net/index.html?embed=seller-proceeds"
+                title="Seller proceeds workbook"
                 loading="lazy"
             ></iframe>
         </section>

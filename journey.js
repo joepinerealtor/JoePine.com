@@ -262,6 +262,8 @@ const trackerState = {
     stageIndex: 0,
 };
 
+const isEmbeddedTracker = new URLSearchParams(window.location.search).has("embed");
+
 const trackerElements = {
     eyebrow: document.querySelector("[data-tracker-eyebrow]"),
     title: document.querySelector("[data-tracker-title]"),
@@ -370,7 +372,7 @@ function renderTracker() {
     renderStageButtons();
 
     const activeButton = trackerElements.stageList.querySelector(".tracker-stage-button.is-active");
-    if (activeButton) {
+    if (activeButton && !isEmbeddedTracker) {
         activeButton.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
     }
 
