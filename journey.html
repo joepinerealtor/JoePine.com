@@ -10,6 +10,35 @@
     >
     <link rel="stylesheet" href="site-frame.css">
     <link rel="stylesheet" href="journey.css">
+    <style>
+        body.is-embed {
+            background: transparent;
+        }
+
+        body.is-embed .site-frame-wrap,
+        body.is-embed .journey-hero,
+        body.is-embed .journey-cta,
+        body.is-embed .journey-footer {
+            display: none;
+        }
+
+        body.is-embed .page-shell {
+            max-width: none;
+            padding: 0;
+        }
+
+        body.is-embed .tracker-shell {
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            border-left: 0;
+            border-right: 0;
+        }
+
+        body.is-embed .tracker-mode-toggle {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="site-frame-wrap">
@@ -44,10 +73,8 @@
 
             <nav class="site-frame-nav" id="site-frame-nav-journey">
                 <a href="./index.html">Home</a>
-                <a href="./Monthly%20Payment/index.html">Monthly Payment</a>
-                <a href="./Seller%20Net/index.html">Seller Proceeds</a>
-                <a href="./journey.html" aria-current="page">Process</a>
-                <a href="./Monthly%20Payment/lenders.html">Lending Partners</a>
+                <a href="./buyers.html">Buyer Resources</a>
+                <a href="./sellers.html">Seller Resources</a>
                 <a href="./inspectors.html">Inspectors</a>
                 <a href="./attorneys.html">Attorneys</a>
                 <a class="site-frame-cta" href="./index.html#contact">Contact Joe</a>
@@ -155,8 +182,8 @@
                     </div>
 
                     <div class="tracker-action-row">
-                        <a class="journey-button journey-button-primary" data-primary-cta href="./Monthly%20Payment/index.html">Start With Monthly Payment</a>
-                        <a class="journey-button journey-button-secondary" data-secondary-cta href="./Monthly%20Payment/lenders.html">View Lending Partners</a>
+                        <a class="journey-button journey-button-primary" data-primary-cta href="./buyers.html#buyer-payment">Open Buyer Resources</a>
+                        <a class="journey-button journey-button-secondary" data-secondary-cta href="./buyers.html#buyer-lenders">View Buyer Lenders</a>
                     </div>
 
                     <div class="tracker-nav-row">
@@ -201,6 +228,40 @@
         </footer>
     </main>
 
+    <script>
+        (function () {
+            const embedMode = new URLSearchParams(window.location.search).get("embed");
+            if (!embedMode) {
+                return;
+            }
+
+            document.body.classList.add("is-embed");
+
+            const postHeight = () => {
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight
+                );
+                window.parent.postMessage(
+                    { type: "joe-embed-resize", embed: embedMode, height },
+                    "*"
+                );
+            };
+
+            window.addEventListener("load", () => {
+                postHeight();
+                setTimeout(postHeight, 250);
+                setTimeout(postHeight, 1000);
+            });
+
+            window.addEventListener("resize", postHeight);
+
+            if (typeof ResizeObserver !== "undefined") {
+                const observer = new ResizeObserver(postHeight);
+                observer.observe(document.body);
+            }
+        })();
+    </script>
     <script src="site-frame.js"></script>
     <script src="journey.js"></script>
 </body>

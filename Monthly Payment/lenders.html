@@ -32,6 +32,19 @@
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
         }
 
+        body.is-embed {
+            background: transparent;
+        }
+
+        body.is-embed .site-frame-wrap,
+        body.is-embed .top-bar {
+            display: none;
+        }
+
+        body.is-embed .page-shell {
+            padding-top: 0;
+        }
+
         a {
             color: inherit;
         }
@@ -635,10 +648,8 @@
 
             <nav class="site-frame-nav" id="site-frame-nav-lenders">
                 <a href="../index.html">Home</a>
-                <a href="./index.html">Monthly Payment</a>
-                <a href="../Seller%20Net/index.html">Seller Proceeds</a>
-                <a href="../journey.html">Process</a>
-                <a href="./lenders.html" aria-current="page">Lending Partners</a>
+                <a href="../buyers.html">Buyer Resources</a>
+                <a href="../sellers.html">Seller Resources</a>
                 <a href="../inspectors.html">Inspectors</a>
                 <a href="../attorneys.html">Attorneys</a>
                 <a class="site-frame-cta" href="../index.html#contact">Contact Joe</a>
@@ -887,6 +898,40 @@
                 </article>
             `;
         }).join('');
+    </script>
+    <script>
+        (function () {
+            const embedMode = new URLSearchParams(window.location.search).get("embed");
+            if (!embedMode) {
+                return;
+            }
+
+            document.body.classList.add("is-embed");
+
+            const postHeight = () => {
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight
+                );
+                window.parent.postMessage(
+                    { type: "joe-embed-resize", embed: embedMode, height },
+                    "*"
+                );
+            };
+
+            window.addEventListener("load", () => {
+                postHeight();
+                setTimeout(postHeight, 250);
+                setTimeout(postHeight, 1000);
+            });
+
+            window.addEventListener("resize", postHeight);
+
+            if (typeof ResizeObserver !== "undefined") {
+                const observer = new ResizeObserver(postHeight);
+                observer.observe(document.body);
+            }
+        })();
     </script>
     <script src="../site-frame.js"></script>
 </body>

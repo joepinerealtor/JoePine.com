@@ -5,12 +5,12 @@ const journeyData = {
         intro: "Start with the money conversation, move through the contract milestones, and head into closing with a lot more confidence.",
         modeLabel: "Buyer Process",
         primaryCta: {
-            label: "Start With Monthly Payment",
-            href: "./Monthly%20Payment/index.html",
+            label: "Open Buyer Resources",
+            href: "./buyers.html#buyer-payment",
         },
         secondaryCta: {
-            label: "View Lending Partners",
-            href: "./Monthly%20Payment/lenders.html",
+            label: "View Buyer Lenders",
+            href: "./buyers.html#buyer-lenders",
         },
         stages: [
             {
@@ -119,12 +119,12 @@ const journeyData = {
         intro: "Start with the listing strategy, move through market activity and contract checkpoints, and finish the handoff without feeling blindsided.",
         modeLabel: "Seller Process",
         primaryCta: {
-            label: "Open Seller Proceeds Workbook",
-            href: "./Seller%20Net/index.html",
+            label: "Open Seller Resources",
+            href: "./sellers.html#seller-proceeds",
         },
         secondaryCta: {
-            label: "Ask Joe A Question",
-            href: "./index.html#contact",
+            label: "See Seller Process Hub",
+            href: "./sellers.html#seller-process",
         },
         stages: [
             {
@@ -387,10 +387,30 @@ function setMode(mode) {
     renderTracker();
 }
 
-function initializeTrackerFromHash() {
+function getRequestedMode() {
+    const params = new URLSearchParams(window.location.search);
+    const queryValue = (params.get("mode") || params.get("embed") || "").toLowerCase();
+
+    if (queryValue.includes("seller")) {
+        return "seller";
+    }
+
+    if (queryValue.includes("buyer")) {
+        return "buyer";
+    }
+
     const hashMode = window.location.hash.replace("#", "").toLowerCase();
     if (hashMode === "buyer" || hashMode === "seller") {
-        trackerState.mode = hashMode;
+        return hashMode;
+    }
+
+    return null;
+}
+
+function initializeTrackerFromHash() {
+    const requestedMode = getRequestedMode();
+    if (requestedMode) {
+        trackerState.mode = requestedMode;
     }
 
     renderTracker();

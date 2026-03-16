@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources for Buyers | Joe Pine</title>
+    <meta
+        name="description"
+        content="A one-stop buyer resource page with Joe Pine's monthly payment calculator, lending partners, and buyer process in one place."
+    >
+    <link rel="stylesheet" href="./site-frame.css">
+    <style>
+        :root {
+            --kw-red: #ce011f;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #e31837;
+            --kw-ink: #000000;
+            --kw-slate: #4d4d4d;
+            --kw-muted: #828282;
+            --kw-line: #d9d9d9;
+            --surface: rgba(255, 255, 255, 0.97);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 18px 34px;
+        }
+
+        .hero-panel,
+        .resource-panel,
+        .resource-card,
+        .cta-panel {
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            background: var(--surface);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+        }
+
+        .hero-panel {
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 52%, var(--kw-red-deep) 100%);
+            color: #ffffff;
+            padding: 22px 22px 18px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .hero-banner .eyebrow {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .hero-banner h1 {
+            margin: 0;
+            max-width: 12ch;
+            font-size: clamp(30px, 4.6vw, 48px);
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-content {
+            padding: 22px;
+        }
+
+        .hero-copy {
+            max-width: 780px;
+        }
+
+        .hero-hook {
+            margin: 0 0 14px;
+            color: var(--kw-red);
+            font-size: 13px;
+            line-height: 1.45;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-copy p,
+        .section-heading p,
+        .resource-card p,
+        .cta-panel p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.62;
+            font-weight: 700;
+        }
+
+        .hero-copy p + p {
+            margin-top: 12px;
+        }
+
+        .hero-highlights {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px 14px;
+            margin: 18px 0 0;
+            padding: 0;
+        }
+
+        .hero-highlights li {
+            position: relative;
+            padding-left: 16px;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .hero-highlights li::before {
+            content: "";
+            position: absolute;
+            top: 9px;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--kw-red);
+        }
+
+        .hero-actions,
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .hero-actions {
+            margin-top: 18px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 10px;
+            font-weight: 900;
+            text-align: center;
+            transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease, border-color 140ms ease;
+            flex: 1 1 180px;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px -20px rgba(15, 23, 42, 0.4);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+        }
+
+        .button-secondary {
+            background: #ffffff;
+            color: var(--kw-ink);
+            border-color: var(--kw-ink);
+        }
+
+        .section-heading {
+            margin: 0 0 16px;
+        }
+
+        .section-heading h2,
+        .cta-panel h2 {
+            display: block;
+            margin: 0 0 8px;
+            font-size: clamp(26px, 3vw, 38px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .section-heading p {
+            max-width: 760px;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .resource-card {
+            border-radius: 22px;
+            padding: 18px;
+            background: #ffffff;
+        }
+
+        .resource-card span {
+            display: inline-block;
+            color: var(--kw-red);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .resource-card h3 {
+            margin: 10px 0 8px;
+            font-size: 1.15rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .resource-panel {
+            border-radius: 28px;
+            padding: 22px;
+            margin-bottom: 24px;
+            background: #ffffff;
+        }
+
+        .resource-frame {
+            width: 100%;
+            border: 0;
+            border-radius: 22px;
+            background: #ffffff;
+            min-height: 980px;
+        }
+
+        .resource-frame.is-calculator {
+            min-height: 1800px;
+        }
+
+        .resource-frame.is-lenders {
+            min-height: 1700px;
+        }
+
+        .resource-frame.is-process {
+            min-height: 980px;
+        }
+
+        .cta-panel {
+            border-radius: 28px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+            gap: 18px;
+            align-items: center;
+            padding: 22px;
+        }
+
+        .brand-footer {
+            display: grid;
+            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            align-items: center;
+            gap: 24px;
+            padding: 20px 4px 0;
+        }
+
+        .footer-logo-slot {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo-slot-kw {
+            justify-content: flex-start;
+        }
+
+        .footer-logo-slot-platinum {
+            justify-content: flex-end;
+        }
+
+        .footer-logo-slot img:first-child {
+            width: min(220px, 100%);
+        }
+
+        .footer-copy {
+            text-align: center;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .footer-copy p {
+            margin: 4px 0;
+        }
+
+        .fine-print {
+            color: var(--kw-muted);
+            font-size: 12px;
+        }
+
+        @media (max-width: 980px) {
+            .quick-grid,
+            .cta-panel,
+            .brand-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-footer {
+                text-align: center;
+            }
+
+            .footer-logo-slot,
+            .footer-logo-slot-kw,
+            .footer-logo-slot-platinum {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                padding: 0 10px 28px;
+            }
+
+            .hero-panel,
+            .resource-panel,
+            .resource-card,
+            .cta-panel {
+                border-radius: 24px;
+            }
+
+            .hero-banner,
+            .hero-content,
+            .resource-panel,
+            .resource-card,
+            .cta-panel {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .hero-actions,
+            .cta-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="./index.html" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="./Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-buyers"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-buyers">
+                <a href="./index.html">Home</a>
+                <a href="./buyers.html" aria-current="page">Buyer Resources</a>
+                <a href="./sellers.html">Seller Resources</a>
+                <a href="./inspectors.html">Inspectors</a>
+                <a href="./attorneys.html">Attorneys</a>
+                <a class="site-frame-cta" href="./index.html#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-banner">
+                <p class="eyebrow">Resources for Buyers</p>
+                <h1>Know your payment, compare lenders, and understand the path ahead.</h1>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-copy">
+                    <p class="hero-hook">Buying gets easier when the money side and the process side live in one place.</p>
+                    <p>
+                        This page is built to give buyers a cleaner starting point. You can work through payment comfort,
+                        compare lenders, and see what the buyer process usually looks like without jumping across three different pages.
+                    </p>
+                    <p>
+                        Use it as a real buyer resource hub, whether you are still getting your numbers together or already
+                        planning the move.
+                    </p>
+
+                    <ul class="hero-highlights">
+                        <li>Monthly payment calculator and home-price range tool</li>
+                        <li>Trusted lending partners in one place</li>
+                        <li>Buyer process tracker from preapproval to closing</li>
+                        <li>Simple starting point for real conversations</li>
+                    </ul>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#buyer-payment">Start With Payment</a>
+                        <a class="button button-secondary" href="#buyer-lenders">Compare Lenders</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-grid">
+            <article class="resource-card">
+                <span>Money First</span>
+                <h3>Start with a monthly payment you actually feel good about.</h3>
+                <p>
+                    Use the calculator to back into a price range from a payment comfort zone instead of starting with the wrong number.
+                </p>
+            </article>
+
+            <article class="resource-card">
+                <span>Lender Fit</span>
+                <h3>Compare lenders before you jump into preapproval.</h3>
+                <p>
+                    See lender options in one place so you can find someone whose communication style and loan approach fit your situation.
+                </p>
+            </article>
+
+            <article class="resource-card">
+                <span>Process Clarity</span>
+                <h3>Know what usually comes next after each buyer milestone.</h3>
+                <p>
+                    The buyer process tracker helps take some of the chaos out of the timeline once offers, inspections, and underwriting start moving.
+                </p>
+            </article>
+        </section>
+
+        <section class="resource-panel" id="buyer-payment">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" style="color: var(--kw-red);">Monthly Payment</p>
+                    <h2>Start with the number that matters most.</h2>
+                </div>
+                <p>
+                    Use the monthly payment calculator here to estimate price range, cash to close, and what your budget may actually feel like month to month.
+                </p>
+            </div>
+
+            <iframe
+                class="resource-frame is-calculator"
+                data-embed-target="buyer-calculator"
+                src="./Monthly%20Payment/index.html?embed=buyer-calculator"
+                title="Monthly payment calculator"
+                loading="lazy"
+            ></iframe>
+        </section>
+
+        <section class="resource-panel" id="buyer-lenders">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" style="color: var(--kw-red);">Lending Partners</p>
+                    <h2>Compare lender options without leaving the page.</h2>
+                </div>
+                <p>
+                    If you are not sure who to call first, this section gives you lender options in one place before you decide who to talk to about preapproval.
+                </p>
+            </div>
+
+            <iframe
+                class="resource-frame is-lenders"
+                data-embed-target="buyer-lenders"
+                src="./Monthly%20Payment/lenders.html?embed=buyer-lenders"
+                title="Lending partners"
+                loading="lazy"
+            ></iframe>
+        </section>
+
+        <section class="resource-panel" id="buyer-process">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" style="color: var(--kw-red);">Buyer Process</p>
+                    <h2>See what the process usually looks like from preapproval to keys.</h2>
+                </div>
+                <p>
+                    This buyer-only process tracker walks through the major stages so you know what usually happens next and what to stay focused on at each milestone.
+                </p>
+            </div>
+
+            <iframe
+                class="resource-frame is-process"
+                data-embed-target="buyer-process"
+                src="./journey.html?embed=buyer-process#buyer"
+                title="Buyer process tracker"
+                loading="lazy"
+            ></iframe>
+        </section>
+
+        <section class="cta-panel">
+            <div>
+                <p class="eyebrow" style="color: var(--kw-red);">Buyer Next Step</p>
+                <h2>If you want help turning these numbers into a real search plan, let's talk.</h2>
+                <p>
+                    I can help you work through payment comfort, lender options, and the next move so you can start the process with more clarity and less guesswork.
+                </p>
+            </div>
+
+            <div class="cta-actions">
+                <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
+                <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=I%20Want%20To%20Talk%20About%20Buying">Email Joe</a>
+            </div>
+        </section>
+
+        <footer class="brand-footer">
+            <div class="footer-logo-slot footer-logo-slot-kw">
+                <img src="./Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+            </div>
+            <div class="footer-copy">
+                <p>Joe Pine Realtor | REALTOR RI &amp; MA</p>
+                <p>28 Thurber Blvd, Smithfield, RI 02917</p>
+                <p class="fine-print">Massachusetts Real Estate License #1001085-RE-RS</p>
+                <p class="fine-print">Rhode Island Real Estate License #RES.0044759</p>
+                <p class="fine-print">Equal housing opportunity. Each office is independently owned and operated.</p>
+            </div>
+            <div class="footer-logo-slot footer-logo-slot-platinum">
+                <img src="./Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        window.addEventListener("message", (event) => {
+            const data = event.data;
+            if (!data || data.type !== "joe-embed-resize" || !data.embed || !data.height) {
+                return;
+            }
+
+            const frame = document.querySelector(`[data-embed-target="${data.embed}"]`);
+            if (frame) {
+                frame.style.height = `${data.height}px`;
+            }
+        });
+    </script>
+    <script src="./site-frame.js"></script>
+</body>
+</html>
