@@ -211,7 +211,8 @@
 
         .partner-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+            justify-content: center;
             gap: 16px;
             margin-bottom: 24px;
         }
@@ -578,7 +579,7 @@
         <section>
             <div class="section-heading">
                 <h3>Closing Support Options</h3>
-                <p>Choose the type of attorney support that fits whether you are buying, selling, or working through a more complex title situation.</p>
+                <p>Meet Joe's current attorney partners for buyer, seller, and closing support in Rhode Island and Massachusetts.</p>
             </div>
             <div id="attorneyGrid" class="partner-grid"></div>
         </section>
@@ -650,25 +651,6 @@
                 primaryActionUrl: "https://www.loffredoandsciotti.com/",
                 secondaryActionLabel: "Call Firm",
                 secondaryActionUrl: "tel:4017811280"
-            },
-            {
-                name: "Estate / Trust / Title Support",
-                title: "Useful when the sale involves probate, trust ownership, multiple decision-makers, or title cleanup.",
-                company: "Special Situations",
-                initials: "TT",
-                focusAreas: ["Estate", "Trust", "Title"],
-                accent: "linear-gradient(135deg, #198754 0%, #157347 100%)",
-                note: "Some transactions need more than standard contract-to-close coordination. Estate sales, inherited property, trust ownership, divorces, or title issues all benefit from the right legal support early.",
-                meta: [
-                    { label: "Best For", value: "Probate, trust, inherited property, title issues, or files with extra signatures." },
-                    { label: "Main Focus", value: "Ownership review, documentation, title cleanup, and closing-readiness." },
-                    { label: "Ideal Timing", value: "As early as possible, especially before listing if documents may need attention." },
-                    { label: "Joe Can Help", value: "Flag the moving pieces early so the right attorney support is in place before delays stack up." }
-                ],
-                primaryActionLabel: "Need Guidance",
-                primaryActionUrl: "mailto:JoePine@KW.com?subject=Help%20Me%20With%20An%20Estate%20Or%20Title%20Situation",
-                secondaryActionLabel: "Call Joe",
-                secondaryActionUrl: "tel:4013270888"
             }
         ];
 

@@ -211,7 +211,8 @@
 
         .partner-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+            justify-content: center;
             gap: 16px;
             margin-bottom: 24px;
         }
@@ -578,7 +579,7 @@
         <section>
             <div class="section-heading">
                 <h3>Home Inspection Support</h3>
-                <p>Pick the type of inspection help that fits the house, the contract, and how much clarity you want before moving forward.</p>
+                <p>Meet Joe's current inspection partner and get connected quickly when you are ready to schedule.</p>
             </div>
             <div id="inspectorGrid" class="partner-grid"></div>
         </section>
@@ -586,7 +587,7 @@
         <section class="cta-panel">
             <div>
                 <h4>Not Sure What Level Of Inspection You Need?</h4>
-                <p>Joe can help you decide whether you need a straightforward general inspection, specialty follow-up testing, or a pre-listing walkthrough before the home ever hits the market.</p>
+                <p>Joe can help you decide whether Patrick is the right fit for the home and connect you with additional inspection resources if the file needs something more specific.</p>
             </div>
             <div class="cta-actions">
                 <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
@@ -631,44 +632,6 @@
                 primaryActionUrl: "https://homeinspectionsbybobgeddes.net",
                 secondaryActionLabel: "Email Patrick",
                 secondaryActionUrl: "mailto:patrickd.geddes@gmail.com"
-            },
-            {
-                name: "Specialty Follow-Up Testing",
-                title: "Helpful when the home, the report, or the location points to a more specific concern.",
-                company: "Radon | WDI | Septic | Well",
-                initials: "SP",
-                focusAreas: ["Radon", "WDI", "Septic"],
-                accent: "linear-gradient(135deg, #202020 0%, #4d4d4d 100%)",
-                note: "Some homes need a little deeper due diligence. Radon, wood-destroying insect, septic, sewer, well, mold, or structural follow-up can be the difference between guessing and knowing.",
-                meta: [
-                    { label: "Best For", value: "Older homes, rural properties, or files where the first inspection flags something deeper." },
-                    { label: "Typical Timing", value: "As soon as the general inspection suggests a specialist may be worth bringing in." },
-                    { label: "Ask About", value: "Scope of work, scheduling speed, and whether separate reports are provided." },
-                    { label: "Joe Can Help", value: "Coordinate the right follow-up without slowing the contract down unnecessarily." }
-                ],
-                primaryActionLabel: "Need A Referral",
-                primaryActionUrl: "mailto:JoePine@KW.com?subject=Connect%20Me%20With%20A%20Specialty%20Inspector",
-                secondaryActionLabel: "Call Joe",
-                secondaryActionUrl: "tel:4013270888"
-            },
-            {
-                name: "Pre-Listing Seller Walkthrough",
-                title: "A smart option for sellers who want fewer surprises once a buyer starts digging in.",
-                company: "Seller Prep Option",
-                initials: "PL",
-                focusAreas: ["Sellers", "Pre-List", "Prep"],
-                accent: "linear-gradient(135deg, #198754 0%, #157347 100%)",
-                note: "A pre-listing inspection can help sellers understand likely buyer objections before the home goes live, prioritize repairs, and make pricing or disclosure conversations more informed.",
-                meta: [
-                    { label: "Best For", value: "Sellers who want to go to market with cleaner expectations and stronger prep." },
-                    { label: "Typical Timing", value: "Before photos, before launch, or before finalizing a repair plan." },
-                    { label: "Ask About", value: "What issues buyers usually react to most in your price range and area." },
-                    { label: "Joe Can Help", value: "Use the report to shape pricing strategy, repair choices, and listing prep." }
-                ],
-                primaryActionLabel: "Seller Strategy",
-                primaryActionUrl: "./Seller%20Net/index.html",
-                secondaryActionLabel: "Ask Joe",
-                secondaryActionUrl: "mailto:JoePine@KW.com?subject=Help%20Me%20With%20A%20Pre-Listing%20Inspection"
             }
         ];
 
