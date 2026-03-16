@@ -507,7 +507,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef, useDeferredValue } = React;
+        const { useState, useEffect, useRef } = React;
         const CALCULATOR_PREFS_KEY = "joePineMonthlyAffordabilityPrefs";
 
         const readCookieValue = (key) => {
@@ -1108,14 +1108,12 @@
 
             const calculatedBudget = Math.max(Number(results.homePrice) || 0, 0);
             const stepTwoLink = `${JOE_INFO.kwSearchBase}${calculatedBudget}${JOE_INFO.kwSearchSuffix}`;
-            const deferredSearchPreviewUrl = useDeferredValue(stepTwoLink);
             const lenderLandingPageUrl = `lenders.html?budget=${calculatedBudget}`;
-            const [searchPreviewStatus, setSearchPreviewStatus] = useState("loading");
             const addressMatch = JOE_INFO.address.match(/^(.*?,\s*[A-Z]{2})\s+(\d{5}(?:-\d{4})?)$/);
             const addressLineOne = addressMatch ? addressMatch[1] : JOE_INFO.address;
             const addressLineTwo = addressMatch ? addressMatch[2] : "";
             const formatWholeNumber = (val) => new Intl.NumberFormat('en-US').format(val);
-            const actionButtonBaseClass = "flex-1 min-w-[145px] max-w-[215px] flex items-center justify-center gap-2 py-3.5 rounded-xl uppercase text-[10px] tracking-[0.18em] shadow-sm leading-none font-black transition-all";
+            const actionButtonBaseClass = "flex-1 sm:flex-none sm:min-w-[148px] inline-flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-xl uppercase text-[9px] tracking-[0.16em] shadow-sm leading-none font-black transition-all";
             const printButtonClass = `${actionButtonBaseClass} bg-[#CE011F] text-white hover:bg-red-700`;
             const darkActionButtonClass = `${actionButtonBaseClass} bg-[#000000] text-white hover:bg-black`;
             const outlinedDarkActionButtonClass = `${actionButtonBaseClass} bg-white text-[#000000] border-2 border-[#000000] hover:bg-[#000000] hover:text-white`;
@@ -1161,9 +1159,6 @@
                 `Disclaimer: ${DISCLAIMER_TEXT}`
             ].join("\n");
 
-            useEffect(() => {
-                setSearchPreviewStatus("loading");
-            }, [deferredSearchPreviewUrl]);
             const emailBody = [
                 "I wanted to share a quick estimate based on the information entered into Joe Pine's monthly affordability calculator.",
                 "",
@@ -1291,18 +1286,18 @@
                                         <Icon name="Calculator" size={14} /> 
                                         <h2 className="font-black uppercase text-xs tracking-widest leading-none">Monthly Affordability</h2>
                                     </div>
-                                    <div className="p-5 space-y-5 font-black">
+                                    <div className="p-4 space-y-4 font-black">
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-black">
                                             <div>
                                                 <label className="block text-xs uppercase mb-2 leading-none tracking-[0.15em] font-black text-gray-400">Monthly Target</label>
                                                 <div className="relative font-black">
                                                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
-                                                    <input type="number" value={monthlyGoal} onChange={(e) => setMonthlyGoal(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-14 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-2xl transition-all font-black" />
+                                                    <input type="number" value={monthlyGoal} onChange={(e) => setMonthlyGoal(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-xl transition-all font-black" />
                                                 </div>
                                             </div>
                                             <div>
                                                 <label className="block text-xs uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Location</label>
-                                                <select value={stateTaxRate} onChange={(e) => setStateTaxRate(Number(e.target.value))} className="w-full h-14 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-xl">
+                                                <select value={stateTaxRate} onChange={(e) => setStateTaxRate(Number(e.target.value))} className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-base">
                                                     <option value={1.25}>RI</option>
                                                     <option value={1.15}>MA</option>
                                                 </select>
@@ -1358,8 +1353,8 @@
                                                         shouldAutoApplyLiveRateRef.current = false;
                                                         rateInputVersionRef.current += 1;
                                                         setInterestRate(e.target.value);
-                                                    }} className="w-full min-w-0 bg-gray-50 border-2 border-gray-100 rounded-lg py-3 px-4 focus:border-[#CE011F] outline-none font-black text-xl" />
-                                                    <button type="button" onClick={() => fetchLiveRate(true)} disabled={isRefreshingRate} title={`Reset to the latest Mortgage News Daily ${currentRateProgram.statusLabel} rate`} className="w-full sm:w-auto sm:min-w-[92px] shrink-0 inline-flex min-h-[52px] items-center justify-center gap-1.5 px-4 rounded-lg border-2 border-[#CE011F] bg-[#CE011F] text-white hover:bg-red-700 hover:border-red-700 transition-colors leading-none text-[9px] uppercase font-black shadow-sm disabled:opacity-50 disabled:bg-[#CE011F] disabled:border-[#CE011F] disabled:text-white">
+                                                    }} className="w-full min-w-0 bg-gray-50 border-2 border-gray-100 rounded-lg py-2.5 px-4 focus:border-[#CE011F] outline-none font-black text-lg" />
+                                                    <button type="button" onClick={() => fetchLiveRate(true)} disabled={isRefreshingRate} title={`Reset to the latest Mortgage News Daily ${currentRateProgram.statusLabel} rate`} className="w-full sm:w-auto sm:min-w-[92px] shrink-0 inline-flex min-h-[44px] items-center justify-center gap-1.5 px-4 rounded-lg border-2 border-[#CE011F] bg-[#CE011F] text-white hover:bg-red-700 hover:border-red-700 transition-colors leading-none text-[9px] uppercase font-black shadow-sm disabled:opacity-50 disabled:bg-[#CE011F] disabled:border-[#CE011F] disabled:text-white">
                                                         <Icon name="RefreshCw" size={10} color="white" className={isRefreshingRate ? "animate-spin" : ""} />
                                                         <span>{isRefreshingRate ? "Updating" : "Reset"}</span>
                                                     </button>
@@ -1408,7 +1403,7 @@
                                                         <label className="block text-[10px] uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Custom Down Payment</label>
                                                         <div className="relative font-black">
                                                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
-                                                            <input type="number" value={downPaymentFixed} onChange={(e) => setDownPaymentFixed(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-xl transition-all" />
+                                                            <input type="number" value={downPaymentFixed} onChange={(e) => setDownPaymentFixed(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-11 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-lg transition-all" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -1417,7 +1412,7 @@
                                                         <label className="block text-[10px] uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Down Payment</label>
                                                         <div className="relative h-12 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 flex items-center font-black">
                                                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
-                                                            <span className="text-xl font-black">{formatWholeNumber(results.downPaymentAmount)}</span>
+                                                            <span className="text-lg font-black">{formatWholeNumber(results.downPaymentAmount)}</span>
                                                         </div>
                                                     </div>
                                                 )}
@@ -1432,11 +1427,11 @@
                                     </div>
                                 </div>
 
-                                <div className="section-surface soft-surface rounded-2xl premium-shadow p-5 font-black no-print mt-auto md:min-h-[220px]">
-                                    <div className="flex flex-col items-center justify-center gap-4 text-center font-black h-full">
-                                        <img src={JOE_INFO.logoUrl} alt="Keller Williams Leading Edge" className="h-12 w-auto object-contain" />
-                                        <img src={JOE_INFO.platinumLogoUrl} alt="Platinum Real Estate Group" className="h-14 w-auto object-contain" />
-                                        <div className="text-sm leading-snug text-[#4D4D4D] font-black">
+                                <div className="section-surface soft-surface rounded-2xl premium-shadow p-4 font-black no-print mt-auto md:min-h-[188px]">
+                                    <div className="flex flex-col items-center justify-center gap-3 text-center font-black h-full">
+                                        <img src={JOE_INFO.logoUrl} alt="Keller Williams Leading Edge" className="h-10 w-auto object-contain" />
+                                        <img src={JOE_INFO.platinumLogoUrl} alt="Platinum Real Estate Group" className="h-12 w-auto object-contain" />
+                                        <div className="text-[13px] leading-snug text-[#4D4D4D] font-black">
                                             <p className="uppercase tracking-[0.14em] text-[10px] text-gray-400 mb-2 font-black">Office & Brokerage</p>
                                             <p className="font-black">{addressLineOne}</p>
                                             {addressLineTwo && <p className="font-black">{addressLineTwo}</p>}
@@ -1452,28 +1447,28 @@
                                         <Icon name="Calculator" size={14} />
                                         <h2 className="font-black uppercase text-xs tracking-widest leading-none">Estimated Payment Snapshot</h2>
                                     </div>
-                                    <div className="p-6 md:p-7 relative">
-                                    <div className="max-w-4xl mx-auto mb-6">
+                                    <div className="p-5 md:p-6 relative">
+                                    <div className="max-w-4xl mx-auto mb-5">
                                         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 text-left">
-                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Monthly Payment</p>
                                                 <div className="flex items-end justify-center">
                                                     <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedTotalMonthlyPayment)}</p>
                                                 </div>
                                             </div>
-                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Down Payment</p>
                                                 <div className="flex items-end justify-center">
                                                     <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(results.downPaymentAmount)}</p>
                                                 </div>
                                             </div>
-                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Closing Costs (3%)</p>
                                                 <div className="flex items-end justify-center">
                                                     <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedClosingCosts)}</p>
                                                 </div>
                                             </div>
-                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Cash To Close</p>
                                                 <div className="flex items-end justify-center">
                                                     <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedCashNeeded)}</p>
@@ -1481,12 +1476,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="mb-6">
+                                    <div className="mb-5">
                                         <p className="text-base text-gray-500 max-w-2xl mx-auto mb-3 leading-relaxed tracking-tight font-black">
                                             Based on this estimated monthly payment and cash-to-close snapshot, homes in this range may be the right place to start.
                                         </p>
                                         <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-1.5 block font-black leading-none">Estimated Home Price</span>
-                                        <RollingPrice value={formatCurrency(results.homePrice)} className="text-5xl md:text-7xl font-extrabold text-[#198754] leading-none drop-shadow-sm" />
+                                        <RollingPrice value={formatCurrency(results.homePrice)} className="text-4xl md:text-6xl font-extrabold text-[#198754] leading-none drop-shadow-sm" />
                                     </div>
                                      
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left leading-none font-black mb-5">
@@ -1519,11 +1514,11 @@
                                 </div>
 
                                 <div className="font-black leading-none no-print mt-auto">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-black leading-none items-stretch">
-                                        <div className="bg-gradient-to-br from-[#CE011F] to-[#930015] text-white p-5 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[220px] h-full flex flex-col justify-between border border-[#930015]">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-black leading-none items-stretch">
+                                        <div className="bg-gradient-to-br from-[#CE011F] to-[#930015] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[185px] h-full flex flex-col justify-between border border-[#930015]">
                                             <div>
                                                 <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 1</p>
-                                                <h3 className="text-lg italic uppercase mb-2 leading-none tracking-tight font-black">Get Preapproved</h3>
+                                                <h3 className="text-base italic uppercase mb-2 leading-none tracking-tight font-black">Get Preapproved</h3>
                                                 <p className="text-[11px] mb-4 leading-relaxed font-black text-red-50">
                                                     Confirm your buying power with a licensed lender before you start touring homes.
                                                 </p>
@@ -1533,10 +1528,10 @@
                                                 View Lender Options
                                             </a>
                                         </div>
-                                        <div className="bg-gradient-to-br from-[#E31837] to-[#CE011F] text-white p-5 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[220px] h-full flex flex-col justify-between border border-[#CE011F]">
+                                        <div className="bg-gradient-to-br from-[#E31837] to-[#CE011F] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[185px] h-full flex flex-col justify-between border border-[#CE011F]">
                                             <div>
                                                 <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 2</p>
-                                                <h3 className="text-lg italic uppercase mb-2 leading-none tracking-tight font-black">Start The Hunt</h3>
+                                                <h3 className="text-base italic uppercase mb-2 leading-none tracking-tight font-black">Start The Hunt</h3>
                                                 <p className="text-[11px] mb-4 leading-relaxed font-black text-red-50">
                                                     Browse homes up to <span className="font-black text-white text-sm">{formatCurrency(results.homePrice)}</span> and see what is available right now.
                                                 </p>
@@ -1548,55 +1543,6 @@
                                         </div>
                                     </div>
 
-                                    <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden mt-4 border border-gray-100">
-                                        <div className="bg-gradient-to-r from-[#000000] via-[#2a2a2a] to-[#4D4D4D] p-4 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                                            <div>
-                                                <p className="text-[9px] uppercase tracking-[0.22em] text-gray-300 mb-1 font-black">Live Home Preview</p>
-                                                <h3 className="text-sm md:text-base uppercase tracking-[0.08em] leading-none font-black">
-                                                    Homes up to {formatCurrency(results.homePrice)}
-                                                </h3>
-                                            </div>
-                                            <div className="flex flex-wrap gap-2">
-                                                <a href={stepTwoLink} target="_blank" rel="noreferrer" className="bg-white hover:bg-gray-100 text-[#000000] font-black px-4 py-2 rounded-xl uppercase tracking-[0.18em] text-[9px] transition-all flex items-center justify-center gap-2 leading-none shadow-lg">
-                                                    <Icon name="ExternalLink" size={10} color="#000000" />
-                                                    Open Full Search
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div className="p-4 md:p-5">
-                                            <p className="text-[11px] text-gray-500 leading-relaxed mb-4 font-black">
-                                                Preview available homes from your Keller Williams search page based on this current budget. If the preview appears blank, your browser or IDX settings may be blocking the embedded view, and the full search button above will still work.
-                                            </p>
-
-                                            <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white min-h-[420px]">
-                                                {searchPreviewStatus !== "loaded" && (
-                                                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/90 px-6 text-center">
-                                                        <div>
-                                                            <p className="text-[10px] uppercase tracking-[0.18em] text-[#CE011F] mb-2 font-black">Loading Search Preview</p>
-                                                            <p className="text-[11px] text-gray-500 leading-relaxed font-black">
-                                                                Pulling homes in your budget range from the live Keller Williams search page.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                )}
-
-                                                <iframe
-                                                    key={deferredSearchPreviewUrl}
-                                                    src={deferredSearchPreviewUrl}
-                                                    title="Homes in budget preview"
-                                                    loading="lazy"
-                                                    referrerPolicy="strict-origin-when-cross-origin"
-                                                    className="w-full h-[480px] bg-white"
-                                                    onLoad={() => setSearchPreviewStatus("loaded")}
-                                                />
-                                            </div>
-
-                                            <p className="text-[10px] uppercase tracking-[0.16em] text-gray-400 mt-3 font-black">
-                                                Live preview powered by your Keller Williams search page.
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

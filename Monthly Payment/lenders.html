@@ -39,7 +39,7 @@
         .page-shell {
             max-width: 1180px;
             margin: 0 auto;
-            padding: 22px 18px 40px;
+            padding: 18px 18px 34px;
         }
 
         .glass-card,
@@ -135,7 +135,7 @@
         .hero-banner {
             background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 52%, var(--kw-red-deep) 100%);
             color: #ffffff;
-            padding: 24px 24px 22px;
+            padding: 20px 22px 18px;
         }
 
         .eyebrow {
@@ -151,8 +151,8 @@
         .hero-banner h2 {
             margin: 0;
             max-width: 760px;
-            font-size: clamp(32px, 5vw, 54px);
-            line-height: 0.96;
+            font-size: clamp(28px, 4.2vw, 44px);
+            line-height: 0.98;
             letter-spacing: -0.05em;
             text-transform: uppercase;
             font-weight: 900;
@@ -161,8 +161,8 @@
         .hero-content {
             display: grid;
             grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
-            gap: 18px;
-            padding: 22px;
+            gap: 16px;
+            padding: 18px;
         }
 
         .hero-copy {
@@ -171,8 +171,8 @@
 
         .hero-copy p {
             margin: 0 0 16px;
-            font-size: 17px;
-            line-height: 1.6;
+            font-size: 15px;
+            line-height: 1.55;
             color: var(--kw-slate);
             font-weight: 800;
         }
@@ -180,23 +180,29 @@
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 48px;
-            padding: 0 18px;
-            border-radius: 16px;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
             border: 2px solid transparent;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 900;
             transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+            text-align: center;
+        }
+
+        .hero-actions .button,
+        .cta-actions .button {
+            flex: 1 1 170px;
         }
 
         .button:hover {
@@ -261,7 +267,7 @@
 
         .section-heading h3 {
             margin: 0;
-            font-size: 28px;
+            font-size: 24px;
             line-height: 1;
             letter-spacing: -0.04em;
             text-transform: uppercase;
@@ -279,16 +285,16 @@
         .lender-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
+            gap: 16px;
             margin-bottom: 24px;
         }
 
         .lender-card {
             border-radius: 26px;
-            padding: 20px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 14px;
             min-height: 100%;
         }
 
@@ -300,9 +306,9 @@
         }
 
         .lender-avatar {
-            width: 74px;
-            height: 74px;
-            border-radius: 22px;
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -336,8 +342,8 @@
 
         .lender-name {
             margin: 0 0 6px;
-            font-size: 25px;
-            line-height: 0.95;
+            font-size: 22px;
+            line-height: 0.98;
             letter-spacing: -0.04em;
             text-transform: uppercase;
             font-weight: 900;
@@ -362,13 +368,13 @@
             align-items: center;
             justify-content: center;
             min-width: 48px;
-            min-height: 32px;
+            min-height: 28px;
             padding: 0 12px;
             border-radius: 999px;
             background: #f3f4f6;
             border: 1px solid var(--kw-line);
             color: var(--kw-slate);
-            font-size: 11px;
+            font-size: 10px;
             line-height: 1;
             font-weight: 900;
             letter-spacing: 0.12em;
@@ -377,12 +383,12 @@
 
         .lender-note {
             margin: 0;
-            padding: 14px 15px;
+            padding: 12px 14px;
             border-radius: 18px;
             background: linear-gradient(180deg, #fafafa 0%, #f3f4f6 100%);
             border: 1px solid var(--kw-line);
-            font-size: 14px;
-            line-height: 1.55;
+            font-size: 13px;
+            line-height: 1.5;
             color: var(--kw-slate);
             font-weight: 800;
         }
@@ -417,7 +423,7 @@
 
         .meta-value {
             text-align: right;
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.4;
             color: var(--kw-ink);
             font-weight: 800;
@@ -440,7 +446,7 @@
 
         .cta-panel {
             border-radius: 28px;
-            padding: 20px 22px;
+            padding: 18px 20px;
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
             gap: 18px;
@@ -450,8 +456,8 @@
 
         .cta-panel h4 {
             margin: 0 0 10px;
-            font-size: 27px;
-            line-height: 0.98;
+            font-size: 24px;
+            line-height: 1;
             letter-spacing: -0.04em;
             text-transform: uppercase;
             font-weight: 900;
@@ -459,8 +465,8 @@
 
         .cta-panel p {
             margin: 0;
-            font-size: 15px;
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.55;
             color: var(--kw-slate);
             font-weight: 800;
         }
@@ -579,7 +585,7 @@
             .hero-content,
             .lender-card,
             .cta-panel {
-                padding: 18px;
+                padding: 16px;
             }
 
             .identity h1 {
@@ -587,7 +593,7 @@
             }
 
             .hero-banner h2 {
-                font-size: 34px;
+                font-size: 30px;
             }
 
             .lender-name {

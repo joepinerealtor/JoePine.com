@@ -12,8 +12,8 @@
 
 .site-frame-wrap {
     width: min(1180px, calc(100% - 32px));
-    margin: 0 auto 20px;
-    padding-top: 18px;
+    margin: 0 auto 16px;
+    padding-top: 14px;
 }
 
 .site-frame-header {
@@ -36,15 +36,15 @@
 .site-frame-top {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 16px;
+    gap: 14px;
     align-items: center;
-    padding: 16px 18px 14px;
+    padding: 14px 16px 12px;
 }
 
 .site-frame-brand {
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    gap: 13px;
     color: var(--frame-charcoal);
     text-decoration: none;
     min-width: 0;
@@ -52,8 +52,8 @@
 }
 
 .site-frame-photo {
-    width: 60px;
-    height: 60px;
+    width: 54px;
+    height: 54px;
     border-radius: 999px;
     overflow: hidden;
     flex: 0 0 auto;
@@ -71,13 +71,13 @@
 .site-frame-copy {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     line-height: 1;
     min-width: 0;
 }
 
 .site-frame-copy strong {
-    font-size: clamp(1.14rem, 2.2vw, 1.82rem);
+    font-size: clamp(1.05rem, 2vw, 1.62rem);
     font-weight: 900;
     letter-spacing: -0.04em;
     text-transform: uppercase;
@@ -85,7 +85,7 @@
 
 .site-frame-copy span {
     color: var(--frame-gray);
-    font-size: clamp(0.78rem, 1.55vw, 1rem);
+    font-size: clamp(0.74rem, 1.3vw, 0.92rem);
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -95,7 +95,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 4px;
+    gap: 2px;
     text-align: right;
 }
 
@@ -103,7 +103,7 @@
 .site-frame-right span {
     color: var(--frame-charcoal);
     text-decoration: none;
-    font-size: clamp(0.9rem, 1.55vw, 1.02rem);
+    font-size: clamp(0.82rem, 1.3vw, 0.96rem);
     font-weight: 800;
     line-height: 1.25;
 }
@@ -129,11 +129,11 @@
 .site-frame-nav {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     width: 100%;
     margin-top: 0;
-    padding: 14px 18px 18px;
+    padding: 12px 16px 14px;
     border-top: 1px solid var(--frame-line);
     background: var(--frame-surface-alt);
 }
@@ -141,9 +141,9 @@
 .site-frame-nav a {
     color: var(--frame-gray);
     text-decoration: none;
-    padding: 10px 14px;
+    padding: 9px 12px;
     border-radius: 999px;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 0.01em;
     transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
@@ -187,7 +187,7 @@
     .site-frame-top {
         grid-template-columns: minmax(0, 1fr) auto;
         align-items: start;
-        padding: 14px 14px 10px;
+        padding: 12px 12px 10px;
     }
 
     .site-frame-toggle {
@@ -200,16 +200,16 @@
     }
 
     .site-frame-photo {
-        width: 54px;
-        height: 54px;
+        width: 50px;
+        height: 50px;
     }
 
     .site-frame-copy strong {
-        font-size: 1.05rem;
+        font-size: 0.98rem;
     }
 
     .site-frame-copy span {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         letter-spacing: 0.14em;
     }
 
@@ -226,7 +226,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: 8px;
-        padding: 12px 14px 14px;
+        padding: 10px 12px 12px;
     }
 
     .site-frame-nav.is-open {

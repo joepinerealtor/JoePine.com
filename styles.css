@@ -55,7 +55,7 @@ img {
 .page-shell {
     width: min(1180px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 24px 0 48px;
+    padding: 20px 0 40px;
     position: relative;
 }
 
@@ -154,8 +154,8 @@ img {
 .hero {
     display: grid;
     grid-template-columns: 1.08fr 0.92fr;
-    gap: 32px;
-    padding: 68px 0 34px;
+    gap: 24px;
+    padding: 48px 0 24px;
     align-items: center;
 }
 
@@ -191,9 +191,9 @@ img {
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 6vw, 5.8rem);
-    line-height: 0.9;
-    max-width: 10ch;
+    font-size: clamp(2.5rem, 5vw, 4.6rem);
+    line-height: 0.94;
+    max-width: 11ch;
 }
 
 .hero-text,
@@ -208,28 +208,29 @@ img {
 
 .hero-text {
     max-width: 60ch;
-    margin: 22px 0 0;
-    font-size: 1.08rem;
+    margin: 18px 0 0;
+    font-size: 1rem;
 }
 
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 28px;
+    gap: 12px;
+    margin-top: 22px;
 }
 
 .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 52px;
-    padding: 0 22px;
-    border-radius: 16px;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 14px;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+    text-align: center;
 }
 
 .button:hover,
@@ -258,16 +259,16 @@ img {
 .hero-points {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 24px;
+    gap: 8px;
+    margin-top: 18px;
 }
 
 .hero-points span {
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: 999px;
     background: #ffffff;
     border: 1px solid var(--line);
-    font-size: 0.92rem;
+    font-size: 0.84rem;
     box-shadow: 0 10px 18px -20px rgba(0, 0, 0, 0.16);
 }
 
@@ -290,7 +291,7 @@ img {
     position: relative;
     border-radius: 30px;
     overflow: hidden;
-    min-height: 430px;
+    min-height: 360px;
     border: 1px solid var(--line);
     background: #ececec;
 }
@@ -318,11 +319,11 @@ img {
     top: 18px;
     left: 18px;
     z-index: 2;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: 999px;
     background: #ffffff;
     color: var(--terracotta);
-    font-size: 0.76rem;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.16em;
 }
@@ -343,8 +344,8 @@ img {
 }
 
 .spotlight-item {
-    padding: 18px 20px;
-    border-radius: 24px;
+    padding: 16px 18px;
+    border-radius: 22px;
     background: #ffffff;
     border: 1px solid var(--line);
 }
@@ -385,7 +386,7 @@ img {
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    padding: 30px 32px;
+    padding: 24px 26px;
     margin-top: 8px;
     border-radius: 28px;
     background: #ffffff;
@@ -396,8 +397,8 @@ img {
 .brand-ribbon h2,
 .section-heading h2,
 .about-copy h2 {
-    font-size: clamp(2rem, 3.4vw, 3.4rem);
-    line-height: 0.98;
+    font-size: clamp(1.7rem, 3vw, 2.8rem);
+    line-height: 1;
 }
 
 .ribbon-copy {
@@ -428,7 +429,7 @@ img {
 
 .service-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: 32px;
+    margin-top: 24px;
 }
 
 .service-card,
@@ -439,13 +440,13 @@ img {
 }
 
 .service-card {
-    padding: 28px;
-    border-radius: 28px;
+    padding: 24px;
+    border-radius: 24px;
     background: #ffffff;
 }
 
 .service-card h3 {
-    font-size: 1.72rem;
+    font-size: 1.42rem;
     margin-top: 10px;
 }
 
@@ -455,7 +456,7 @@ img {
 .service-area-section,
 .story-section,
 .contact-section {
-    padding-top: 88px;
+    padding-top: 64px;
 }
 
 .section-heading {
@@ -472,14 +473,17 @@ img {
 
 .tool-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    margin-top: 28px;
+    margin-top: 22px;
 }
 
 .tool-card {
-    padding: 32px;
-    border-radius: 30px;
+    padding: 24px;
+    border-radius: 26px;
     background: #ffffff;
     box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .tool-card-warm {
@@ -529,20 +533,20 @@ img {
 }
 
 .tool-card h3 {
-    font-size: 2rem;
-    line-height: 1;
+    font-size: 1.62rem;
+    line-height: 1.02;
 }
 
 .tool-card p {
-    margin: 18px 0 0;
+    margin: 14px 0 0;
 }
 
 .tool-list {
     list-style: none;
     padding: 0;
-    margin: 22px 0 28px;
+    margin: 18px 0 22px;
     display: grid;
-    gap: 12px;
+    gap: 10px;
 }
 
 .tool-list li {
@@ -567,7 +571,7 @@ img {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
-    margin-top: 28px;
+    margin-top: 22px;
 }
 
 .journey-preview-card {
@@ -591,17 +595,20 @@ img {
 }
 
 .journey-preview-copy {
-    padding: 28px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .journey-preview-copy h3 {
     margin-top: 10px;
-    font-size: 2rem;
-    line-height: 1;
+    font-size: 1.6rem;
+    line-height: 1.02;
 }
 
 .journey-preview-copy p:last-of-type {
-    margin: 18px 0 24px;
+    margin: 14px 0 18px;
 }
 
 .about-grid {
@@ -610,21 +617,21 @@ img {
 }
 
 .about-copy p {
-    margin-top: 18px;
+    margin-top: 14px;
     max-width: 62ch;
 }
 
 .about-panel {
-    padding: 30px;
-    border-radius: 30px;
+    padding: 24px;
+    border-radius: 26px;
     background: #ffffff;
     display: grid;
-    gap: 18px;
+    gap: 14px;
 }
 
 .about-detail {
-    padding: 18px;
-    border-radius: 22px;
+    padding: 16px;
+    border-radius: 18px;
     background: var(--surface-soft);
     border: 1px solid var(--line);
 }
@@ -632,15 +639,15 @@ img {
 .about-detail strong {
     display: block;
     margin-top: 8px;
-    font-size: 1.1rem;
-    line-height: 1.45;
+    font-size: 1rem;
+    line-height: 1.4;
 }
 
 .service-area-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     gap: 20px;
-    margin-top: 28px;
+    margin-top: 22px;
 }
 
 .service-area-overview,
@@ -652,7 +659,7 @@ img {
 }
 
 .service-area-overview {
-    padding: 32px;
+    padding: 24px;
 }
 
 .service-area-kicker {
@@ -666,14 +673,14 @@ img {
 
 .service-area-overview h3 {
     margin: 0;
-    font-size: clamp(2rem, 3vw, 3rem);
-    line-height: 0.98;
+    font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+    line-height: 1;
     letter-spacing: -0.05em;
     text-transform: uppercase;
 }
 
 .service-area-overview p:last-of-type {
-    margin-top: 18px;
+    margin-top: 14px;
     color: rgba(30, 39, 34, 0.74);
     line-height: 1.7;
 }
@@ -681,26 +688,26 @@ img {
 .service-area-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 24px;
+    gap: 8px;
+    margin-top: 18px;
 }
 
 .service-area-chips span {
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: 999px;
     border: 1px solid var(--line);
     background: var(--surface-soft);
-    font-size: 0.92rem;
+    font-size: 0.84rem;
     font-weight: 700;
 }
 
 .service-area-map-card {
-    padding: 20px;
+    padding: 16px;
 }
 
 .service-area-map {
     position: relative;
-    min-height: 420px;
+    min-height: 340px;
     border-radius: 24px;
     background:
         linear-gradient(180deg, rgba(206, 1, 31, 0.04), rgba(206, 1, 31, 0)),
@@ -748,8 +755,8 @@ img {
 .service-area-center {
     position: absolute;
     z-index: 1;
-    padding: 14px 16px;
-    border-radius: 20px;
+    padding: 12px 14px;
+    border-radius: 18px;
     background: #ffffff;
     border: 1px solid var(--line);
     box-shadow: var(--shadow-soft);
@@ -758,7 +765,7 @@ img {
 .service-area-node strong,
 .service-area-center strong {
     display: block;
-    font-size: 1rem;
+    font-size: 0.92rem;
     line-height: 1.2;
 }
 
@@ -815,7 +822,7 @@ img {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
-    margin-top: 28px;
+    margin-top: 22px;
 }
 
 .story-card {
@@ -829,7 +836,7 @@ img {
 
 .story-card img {
     width: 100%;
-    height: 320px;
+    height: 260px;
     object-fit: cover;
 }
 
@@ -846,12 +853,12 @@ img {
 }
 
 .story-card figcaption {
-    padding: 22px 24px 24px;
+    padding: 18px 20px 20px;
 }
 
 .story-card strong {
     display: block;
-    font-size: 1.18rem;
+    font-size: 1.04rem;
     line-height: 1.25;
 }
 
@@ -868,14 +875,17 @@ img {
 
 .contact-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: 28px;
+    margin-top: 22px;
 }
 
 .contact-card {
-    padding: 26px;
-    border-radius: 26px;
+    padding: 22px;
+    border-radius: 22px;
     background: #ffffff;
     transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .contact-card:hover,
@@ -892,13 +902,13 @@ img {
 .contact-card strong {
     display: block;
     margin-top: 10px;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     line-height: 1.35;
 }
 
 .site-footer {
-    padding: 56px 0 8px;
-    margin-top: 88px;
+    padding: 42px 0 8px;
+    margin-top: 64px;
     border-top: 4px solid var(--terracotta);
     text-align: center;
     color: rgba(30, 39, 34, 0.62);
@@ -1035,7 +1045,7 @@ img {
     }
 
     .hero {
-        padding-top: 42px;
+        padding-top: 34px;
     }
 
     .hero-actions,
@@ -1049,7 +1059,7 @@ img {
     }
 
     .portrait-panel {
-        min-height: 340px;
+        min-height: 300px;
     }
 
     .brand-ribbon,
@@ -1067,15 +1077,15 @@ img {
     .service-area-section,
     .story-section,
     .contact-section {
-        padding-top: 72px;
+        padding-top: 52px;
     }
 
     .story-card img {
-        height: 280px;
+        height: 220px;
     }
 
     .service-area-map {
-        min-height: 360px;
+        min-height: 300px;
     }
 }
 

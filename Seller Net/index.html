@@ -70,6 +70,17 @@
             box-shadow: 0 4px 10px 0px rgba(185, 33, 43, 0.2);
         }
 
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
+            text-align: center;
+            flex: 1 1 148px;
+        }
+
         /* Forced desktop layout for exports */
         .export-mode {
             width: 800px !important;
@@ -123,7 +134,7 @@
         }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="p-3 md:p-6">
     <div class="site-frame-wrap">
         <header class="site-frame-header">
             <div class="site-frame-top">
@@ -164,16 +175,16 @@
             </nav>
         </header>
     </div>
-    <div id="workbook-container" class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+    <div id="workbook-container" class="max-w-6xl mx-auto bg-white rounded-[28px] shadow-xl overflow-hidden border border-slate-100">
         <!-- Main App Header -->
-        <div id="main-app-header" class="kw-gradient-header text-white p-6 md:p-8 hide-on-print">
+        <div id="main-app-header" class="kw-gradient-header text-white p-5 md:p-6 hide-on-print">
             <div>
-                <h1 class="kw-display text-2xl uppercase leading-tight">Seller Proceeds Workbook</h1>
+                <h1 class="kw-display text-xl uppercase leading-tight">Seller Proceeds Workbook</h1>
                 <p class="text-white/80 mt-1 text-sm italic">A professional breakdown of your home sale proceeds.</p>
             </div>
         </div>
 
-        <div class="p-6 md:p-10 main-grid grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="p-5 md:p-6 main-grid grid grid-cols-1 lg:grid-cols-12 gap-8">
             <!-- Left Column: Inputs -->
             <div id="input-column" class="lg:col-span-5 space-y-6">
                 <div class="flex flex-col sm:items-start justify-between border-b-2 border-[#CE011F] pb-3 gap-3">
@@ -288,12 +299,12 @@
                     </div>
 
                     <!-- Results Content -->
-                    <div class="p-6 md:p-8 space-y-8 print:p-4 print:space-y-2">
+                    <div class="p-5 md:p-6 space-y-6 print:p-4 print:space-y-2">
                         <div id="resultsCard">
-                            <h2 class="kw-display text-xl text-slate-900 mb-6 print:mb-2 border-b-4 border-[#CE011F] pb-2 uppercase">Estimated Net Proceeds</h2>
+                            <h2 class="kw-display text-lg text-slate-900 mb-4 print:mb-2 border-b-4 border-[#CE011F] pb-2 uppercase">Estimated Net Proceeds</h2>
                             
                             <div class="space-y-5 print:space-y-1">
-                                <div class="flex justify-between items-center text-xl print:text-lg pb-3 border-b-2 border-slate-200">
+                                <div class="flex justify-between items-center text-lg print:text-lg pb-3 border-b-2 border-slate-200">
                                     <span class="text-slate-600 font-bold">Sales Price</span>
                                     <span class="font-black text-slate-900" id="dispSalesPrice">$0.00</span>
                                 </div>
@@ -346,8 +357,8 @@
 
                                 <div class="mt-6 pt-6 print:mt-2 print:pt-2 border-t-4 border-[#CE011F]">
                                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-                                        <span id="netLabel" class="kw-display text-xl text-slate-900 uppercase leading-tight">Estimated Net to Seller</span>
-                                        <span class="text-4xl font-black text-green-700 print:text-3xl transition-colors" id="dispTotalNet">$0.00</span>
+                                        <span id="netLabel" class="kw-display text-lg text-slate-900 uppercase leading-tight">Estimated Net to Seller</span>
+                                        <span class="text-3xl font-black text-green-700 print:text-3xl transition-colors" id="dispTotalNet">$0.00</span>
                                     </div>
                                 </div>
                             </div>
@@ -361,7 +372,7 @@
                                 </div>
 
                                 <div class="flex flex-row items-center gap-6 contact-side-wrapper">
-                                    <div class="relative w-28 h-28 shrink-0 print:w-20 print:h-20">
+                                    <div class="relative w-24 h-24 shrink-0 print:w-20 print:h-20">
                                         <img 
                                             src="Joe (1) (1).JPG" 
                                             alt="Joe Pine" 
@@ -370,7 +381,7 @@
                                         >
                                     </div>
                                     <div class="text-left space-y-0.5 contact-block">
-                                        <p class="font-black text-2xl text-slate-900 uppercase tracking-tighter print:text-lg kw-red-text leading-tight">Joe Pine</p>
+                                        <p class="font-black text-xl text-slate-900 uppercase tracking-tighter print:text-lg kw-red-text leading-tight">Joe Pine</p>
                                         <p class="text-slate-700 font-black text-sm print:text-xs uppercase tracking-widest leading-tight text-nowrap">REALTOR® RI & MA</p>
                                         <div class="text-slate-600 text-xs print:text-[10px] space-y-1 font-semibold leading-normal">
                                             <p>401.327.0888</p>
@@ -400,12 +411,12 @@
                 </div>
 
                 <!-- Shared Buttons -->
-                <div class="flex flex-wrap justify-center gap-3 mt-4 hide-on-print pb-6">
-                    <button onclick="window.print()" class="kw-kicker bg-black text-white px-5 py-3 rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-xs">Print</button>
-                    <button onclick="saveAsPDF()" class="kw-kicker bg-[#CE011F] text-white px-5 py-3 rounded-xl hover:bg-red-800 transition-all flex items-center justify-center gap-2 text-xs shadow-md">Save as PDF</button>
-                    <button onclick="saveSnapshot()" class="kw-kicker bg-slate-800 text-white px-5 py-3 rounded-xl hover:bg-slate-900 transition-all flex items-center justify-center gap-2 text-xs">Save as Image</button>
-                    <button onclick="sendEmail()" class="kw-kicker bg-[#CE011F] text-white px-5 py-3 rounded-xl hover:bg-red-800 transition-all flex items-center justify-center gap-2 text-xs shadow-md">Share via Email</button>
-                    <button onclick="shareText()" class="kw-kicker bg-slate-200 text-slate-800 px-5 py-3 rounded-xl hover:bg-slate-300 transition-all flex items-center justify-center gap-2 text-xs">Share via Text</button>
+                <div class="flex flex-wrap justify-center gap-2 mt-3 hide-on-print pb-5">
+                    <button onclick="window.print()" class="action-btn kw-kicker bg-black text-white hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[11px]">Print</button>
+                    <button onclick="saveAsPDF()" class="action-btn kw-kicker bg-[#CE011F] text-white hover:bg-red-800 transition-all flex items-center justify-center gap-2 text-[11px] shadow-md">Save as PDF</button>
+                    <button onclick="saveSnapshot()" class="action-btn kw-kicker bg-slate-800 text-white hover:bg-slate-900 transition-all flex items-center justify-center gap-2 text-[11px]">Save as Image</button>
+                    <button onclick="sendEmail()" class="action-btn kw-kicker bg-[#CE011F] text-white hover:bg-red-800 transition-all flex items-center justify-center gap-2 text-[11px] shadow-md">Share via Email</button>
+                    <button onclick="shareText()" class="action-btn kw-kicker bg-slate-200 text-slate-800 hover:bg-slate-300 transition-all flex items-center justify-center gap-2 text-[11px]">Share via Text</button>
                 </div>
             </div>
         </div>
