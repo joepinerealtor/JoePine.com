@@ -364,6 +364,79 @@
             background: #ffffff;
         }
 
+        .resource-tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 0 18px;
+        }
+
+        .resource-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 18px;
+            border: 1px solid rgba(206, 1, 31, 0.16);
+            border-radius: 18px;
+            background: rgba(206, 1, 31, 0.05);
+            color: var(--kw-slate);
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+            flex: 1 1 260px;
+        }
+
+        .resource-tab:hover,
+        .resource-tab:focus-visible {
+            transform: translateY(-1px);
+            background: rgba(206, 1, 31, 0.12);
+        }
+
+        .resource-tab.is-active {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+        }
+
+        .resource-tab-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .resource-tab-panel[hidden] {
+            display: none;
+        }
+
+        .resource-tab-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .resource-tab-copy h3 {
+            margin: 0;
+            font-size: clamp(24px, 3vw, 34px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .resource-tab-copy p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.62;
+            font-weight: 700;
+        }
+
         .resource-frame {
             width: 100%;
             min-height: 760px;
@@ -374,6 +447,10 @@
 
         .resource-frame.is-tool {
             min-height: 1380px;
+        }
+
+        .resource-frame.is-attorneys {
+            min-height: 1400px;
         }
 
         .resource-frame.is-process {
@@ -611,6 +688,7 @@
                     <div class="hero-actions">
                         <a class="button button-primary" href="#seller-proceeds">Estimate Seller Proceeds</a>
                         <a class="button button-secondary" href="#seller-process">See Seller Process</a>
+                        <a class="button button-secondary" href="#seller-attorneys">Closing Attorneys</a>
                     </div>
                 </div>
             </div>
@@ -620,16 +698,20 @@
             <a class="jump-link" href="#seller-marketing">Marketing Edge</a>
             <a class="jump-link" href="#seller-process">Seller Process</a>
             <a class="jump-link" href="#seller-proceeds">Seller Proceeds</a>
+            <a class="jump-link" href="#seller-attorneys">Closing Attorneys</a>
         </nav>
 
         <section class="proof-panel" id="seller-marketing">
             <div class="section-heading">
                 <div>
                     <p class="eyebrow" style="color: var(--kw-red);">Homes.com Membership Benefits</p>
-                    <h2>Why the Homes.com piece matters.</h2>
+                    <h2>I am a Homes.com Member Agent, and that changes how your listing is marketed.</h2>
                 </div>
                 <p>
-                    These numbers help most when your listing launches with the right price, presentation, and follow-up.
+                    Being a Homes.com Member Agent means I can give your listing stronger Homes.com exposure than a
+                    standard upload by combining better placement, repeat visibility, and direct lead flow back to me as
+                    your listing agent. These numbers matter most when your listing launches with the right price,
+                    presentation, and follow-up.
                 </p>
             </div>
 
@@ -637,27 +719,30 @@
                 <article class="proof-card">
                     <span>Early Traction</span>
                     <strong>25%</strong>
-                    <h3>Stronger first-10-day momentum.</h3>
+                    <h3>More momentum right after launch.</h3>
                     <p>
-                        Homes.com says member-marketed listings are 25% more likely to go under contract within the first 10 days.
+                        Homes.com says member-marketed listings are 25% more likely to go under contract within the first
+                        10 days. That is why I care so much about how your listing looks and how it launches from day one.
                     </p>
                 </article>
 
                 <article class="proof-card">
                     <span>Audience Reach</span>
                     <strong>100M+</strong>
-                    <h3>Massive monthly audience.</h3>
+                    <h3>Your listing gets in front of a huge audience.</h3>
                     <p>
-                        Homes.com says more than 100 million people search homes on the platform each month.
+                        Homes.com says more than 100 million people search homes on the platform each month. That does
+                        not replace pricing and presentation, but it gives your listing a much better chance to be seen fast.
                     </p>
                 </article>
 
                 <article class="proof-card">
                     <span>Retargeting Reach</span>
                     <strong>1,000+</strong>
-                    <h3>Your listing keeps showing up.</h3>
+                    <h3>Interested buyers keep seeing your home.</h3>
                     <p>
-                        Homes.com says retargeting can place listing ads across more than 1,000 websites and social platforms.
+                        Homes.com says retargeting can place listing ads across more than 1,000 websites and social
+                        platforms. That helps your listing stay in front of buyers after the first click instead of disappearing.
                     </p>
                 </article>
             </div>
@@ -667,7 +752,7 @@
             <div class="section-heading">
                 <div>
                     <p class="eyebrow" style="color: var(--kw-red);">What You Get</p>
-                    <h2>A cleaner marketing package, not a pile of random add-ons.</h2>
+                    <h2>A cleaner marketing package built to help your listing stand out online.</h2>
                 </div>
                 <p>
                     Everything here should make it easier for buyers to notice your home, understand it, and take the next step.
@@ -679,8 +764,9 @@
                     <span>Search Visibility</span>
                     <h3>Your listing starts with stronger placement.</h3>
                     <p>
-                        Because of my Homes.com Member Agent partnership, your listing can show higher in search and get
-                        stronger exposure right when early momentum matters most.
+                        Because I am a Homes.com Member Agent, your listing can show higher on Homes.com and get stronger
+                        visibility right when launch momentum matters most. In simple terms, that means more people can
+                        find your home sooner instead of it getting buried in the crowd.
                     </p>
                 </article>
 
@@ -711,7 +797,8 @@
                         family who want to move into the neighborhood. Your listing also gets put in front of buyers in
                         their social media feeds through paid advertising. Retargeting helps it keep showing up after
                         buyers leave the page, and Homes.com points buyer interest back to me as your listing agent
-                        instead of sending traffic off in random directions.
+                        instead of sending traffic off in random directions. That matters because it keeps the follow-up
+                        cleaner and makes it easier for me to stay on top of real buyer interest.
                     </p>
                 </article>
             </div>
@@ -758,44 +845,123 @@
             </div>
         </section>
 
-        <section class="resource-panel" id="seller-process">
+        <section class="resource-panel" id="seller-tools">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow" style="color: var(--kw-red);">Seller Process</p>
-                    <h2>See what to expect from signed paperwork to sold.</h2>
+                    <p class="eyebrow" style="color: var(--kw-red);">Seller Tools</p>
+                    <h2>Open the workbook, timeline, or closing support when you need it.</h2>
                 </div>
                 <p>
-                    If you are getting ready to sell, this walks you through the major stages so you can understand what usually comes next and feel more prepared at each step.
+                    Use the tabs below to switch between your seller proceeds workbook, the seller process timeline, and closing attorney options without stacking everything on top of each other.
                 </p>
             </div>
 
-            <iframe
-                class="resource-frame is-process"
-                data-embed-target="seller-process"
-                src="./journey.html?embed=seller-process#seller"
-                title="Seller process tracker"
-                loading="lazy"
-            ></iframe>
-        </section>
-
-        <section class="resource-panel" id="seller-proceeds">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow" style="color: var(--kw-red);">Seller Proceeds</p>
-                    <h2>Run your proceeds without leaving the page.</h2>
-                </div>
-                <p>
-                    Use the seller proceeds workbook here to estimate commission, transfer tax, mortgage payoff, and your likely net.
-                </p>
+            <div class="resource-tab-list" role="tablist" aria-label="Seller tools">
+                <button
+                    class="resource-tab is-active"
+                    type="button"
+                    role="tab"
+                    id="seller-tab-proceeds"
+                    aria-selected="true"
+                    aria-controls="seller-proceeds"
+                    data-seller-resource-tab="seller-proceeds"
+                >
+                    Seller Proceeds Workbook
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="seller-tab-process"
+                    aria-selected="false"
+                    aria-controls="seller-process"
+                    data-seller-resource-tab="seller-process"
+                >
+                    Seller Process Timeline
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="seller-tab-attorneys"
+                    aria-selected="false"
+                    aria-controls="seller-attorneys"
+                    data-seller-resource-tab="seller-attorneys"
+                >
+                    Closing Attorneys
+                </button>
             </div>
 
-            <iframe
-                class="resource-frame is-tool"
-                data-embed-target="seller-proceeds"
-                src="./Seller%20Net/index.html?embed=seller-proceeds"
-                title="Seller proceeds workbook"
-                loading="lazy"
-            ></iframe>
+            <section
+                class="resource-tab-panel"
+                id="seller-proceeds"
+                role="tabpanel"
+                aria-labelledby="seller-tab-proceeds"
+                data-seller-resource-panel="seller-proceeds"
+            >
+                <div class="resource-tab-copy">
+                    <h3>Run your proceeds without leaving the page.</h3>
+                    <p>
+                        Use the seller proceeds workbook here to estimate commission, transfer tax, mortgage payoff, and your likely net.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-tool"
+                    data-embed-target="seller-proceeds"
+                    src="./Seller%20Net/index.html?embed=seller-proceeds"
+                    title="Seller proceeds workbook"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="seller-process"
+                role="tabpanel"
+                aria-labelledby="seller-tab-process"
+                data-seller-resource-panel="seller-process"
+                hidden
+            >
+                <div class="resource-tab-copy">
+                    <h3>See what to expect from signed paperwork to sold.</h3>
+                    <p>
+                        If you are getting ready to sell, this walks you through the major stages so you can understand what usually comes next and feel more prepared at each step.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-process"
+                    data-embed-target="seller-process"
+                    src="./journey.html?embed=seller-process#seller"
+                    title="Seller process tracker"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="seller-attorneys"
+                role="tabpanel"
+                aria-labelledby="seller-tab-attorneys"
+                data-seller-resource-panel="seller-attorneys"
+                hidden
+            >
+                <div class="resource-tab-copy">
+                    <h3>Review closing attorney options in the same place.</h3>
+                    <p>
+                        If you want to line up your closing support early, this gives you Joe's current attorney partners without sending you off to a separate page.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-attorneys"
+                    data-embed-target="seller-attorneys"
+                    src="./attorneys.html?embed=seller-attorneys"
+                    title="Closing attorney partners"
+                    loading="lazy"
+                ></iframe>
+            </section>
         </section>
 
         <section class="cta-panel">
@@ -843,6 +1009,63 @@
                 frame.style.height = `${data.height}px`;
             }
         });
+
+        const sellerResourceTabs = Array.from(document.querySelectorAll("[data-seller-resource-tab]"));
+        const sellerResourcePanels = Array.from(document.querySelectorAll("[data-seller-resource-panel]"));
+
+        function getSellerResourceTarget(hashValue) {
+            const target = (hashValue || "").replace("#", "");
+            return target === "seller-proceeds" || target === "seller-process" || target === "seller-attorneys" ? target : null;
+        }
+
+        function setActiveSellerResource(target, options = {}) {
+            if (!target) {
+                return;
+            }
+
+            sellerResourceTabs.forEach((tab) => {
+                const isActive = tab.dataset.sellerResourceTab === target;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            sellerResourcePanels.forEach((panel) => {
+                panel.hidden = panel.dataset.sellerResourcePanel !== target;
+            });
+
+            if (options.updateHash) {
+                history.replaceState(null, "", `#${target}`);
+            }
+
+            if (options.scrollToPanel) {
+                const panel = document.getElementById(target);
+                if (panel) {
+                    requestAnimationFrame(() => {
+                        panel.scrollIntoView({ block: "start" });
+                    });
+                }
+            }
+        }
+
+        sellerResourceTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setActiveSellerResource(tab.dataset.sellerResourceTab, {
+                    updateHash: true
+                });
+            });
+        });
+
+        window.addEventListener("hashchange", () => {
+            const target = getSellerResourceTarget(window.location.hash);
+            if (target) {
+                setActiveSellerResource(target, { scrollToPanel: true });
+            }
+        });
+
+        const initialSellerTarget = getSellerResourceTarget(window.location.hash);
+        if (initialSellerTarget) {
+            setActiveSellerResource(initialSellerTarget, { scrollToPanel: true });
+        }
     </script>
     <script src="./site-frame.js"></script>
 </body>

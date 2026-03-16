@@ -296,6 +296,79 @@
             background: #ffffff;
         }
 
+        .resource-tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 0 18px;
+        }
+
+        .resource-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 18px;
+            border: 1px solid rgba(206, 1, 31, 0.16);
+            border-radius: 18px;
+            background: rgba(206, 1, 31, 0.05);
+            color: var(--kw-slate);
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+            flex: 1 1 260px;
+        }
+
+        .resource-tab:hover,
+        .resource-tab:focus-visible {
+            transform: translateY(-1px);
+            background: rgba(206, 1, 31, 0.12);
+        }
+
+        .resource-tab.is-active {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+        }
+
+        .resource-tab-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .resource-tab-panel[hidden] {
+            display: none;
+        }
+
+        .resource-tab-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .resource-tab-copy h3 {
+            margin: 0;
+            font-size: clamp(24px, 3vw, 34px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .resource-tab-copy p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.62;
+            font-weight: 700;
+        }
+
         .resource-frame {
             width: 100%;
             border: 0;
@@ -310,6 +383,14 @@
 
         .resource-frame.is-lenders {
             min-height: 1700px;
+        }
+
+        .resource-frame.is-attorneys {
+            min-height: 1400px;
+        }
+
+        .resource-frame.is-inspectors {
+            min-height: 1500px;
         }
 
         .resource-frame.is-process {
@@ -492,6 +573,8 @@
                     <div class="hero-actions">
                         <a class="button button-primary" href="#buyer-payment">Start With Payment</a>
                         <a class="button button-secondary" href="#buyer-lenders">Compare Lenders</a>
+                        <a class="button button-secondary" href="#buyer-attorneys">Closing Attorneys</a>
+                        <a class="button button-secondary" href="#buyer-inspectors">Inspectors</a>
                     </div>
                 </div>
             </div>
@@ -500,6 +583,8 @@
         <nav class="jump-panel" aria-label="Buyer resource sections">
             <a class="jump-link" href="#buyer-payment">Monthly Payment</a>
             <a class="jump-link" href="#buyer-lenders">Lending Partners</a>
+            <a class="jump-link" href="#buyer-attorneys">Closing Attorneys</a>
+            <a class="jump-link" href="#buyer-inspectors">Inspectors</a>
             <a class="jump-link" href="#buyer-process">Buyer Process</a>
         </nav>
 
@@ -529,44 +614,158 @@
             </article>
         </section>
 
-        <section class="resource-panel" id="buyer-payment">
+        <section class="resource-panel" id="buyer-tools">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow" style="color: var(--kw-red);">Monthly Payment</p>
-                    <h2>Start with the number that matters most.</h2>
+                    <p class="eyebrow" style="color: var(--kw-red);">Buyer Tools</p>
+                    <h2>Switch between your budget, lender options, inspection support, and closing support without stacking everything at once.</h2>
                 </div>
                 <p>
-                    Use the monthly payment calculator here to estimate price range, cash to close, and what your budget may actually feel like month to month.
+                    Use the tabs below to move between the monthly payment calculator, lending partners, inspector options, and attorney options while keeping the buyer process tracker as its own section underneath.
                 </p>
             </div>
 
-            <iframe
-                class="resource-frame is-calculator"
-                data-embed-target="buyer-calculator"
-                src="./Monthly%20Payment/index.html?embed=buyer-calculator"
-                title="Monthly payment calculator"
-                loading="lazy"
-            ></iframe>
-        </section>
-
-        <section class="resource-panel" id="buyer-lenders">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow" style="color: var(--kw-red);">Lending Partners</p>
-                    <h2>Compare lender options without leaving the page.</h2>
-                </div>
-                <p>
-                    If you are not sure who to call first, this section gives you lender options in one place before you decide who to talk to about preapproval.
-                </p>
+            <div class="resource-tab-list" role="tablist" aria-label="Buyer tools">
+                <button
+                    class="resource-tab is-active"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-payment"
+                    aria-selected="true"
+                    aria-controls="buyer-payment"
+                    data-buyer-resource-tab="buyer-payment"
+                >
+                    Monthly Payment Calculator
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-lenders"
+                    aria-selected="false"
+                    aria-controls="buyer-lenders"
+                    data-buyer-resource-tab="buyer-lenders"
+                >
+                    Lending Partners
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-inspectors"
+                    aria-selected="false"
+                    aria-controls="buyer-inspectors"
+                    data-buyer-resource-tab="buyer-inspectors"
+                >
+                    Inspectors
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-attorneys"
+                    aria-selected="false"
+                    aria-controls="buyer-attorneys"
+                    data-buyer-resource-tab="buyer-attorneys"
+                >
+                    Closing Attorneys
+                </button>
             </div>
 
-            <iframe
-                class="resource-frame is-lenders"
-                data-embed-target="buyer-lenders"
-                src="./Monthly%20Payment/lenders.html?embed=buyer-lenders"
-                title="Lending partners"
-                loading="lazy"
-            ></iframe>
+            <section
+                class="resource-tab-panel"
+                id="buyer-payment"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-payment"
+                data-buyer-resource-panel="buyer-payment"
+            >
+                <div class="resource-tab-copy">
+                    <h3>Start with the number that matters most.</h3>
+                    <p>
+                        Use the monthly payment calculator here to estimate price range, cash to close, and what your budget may actually feel like month to month.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-calculator"
+                    data-embed-target="buyer-calculator"
+                    src="./Monthly%20Payment/index.html?embed=buyer-calculator"
+                    title="Monthly payment calculator"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-lenders"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-lenders"
+                data-buyer-resource-panel="buyer-lenders"
+                hidden
+            >
+                <div class="resource-tab-copy">
+                    <h3>Compare lender options without leaving the page.</h3>
+                    <p>
+                        If you are not sure who to call first, this section gives you lender options in one place before you decide who to talk to about preapproval.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-lenders"
+                    data-embed-target="buyer-lenders"
+                    src="./Monthly%20Payment/lenders.html?embed=buyer-lenders"
+                    title="Lending partners"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-inspectors"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-inspectors"
+                data-buyer-resource-panel="buyer-inspectors"
+                hidden
+            >
+                <div class="resource-tab-copy">
+                    <h3>Review inspection support before you book the appointment.</h3>
+                    <p>
+                        This gives you Joe's current inspection partner and a simple inspection prep view without sending you to a different page mid-search.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-inspectors"
+                    data-embed-target="buyer-inspectors"
+                    src="./inspectors.html?embed=buyer-inspectors"
+                    title="Inspection support"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-attorneys"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-attorneys"
+                data-buyer-resource-panel="buyer-attorneys"
+                hidden
+            >
+                <div class="resource-tab-copy">
+                    <h3>Review closing attorney options in the same place.</h3>
+                    <p>
+                        If you want to understand your closing support before you are under contract, this gives you Joe's current attorney partners without leaving the buyer page.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-attorneys"
+                    data-embed-target="buyer-attorneys"
+                    src="./attorneys.html?embed=buyer-attorneys"
+                    title="Closing attorney partners"
+                    loading="lazy"
+                ></iframe>
+            </section>
         </section>
 
         <section class="resource-panel" id="buyer-process">
@@ -633,6 +832,80 @@
                 frame.style.height = `${data.height}px`;
             }
         });
+
+        const buyerResourceTabs = Array.from(document.querySelectorAll("[data-buyer-resource-tab]"));
+        const buyerResourcePanels = Array.from(document.querySelectorAll("[data-buyer-resource-panel]"));
+
+        function getBuyerResourceTarget(hashValue) {
+            const target = (hashValue || "").replace("#", "");
+            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" ? target : null;
+        }
+
+        function setActiveBuyerResource(target, options = {}) {
+            if (!target) {
+                return;
+            }
+
+            buyerResourceTabs.forEach((tab) => {
+                const isActive = tab.dataset.buyerResourceTab === target;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            buyerResourcePanels.forEach((panel) => {
+                panel.hidden = panel.dataset.buyerResourcePanel !== target;
+            });
+
+            if (options.updateHash) {
+                history.replaceState(null, "", `#${target}`);
+            }
+
+            if (options.scrollToPanel) {
+                const section = document.getElementById("buyer-tools");
+                const panel = document.getElementById(target);
+                const scrollTarget = section || panel;
+                if (scrollTarget) {
+                    requestAnimationFrame(() => {
+                        scrollTarget.scrollIntoView({ block: "start" });
+                    });
+                }
+            }
+        }
+
+        buyerResourceTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setActiveBuyerResource(tab.dataset.buyerResourceTab, {
+                    updateHash: true
+                });
+            });
+        });
+
+        document.querySelectorAll('a[href^="#buyer-"]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const target = getBuyerResourceTarget(link.getAttribute("href"));
+                if (!target) {
+                    return;
+                }
+
+                event.preventDefault();
+                setActiveBuyerResource(target, {
+                    updateHash: true,
+                    scrollToPanel: true
+                });
+            });
+        });
+
+        window.addEventListener("hashchange", () => {
+            const target = getBuyerResourceTarget(window.location.hash);
+            if (target) {
+                setActiveBuyerResource(target, { scrollToPanel: true });
+            }
+        });
+
+        const initialBuyerTarget = getBuyerResourceTarget(window.location.hash);
+        if (initialBuyerTarget) {
+            setActiveBuyerResource(initialBuyerTarget, { scrollToPanel: true });
+        }
     </script>
     <script src="./site-frame.js"></script>
 </body>

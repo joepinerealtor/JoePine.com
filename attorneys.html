@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attorney Partners | Joe Pine</title>
+    <script>
+        const attorneyPageParams = new URLSearchParams(window.location.search);
+        const attorneyEmbedName = attorneyPageParams.get("embed") || "";
+        if (attorneyEmbedName) {
+            document.documentElement.dataset.embed = attorneyEmbedName;
+        }
+    </script>
     <link rel="stylesheet" href="./site-frame.css">
     <style>
         :root {
@@ -32,6 +39,10 @@
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
         }
 
+        html[data-embed] body {
+            background: transparent;
+        }
+
         a {
             color: inherit;
         }
@@ -40,6 +51,22 @@
             max-width: 1180px;
             margin: 0 auto;
             padding: 18px 18px 34px;
+        }
+
+        html[data-embed] .site-frame-wrap,
+        html[data-embed] .hero-actions,
+        html[data-embed] .cta-panel,
+        html[data-embed] .brand-footer {
+            display: none;
+        }
+
+        html[data-embed] .page-shell {
+            max-width: none;
+            padding: 0;
+        }
+
+        html[data-embed] .hero-panel {
+            margin-bottom: 18px;
         }
 
         .hero-panel,
@@ -555,8 +582,8 @@
                     <p>In Rhode Island and Massachusetts, the right attorney support can make the contract-to-close stretch feel a lot cleaner. They help manage title work, payoff coordination, settlement statements, legal documents, and signing day details.</p>
                     <p>Buyers, sellers, estates, and more complex title situations all need slightly different support, so this page is set up to make those paths easier to understand before you are under pressure.</p>
                     <div class="hero-actions">
-                    <a class="button button-primary" href="./sellers.html#seller-proceeds">View Seller Resources</a>
-                    <a class="button button-secondary" href="./buyers.html#buyer-process">View Buyer Resources</a>
+                    <a class="button button-primary" href="./sellers.html#seller-attorneys">View Seller Resources</a>
+                    <a class="button button-secondary" href="./buyers.html#buyer-attorneys">View Buyer Resources</a>
                         <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Connect%20Me%20With%20A%20Closing%20Attorney">Ask Joe For An Intro</a>
                     </div>
                 </div>
@@ -691,6 +718,25 @@
                 </article>
             `;
         }).join("");
+
+        function postAttorneyEmbedHeight() {
+            if (!attorneyEmbedName || window.parent === window) {
+                return;
+            }
+
+            const height = Math.ceil(document.documentElement.scrollHeight);
+            window.parent.postMessage({
+                type: "joe-embed-resize",
+                embed: attorneyEmbedName,
+                height
+            }, "*");
+        }
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(postAttorneyEmbedHeight);
+        });
+        window.addEventListener("load", postAttorneyEmbedHeight);
+        window.addEventListener("resize", postAttorneyEmbedHeight);
     </script>
     <script src="./site-frame.js"></script>
 </body>

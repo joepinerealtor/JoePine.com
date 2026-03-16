@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Inspector Partners | Joe Pine</title>
+    <script>
+        const inspectorPageParams = new URLSearchParams(window.location.search);
+        const inspectorEmbedName = inspectorPageParams.get("embed") || "";
+        if (inspectorEmbedName) {
+            document.documentElement.dataset.embed = inspectorEmbedName;
+        }
+    </script>
     <link rel="stylesheet" href="./site-frame.css">
     <style>
         :root {
@@ -32,6 +39,10 @@
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
         }
 
+        html[data-embed] body {
+            background: transparent;
+        }
+
         a {
             color: inherit;
         }
@@ -42,9 +53,27 @@
             padding: 18px 18px 34px;
         }
 
+        html[data-embed] .site-frame-wrap,
+        html[data-embed] .hero-actions,
+        html[data-embed] .cta-panel,
+        html[data-embed] .brand-footer {
+            display: none;
+        }
+
+        html[data-embed] .page-shell {
+            max-width: none;
+            padding: 0;
+        }
+
+        html[data-embed] .hero-panel {
+            margin-bottom: 18px;
+        }
+
         .hero-panel,
+        .support-panel,
         .partner-card,
         .info-panel,
+        .prep-card,
         .cta-panel {
             border: 1px solid rgba(229, 231, 235, 0.95);
             background: var(--surface);
@@ -207,6 +236,117 @@
             line-height: 1.5;
             color: var(--kw-muted);
             font-weight: 800;
+        }
+
+        .support-panel {
+            border-radius: 30px;
+            padding: 18px;
+            margin-bottom: 24px;
+        }
+
+        .support-tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 0 18px;
+        }
+
+        .support-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 18px;
+            border: 1px solid rgba(206, 1, 31, 0.16);
+            border-radius: 18px;
+            background: rgba(206, 1, 31, 0.05);
+            color: var(--kw-slate);
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+            flex: 1 1 240px;
+        }
+
+        .support-tab:hover,
+        .support-tab:focus-visible {
+            transform: translateY(-1px);
+            background: rgba(206, 1, 31, 0.12);
+        }
+
+        .support-tab.is-active {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+        }
+
+        .support-tab-panel[hidden] {
+            display: none;
+        }
+
+        .support-tab-copy {
+            margin: 0 0 16px;
+        }
+
+        .support-tab-copy h3 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .support-tab-copy p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .prep-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+            gap: 16px;
+        }
+
+        .prep-card {
+            border-radius: 22px;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
+        }
+
+        .prep-card h4 {
+            margin: 0 0 10px;
+            font-size: 22px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .prep-card p,
+        .prep-card li {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .prep-card ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .prep-card .cta-actions {
+            justify-content: flex-start;
+            margin-top: 14px;
         }
 
         .partner-grid {
@@ -451,6 +591,7 @@
 
         @media (max-width: 980px) {
             .hero-content,
+            .prep-grid,
             .cta-panel,
             .partner-grid {
                 grid-template-columns: 1fr;
@@ -488,7 +629,9 @@
 
             .hero-banner,
             .hero-content,
+            .support-panel,
             .partner-card,
+            .prep-card,
             .cta-panel {
                 padding: 16px;
             }
@@ -555,14 +698,81 @@
                     <p>For buyers, inspections are where questions turn into facts. A strong inspector helps you separate real issues from normal homeownership items before contingencies expire and decisions get rushed.</p>
                     <p>For sellers, the same process is useful because it shows what a buyer may focus on later and where a little prep can create fewer surprises once you are under contract.</p>
                     <div class="hero-actions">
-                    <a class="button button-primary" href="./buyers.html#buyer-process">View Buyer Resources</a>
+                    <a class="button button-primary" href="./buyers.html#buyer-inspectors">View Buyer Resources</a>
                     <a class="button button-secondary" href="./sellers.html#seller-process">View Seller Resources</a>
                         <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Connect%20Me%20With%20An%20Inspector">Ask Joe For An Intro</a>
                     </div>
                 </div>
                 <div class="hero-side">
                     <div class="info-panel">
-                        <p class="info-label">What To Ask</p>
+                        <p class="info-label">How This Page Works</p>
+                        <p>Use the support tab to meet the inspector and the prep tab to see the questions and next steps that usually matter before you schedule.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="support-panel">
+            <div class="section-heading">
+                <h3>Inspection Support</h3>
+                <p>Switch between the partner details and the prep checklist without stacking both sections.</p>
+            </div>
+
+            <div class="support-tab-list" role="tablist" aria-label="Inspector support">
+                <button
+                    class="support-tab is-active"
+                    type="button"
+                    role="tab"
+                    id="inspector-tab-partner"
+                    aria-selected="true"
+                    aria-controls="inspector-partner-panel"
+                    data-inspector-tab="partner"
+                >
+                    Inspector Partner
+                </button>
+                <button
+                    class="support-tab"
+                    type="button"
+                    role="tab"
+                    id="inspector-tab-prep"
+                    aria-selected="false"
+                    aria-controls="inspector-prep-panel"
+                    data-inspector-tab="prep"
+                >
+                    Inspection Prep
+                </button>
+            </div>
+
+            <section
+                class="support-tab-panel"
+                id="inspector-partner-panel"
+                role="tabpanel"
+                aria-labelledby="inspector-tab-partner"
+                data-inspector-tab-panel="partner"
+            >
+                <div class="support-tab-copy">
+                    <h3>Home Inspection Support</h3>
+                    <p>Meet Joe's current inspection partner and get connected quickly when you are ready to schedule.</p>
+                </div>
+                <div id="inspectorGrid" class="partner-grid"></div>
+            </section>
+
+            <section
+                class="support-tab-panel"
+                id="inspector-prep-panel"
+                role="tabpanel"
+                aria-labelledby="inspector-tab-prep"
+                data-inspector-tab-panel="prep"
+                hidden
+            >
+                <div class="support-tab-copy">
+                    <h3>Inspection Prep</h3>
+                    <p>Use this as a quick gut-check before you book the inspection or before you decide what kind of follow-up testing the home may need.</p>
+                </div>
+
+                <div class="prep-grid">
+                    <div class="prep-card">
+                        <h4>What To Ask</h4>
                         <ul>
                             <li>What is included in your general inspection?</li>
                             <li>How quickly does the report come back?</li>
@@ -570,27 +780,17 @@
                             <li>Can you explain which items are urgent versus routine upkeep?</li>
                         </ul>
                     </div>
+
+                    <div class="prep-card">
+                        <h4>Need Help Choosing?</h4>
+                        <p>Joe can help you decide whether Patrick is the right fit for the home and connect you with additional inspection resources if the file needs something more specific.</p>
+                        <div class="cta-actions">
+                            <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
+                            <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Help%20Me%20Choose%20An%20Inspector">Email Joe</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-heading">
-                <h3>Home Inspection Support</h3>
-                <p>Meet Joe's current inspection partner and get connected quickly when you are ready to schedule.</p>
-            </div>
-            <div id="inspectorGrid" class="partner-grid"></div>
-        </section>
-
-        <section class="cta-panel">
-            <div>
-                <h4>Not Sure What Level Of Inspection You Need?</h4>
-                <p>Joe can help you decide whether Patrick is the right fit for the home and connect you with additional inspection resources if the file needs something more specific.</p>
-            </div>
-            <div class="cta-actions">
-                <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
-                <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Help%20Me%20Choose%20An%20Inspector">Email Joe</a>
-            </div>
+            </section>
         </section>
 
         <footer class="brand-footer">
@@ -672,6 +872,48 @@
                 </article>
             `;
         }).join("");
+
+        const inspectorTabs = Array.from(document.querySelectorAll("[data-inspector-tab]"));
+        const inspectorPanels = Array.from(document.querySelectorAll("[data-inspector-tab-panel]"));
+
+        function setActiveInspectorTab(target) {
+            inspectorTabs.forEach((tab) => {
+                const isActive = tab.dataset.inspectorTab === target;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            inspectorPanels.forEach((panel) => {
+                panel.hidden = panel.dataset.inspectorTabPanel !== target;
+            });
+
+            requestAnimationFrame(postInspectorEmbedHeight);
+        }
+
+        inspectorTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setActiveInspectorTab(tab.dataset.inspectorTab);
+            });
+        });
+
+        function postInspectorEmbedHeight() {
+            if (!inspectorEmbedName || window.parent === window) {
+                return;
+            }
+
+            const height = Math.ceil(document.documentElement.scrollHeight);
+            window.parent.postMessage({
+                type: "joe-embed-resize",
+                embed: inspectorEmbedName,
+                height
+            }, "*");
+        }
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(postInspectorEmbedHeight);
+        });
+        window.addEventListener("load", postInspectorEmbedHeight);
+        window.addEventListener("resize", postInspectorEmbedHeight);
     </script>
     <script src="./site-frame.js"></script>
 </body>
