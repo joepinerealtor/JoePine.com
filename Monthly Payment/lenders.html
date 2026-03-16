@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferred Lenders | Joe Pine</title>
+    <link rel="stylesheet" href="../site-frame.css">
+    <style>
+        :root {
+            --kw-red: #CE011F;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #E31837;
+            --kw-green: #198754;
+            --kw-ink: #000000;
+            --kw-slate: #4D4D4D;
+            --kw-muted: #828282;
+            --kw-line: #D9D9D9;
+            --surface: rgba(255, 255, 255, 0.96);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 22px 18px 40px;
+        }
+
+        .glass-card,
+        .hero-panel,
+        .lender-card,
+        .info-panel,
+        .cta-panel {
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            background: var(--surface);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+            backdrop-filter: blur(14px);
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 16px 20px;
+            border-radius: 24px;
+            margin-bottom: 22px;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .headshot-wrap {
+            width: 68px;
+            height: 68px;
+            flex: 0 0 auto;
+            border-radius: 999px;
+            overflow: hidden;
+            border: 3px solid var(--kw-red);
+            box-shadow: 0 12px 24px -16px rgba(180, 1, 1, 0.55);
+        }
+
+        .headshot-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .identity h1 {
+            margin: 0 0 6px;
+            font-size: 30px;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .identity p {
+            margin: 0;
+            color: var(--kw-slate);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .top-bar-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.3;
+            font-weight: 800;
+            color: var(--kw-slate);
+        }
+
+        .top-bar-right a {
+            text-decoration: none;
+        }
+
+        .top-bar-right .website-link {
+            color: var(--kw-red);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .hero-panel {
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 52%, var(--kw-red-deep) 100%);
+            color: #ffffff;
+            padding: 24px 24px 22px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.82);
+            font-weight: 800;
+        }
+
+        .hero-banner h2 {
+            margin: 0;
+            max-width: 760px;
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+            gap: 18px;
+            padding: 22px;
+        }
+
+        .hero-copy {
+            padding: 2px 2px 0;
+        }
+
+        .hero-copy p {
+            margin: 0 0 16px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 18px;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 11px;
+            font-weight: 900;
+            transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px -20px rgba(15, 23, 42, 0.4);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+        }
+
+        .button-secondary {
+            background: #ffffff;
+            color: var(--kw-ink);
+            border-color: var(--kw-ink);
+        }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-panel {
+            border-radius: 22px;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
+        }
+
+        .info-label {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+            font-weight: 800;
+        }
+
+        .info-panel p,
+        .info-panel li {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .info-panel ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .section-heading {
+            margin: 0 0 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .section-heading h3 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .section-heading p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--kw-muted);
+            font-weight: 800;
+        }
+
+        .lender-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .lender-card {
+            border-radius: 26px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-height: 100%;
+        }
+
+        .lender-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .lender-avatar {
+            width: 74px;
+            height: 74px;
+            border-radius: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 26px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            flex: 0 0 auto;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .lender-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .lender-company {
+            margin: 0 0 6px;
+            font-size: 12px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--kw-muted);
+            font-weight: 800;
+        }
+
+        .lender-name {
+            margin: 0 0 6px;
+            font-size: 25px;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .lender-title {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.45;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .license-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .license-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 48px;
+            min-height: 32px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            border: 1px solid var(--kw-line);
+            color: var(--kw-slate);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .lender-note {
+            margin: 0;
+            padding: 14px 15px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #fafafa 0%, #f3f4f6 100%);
+            border: 1px solid var(--kw-line);
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .lender-meta {
+            display: grid;
+            gap: 10px;
+        }
+
+        .meta-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+        }
+
+        .meta-row:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .meta-label {
+            color: var(--kw-muted);
+            font-size: 10px;
+            line-height: 1.2;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .meta-value {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.4;
+            color: var(--kw-ink);
+            font-weight: 800;
+        }
+
+        .meta-value a {
+            text-decoration: none;
+        }
+
+        .lender-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .lender-actions .button {
+            width: 100%;
+        }
+
+        .cta-panel {
+            border-radius: 28px;
+            padding: 20px 22px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+            gap: 18px;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 250, 251, 0.98) 100%);
+        }
+
+        .cta-panel h4 {
+            margin: 0 0 10px;
+            font-size: 27px;
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .cta-panel p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .brand-footer {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(229, 231, 235, 0.95);
+            display: grid;
+            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo-slot {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo-slot-kw {
+            justify-content: flex-start;
+        }
+
+        .footer-logo-slot-platinum {
+            justify-content: flex-end;
+        }
+
+        .footer-logo-slot img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer-logo-slot-kw img {
+            max-height: 42px;
+        }
+
+        .footer-logo-slot-platinum img {
+            max-height: 60px;
+        }
+
+        .footer-copy {
+            text-align: center;
+        }
+
+        .footer-copy p {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .footer-copy .fine-print {
+            font-size: 10px;
+            color: var(--kw-muted);
+        }
+
+        @media (max-width: 980px) {
+            .hero-content,
+            .cta-panel,
+            .lender-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-actions {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-bar-right,
+            .footer-copy {
+                align-items: center;
+                text-align: center;
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .lender-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-logo-slot-kw,
+            .footer-logo-slot-platinum {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .page-shell {
+                padding: 16px 14px 30px;
+            }
+
+            .hero-banner,
+            .hero-content,
+            .lender-card,
+            .cta-panel {
+                padding: 18px;
+            }
+
+            .identity h1 {
+                font-size: 24px;
+            }
+
+            .hero-banner h2 {
+                font-size: 34px;
+            }
+
+            .lender-name {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="../index.html" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="./Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-lenders"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-lenders">
+                <a href="../index.html">Home</a>
+                <a href="./index.html">Monthly Payment</a>
+                <a href="../Seller%20Net/index.html">Seller Net</a>
+                <a href="../journey.html">Process</a>
+                <a href="./lenders.html" aria-current="page">Lenders</a>
+                <a class="site-frame-cta" href="../index.html#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-banner">
+                <p class="eyebrow">Step 1 | Get Preapproved</p>
+                <h2>Choose the lender that fits your move, your timeline, and the states where you plan to buy.</h2>
+            </div>
+            <div class="hero-content">
+                <div class="hero-copy">
+                    <p>Preapproval is where your affordability estimate becomes more real. A lender can review income, debts, credit, assets, and loan options so you know what may truly be possible before you start writing offers.</p>
+                    <p>This page is set up to make lender options easy to compare. Each card shows who the lender is, how to reach them, where they are licensed, and where to start the preapproval conversation.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="index.html">Back to Calculator</a>
+                        <a id="budgetSearchLink" class="button button-secondary" href="index.html">Set Budget In Calculator</a>
+                        <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Connect%20Me%20With%20A%20Lender">Have Joe Make an Intro</a>
+                    </div>
+                </div>
+                <div class="hero-side">
+                    <div class="info-panel">
+                        <p class="info-label">What to Ask</p>
+                        <ul>
+                            <li>Which loan programs may fit my goals?</li>
+                            <li>What cash to close should I plan for?</li>
+                            <li>Do I qualify for down payment or closing cost assistance?</li>
+                            <li>Which states are you licensed to lend in?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <h3>Preferred Lender Options</h3>
+                <p>Compare licensed coverage, contact details, and preapproval links before you choose who to start with.</p>
+            </div>
+            <div id="lenderGrid" class="lender-grid"></div>
+        </section>
+
+        <section class="cta-panel">
+            <div>
+                <h4>Need Help Choosing Who To Start With?</h4>
+                <p>If you want help deciding which lender may be the best fit for your timeline, loan type, or buying goals, Joe can help point you in the right direction before you begin the application.</p>
+            </div>
+            <div class="cta-actions">
+                <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
+                <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Help%20Me%20Choose%20A%20Lender">Email Joe</a>
+            </div>
+        </section>
+
+        <footer class="brand-footer">
+            <div class="footer-logo-slot footer-logo-slot-kw">
+                <img src="KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+            </div>
+            <div class="footer-copy">
+                <p>Joe Pine Realtor | REALTOR RI &amp; MA</p>
+                <p>28 Thurber Blvd, Smithfield, RI 02917</p>
+                <p class="fine-print">Massachusetts Real Estate License #1001085-RE-RS</p>
+                <p class="fine-print">Rhode Island Real Estate License #RES.0044759</p>
+                <p class="fine-print">Equal housing opportunity. Each office is independently owned and operated.</p>
+            </div>
+            <div class="footer-logo-slot footer-logo-slot-platinum">
+                <img src="Platinum Logo Black Transparent (1).png" alt="Platinum Real Estate Group">
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const HOME_SEARCH_URL_PREFIX = "https://joepine.kw.com/search/sale?viewport=42.536786872843024%2C-69.92003930749948%2C41.089594667716725%2C-72.55675805749948&price=0%2C";
+        const HOME_SEARCH_URL_SUFFIX = "&property_subtype=HOUSE%2CTOWNHOUSE%2CCONDO%2CMANUFACTURED%2CMULTIFAMILY%2CCOOP%2CAPARTMENT";
+        const lenders = [
+            {
+                name: "Darrin Ruzzano",
+                title: "Loan Officer",
+                company: "Primary Residential Mortgage",
+                phone: "(401) 447-6248",
+                phoneHref: "4014476248",
+                email: "druzzano@primeres.com",
+                websiteLabel: "View Profile",
+                websiteUrl: "https://primarylocal.com/team/darrin-ruzzano/",
+                preapprovalUrl: "https://application.primeres.com/dr/c/dhh46",
+                headshotUrl: "Darrin.png",
+                licensedStates: ["RI", "MA", "CT"],
+                accent: "linear-gradient(135deg, #CE011F 0%, #E31837 100%)",
+                note: "Darrin, with the help of Primary Residential Mortgage, Inc., is dedicated to helping his clients find the right loan for their unique financial needs. He keeps communication with clients and Realtor partners front and center while guiding buyers through the homebuying process, refinancing, or debt consolidation with competitive loan options and rates.",
+                nmls: "NMLS #111578",
+                office: "647 Oaklawn Ave, Cranston, RI 02920"
+            },
+            {
+                name: "James Procter",
+                title: "Sales Manager",
+                company: "loanDepot",
+                phone: "(508) 850-4008",
+                phoneHref: "5088504008",
+                email: "jprocter@loandepot.com",
+                websiteLabel: "View Profile",
+                websiteUrl: "https://www.loandepot.com/loan-officers/jprocter",
+                preapprovalUrl: "https://apply.myloandepot.com/mortgage/welcome",
+                headshotUrl: "James.png",
+                licensedStates: ["RI", "CT", "MA", "FL"],
+                accent: "linear-gradient(135deg, #000000 0%, #4D4D4D 100%)",
+                note: "James is a Sales Manager known for creating loan solutions tailored to specific mortgage needs. Working closely with his underwriting and processing team at loanDepot, he focuses on delivering a high level of service and helping each loan get funded on time with the right solution in place.",
+                nmls: "NMLS #23362",
+                office: "1615 Pontiac Ave STE 3, Cranston, RI 02920"
+            },
+            {
+                name: "Anthony E Rodrigues",
+                title: "Mortgage Loan Officer II",
+                company: "Navy Federal Credit Union | NE Region",
+                phone: "(401) 236-0441",
+                phoneHref: "4012360441",
+                email: "anthony_rodrigues@navyfederal.org",
+                websiteLabel: "",
+                websiteUrl: "",
+                preapprovalUrl: "tel:4012360441",
+                headshotUrl: "Anthony.jpg",
+                primaryActionLabel: "Call Anthony",
+                licensedStates: ["MA", "RI"],
+                accent: "linear-gradient(135deg, #198754 0%, #157347 100%)",
+                note: "Anthony is an experienced mortgage professional with a strong background in financial services, including construction loans, certified mortgage planning, VA loans, FHA financing, and debt consolidation. He brings a thoughtful, solution-focused approach to helping buyers navigate financing options with confidence.",
+                nmls: "NMLS #5330",
+                office: "One Corporate Place, Middletown, RI 02842"
+            }
+        ];
+
+        const lenderGrid = document.getElementById('lenderGrid');
+        const budgetSearchLink = document.getElementById('budgetSearchLink');
+        const budgetParam = Number.parseInt(new URLSearchParams(window.location.search).get('budget') || '0', 10);
+        const searchBudget = Number.isFinite(budgetParam) && budgetParam > 0 ? budgetParam : 0;
+
+        if (budgetSearchLink) {
+            if (searchBudget > 0) {
+                budgetSearchLink.href = `${HOME_SEARCH_URL_PREFIX}${searchBudget}${HOME_SEARCH_URL_SUFFIX}`;
+                budgetSearchLink.target = "_blank";
+                budgetSearchLink.rel = "noreferrer";
+                budgetSearchLink.textContent = "Browse Homes In Budget";
+            } else {
+                budgetSearchLink.href = "index.html";
+                budgetSearchLink.removeAttribute("target");
+                budgetSearchLink.removeAttribute("rel");
+                budgetSearchLink.textContent = "Set Budget In Calculator";
+            }
+        }
+
+        lenderGrid.innerHTML = lenders.map((lender) => {
+            const initials = lender.name
+                .split(' ')
+                .slice(0, 2)
+                .map((part) => part.charAt(0))
+                .join('')
+                .toUpperCase();
+            const avatarContent = lender.headshotUrl
+                ? `<img src="${lender.headshotUrl}" alt="${lender.name} headshot">`
+                : initials;
+
+            const badges = lender.licensedStates
+                .map((state) => `<span class="license-chip">${state}</span>`)
+                .join('');
+
+            const phoneRow = lender.phone
+                ? `
+                        <div class="meta-row">
+                            <span class="meta-label">Phone</span>
+                            <span class="meta-value"><a href="tel:${lender.phoneHref}">${lender.phone}</a></span>
+                        </div>
+                  `
+                : '';
+
+            const emailRow = lender.email
+                ? `
+                        <div class="meta-row">
+                            <span class="meta-label">Email</span>
+                            <span class="meta-value"><a href="mailto:${lender.email}">${lender.email}</a></span>
+                        </div>
+                  `
+                : '';
+
+            const websiteRow = lender.websiteUrl
+                ? `
+                        <div class="meta-row">
+                            <span class="meta-label">Website</span>
+                            <span class="meta-value"><a href="${lender.websiteUrl}" target="_blank" rel="noreferrer">${lender.websiteLabel}</a></span>
+                        </div>
+                  `
+                : '';
+
+            const mobileRow = lender.mobile
+                ? `
+                        <div class="meta-row">
+                            <span class="meta-label">Mobile</span>
+                            <span class="meta-value"><a href="tel:${lender.mobileHref}">${lender.mobile}</a></span>
+                        </div>
+                  `
+                : '';
+
+            const officeRow = lender.office
+                ? `
+                        <div class="meta-row">
+                            <span class="meta-label">Office</span>
+                            <span class="meta-value">${lender.office}</span>
+                        </div>
+                  `
+                : '';
+
+            const secondaryAction = lender.email
+                ? `<a class="button button-secondary" href="mailto:${lender.email}?subject=I%20Would%20Like%20To%20Get%20Preapproved">Email Lender</a>`
+                : `<a class="button button-secondary" href="${lender.websiteUrl}" target="_blank" rel="noreferrer">View Profile</a>`;
+            const primaryActionLabel = lender.primaryActionLabel || 'Start Preapproval';
+            const primaryActionAttrs = /^https?:/i.test(lender.preapprovalUrl) ? 'target="_blank" rel="noreferrer"' : '';
+
+            return `
+                <article class="lender-card">
+                    <div class="lender-top">
+                        <div>
+                            <p class="lender-company">${lender.company}</p>
+                            <h4 class="lender-name">${lender.name}</h4>
+                            <p class="lender-title">${lender.title}</p>
+                        </div>
+                        <div class="lender-avatar" style="background:${lender.accent};">${avatarContent}</div>
+                    </div>
+                    <div>
+                        <p class="info-label">Licensed In</p>
+                        <div class="license-stack">${badges}</div>
+                    </div>
+                    <p class="lender-note">${lender.note}</p>
+                    <div class="lender-meta">
+                        ${phoneRow}
+                        ${mobileRow}
+                        ${emailRow}
+                        ${websiteRow}
+                        ${officeRow}
+                        <div class="meta-row">
+                            <span class="meta-label">License Info</span>
+                            <span class="meta-value">${lender.nmls}</span>
+                        </div>
+                    </div>
+                    <div class="lender-actions">
+                        <a class="button button-primary" href="${lender.preapprovalUrl}" ${primaryActionAttrs}>${primaryActionLabel}</a>
+                        ${secondaryAction}
+                    </div>
+                </article>
+            `;
+        }).join('');
+    </script>
+    <script src="../site-frame.js"></script>
+</body>
+</html>

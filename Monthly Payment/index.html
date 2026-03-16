@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Payment to Home Price Calculator | Joe Pine</title>
+    <link rel="stylesheet" href="../site-frame.css">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Firebase Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        window.firebase_lib = { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, getFirestore, collection, addDoc, serverTimestamp };
+    </script>
+
+    <style>
+        :root {
+            --kw-red: #CE011F;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #E31837;
+            --kw-green: #198754;
+            --kw-ink: #000000;
+            --kw-slate: #4D4D4D;
+            --kw-muted: #828282;
+            --kw-line: #D9D9D9;
+        }
+        body { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 24%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f4f4f4 50%, #fafafa 100%);
+            color: var(--kw-ink);
+        }
+        .premium-shadow {
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05), 0 2px 10px -5px rgba(0, 0, 0, 0.03);
+        }
+        .print-only {
+            display: none;
+        }
+        .brand-strip {
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            backdrop-filter: blur(14px);
+        }
+        .section-surface {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(229, 231, 235, 0.95);
+        }
+        .soft-surface {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(250, 250, 250, 0.98) 100%);
+        }
+        .footer-disclaimer {
+            background: linear-gradient(180deg, rgba(250, 250, 250, 0.96) 0%, rgba(243, 244, 246, 0.96) 100%);
+        }
+        .action-surface {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 250, 251, 0.98) 100%);
+        }
+        .export-sheet-print-host {
+            position: absolute;
+            left: -10000px;
+            top: 0;
+            width: 920px;
+            pointer-events: none;
+        }
+        .export-sheet {
+            width: 920px;
+            background: #ffffff;
+            border: 1px solid var(--kw-line);
+            border-radius: 28px;
+            padding: 28px;
+            color: var(--kw-ink);
+            box-shadow: 0 24px 50px -28px rgba(15, 23, 42, 0.22);
+        }
+        .export-sheet * {
+            box-sizing: border-box;
+        }
+        .export-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 18px;
+        }
+        .export-contact {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
+        }
+        .export-headshot {
+            width: 72px;
+            height: 72px;
+            border-radius: 999px;
+            overflow: hidden;
+            flex: 0 0 auto;
+            border: 3px solid var(--kw-red);
+        }
+        .export-headshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .export-identity h1 {
+            margin: 0 0 6px;
+            font-size: 30px;
+            line-height: 0.95;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+        .export-identity p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.2;
+            font-weight: 800;
+            color: var(--kw-slate);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .export-contact-info {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.45;
+            font-weight: 800;
+            color: var(--kw-slate);
+        }
+        .export-contact-info span,
+        .export-contact-info a {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+        .export-contact-info .export-website {
+            color: var(--kw-red);
+        }
+        .export-logos {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--kw-line);
+        }
+        .export-logos-group {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            min-width: 0;
+        }
+        .export-logo-kw {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+        }
+        .export-logo-platinum {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+        .export-office {
+            text-align: right;
+            font-size: 12px;
+            line-height: 1.45;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+        .export-office-label {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+        }
+        .export-banner {
+            margin-bottom: 16px;
+            padding: 14px 18px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--kw-red) 0%, #cf181f 55%, var(--kw-red-deep) 100%);
+            color: #ffffff;
+        }
+        .export-banner-kicker {
+            margin: 0 0 6px;
+            font-size: 10px;
+            line-height: 1;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.84);
+        }
+        .export-banner h2 {
+            margin: 0;
+            font-size: 24px;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+        .export-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .export-stat {
+            border: 1px solid var(--kw-line);
+            border-radius: 18px;
+            background: #fbfbfb;
+            padding: 14px 12px;
+            text-align: center;
+        }
+        .export-stat-label {
+            margin: 0 0 8px;
+            font-size: 10px;
+            line-height: 1.2;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+        }
+        .export-stat-value {
+            margin: 0;
+            font-size: 26px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: var(--kw-ink);
+        }
+        .export-price-block {
+            margin-bottom: 18px;
+            text-align: center;
+            border: 1px solid var(--kw-line);
+            border-radius: 22px;
+            padding: 18px 22px;
+            background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+        }
+        .export-price-kicker {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+        }
+        .export-price-value {
+            margin: 0 0 8px;
+            font-size: 68px;
+            line-height: 0.95;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            color: var(--kw-green);
+        }
+        .export-price-copy {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.45;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+        .export-breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .export-panel {
+            border: 1px solid var(--kw-line);
+            border-radius: 20px;
+            background: #fbfbfb;
+            padding: 16px;
+        }
+        .export-panel-title {
+            margin: 0 0 12px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+        }
+        .export-panel-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .export-panel-row:last-child {
+            margin-bottom: 0;
+        }
+        .export-panel-label {
+            font-size: 12px;
+            line-height: 1.35;
+            color: var(--kw-slate);
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+        .export-panel-value {
+            font-size: 20px;
+            line-height: 1;
+            color: var(--kw-ink);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            white-space: nowrap;
+        }
+        .export-meta {
+            margin-bottom: 14px;
+            padding: 16px 18px;
+            border: 1px solid var(--kw-line);
+            border-radius: 20px;
+            background: #ffffff;
+        }
+        .export-meta p {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+        .export-meta p:last-child {
+            margin-bottom: 0;
+        }
+        .export-link {
+            color: var(--kw-red);
+            word-break: break-word;
+        }
+        .export-disclaimer {
+            border: 1px solid var(--kw-line);
+            border-radius: 20px;
+            background: #f9fafb;
+            padding: 14px 16px;
+        }
+        .export-disclaimer p {
+            margin: 0;
+            font-size: 10px;
+            line-height: 1.55;
+            color: var(--kw-muted);
+            font-weight: 700;
+            text-align: center;
+        }
+        .rolling-price {
+            --digit-height: 1.08em;
+            display: inline-flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 0;
+            font-variant-numeric: tabular-nums lining-nums;
+            text-rendering: geometricPrecision;
+        }
+        .rolling-price .digit-reel {
+            position: relative;
+            display: inline-flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 0.6em;
+            height: var(--digit-height);
+            overflow: hidden;
+            margin-right: -0.015em;
+        }
+        .rolling-price .digit-track {
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
+            transition: transform 650ms cubic-bezier(0.2, 0.9, 0.25, 1);
+            will-change: transform;
+        }
+        .rolling-price .digit-cell,
+        .rolling-price .digit-static {
+            height: var(--digit-height);
+            line-height: 1.02;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rolling-price .digit-static {
+            flex: 0 0 auto;
+            margin-right: -0.01em;
+        }
+        .rolling-price .digit-static[data-char="$"] {
+            width: 0.52em;
+            margin-right: 0;
+        }
+        .rolling-price .digit-static[data-char=","] {
+            width: 0.22em;
+            margin-left: -0.01em;
+            margin-right: 0.045em;
+            transform: translateY(-0.02em);
+        }
+        .rolling-price > :last-child {
+            margin-right: 0 !important;
+        }
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        ::selection {
+            background: rgba(180, 1, 1, 0.18);
+        }
+        select { 
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); 
+            background-position: right 0.5rem center; 
+            background-repeat: no-repeat; 
+            background-size: 1.25em 1.25em; 
+            padding-right: 2.5rem; 
+            -webkit-appearance: none; 
+            -moz-appearance: none; 
+            appearance: none; 
+        }
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.35in;
+            }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .avoid-print-break { break-inside: avoid; page-break-inside: avoid; }
+            body { background: white !important; font-size: 10pt !important; }
+            .rolling-price .digit-track { transition: none !important; }
+            body.printing-export .app-shell {
+                display: none !important;
+            }
+            body.printing-export .export-sheet-print-host {
+                position: static !important;
+                left: auto !important;
+                top: auto !important;
+                width: auto !important;
+                pointer-events: auto !important;
+                display: block !important;
+                margin: 0 !important;
+            }
+            body.printing-export .export-sheet {
+                width: 100% !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+            }
+            body.printing-export .export-price-value {
+                font-size: 60px !important;
+            }
+            body.printing-export .export-panel,
+            body.printing-export .export-meta,
+            body.printing-export .export-disclaimer,
+            body.printing-export .export-price-block,
+            body.printing-export .export-stat {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .rolling-price .digit-track { transition: none !important; }
+        }
+    </style>
+</head>
+<body class="text-[#000000] antialiased">
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="../index.html" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="./Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-monthly"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-monthly">
+                <a href="../index.html">Home</a>
+                <a href="./index.html" aria-current="page">Monthly Payment</a>
+                <a href="../Seller%20Net/index.html">Seller Net</a>
+                <a href="../journey.html">Process</a>
+                <a href="./lenders.html">Lenders</a>
+                <a class="site-frame-cta" href="../index.html#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useDeferredValue } = React;
+        const CALCULATOR_PREFS_KEY = "joePineMonthlyAffordabilityPrefs";
+
+        const readCookieValue = (key) => {
+            if (typeof document === "undefined") return "";
+
+            const match = document.cookie.match(new RegExp(`(?:^|; )${key}=([^;]*)`));
+            return match ? decodeURIComponent(match[1]) : "";
+        };
+
+        const readPersistedCalculatorPrefs = () => {
+            let rawPrefs = "";
+
+            try {
+                rawPrefs = window.localStorage.getItem(CALCULATOR_PREFS_KEY) || "";
+            } catch (error) {}
+
+            if (!rawPrefs) {
+                rawPrefs = readCookieValue(CALCULATOR_PREFS_KEY);
+            }
+
+            if (!rawPrefs) return {};
+
+            try {
+                const parsedPrefs = JSON.parse(rawPrefs);
+                return parsedPrefs && typeof parsedPrefs === "object" ? parsedPrefs : {};
+            } catch (error) {
+                return {};
+            }
+        };
+
+        const persistCalculatorPrefs = (prefs) => {
+            const serializedPrefs = JSON.stringify(prefs);
+
+            try {
+                window.localStorage.setItem(CALCULATOR_PREFS_KEY, serializedPrefs);
+            } catch (error) {}
+
+            try {
+                document.cookie = `${CALCULATOR_PREFS_KEY}=${encodeURIComponent(serializedPrefs)}; max-age=${60 * 60 * 24 * 90}; path=/; SameSite=Lax`;
+            } catch (error) {}
+        };
+
+        const Icon = ({ name, size = 16, className = "", color = "currentColor" }) => {
+            const iconRef = useRef(null);
+            useEffect(() => {
+                if (window.lucide && window.lucide[name]) {
+                    const iconElement = iconRef.current;
+                    if (iconElement) {
+                        iconElement.innerHTML = "";
+                        const svg = window.lucide.createIcons({
+                            icons: { [name]: window.lucide[name] },
+                            attrs: { strokeWidth: 2.5, width: size, height: size, class: className, stroke: color }
+                        });
+                    }
+                }
+            }, [name, size, className, color]);
+            return <span ref={iconRef} className="inline-flex items-center justify-center leading-none font-black"></span>;
+        };
+
+        const RollingPrice = ({ value, className = "" }) => {
+            const chars = String(value).split("");
+            const digitCount = chars.filter(char => /\d/.test(char)).length;
+            let digitOrder = 0;
+
+            return (
+                <span className={`rolling-price ${className}`} aria-label={value}>
+                    {chars.map((char, index) => {
+                        if (/\d/.test(char)) {
+                            const delay = (digitCount - digitOrder - 1) * 45;
+                            const digit = Number(char);
+                            digitOrder += 1;
+
+                            return (
+                                <span key={`digit-${index}`} className="digit-reel" aria-hidden="true">
+                                    <span
+                                        className="digit-track"
+                                        style={{
+                                            transform: `translateY(calc(-${digit} * var(--digit-height)))`,
+                                            transitionDelay: `${delay}ms`
+                                        }}
+                                    >
+                                        {Array.from({ length: 10 }, (_, number) => (
+                                            <span key={number} className="digit-cell">{number}</span>
+                                        ))}
+                                    </span>
+                                </span>
+                            );
+                        }
+
+                        return (
+                            <span key={`static-${index}`} className="digit-static" data-char={char} aria-hidden="true">
+                                {char}
+                            </span>
+                        );
+                    })}
+                </span>
+            );
+        };
+
+        const App = () => {
+            const JOE_INFO = {
+                name: "Joe Pine",
+                title: "REALTOR RI & MA",
+                team: "Platinum Real Estate Group",
+                brokerage: "Keller Williams Leading Edge",
+                phone: "401.327.0888",
+                email: "JoePine@KW.com",
+                address: "28 Thurber Blvd, Smithfield, RI 02917",
+                website: "www.JoePine.com",
+                licenses: [
+                    "Massachusetts Real Estate License #1001085-RE-RS",
+                    "Rhode Island Real Estate License #RES.0044759"
+                ],
+                headshotUrl: "Joe (1).JPG",
+                logoUrl: "KellerWilliams_Realty_LeadingEdge_Logo_RGB.png",
+                platinumLogoUrl: "Platinum Logo Black Transparent (1).png",
+                kwSearchBase: "https://joepine.kw.com/search/sale?viewport=42.536786872843024%2C-69.92003930749948%2C41.089594667716725%2C-72.55675805749948&price=0%2C",
+                kwSearchSuffix: "&property_subtype=HOUSE%2CTOWNHOUSE%2CCONDO%2CMANUFACTURED%2CMULTIFAMILY%2CCOOP%2CAPARTMENT"
+            };
+            const RATE_PROGRAMS = {
+                conventional: {
+                    label: "Conventional",
+                    summaryLabel: "30-Year Fixed",
+                    statusLabel: "30 year fixed",
+                    surveyName: "30 Year Fixed",
+                    sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-fixed",
+                    minimumDownPaymentPercent: 5,
+                    defaultDownPaymentPercent: 5
+                },
+                fha: {
+                    label: "FHA",
+                    summaryLabel: "30-Year FHA",
+                    statusLabel: "30 year FHA",
+                    surveyName: "30 Year FHA",
+                    sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-fha",
+                    minimumDownPaymentPercent: 3.5,
+                    defaultDownPaymentPercent: 3.5
+                },
+                va: {
+                    label: "VA",
+                    summaryLabel: "30-Year VA",
+                    statusLabel: "30 year VA",
+                    surveyName: "30 Year VA",
+                    sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-va",
+                    minimumDownPaymentPercent: 0,
+                    defaultDownPaymentPercent: 0
+                }
+            };
+            const HOME_INSURANCE_RATE = 0.005;
+            const ESTIMATED_CLOSING_COST_RATE = 0.03;
+            const PRESET_PERCENTAGES = [0, 3.5, 5, 10, 15, 20];
+            const persistedPrefsRef = useRef(readPersistedCalculatorPrefs());
+            const persistedPrefs = persistedPrefsRef.current;
+            const initialLoanProgram = RATE_PROGRAMS[persistedPrefs.loanProgram] ? persistedPrefs.loanProgram : "conventional";
+            const initialDownPaymentMode = persistedPrefs.downPaymentMode === "custom" ? "custom" : "percentage";
+            const normalizePresetDownPaymentPercent = (loanProgramValue, rawPercent) => {
+                const program = RATE_PROGRAMS[loanProgramValue] || RATE_PROGRAMS.conventional;
+                const parsedPercent = Number(rawPercent);
+                const matchingPreset = PRESET_PERCENTAGES.find((pct) => Math.abs(pct - parsedPercent) < 0.001);
+                if (matchingPreset == null || matchingPreset < program.minimumDownPaymentPercent) {
+                    return program.defaultDownPaymentPercent;
+                }
+                return matchingPreset;
+            };
+            const initialInterestRate = typeof persistedPrefs.interestRate === "string"
+                ? persistedPrefs.interestRate
+                : persistedPrefs.interestRate != null
+                    ? String(persistedPrefs.interestRate)
+                    : "6.25";
+            const hasPersistedInterestRate = initialInterestRate.trim() !== "";
+
+            const [user, setUser] = useState(null);
+            const [db, setDb] = useState(null);
+            const [monthlyGoal, setMonthlyGoal] = useState(() => Number.isFinite(Number(persistedPrefs.monthlyGoal)) ? Number(persistedPrefs.monthlyGoal) : 0);
+            const [loanProgram, setLoanProgram] = useState(initialLoanProgram);
+            const [downPaymentMode, setDownPaymentMode] = useState(initialDownPaymentMode); 
+            const [downPaymentPercent, setDownPaymentPercent] = useState(() => normalizePresetDownPaymentPercent(initialLoanProgram, persistedPrefs.downPaymentPercent));
+            const [downPaymentFixed, setDownPaymentFixed] = useState(() => Number.isFinite(Number(persistedPrefs.downPaymentFixed)) ? Number(persistedPrefs.downPaymentFixed) : 60000);
+            const [interestRate, setInterestRate] = useState(initialInterestRate || "6.25");
+            const [liveRateValue, setLiveRateValue] = useState(null);
+            const [isRateLive, setIsRateLive] = useState(false);
+            const [rateDate, setRateDate] = useState("");
+            const [loanTerm, setLoanTerm] = useState(() => Number.isFinite(Number(persistedPrefs.loanTerm)) ? Number(persistedPrefs.loanTerm) : 30);
+            const [stateTaxRate, setStateTaxRate] = useState(() => Number.isFinite(Number(persistedPrefs.stateTaxRate)) ? Number(persistedPrefs.stateTaxRate) : 1.25); 
+            const [showLeadForm, setShowLeadForm] = useState(false);
+            const [formSubmitted, setFormSubmitted] = useState(false);
+            const [isSubmitting, setIsSubmitting] = useState(false);
+            const [isRefreshingRate, setIsRefreshingRate] = useState(true);
+            const [rateError, setRateError] = useState("");
+
+            const exportRef = useRef(null);
+            const rateInputVersionRef = useRef(0);
+            const rateRequestIdRef = useRef(0);
+            const shouldAutoApplyLiveRateRef = useRef(!hasPersistedInterestRate);
+            const hasInitializedRateProgramRef = useRef(false);
+
+            const zeroResults = {
+                homePrice: 0,
+                loanAmount: 0,
+                downPaymentAmount: 0,
+                piti: { principalInterest: 0, taxes: 0, insurance: 0, pmi: 0 }
+            };
+
+            const [results, setResults] = useState(zeroResults);
+
+            const currentRateProgram = RATE_PROGRAMS[loanProgram] || RATE_PROGRAMS.conventional;
+            const MND_RATE_SOURCE_URL = currentRateProgram.sourceUrl;
+            const MND_RATE_PROXY_URL = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(MND_RATE_SOURCE_URL)}`;
+            const activeDownPaymentPercent = normalizePresetDownPaymentPercent(loanProgram, downPaymentPercent);
+            const isPresetDisabled = (pct) => pct < currentRateProgram.minimumDownPaymentPercent;
+            const DISCLAIMER_TEXT = "This calculator is a planning tool based on your target monthly payment and estimated taxes, homeowners insurance, and mortgage insurance when applicable. Final preapproval and monthly payment can change after a lender reviews income, debts, assets, credit, loan terms, and actual property costs; only a licensed mortgage professional can issue a preapproval, and each office is independently owned and operated in support of equal housing opportunity.";
+            const DOWN_PAYMENT_TIP_TEXT = "RI and MA offer down payment and closing cost assistance for qualified buyers. Ask your lender during preapproval if you may be eligible.";
+            const ESCROW_HELP_TEXT = "Your principal and interest stay more predictable, but taxes and homeowners insurance can change from one property to the next. Lenders collect those yearly costs monthly through escrow, so two homes at the same price can still have different total payments.";
+            const INSURANCE_TIP_TEXT = "Homeowners insurance is one cost you can shop before closing. The premium you choose can raise or lower your final monthly mortgage payment.";
+
+            const toNonNegativeNumber = (value) => {
+                const parsed = Number.parseFloat(value);
+                return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+            };
+
+            const getPMIRate = (ltvPercent) => {
+                if (ltvPercent <= 80) return 0;
+                if (ltvPercent > 95) return (0.65 / 100) / 12;
+                if (ltvPercent > 90) return (0.50 / 100) / 12;
+                if (ltvPercent > 85) return (0.35 / 100) / 12;
+                return (0.20 / 100) / 12;
+            };
+
+            const getMortgageInsuranceRate = (loanProgramValue, ltvPercent) => {
+                if (loanProgramValue === "va") return 0;
+                return getPMIRate(ltvPercent);
+            };
+
+            const handleLoanProgramChange = (programKey) => {
+                const nextProgram = RATE_PROGRAMS[programKey] || RATE_PROGRAMS.conventional;
+                setLoanProgram(programKey);
+                setDownPaymentMode("percentage");
+                setDownPaymentPercent(nextProgram.defaultDownPaymentPercent);
+            };
+
+            const calculateResultsForPrice = ({
+                price,
+                loanProgramValue,
+                interestRateValue,
+                taxRateValue,
+                loanTermValue,
+                downPaymentModeValue,
+                downPaymentPercentValue,
+                downPaymentFixedValue
+            }) => {
+                const normalizedPrice = toNonNegativeNumber(price);
+                if (!(normalizedPrice > 0)) {
+                    return { ...zeroResults, totalPayment: 0 };
+                }
+
+                const normalizedInterestRate = toNonNegativeNumber(interestRateValue);
+                const normalizedTaxRate = toNonNegativeNumber(taxRateValue);
+                const normalizedDownPaymentPercent = Math.min(toNonNegativeNumber(downPaymentPercentValue), 100);
+                const normalizedDownPaymentFixed = toNonNegativeNumber(downPaymentFixedValue);
+                const normalizedLoanTerm = Math.max(Number(loanTermValue) || 0, 1) * 12;
+                const r = (normalizedInterestRate / 100) / 12;
+                const t = (normalizedTaxRate / 100) / 12;
+                const mc = r > 0 ? (r * Math.pow(1 + r, normalizedLoanTerm)) / (Math.pow(1 + r, normalizedLoanTerm) - 1) : 1 / normalizedLoanTerm;
+                const downPaymentAmount = downPaymentModeValue === 'percentage'
+                    ? normalizedPrice * (normalizedDownPaymentPercent / 100)
+                    : Math.min(normalizedDownPaymentFixed, normalizedPrice);
+                const loanAmount = Math.max(normalizedPrice - downPaymentAmount, 0);
+                const ltv = loanAmount > 0 ? (loanAmount / normalizedPrice) * 100 : 0;
+                const pmiRate = loanAmount > 0 ? getMortgageInsuranceRate(loanProgramValue, ltv) : 0;
+                const principalInterest = loanAmount * mc;
+                const taxes = normalizedPrice * t;
+                const insurance = (normalizedPrice * HOME_INSURANCE_RATE) / 12;
+                const pmi = loanAmount * pmiRate;
+
+                return {
+                    homePrice: normalizedPrice,
+                    loanAmount,
+                    downPaymentAmount,
+                    piti: {
+                        principalInterest,
+                        taxes,
+                        insurance,
+                        pmi
+                    },
+                    totalPayment: principalInterest + taxes + insurance + pmi
+                };
+            };
+
+            useEffect(() => {
+                const initFirebase = async () => {
+                    if (!window.firebase_lib || typeof __firebase_config === 'undefined') return;
+                    const { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, getFirestore } = window.firebase_lib;
+                    const firebaseConfig = JSON.parse(__firebase_config);
+                    const app = initializeApp(firebaseConfig);
+                    const auth = getAuth(app);
+                    const firestore = getFirestore(app);
+                    setDb(firestore);
+                    const initAuth = async () => {
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    };
+                    initAuth();
+                    const unsubscribe = onAuthStateChanged(auth, setUser);
+                    return () => unsubscribe();
+                };
+                initFirebase();
+            }, []);
+
+            useEffect(() => {
+                persistCalculatorPrefs({
+                    monthlyGoal: monthlyGoal === "" ? 0 : Number(monthlyGoal) || 0,
+                    loanProgram,
+                    downPaymentMode,
+                    downPaymentPercent: activeDownPaymentPercent === "" ? 0 : Number(activeDownPaymentPercent) || 0,
+                    downPaymentFixed: downPaymentFixed === "" ? 0 : Number(downPaymentFixed) || 0,
+                    interestRate: interestRate == null ? "" : String(interestRate),
+                    loanTerm: Number(loanTerm) || 30,
+                    stateTaxRate: Number(stateTaxRate) || 1.25
+                });
+            }, [monthlyGoal, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, loanTerm, stateTaxRate]);
+
+            useEffect(() => {
+                if (downPaymentMode !== "percentage") return;
+
+                if (activeDownPaymentPercent !== downPaymentPercent) {
+                    setDownPaymentPercent(activeDownPaymentPercent);
+                }
+            }, [loanProgram, downPaymentMode, downPaymentPercent, activeDownPaymentPercent]);
+
+            useEffect(() => {
+                const handleAfterPrint = () => document.body.classList.remove('printing-export');
+                window.addEventListener('afterprint', handleAfterPrint);
+
+                return () => {
+                    window.removeEventListener('afterprint', handleAfterPrint);
+                    handleAfterPrint();
+                };
+            }, []);
+
+            const parseLatestMortgageNewsDailyRate = (html, surveyName) => {
+                const escapedSurveyName = surveyName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const surveyHeading = `MND's ${escapedSurveyName} \\(daily survey\\)`;
+                const surveyPatterns = [
+                    new RegExp(`${surveyHeading}[\\s\\S]*?<span class="hidden-xs">([^<]+)<\\/span>[\\s\\S]*?<td class="rate">([0-9.]+)%<\\/td>`, "i"),
+                    new RegExp(`${surveyHeading}[\\s\\S]*?<td[^>]*>\\s*([0-9./-]+)\\s*<\\/td>[\\s\\S]*?<td class="rate">([0-9.]+)%<\\/td>`, "i")
+                ];
+
+                for (const pattern of surveyPatterns) {
+                    const surveyMatch = html.match(pattern);
+                    if (surveyMatch) {
+                        return {
+                            date: surveyMatch[1].trim(),
+                            rate: Number.parseFloat(surveyMatch[2])
+                        };
+                    }
+                }
+
+                const currentRateMatch = html.match(/<div class="current-rate"[^>]*>\s*([0-9.]+)%/i);
+                if (currentRateMatch) {
+                    return {
+                        date: "",
+                        rate: Number.parseFloat(currentRateMatch[1])
+                    };
+                }
+
+                return null;
+            };
+
+            const fetchLiveRate = async (forceApply = false) => {
+                const requestId = ++rateRequestIdRef.current;
+                const inputVersionAtRequestStart = rateInputVersionRef.current;
+                setIsRefreshingRate(true);
+                setRateError("");
+
+                try {
+                    const response = await fetch(MND_RATE_PROXY_URL, { cache: 'no-store' });
+                    if (!response.ok) throw new Error(`Rate request failed with status ${response.status}`);
+
+                    const html = await response.text();
+                    const latestRate = parseLatestMortgageNewsDailyRate(html, currentRateProgram.surveyName);
+                    if (!latestRate || !Number.isFinite(latestRate.rate)) {
+                        throw new Error('Could not parse the latest Mortgage News Daily rate.');
+                    }
+
+                    if (requestId !== rateRequestIdRef.current) return;
+
+                    setLiveRateValue(latestRate.rate);
+                    setRateDate(latestRate.date);
+                    setIsRateLive(true);
+                    if (forceApply || (shouldAutoApplyLiveRateRef.current && rateInputVersionRef.current === inputVersionAtRequestStart)) {
+                        setInterestRate(latestRate.rate.toFixed(2));
+                        shouldAutoApplyLiveRateRef.current = false;
+                    }
+                } catch (error) {
+                    if (requestId !== rateRequestIdRef.current) return;
+                    console.error(`Unable to refresh the Mortgage News Daily ${currentRateProgram.summaryLabel} rate.`, error);
+                    setRateError('Latest MND rate unavailable');
+                } finally {
+                    if (requestId === rateRequestIdRef.current) {
+                        setIsRefreshingRate(false);
+                    }
+                }
+            };
+
+            useEffect(() => {
+                if (!hasInitializedRateProgramRef.current) {
+                    hasInitializedRateProgramRef.current = true;
+                    fetchLiveRate();
+                    return;
+                }
+
+                setIsRateLive(false);
+                setLiveRateValue(null);
+                setRateDate("");
+                setRateError("");
+                shouldAutoApplyLiveRateRef.current = true;
+                fetchLiveRate(true);
+            }, [loanProgram]);
+
+            useEffect(() => {
+                const normalizedMonthlyGoal = toNonNegativeNumber(monthlyGoal);
+
+                if (normalizedMonthlyGoal <= 0) {
+                    setResults({ ...zeroResults });
+                    return;
+                }
+
+                let low = 0;
+                let high = 100000;
+                let highResults = calculateResultsForPrice({
+                    price: high,
+                    loanProgramValue: loanProgram,
+                    interestRateValue: interestRate,
+                    taxRateValue: stateTaxRate,
+                    loanTermValue: loanTerm,
+                    downPaymentModeValue: downPaymentMode,
+                    downPaymentPercentValue: activeDownPaymentPercent,
+                    downPaymentFixedValue: downPaymentFixed
+                });
+                let growthSteps = 0;
+
+                while (highResults.totalPayment <= normalizedMonthlyGoal && growthSteps < 25) {
+                    high *= 2;
+                    highResults = calculateResultsForPrice({
+                        price: high,
+                        loanProgramValue: loanProgram,
+                        interestRateValue: interestRate,
+                        taxRateValue: stateTaxRate,
+                        loanTermValue: loanTerm,
+                        downPaymentModeValue: downPaymentMode,
+                        downPaymentPercentValue: activeDownPaymentPercent,
+                        downPaymentFixedValue: downPaymentFixed
+                    });
+                    growthSteps += 1;
+                }
+
+                for (let i = 0; i < 50; i += 1) {
+                    const mid = (low + high) / 2;
+                    const midResults = calculateResultsForPrice({
+                        price: mid,
+                        loanProgramValue: loanProgram,
+                        interestRateValue: interestRate,
+                        taxRateValue: stateTaxRate,
+                        loanTermValue: loanTerm,
+                        downPaymentModeValue: downPaymentMode,
+                        downPaymentPercentValue: activeDownPaymentPercent,
+                        downPaymentFixedValue: downPaymentFixed
+                    });
+                    if (midResults.totalPayment <= normalizedMonthlyGoal) {
+                        low = mid;
+                    } else {
+                        high = mid;
+                    }
+                }
+
+                const finalResults = calculateResultsForPrice({
+                    price: low,
+                    loanProgramValue: loanProgram,
+                    interestRateValue: interestRate,
+                    taxRateValue: stateTaxRate,
+                    loanTermValue: loanTerm,
+                    downPaymentModeValue: downPaymentMode,
+                    downPaymentPercentValue: activeDownPaymentPercent,
+                    downPaymentFixedValue: downPaymentFixed
+                });
+                const roundedPrincipalInterest = Math.round(finalResults.piti.principalInterest);
+                const roundedTaxes = Math.round(finalResults.piti.taxes);
+                const roundedInsurance = Math.round(finalResults.piti.insurance);
+                const roundedPmi = Math.round(finalResults.piti.pmi);
+                const roundedTotalPayment = Math.round(finalResults.totalPayment);
+                const displayedComponentSum = roundedPrincipalInterest + roundedTaxes + roundedInsurance + roundedPmi;
+                const roundingDelta = roundedTotalPayment - displayedComponentSum;
+
+                setResults({
+                    homePrice: Math.round(finalResults.homePrice),
+                    loanAmount: Math.round(finalResults.loanAmount),
+                    downPaymentAmount: Math.round(finalResults.downPaymentAmount),
+                    piti: {
+                        principalInterest: roundedPrincipalInterest + roundingDelta,
+                        taxes: roundedTaxes,
+                        insurance: roundedInsurance,
+                        pmi: roundedPmi
+                    }
+                });
+            }, [monthlyGoal, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, loanTerm, stateTaxRate]);
+
+            const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+
+            const captureSummaryCanvas = async () => {
+                const exportNode = exportRef.current?.querySelector('.export-sheet');
+                if (!exportNode) return null;
+
+                if (document.fonts?.ready) {
+                    await document.fonts.ready;
+                }
+
+                await new Promise((resolve) => window.requestAnimationFrame(() => window.requestAnimationFrame(resolve)));
+
+                return html2canvas(exportNode, {
+                    backgroundColor: '#ffffff',
+                    scale: 2.5,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false,
+                    width: exportNode.scrollWidth,
+                    height: exportNode.scrollHeight,
+                    windowWidth: exportNode.scrollWidth,
+                    windowHeight: exportNode.scrollHeight,
+                    scrollX: 0,
+                    scrollY: 0
+                });
+            };
+
+            const handleSaveImage = async () => {
+                const canvas = await captureSummaryCanvas();
+                if (!canvas) return;
+
+                const link = document.createElement('a');
+                link.download = `Joe Pine Monthly Affordability Summary.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            };
+
+            const handleSavePdf = async () => {
+                const canvas = await captureSummaryCanvas();
+                if (!canvas || !window.jspdf?.jsPDF) return;
+
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const margin = 24;
+                let renderWidth = pageWidth - (margin * 2);
+                let renderHeight = (canvas.height * renderWidth) / canvas.width;
+
+                if (renderHeight > pageHeight - (margin * 2)) {
+                    renderHeight = pageHeight - (margin * 2);
+                    renderWidth = (canvas.width * renderHeight) / canvas.height;
+                }
+
+                const x = (pageWidth - renderWidth) / 2;
+                const y = (pageHeight - renderHeight) / 2;
+
+                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', x, y, renderWidth, renderHeight, undefined, 'FAST');
+                pdf.save('Joe Pine Monthly Affordability Summary.pdf');
+            };
+
+            const handlePrint = () => {
+                document.body.classList.add('printing-export');
+                window.print();
+                window.setTimeout(() => document.body.classList.remove('printing-export'), 1500);
+            };
+
+            const handleSubmitLead = async (e) => {
+                e.preventDefault();
+                if (!user || !db || isSubmitting) return;
+                setIsSubmitting(true);
+                const formData = new FormData(e.target);
+                const leadData = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    price: results.homePrice,
+                    monthly: monthlyGoal,
+                    down: results.downPaymentAmount,
+                    timestamp: window.firebase_lib.serverTimestamp()
+                };
+                try {
+                    const appId = typeof __app_id !== 'undefined' ? __app_id : 'mortgage-calculator';
+                    const leadsCollection = window.firebase_lib.collection(db, 'artifacts', appId, 'public', 'data', 'leads');
+                    await window.firebase_lib.addDoc(leadsCollection, leadData);
+                    setFormSubmitted(true);
+                } catch (error) { } finally { setIsSubmitting(false); }
+            };
+
+            const calculatedBudget = Math.max(Number(results.homePrice) || 0, 0);
+            const stepTwoLink = `${JOE_INFO.kwSearchBase}${calculatedBudget}${JOE_INFO.kwSearchSuffix}`;
+            const deferredSearchPreviewUrl = useDeferredValue(stepTwoLink);
+            const lenderLandingPageUrl = `lenders.html?budget=${calculatedBudget}`;
+            const [searchPreviewStatus, setSearchPreviewStatus] = useState("loading");
+            const addressMatch = JOE_INFO.address.match(/^(.*?,\s*[A-Z]{2})\s+(\d{5}(?:-\d{4})?)$/);
+            const addressLineOne = addressMatch ? addressMatch[1] : JOE_INFO.address;
+            const addressLineTwo = addressMatch ? addressMatch[2] : "";
+            const formatWholeNumber = (val) => new Intl.NumberFormat('en-US').format(val);
+            const actionButtonBaseClass = "flex-1 min-w-[145px] max-w-[215px] flex items-center justify-center gap-2 py-3.5 rounded-xl uppercase text-[10px] tracking-[0.18em] shadow-sm leading-none font-black transition-all";
+            const printButtonClass = `${actionButtonBaseClass} bg-[#CE011F] text-white hover:bg-red-700`;
+            const darkActionButtonClass = `${actionButtonBaseClass} bg-[#000000] text-white hover:bg-black`;
+            const outlinedDarkActionButtonClass = `${actionButtonBaseClass} bg-white text-[#000000] border-2 border-[#000000] hover:bg-[#000000] hover:text-white`;
+            const outlinedBrandActionButtonClass = `${actionButtonBaseClass} bg-white text-[#CE011F] border-2 border-[#CE011F] hover:bg-red-50`;
+            const estimatedClosingCosts = Math.round(results.homePrice * ESTIMATED_CLOSING_COST_RATE);
+            const estimatedCashNeeded = results.downPaymentAmount + estimatedClosingCosts;
+            const estimatedTotalMonthlyPayment = results.piti.principalInterest + results.piti.taxes + results.piti.insurance + results.piti.pmi;
+            const locationLabel = Number(stateTaxRate) === 1.15 ? "MA" : "RI";
+            const closingCostLabel = `Estimated closing costs (${Math.round(ESTIMATED_CLOSING_COST_RATE * 100)}%)`;
+            const parsedInterestRate = Number.parseFloat(interestRate);
+            const currentRateValue = Number.isFinite(parsedInterestRate) ? parsedInterestRate : (Number.isFinite(liveRateValue) ? liveRateValue : null);
+            const formattedInterestRate = Number.isFinite(currentRateValue) ? currentRateValue.toFixed(2) : "N/A";
+            const isUsingLiveRate = Number.isFinite(currentRateValue) && Number.isFinite(liveRateValue) && Math.abs(currentRateValue - liveRateValue) < 0.005;
+            const loanProgramLabel = currentRateProgram.label;
+            const rateSummaryLine = isUsingLiveRate
+                ? `Rate used: ${formattedInterestRate}% from Mortgage News Daily ${currentRateProgram.summaryLabel}${rateDate ? ` (${rateDate})` : ""}.`
+                : `Rate used: ${formattedInterestRate}% entered manually in the calculator for the ${loanProgramLabel} option.`;
+            const rateSourceLine = isUsingLiveRate
+                ? `Source link: ${MND_RATE_SOURCE_URL}`
+                : Number.isFinite(liveRateValue)
+                    ? `Latest Mortgage News Daily ${currentRateProgram.summaryLabel} on load: ${liveRateValue.toFixed(2)}%${rateDate ? ` (${rateDate})` : ""}. Source: ${MND_RATE_SOURCE_URL}`
+                    : `Rate source link: ${MND_RATE_SOURCE_URL}`;
+            const estimateMethodLine = `Taxes reflect the ${locationLabel} setting and homeowners insurance is estimated using this calculator's current assumptions.`;
+            const shareSummaryLines = [
+                `Loan type: ${loanProgramLabel}`,
+                `Estimated monthly payment: ${formatCurrency(estimatedTotalMonthlyPayment)}`,
+                `Down payment: ${formatCurrency(results.downPaymentAmount)}`,
+                `${closingCostLabel}: ${formatCurrency(estimatedClosingCosts)}`,
+                `Estimated cash to close: ${formatCurrency(estimatedCashNeeded)}`,
+                `Estimated home price: ${formatCurrency(results.homePrice)}`,
+                `Principal and interest: ${formatCurrency(results.piti.principalInterest)}`,
+                `Mortgage insurance: ${formatCurrency(results.piti.pmi)}`,
+                `Taxes: ${formatCurrency(results.piti.taxes)}`,
+                `Insurance: ${formatCurrency(results.piti.insurance)}`
+            ];
+            const shareText = [
+                "Joe Pine monthly affordability estimate",
+                ...shareSummaryLines,
+                rateSummaryLine,
+                estimateMethodLine,
+                `Browse homes in this range: ${stepTwoLink}`,
+                rateSourceLine,
+                `Disclaimer: ${DISCLAIMER_TEXT}`
+            ].join("\n");
+
+            useEffect(() => {
+                setSearchPreviewStatus("loading");
+            }, [deferredSearchPreviewUrl]);
+            const emailBody = [
+                "I wanted to share a quick estimate based on the information entered into Joe Pine's monthly affordability calculator.",
+                "",
+                "Estimate summary",
+                ...shareSummaryLines,
+                rateSummaryLine,
+                estimateMethodLine,
+                `Browse homes in this range on JoePine.com: ${stepTwoLink}`,
+                rateSourceLine,
+                "",
+                `Disclaimer: ${DISCLAIMER_TEXT}`
+            ].join("\n");
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(`Home Buying Power Estimate - ${formatCurrency(results.homePrice)}`)}&body=${encodeURIComponent(emailBody)}`;
+            const smsLink = `sms:?body=${encodeURIComponent(shareText)}`;
+
+            return (
+                <div className="min-h-screen pb-8 font-black text-[#000000]">
+                    <div ref={exportRef} className="export-sheet-print-host" aria-hidden="true">
+                        <div className="export-sheet">
+                            <div className="export-header">
+                                <div className="export-contact">
+                                    <div className="export-headshot">
+                                        <img src={JOE_INFO.headshotUrl} alt={JOE_INFO.name} />
+                                    </div>
+                                    <div className="export-identity">
+                                        <h1>{JOE_INFO.name}</h1>
+                                        <p>{JOE_INFO.title}</p>
+                                    </div>
+                                </div>
+                                <div className="export-contact-info">
+                                    <span>{JOE_INFO.phone}</span>
+                                    <span>{JOE_INFO.email}</span>
+                                    <span className="export-website">{JOE_INFO.website}</span>
+                                </div>
+                            </div>
+
+                            <div className="export-logos">
+                                <div className="export-logos-group">
+                                    <img src={JOE_INFO.logoUrl} alt="Keller Williams Leading Edge" className="export-logo-kw" />
+                                    <img src={JOE_INFO.platinumLogoUrl} alt="Platinum Real Estate Group" className="export-logo-platinum" />
+                                </div>
+                                <div className="export-office">
+                                    <span className="export-office-label">Office & Brokerage</span>
+                                    <span>{addressLineOne}</span>
+                                    {addressLineTwo && <span>{addressLineTwo}</span>}
+                                </div>
+                            </div>
+
+                            <div className="export-banner">
+                                <p className="export-banner-kicker">Monthly Affordability Summary</p>
+                                <h2>Estimate based on your target payment, down payment, closing costs, and current payment assumptions.</h2>
+                            </div>
+
+                            <div className="export-summary-grid">
+                                <div className="export-stat">
+                                    <p className="export-stat-label">Monthly Payment</p>
+                                    <p className="export-stat-value">{formatCurrency(estimatedTotalMonthlyPayment)}</p>
+                                </div>
+                                <div className="export-stat">
+                                    <p className="export-stat-label">Down Payment</p>
+                                    <p className="export-stat-value">{formatCurrency(results.downPaymentAmount)}</p>
+                                </div>
+                                <div className="export-stat">
+                                    <p className="export-stat-label">Closing Costs (3%)</p>
+                                    <p className="export-stat-value">{formatCurrency(estimatedClosingCosts)}</p>
+                                </div>
+                                <div className="export-stat">
+                                    <p className="export-stat-label">Cash To Close</p>
+                                    <p className="export-stat-value">{formatCurrency(estimatedCashNeeded)}</p>
+                                </div>
+                            </div>
+
+                            <div className="export-price-block">
+                                <p className="export-price-kicker">Estimated Home Price</p>
+                                <p className="export-price-value">{formatCurrency(results.homePrice)}</p>
+                                <p className="export-price-copy">Homes in this range may be the right place to start based on this affordability snapshot.</p>
+                            </div>
+
+                            <div className="export-breakdown-grid">
+                                <div className="export-panel">
+                                    <p className="export-panel-title">Loan Costs</p>
+                                    <div className="export-panel-row">
+                                        <span className="export-panel-label">Principal and interest</span>
+                                        <span className="export-panel-value">{formatCurrency(results.piti.principalInterest)}</span>
+                                    </div>
+                                    <div className="export-panel-row">
+                                        <span className="export-panel-label">Mortgage insurance</span>
+                                        <span className="export-panel-value">{formatCurrency(results.piti.pmi)}</span>
+                                    </div>
+                                </div>
+                                <div className="export-panel">
+                                    <p className="export-panel-title">Escrowed Funds</p>
+                                    <div className="export-panel-row">
+                                        <span className="export-panel-label">Taxes</span>
+                                        <span className="export-panel-value">{formatCurrency(results.piti.taxes)}</span>
+                                    </div>
+                                    <div className="export-panel-row">
+                                        <span className="export-panel-label">Insurance</span>
+                                        <span className="export-panel-value">{formatCurrency(results.piti.insurance)}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="export-meta">
+                                <p>{rateSummaryLine}</p>
+                                <p>{estimateMethodLine}</p>
+                                <p>Browse homes in this range: <span className="export-link">{stepTwoLink}</span></p>
+                                <p>{rateSourceLine}</p>
+                            </div>
+
+                            <div className="export-disclaimer">
+                                <p>{DISCLAIMER_TEXT}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="app-shell">
+                    <div className="max-w-6xl mx-auto px-4 pt-5 font-black">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch font-black">
+                            
+                            {/* Left Column */}
+                            <div className="lg:col-span-4 flex flex-col gap-6 h-full font-black">
+                                <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black no-print">
+                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] p-4 text-white flex items-center gap-2 italic font-black">
+                                        <Icon name="Calculator" size={14} /> 
+                                        <h2 className="font-black uppercase text-xs tracking-widest leading-none">Monthly Affordability</h2>
+                                    </div>
+                                    <div className="p-5 space-y-5 font-black">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-black">
+                                            <div>
+                                                <label className="block text-xs uppercase mb-2 leading-none tracking-[0.15em] font-black text-gray-400">Monthly Target</label>
+                                                <div className="relative font-black">
+                                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
+                                                    <input type="number" value={monthlyGoal} onChange={(e) => setMonthlyGoal(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-14 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-2xl transition-all font-black" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Location</label>
+                                                <select value={stateTaxRate} onChange={(e) => setStateTaxRate(Number(e.target.value))} className="w-full h-14 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-xl">
+                                                    <option value={1.25}>RI</option>
+                                                    <option value={1.15}>MA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-4 font-black">
+                                            <div>
+                                                <div className="flex justify-between items-center mb-2 leading-none font-black">
+                                                    <label className="text-xs uppercase tracking-[0.15em] text-gray-400 font-black">Loan Type</label>
+                                                    <span className="text-[10px] uppercase tracking-widest text-gray-300 font-black">Select Program</span>
+                                                </div>
+                                                <div className="grid grid-cols-3 gap-1 no-print font-black">
+                                                    {Object.entries(RATE_PROGRAMS).map(([programKey, programConfig]) => (
+                                                        <button
+                                                            key={programKey}
+                                                            type="button"
+                                                            onClick={() => handleLoanProgramChange(programKey)}
+                                                            className={`py-2.5 text-xs font-black rounded-md border transition-all ${
+                                                                loanProgram === programKey
+                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
+                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                            }`}
+                                                        >
+                                                            {programConfig.label}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="font-black">
+                                                <div className="flex items-start justify-between gap-3 mb-2 font-black">
+                                                    <label className="block text-xs uppercase leading-none text-gray-400 tracking-[0.15em] font-black pt-1">Rate %</label>
+                                                    <div className="text-right min-h-[28px] font-black">
+                                                        {isRateLive ? (
+                                                            <div className="flex flex-col items-end gap-0.5 font-black">
+                                                                <a href={MND_RATE_SOURCE_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[10px] text-[#CE011F] font-black uppercase underline-offset-2 hover:underline">
+                                                                    <Icon name="Activity" size={10} className="animate-pulse" />
+                                                                    Mortgage News Daily
+                                                                </a>
+                                                                <div className="text-[8px] text-gray-500 font-black uppercase italic leading-tight">{rateDate ? `${currentRateProgram.statusLabel} as of ${rateDate}` : `Latest ${currentRateProgram.statusLabel} rate`}</div>
+                                                                {rateError && <div className="text-[8px] text-amber-600 font-black uppercase leading-tight">{rateError}</div>}
+                                                            </div>
+                                                        ) : (
+                                                            <div className="text-[10px] text-gray-300 uppercase font-black leading-tight">
+                                                                {rateError || (isRefreshingRate ? `Refreshing ${currentRateProgram.statusLabel} rate` : `Fetching ${currentRateProgram.statusLabel} rate`)}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-col sm:flex-row items-stretch gap-2 font-black">
+                                                    <input type="number" step="0.01" value={interestRate} placeholder={liveRateValue ? liveRateValue.toFixed(2) : "6.25"} onChange={(e) => {
+                                                        shouldAutoApplyLiveRateRef.current = false;
+                                                        rateInputVersionRef.current += 1;
+                                                        setInterestRate(e.target.value);
+                                                    }} className="w-full min-w-0 bg-gray-50 border-2 border-gray-100 rounded-lg py-3 px-4 focus:border-[#CE011F] outline-none font-black text-xl" />
+                                                    <button type="button" onClick={() => fetchLiveRate(true)} disabled={isRefreshingRate} title={`Reset to the latest Mortgage News Daily ${currentRateProgram.statusLabel} rate`} className="w-full sm:w-auto sm:min-w-[92px] shrink-0 inline-flex min-h-[52px] items-center justify-center gap-1.5 px-4 rounded-lg border-2 border-[#CE011F] bg-[#CE011F] text-white hover:bg-red-700 hover:border-red-700 transition-colors leading-none text-[9px] uppercase font-black shadow-sm disabled:opacity-50 disabled:bg-[#CE011F] disabled:border-[#CE011F] disabled:text-white">
+                                                        <Icon name="RefreshCw" size={10} color="white" className={isRefreshingRate ? "animate-spin" : ""} />
+                                                        <span>{isRefreshingRate ? "Updating" : "Reset"}</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div className="flex justify-between items-center mb-2 leading-none font-black">
+                                                <label className="text-xs uppercase tracking-[0.15em] text-gray-400 font-black">Down Payment</label>
+                                                <span className="text-[10px] uppercase tracking-widest text-gray-300 font-black">{downPaymentMode === 'percentage' ? "Percent" : "Custom Cash"}</span>
+                                            </div>
+                                            <div className="space-y-3 font-black">
+                                                <div className="grid grid-cols-4 gap-1 no-print font-black">
+                                                    {PRESET_PERCENTAGES.map((pct) => {
+                                                        const disabled = isPresetDisabled(pct);
+                                                        const isActive = downPaymentMode === 'percentage' && activeDownPaymentPercent === pct;
+
+                                                        return (
+                                                            <button
+                                                                key={pct}
+                                                                type="button"
+                                                                disabled={disabled}
+                                                                onClick={() => {
+                                                                    if (disabled) return;
+                                                                    setDownPaymentMode('percentage');
+                                                                    setDownPaymentPercent(pct);
+                                                                }}
+                                                                title={disabled ? `${currentRateProgram.label} examples start at ${currentRateProgram.minimumDownPaymentPercent}% down` : `${pct}% down payment`}
+                                                                className={`py-2 text-xs font-black rounded-md border transition-all ${
+                                                                    disabled
+                                                                        ? 'cursor-not-allowed border-gray-100 bg-gray-50 text-gray-300'
+                                                                        : isActive
+                                                                            ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
+                                                                            : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                                }`}
+                                                            >
+                                                                {pct}%
+                                                            </button>
+                                                        );
+                                                    })}
+                                                    <button type="button" onClick={() => setDownPaymentMode('custom')} className={`col-span-2 py-2 text-xs font-black rounded-md border transition-all ${downPaymentMode === 'custom' ? 'border-[#CE011F] bg-red-50 text-[#CE011F]' : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'}`}>Custom $</button>
+                                                </div>
+                                                {downPaymentMode === 'custom' && (
+                                                    <div className="font-black">
+                                                        <label className="block text-[10px] uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Custom Down Payment</label>
+                                                        <div className="relative font-black">
+                                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
+                                                            <input type="number" value={downPaymentFixed} onChange={(e) => setDownPaymentFixed(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-xl transition-all" />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                {downPaymentMode !== 'custom' && (
+                                                    <div className="font-black">
+                                                        <label className="block text-[10px] uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Down Payment</label>
+                                                        <div className="relative h-12 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 flex items-center font-black">
+                                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
+                                                            <span className="text-xl font-black">{formatWholeNumber(results.downPaymentAmount)}</span>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                <div className="rounded-lg border border-red-100 bg-red-50/60 p-3 text-left font-black">
+                                                    <p className="text-[10px] uppercase tracking-[0.18em] text-[#CE011F] mb-1.5 font-black">Tip</p>
+                                                    <p className="text-[11px] leading-relaxed text-gray-500 font-black">
+                                                        {DOWN_PAYMENT_TIP_TEXT}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="section-surface soft-surface rounded-2xl premium-shadow p-5 font-black no-print mt-auto md:min-h-[220px]">
+                                    <div className="flex flex-col items-center justify-center gap-4 text-center font-black h-full">
+                                        <img src={JOE_INFO.logoUrl} alt="Keller Williams Leading Edge" className="h-12 w-auto object-contain" />
+                                        <img src={JOE_INFO.platinumLogoUrl} alt="Platinum Real Estate Group" className="h-14 w-auto object-contain" />
+                                        <div className="text-sm leading-snug text-[#4D4D4D] font-black">
+                                            <p className="uppercase tracking-[0.14em] text-[10px] text-gray-400 mb-2 font-black">Office & Brokerage</p>
+                                            <p className="font-black">{addressLineOne}</p>
+                                            {addressLineTwo && <p className="font-black">{addressLineTwo}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className="lg:col-span-8 flex flex-col gap-6 h-full text-center font-black">
+                                <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black avoid-print-break">
+                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] p-4 text-white flex items-center gap-2 italic font-black">
+                                        <Icon name="Calculator" size={14} />
+                                        <h2 className="font-black uppercase text-xs tracking-widest leading-none">Estimated Payment Snapshot</h2>
+                                    </div>
+                                    <div className="p-6 md:p-7 relative">
+                                    <div className="max-w-4xl mx-auto mb-6">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 text-left">
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Monthly Payment</p>
+                                                <div className="flex items-end justify-center">
+                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedTotalMonthlyPayment)}</p>
+                                                </div>
+                                            </div>
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Down Payment</p>
+                                                <div className="flex items-end justify-center">
+                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(results.downPaymentAmount)}</p>
+                                                </div>
+                                            </div>
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Closing Costs (3%)</p>
+                                                <div className="flex items-end justify-center">
+                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedClosingCosts)}</p>
+                                                </div>
+                                            </div>
+                                            <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[86px] flex flex-col justify-between text-center">
+                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Cash To Close</p>
+                                                <div className="flex items-end justify-center">
+                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedCashNeeded)}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="mb-6">
+                                        <p className="text-base text-gray-500 max-w-2xl mx-auto mb-3 leading-relaxed tracking-tight font-black">
+                                            Based on this estimated monthly payment and cash-to-close snapshot, homes in this range may be the right place to start.
+                                        </p>
+                                        <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-1.5 block font-black leading-none">Estimated Home Price</span>
+                                        <RollingPrice value={formatCurrency(results.homePrice)} className="text-5xl md:text-7xl font-extrabold text-[#198754] leading-none drop-shadow-sm" />
+                                    </div>
+                                     
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left leading-none font-black mb-5">
+                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 font-black font-black">
+                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="Building" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black">Loan Costs</h3></div>
+                                            <div className="flex justify-between items-center mb-2 leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Principal and Interest</span><span className="text-[17px] leading-none font-black font-black font-black">{formatCurrency(results.piti.principalInterest)}</span></div>
+                                            <div className="flex justify-between items-center leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black">Mortgage Insurance</span><span className="text-[17px] leading-none font-black font-black font-black font-black">{formatCurrency(results.piti.pmi)}</span></div>
+                                        </div>
+                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 font-black font-black">
+                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="ShieldCheck" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black font-black">Escrowed Funds</h3></div>
+                                            <div className="flex justify-between items-center mb-2 leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black">Taxes</span><span className="text-[17px] leading-none font-black font-black font-black font-black">{formatCurrency(results.piti.taxes)}</span></div>
+                                            <div className="flex justify-between items-center leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black font-black font-black">Insurance</span><span className="text-[17px] leading-none font-black font-black font-black font-black font-black">{formatCurrency(results.piti.insurance)}</span></div>
+                                        </div>
+                                    </div>
+
+                                    <div className="text-left bg-[#fcfcfc] p-4 rounded-xl border border-gray-100 border-l-4 border-l-[#CE011F] font-black font-black font-black">
+                                        <h3 className="uppercase text-[8px] mb-2 flex items-center gap-2 tracking-[0.2em] leading-none italic font-black text-[#CE011F] font-black font-black font-black"><Icon name="Calendar" size={12} color="#CE011F" /> How Escrow Works</h3>
+                                        <p className="text-[11px] text-gray-500 leading-relaxed font-black">
+                                            {ESCROW_HELP_TEXT}
+                                        </p>
+                                    </div>
+
+                                    <div className="text-left rounded-xl border border-red-100 bg-red-50/60 p-4 font-black">
+                                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#CE011F] mb-1.5 font-black">Tip</p>
+                                        <p className="text-[11px] text-gray-500 leading-relaxed font-black">
+                                            {INSURANCE_TIP_TEXT}
+                                        </p>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div className="font-black leading-none no-print mt-auto">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-black leading-none items-stretch">
+                                        <div className="bg-gradient-to-br from-[#CE011F] to-[#930015] text-white p-5 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[220px] h-full flex flex-col justify-between border border-[#930015]">
+                                            <div>
+                                                <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 1</p>
+                                                <h3 className="text-lg italic uppercase mb-2 leading-none tracking-tight font-black">Get Preapproved</h3>
+                                                <p className="text-[11px] mb-4 leading-relaxed font-black text-red-50">
+                                                    Confirm your buying power with a licensed lender before you start touring homes.
+                                                </p>
+                                            </div>
+                                            <a href={lenderLandingPageUrl} className="w-full bg-white hover:bg-red-50 text-[#CE011F] font-black py-3 rounded-xl transition-all uppercase tracking-[0.18em] text-[9px] shadow-lg flex items-center justify-center gap-2 leading-none">
+                                                <Icon name="ArrowRight" size={10} color="#CE011F" />
+                                                View Lender Options
+                                            </a>
+                                        </div>
+                                        <div className="bg-gradient-to-br from-[#E31837] to-[#CE011F] text-white p-5 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[220px] h-full flex flex-col justify-between border border-[#CE011F]">
+                                            <div>
+                                                <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 2</p>
+                                                <h3 className="text-lg italic uppercase mb-2 leading-none tracking-tight font-black">Start The Hunt</h3>
+                                                <p className="text-[11px] mb-4 leading-relaxed font-black text-red-50">
+                                                    Browse homes up to <span className="font-black text-white text-sm">{formatCurrency(results.homePrice)}</span> and see what is available right now.
+                                                </p>
+                                            </div>
+                                            <a href={stepTwoLink} target="_blank" rel="noreferrer" className="w-full bg-white hover:bg-red-50 text-[#CE011F] font-black py-3 rounded-xl text-center uppercase tracking-[0.18em] text-[9px] transition-all flex items-center justify-center gap-2 leading-none shadow-lg">
+                                                <Icon name="Home" size={10} color="#CE011F" />
+                                                Browse Homes In Budget
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden mt-4 border border-gray-100">
+                                        <div className="bg-gradient-to-r from-[#000000] via-[#2a2a2a] to-[#4D4D4D] p-4 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                                            <div>
+                                                <p className="text-[9px] uppercase tracking-[0.22em] text-gray-300 mb-1 font-black">Live Home Preview</p>
+                                                <h3 className="text-sm md:text-base uppercase tracking-[0.08em] leading-none font-black">
+                                                    Homes up to {formatCurrency(results.homePrice)}
+                                                </h3>
+                                            </div>
+                                            <div className="flex flex-wrap gap-2">
+                                                <a href={stepTwoLink} target="_blank" rel="noreferrer" className="bg-white hover:bg-gray-100 text-[#000000] font-black px-4 py-2 rounded-xl uppercase tracking-[0.18em] text-[9px] transition-all flex items-center justify-center gap-2 leading-none shadow-lg">
+                                                    <Icon name="ExternalLink" size={10} color="#000000" />
+                                                    Open Full Search
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-4 md:p-5">
+                                            <p className="text-[11px] text-gray-500 leading-relaxed mb-4 font-black">
+                                                Preview available homes from your Keller Williams search page based on this current budget. If the preview appears blank, your browser or IDX settings may be blocking the embedded view, and the full search button above will still work.
+                                            </p>
+
+                                            <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white min-h-[420px]">
+                                                {searchPreviewStatus !== "loaded" && (
+                                                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/90 px-6 text-center">
+                                                        <div>
+                                                            <p className="text-[10px] uppercase tracking-[0.18em] text-[#CE011F] mb-2 font-black">Loading Search Preview</p>
+                                                            <p className="text-[11px] text-gray-500 leading-relaxed font-black">
+                                                                Pulling homes in your budget range from the live Keller Williams search page.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                <iframe
+                                                    key={deferredSearchPreviewUrl}
+                                                    src={deferredSearchPreviewUrl}
+                                                    title="Homes in budget preview"
+                                                    loading="lazy"
+                                                    referrerPolicy="strict-origin-when-cross-origin"
+                                                    className="w-full h-[480px] bg-white"
+                                                    onLoad={() => setSearchPreviewStatus("loaded")}
+                                                />
+                                            </div>
+
+                                            <p className="text-[10px] uppercase tracking-[0.16em] text-gray-400 mt-3 font-black">
+                                                Live preview powered by your Keller Williams search page.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="footer-disclaimer mt-6 rounded-2xl border border-gray-100 p-4 text-center font-black avoid-print-break">
+                            <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 mb-2 font-black">Important Estimate Disclaimer</p>
+                            <p className="max-w-5xl mx-auto text-[9px] text-gray-500 leading-relaxed font-black">
+                                {DISCLAIMER_TEXT}
+                            </p>
+                        </div>
+                        <div className="action-surface mt-6 p-4 rounded-2xl premium-shadow border border-gray-100 font-black no-print">
+                            <div className="text-center mb-4">
+                                <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-black">Save Or Share This Estimate</p>
+                            </div>
+                            <div className="flex flex-wrap justify-center gap-3 font-black">
+                                <button onClick={handlePrint} className={printButtonClass}><Icon name="Printer" size={12} color="white" /> Print</button>
+                                <button onClick={handleSavePdf} className={darkActionButtonClass}><Icon name="FileText" size={12} color="white" /> Save PDF</button>
+                                <button onClick={handleSaveImage} className={outlinedDarkActionButtonClass}><Icon name="Image" size={12} color="currentColor" /> Save Image</button>
+                                <a href={mailtoLink} className={darkActionButtonClass}><Icon name="Mail" size={12} color="white" /> Send as Email</a>
+                                <a href={smsLink} className={outlinedBrandActionButtonClass}><Icon name="MessageSquare" size={12} color="#CE011F" /> Send as Text</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {showLeadForm && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#000000]/80 backdrop-blur-sm animate-in fade-in duration-300 font-black font-black">
+                            <div className="bg-white w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden font-black text-[#000000] font-black font-black">
+                                <div className="bg-[#CE011F] p-5 text-white flex justify-between items-center font-black font-black font-black">
+                                    <h3 className="text-base italic uppercase leading-none font-black font-black font-black">Verify Power</h3>
+                                    <button onClick={() => setShowLeadForm(false)} className="text-white hover:text-red-200 transition-colors leading-none font-black font-black font-black"><Icon name="X" size={16} /></button>
+                                </div>
+                                <div className="p-6 font-black font-black font-black">
+                                    {!formSubmitted ? (
+                                        <form onSubmit={handleSubmitLead} className="space-y-4 font-black leading-none font-black font-black font-black">
+                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Full Name</label><input required name="name" type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#CE011F] font-black text-sm font-black font-black font-black" /></div>
+                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Email Address</label><input required name="email" type="email" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#CE011F] font-black text-sm font-black font-black font-black font-black" /></div>
+                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Cell</label><input required name="phone" type="tel" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#CE011F] font-black text-sm font-black font-black font-black font-black font-black" /></div>
+                                            <button type="submit" disabled={isSubmitting} className="w-full bg-[#000000] hover:bg-[#CE011F] text-white font-black py-3 rounded-lg uppercase text-[9px] tracking-widest transition-all mt-2 font-black leading-none font-black font-black font-black font-black disabled:opacity-50">{isSubmitting ? "Sending" : "Send to Joe Pine"}</button>
+                                        </form>
+                                    ) : (
+                                        <div className="text-center py-8 space-y-5 font-black font-black font-black font-black">
+                                            <div className="w-12 h-12 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner leading-none font-black font-black font-black font-black"><Icon name="CheckCircle" size={24} color="#16a34a" /></div>
+                                            <div><h4 className="text-lg uppercase italic leading-none font-black font-black font-black font-black">Talk soon</h4><p className="text-gray-500 font-black mt-2 text-[8px] uppercase tracking-widest leading-relaxed font-black font-black font-black font-black">Info received I will be in touch shortly.</p></div>
+                                            <button onClick={() => setShowLeadForm(false)} className="bg-[#000000] text-white px-8 py-2.5 rounded-lg font-black uppercase text-[9px] tracking-widest transition-all font-black leading-none font-black font-black font-black">Close</button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <footer className="max-w-6xl mx-auto px-4 mt-8 pb-6 leading-none font-black text-[#000000]">
+                        <div className="bg-gray-200 h-[1px] w-full mb-6 opacity-50" />
+                        <div className="grid items-center gap-5 md:grid-cols-[minmax(150px,0.95fr)_minmax(0,1.35fr)_minmax(140px,0.85fr)]">
+                            <div className="flex justify-center md:justify-start">
+                                <img
+                                    src={JOE_INFO.logoUrl}
+                                    alt="Keller Williams Leading Edge"
+                                    className="w-full max-w-[250px] h-auto"
+                                />
+                            </div>
+
+                            <div className="text-center space-y-3">
+                                <p className="text-[9px] text-gray-400 uppercase tracking-[0.22em] font-black">Rhode Island and Massachusetts Real Estate</p>
+                                <p className="text-sm md:text-base uppercase tracking-[0.12em] text-[#4D4D4D] font-black">Joe Pine Realtor | {JOE_INFO.title}</p>
+                                <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[11px] md:text-xs text-[#4D4D4D] leading-relaxed">
+                                    <a href={`tel:${JOE_INFO.phone.replace(/\D/g,'')}`} className="hover:text-[#CE011F] transition-colors">{JOE_INFO.phone}</a>
+                                    <a href={`mailto:${JOE_INFO.email}`} className="hover:text-[#CE011F] transition-colors">{JOE_INFO.email}</a>
+                                    <a href={`https://${JOE_INFO.website}`} target="_blank" rel="noreferrer" className="text-[#CE011F] underline underline-offset-2 hover:text-red-700">{JOE_INFO.website}</a>
+                                    <span>{JOE_INFO.address}</span>
+                                </div>
+                                <div className="space-y-1 text-[10px] md:text-[11px] text-[#4D4D4D] leading-relaxed font-black">
+                                    {JOE_INFO.licenses.map((license) => (
+                                        <p key={license}>{license}</p>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="flex justify-center md:justify-end">
+                                <img
+                                    src={JOE_INFO.platinumLogoUrl}
+                                    alt="Platinum Real Estate Group"
+                                    className="w-full max-w-[148px] h-auto"
+                                />
+                            </div>
+                        </div>
+                    </footer>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+    <script src="../site-frame.js"></script>
+</body>
+</html>

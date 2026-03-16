@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings | Joe Pine Real Estate</title>
+    <meta
+        name="description"
+        content="Browse Joe Pine's Keller Williams search page inside a branded website wrapper."
+    >
+    <link rel="stylesheet" href="site-frame.css">
+    <style>
+        :root {
+            --kw-red: #CE011F;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #E31837;
+            --kw-ink: #000000;
+            --kw-slate: #4D4D4D;
+            --kw-muted: #828282;
+            --kw-line: #D9D9D9;
+            --kw-white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 24%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.04), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f5f5f5 52%, #fafafa 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 0 0 40px;
+        }
+
+        .hero,
+        .controls-card,
+        .embed-shell,
+        .help-card {
+            border: 1px solid rgba(217, 217, 217, 0.92);
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 22px 44px -34px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero {
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .hero-top {
+            padding: 26px 28px 20px;
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 58%, var(--kw-red-deep) 100%);
+            color: var(--kw-white);
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .hero h1 {
+            margin: 0;
+            max-width: 12ch;
+            font-size: clamp(38px, 6vw, 64px);
+            line-height: 0.92;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .hero-bottom {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            gap: 18px;
+            padding: 22px 28px 26px;
+        }
+
+        .hero-copy p,
+        .help-card p,
+        .control-copy p {
+            margin: 0;
+            color: var(--kw-slate);
+            line-height: 1.65;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .hero-copy p + p,
+        .help-card p + p {
+            margin-top: 12px;
+        }
+
+        .hero-points {
+            display: grid;
+            gap: 12px;
+        }
+
+        .hero-point {
+            padding: 16px 18px;
+            border-radius: 22px;
+            border: 1px solid rgba(217, 217, 217, 0.92);
+            background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+        }
+
+        .hero-point span {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--kw-red);
+        }
+
+        .hero-point strong {
+            display: block;
+            font-size: 15px;
+            line-height: 1.45;
+        }
+
+        .controls-card,
+        .help-card {
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .controls-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+            gap: 18px;
+            align-items: end;
+        }
+
+        .section-kicker {
+            margin: 0 0 8px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--kw-red);
+        }
+
+        .controls-card h2,
+        .help-card h2 {
+            margin: 0 0 10px;
+            font-size: clamp(28px, 3vw, 42px);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .address-bar {
+            width: 100%;
+            min-height: 52px;
+            padding: 0 16px;
+            border-radius: 16px;
+            border: 1px solid var(--kw-line);
+            background: #ffffff;
+            color: var(--kw-slate);
+            font: inherit;
+            font-weight: 700;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .actions-primary {
+            margin-top: 16px;
+        }
+
+        .actions-secondary {
+            margin-top: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 20px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+            cursor: pointer;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-1px);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-deep) 100%);
+            color: var(--kw-white);
+            box-shadow: 0 20px 32px -24px rgba(147, 0, 21, 0.85);
+        }
+
+        .button-secondary {
+            border-color: var(--kw-line);
+            background: #ffffff;
+            color: var(--kw-ink);
+        }
+
+        .button-ghost {
+            border-color: transparent;
+            background: rgba(206, 1, 31, 0.06);
+            color: var(--kw-red);
+        }
+
+        .embed-shell {
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .embed-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--kw-line);
+            background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+        }
+
+        .embed-toolbar strong {
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        .embed-toolbar span {
+            display: block;
+            margin-top: 4px;
+            color: var(--kw-muted);
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        .embed-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .embed-chip {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--kw-line);
+            background: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--kw-slate);
+        }
+
+        .embed-status {
+            min-height: 1.4em;
+            margin-top: 8px;
+            color: var(--kw-muted);
+            font-size: 12px;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .frame-wrap {
+            position: relative;
+            background: #f2f2f2;
+        }
+
+        .frame-loading {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 248, 248, 0.96) 100%);
+            color: var(--kw-slate);
+            text-align: center;
+            transition: opacity 180ms ease;
+        }
+
+        .frame-loading.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .frame-loading strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--kw-ink);
+            font-size: 18px;
+        }
+
+        iframe {
+            width: 100%;
+            height: min(75vh, 980px);
+            border: 0;
+            background: #ffffff;
+        }
+
+        .help-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 248, 248, 0.96) 100%);
+        }
+
+        .help-list {
+            margin: 16px 0 0;
+            padding-left: 18px;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.7;
+            font-weight: 700;
+        }
+
+        .notice {
+            margin-top: 16px;
+            padding: 16px 18px;
+            border-radius: 20px;
+            background: rgba(206, 1, 31, 0.06);
+            border: 1px solid rgba(206, 1, 31, 0.14);
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .page-footer {
+            padding: 28px 0 8px;
+            text-align: center;
+            color: rgba(77, 77, 77, 0.82);
+        }
+
+        .page-footer-band {
+            display: grid;
+            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            align-items: center;
+            gap: 24px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .page-footer-copy {
+            text-align: center;
+        }
+
+        .page-footer p {
+            margin: 6px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .page-footer .page-footer-license {
+            font-size: 13px;
+            color: rgba(77, 77, 77, 0.96);
+        }
+
+        .page-footer-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-footer-logo-kw {
+            justify-content: flex-start;
+        }
+
+        .page-footer-logo-platinum {
+            justify-content: flex-end;
+        }
+
+        .page-footer-logo img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .page-footer-logo-kw img {
+            max-height: 56px;
+        }
+
+        .page-footer-logo-platinum img {
+            max-height: 74px;
+        }
+
+        @media (max-width: 920px) {
+            .hero-bottom,
+            .controls-card {
+                grid-template-columns: 1fr;
+            }
+
+            .page-footer-band {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .page-footer-logo-kw,
+            .page-footer-logo-platinum {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                width: min(100% - 20px, 1180px);
+            }
+
+            .hero-top,
+            .hero-bottom,
+            .controls-card,
+            .help-card {
+                padding: 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .embed-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .embed-meta {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="./index.html" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="./Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-listings"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-listings">
+                <a href="./index.html">Home</a>
+                <a href="./Monthly%20Payment/index.html">Monthly Payment</a>
+                <a href="./Seller%20Net/index.html">Seller Net</a>
+                <a href="./journey.html">Process</a>
+                <a href="./Monthly%20Payment/lenders.html">Lenders</a>
+                <a class="site-frame-cta" href="./index.html#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+
+    <main class="page-shell">
+        <section class="hero">
+            <div class="hero-top">
+                <p class="eyebrow">Search Wrapper</p>
+                <h1>Keep visitors inside your site while they browse your KW search page.</h1>
+            </div>
+            <div class="hero-bottom">
+                <div class="hero-copy">
+                    <p>
+                        This page wraps your main Keller Williams search experience inside `JoePine.com` so visitors can preview listings and keep your branding around the search.
+                    </p>
+                    <p>
+                        If your KW/IDX provider allows framing, visitors can browse the embedded search directly below. If it blocks embedding, they can still open the live search in a new tab with one click.
+                    </p>
+                </div>
+                <div class="hero-points">
+                    <div class="hero-point">
+                        <span>Source</span>
+                        <strong>https://joepine.kw.com/search</strong>
+                    </div>
+                    <div class="hero-point">
+                        <span>Goal</span>
+                        <strong>Preview, browse, and keep people inside your branded site</strong>
+                    </div>
+                    <div class="hero-point">
+                        <span>Reality Check</span>
+                        <strong>Cross-origin security may limit iframe controls unless KW supports embedding</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="controls-card">
+            <div class="control-copy">
+                <p class="section-kicker">Browser Controls</p>
+                <h2>Use a website wrapper around your live KW search page.</h2>
+                <p>
+                    These controls are designed to feel more like a browser inside your site. `Back`, `Forward`, and `Reload` are implemented as a best effort, but true in-frame navigation depends on what the embedded KW page allows.
+                </p>
+            </div>
+
+            <div>
+                <div class="address-bar" id="address-bar">joepine.kw.com/search</div>
+
+                <div class="actions actions-primary">
+                    <button class="button button-secondary" type="button" id="go-back">Back</button>
+                    <button class="button button-secondary" type="button" id="go-forward">Forward</button>
+                    <button class="button button-secondary" type="button" id="reload-search">Reload</button>
+                </div>
+
+                <div class="actions actions-secondary">
+                    <button class="button button-ghost" type="button" id="reset-search">Reset To Search Home</button>
+                    <a class="button button-primary" id="open-search" href="#" target="_blank" rel="noreferrer">Open Full Search</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="embed-shell">
+            <div class="embed-toolbar">
+                <div>
+                    <strong>Live Search Preview</strong>
+                    <span>Embedded from your Keller Williams website</span>
+                    <div class="embed-status" id="embed-status">Loading the live search page inside your site wrapper.</div>
+                </div>
+                <div class="embed-meta">
+                    <div class="embed-chip">KW Search</div>
+                    <div class="embed-chip">Website Wrapper</div>
+                </div>
+            </div>
+
+            <div class="frame-wrap">
+                <div class="frame-loading" id="frame-loading">
+                    <div>
+                        <strong>Loading live search preview</strong>
+                        <div>If the preview stays blank, your KW/IDX provider may be blocking embedding and the full-search button above will still work.</div>
+                    </div>
+                </div>
+                <iframe
+                    id="idx-frame"
+                    title="Joe Pine Keller Williams live listings search"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+            </div>
+        </section>
+
+        <section class="help-card">
+            <p class="section-kicker">Important Note</p>
+            <h2>Embedding may depend on KW or IDX restrictions.</h2>
+            <p>
+                I wasn&rsquo;t able to fully verify frame permissions from the command line because the KW site is protected by a JavaScript and cookie challenge before the search page loads.
+            </p>
+            <p>
+                Browser security also limits how much one website can control another website inside an iframe. That means this page is ready for a real browser test, but one of two things will happen:
+            </p>
+            <ul class="help-list">
+                <li>The iframe works, and visitors can browse the embedded search while staying inside your site shell.</li>
+                <li>The iframe is blocked by KW/IDX frame rules, and we should switch to their official embed widget or a direct-link preview experience instead.</li>
+            </ul>
+            <div class="notice">
+                If your Keller Williams website gives you a specific IDX embed snippet, script, or widget code, that is the best option. I can drop that in and make it look native to your site. Without that, cross-origin iframe navigation controls may be limited by browser security rules.
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <div class="page-footer-band">
+                <div class="page-footer-logo page-footer-logo-kw">
+                    <img
+                        src="./Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png"
+                        alt="Keller Williams Leading Edge"
+                    >
+                </div>
+
+                <div class="page-footer-copy">
+                    <p>Joe Pine Realtor</p>
+                    <p>Keller Williams Leading Edge | Platinum Real Estate Group</p>
+                    <p class="page-footer-license">Massachusetts Real Estate License #1001085-RE-RS</p>
+                    <p class="page-footer-license">Rhode Island Real Estate License #RES.0044759</p>
+                </div>
+
+                <div class="page-footer-logo page-footer-logo-platinum">
+                    <img
+                        src="./Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png"
+                        alt="Platinum Real Estate Group"
+                    >
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="site-frame.js"></script>
+    <script>
+        const SEARCH_HOME_URL = "https://joepine.kw.com/search";
+
+        const addressBar = document.getElementById("address-bar");
+        const openSearchLink = document.getElementById("open-search");
+        const backButton = document.getElementById("go-back");
+        const forwardButton = document.getElementById("go-forward");
+        const reloadButton = document.getElementById("reload-search");
+        const resetButton = document.getElementById("reset-search");
+        const frame = document.getElementById("idx-frame");
+        const frameLoading = document.getElementById("frame-loading");
+        const embedStatus = document.getElementById("embed-status");
+        let activeUrl = SEARCH_HOME_URL;
+
+        function setStatus(message) {
+            embedStatus.textContent = message;
+        }
+
+        function setFrameUrl(url, statusMessage) {
+            activeUrl = url;
+            addressBar.textContent = url.replace(/^https?:\/\//i, "");
+            openSearchLink.href = url;
+            frameLoading.classList.remove("is-hidden");
+            frame.src = url;
+            setStatus(statusMessage || "Loading the live search page inside your site wrapper.");
+        }
+
+        function tryFrameHistory(direction) {
+            try {
+                const frameWindow = frame.contentWindow;
+                if (!frameWindow || !frameWindow.history || typeof frameWindow.history[direction] !== "function") {
+                    throw new Error("History API not available.");
+                }
+
+                frameLoading.classList.remove("is-hidden");
+                frameWindow.history[direction]();
+                setStatus(`Trying to move ${direction} within the embedded KW search.`);
+            } catch (error) {
+                setStatus("Browser security may prevent this site from controlling back/forward inside the embedded KW page. Use Open Full Search if needed.");
+            }
+        }
+
+        backButton.addEventListener("click", () => {
+            tryFrameHistory("back");
+        });
+
+        forwardButton.addEventListener("click", () => {
+            tryFrameHistory("forward");
+        });
+
+        reloadButton.addEventListener("click", () => {
+            try {
+                const frameWindow = frame.contentWindow;
+                if (!frameWindow || !frameWindow.location || typeof frameWindow.location.reload !== "function") {
+                    throw new Error("Reload not available.");
+                }
+
+                frameLoading.classList.remove("is-hidden");
+                frameWindow.location.reload();
+                setStatus("Reloading the embedded KW search page.");
+            } catch (error) {
+                setFrameUrl(activeUrl, "Reloading the search wrapper.");
+            }
+        });
+
+        resetButton.addEventListener("click", () => {
+            setFrameUrl(SEARCH_HOME_URL, "Resetting to the main KW search page.");
+        });
+
+        frame.addEventListener("load", () => {
+            frameLoading.classList.add("is-hidden");
+            setStatus("The embedded search finished loading. If you click deeper into the KW site, browser security may limit what the wrapper can detect.");
+        });
+
+        setFrameUrl(SEARCH_HOME_URL);
+    </script>
+</body>
+</html>
