@@ -98,104 +98,111 @@ const serviceAreaMapNode = document.getElementById("service-area-map");
 if (serviceAreaMapNode) {
     if (window.L) {
         const serviceAreaMap = L.map(serviceAreaMapNode, {
+            attributionControl: true,
             scrollWheelZoom: false,
-            zoomControl: true
+            zoomControl: false,
+            dragging: false,
+            touchZoom: false,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false,
+            tap: false
         });
 
-        const coverageBounds = L.latLngBounds(
-            [41.54, -71.95],
-            [42.40, -70.68]
-        );
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+            subdomains: "abcd",
+            maxZoom: 20,
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+        }).addTo(serviceAreaMap);
 
-        const serviceFootprint = [
-            [42.33, -71.90],
-            [42.34, -71.56],
-            [42.15, -71.08],
-            [41.96, -70.79],
-            [41.58, -70.74],
-            [41.57, -71.12],
-            [41.64, -71.36],
-            [41.62, -71.78],
-            [41.87, -71.78]
-        ];
-
-        const heatZones = [
-            { coords: [41.7001, -71.6828], radius: 22000, opacity: 0.15 },
-            { coords: [41.8137, -71.3701], radius: 19000, opacity: 0.14 },
-            { coords: [41.7677, -71.3534], radius: 14000, opacity: 0.1 },
-            { coords: [41.9210, -71.4359], radius: 17000, opacity: 0.12 },
-            { coords: [41.8959, -71.5484], radius: 18000, opacity: 0.11 },
-            { coords: [41.9987, -71.5495], radius: 15000, opacity: 0.1 },
-            { coords: [42.0029, -71.5148], radius: 18000, opacity: 0.13 },
-            { coords: [41.7002, -71.4162], radius: 18000, opacity: 0.11 },
-            { coords: [41.6982, -71.5167], radius: 16000, opacity: 0.1 },
-            { coords: [42.2626, -71.8023], radius: 24000, opacity: 0.08 },
-            { coords: [41.9904, -70.9750], radius: 20000, opacity: 0.07 },
-            { coords: [41.6584, -70.8161], radius: 18000, opacity: 0.06 }
-        ];
-
-        const anchorMarkets = [
+        const soldMarkets = [
+            {
+                name: "Rehoboth",
+                coords: [41.8404, -71.2495],
+                direction: "right",
+                offset: [14, -2]
+            },
+            {
+                name: "Taunton",
+                coords: [41.9001, -71.0898],
+                direction: "top",
+                offset: [0, -14]
+            },
+            {
+                name: "Attleboro",
+                coords: [41.9445, -71.2856],
+                direction: "top",
+                offset: [0, -14]
+            },
+            {
+                name: "Mattapoisett",
+                coords: [41.6358, -70.7858],
+                direction: "left",
+                offset: [-14, -4]
+            },
+            {
+                name: "Rochester",
+                coords: [41.7458, -70.8369],
+                direction: "right",
+                offset: [14, -4]
+            },
             {
                 name: "Coventry",
                 coords: [41.7001, -71.6828],
-                direction: "top"
+                direction: "left",
+                offset: [-14, 0]
             },
             {
                 name: "Woonsocket",
                 coords: [42.0029, -71.5148],
-                direction: "top"
+                direction: "top",
+                offset: [0, -14]
             },
             {
-                name: "Lincoln",
-                coords: [41.9210, -71.4359],
-                direction: "right"
+                name: "Burrillville",
+                coords: [41.9668, -71.6781],
+                direction: "left",
+                offset: [-14, -6]
             },
             {
                 name: "East Providence",
                 coords: [41.8137, -71.3701],
-                direction: "right"
+                direction: "left",
+                offset: [-14, -2]
+            },
+            {
+                name: "Barrington",
+                coords: [41.7407, -71.3083],
+                direction: "bottom",
+                offset: [8, 14]
             },
             {
                 name: "Warwick",
                 coords: [41.7002, -71.4162],
-                direction: "left"
+                direction: "left",
+                offset: [-14, 8]
             },
             {
-                name: "Riverside",
-                coords: [41.7677, -71.3534],
-                direction: "left"
-            },
-            {
-                name: "Smithfield",
-                coords: [41.8959, -71.5484],
-                direction: "right"
+                name: "Pawtucket",
+                coords: [41.8787, -71.3826],
+                direction: "right",
+                offset: [14, -12]
             }
         ];
 
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            maxZoom: 18
-        }).addTo(serviceAreaMap);
+        const soldMarketRadius = 12000;
+        const soldMarketBounds = L.latLngBounds(soldMarkets.map((market) => market.coords));
 
-        heatZones.forEach((zone) => {
-            L.circle(zone.coords, {
-                radius: zone.radius,
-                stroke: false,
+        soldMarkets.forEach((market) => {
+            L.circle(market.coords, {
+                radius: soldMarketRadius,
+                color: "#ce011f",
+                weight: 1.5,
+                opacity: 0.28,
                 fillColor: "#ce011f",
-                fillOpacity: zone.opacity
+                fillOpacity: 0.12
             }).addTo(serviceAreaMap);
-        });
 
-        L.polygon(serviceFootprint, {
-            color: "#8f0019",
-            weight: 2,
-            opacity: 0.7,
-            fillColor: "#ce011f",
-            fillOpacity: 0.09,
-            dashArray: "8 8"
-        }).addTo(serviceAreaMap);
-
-        anchorMarkets.forEach((market) => {
             L.circleMarker(market.coords, {
                 radius: 7,
                 color: "#ffffff",
@@ -208,13 +215,32 @@ if (serviceAreaMapNode) {
                     permanent: true,
                     direction: market.direction,
                     className: "service-area-label",
-                    offset: [0, -10]
+                    offset: market.offset || [0, -10]
                 });
         });
 
-        serviceAreaMap.fitBounds(coverageBounds, {
-            padding: [24, 24]
-        });
+        const resetSoldMarketView = () => {
+            serviceAreaMap.invalidateSize();
+            serviceAreaMap.fitBounds(soldMarketBounds, {
+                padding: [36, 36]
+            });
+        };
+
+        resetSoldMarketView();
+        window.addEventListener("load", resetSoldMarketView);
+        window.addEventListener("resize", resetSoldMarketView);
+        setTimeout(resetSoldMarketView, 250);
+        setTimeout(resetSoldMarketView, 1000);
+
+        // Keep the map as a static visual on both desktop and touch devices.
+        serviceAreaMap.dragging.disable();
+        serviceAreaMap.touchZoom.disable();
+        serviceAreaMap.doubleClickZoom.disable();
+        serviceAreaMap.boxZoom.disable();
+        serviceAreaMap.keyboard.disable();
+        if (serviceAreaMap.tap) {
+            serviceAreaMap.tap.disable();
+        }
     } else {
         serviceAreaMapNode.classList.add("is-fallback");
         serviceAreaMapNode.innerHTML = [

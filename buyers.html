@@ -497,10 +497,10 @@
             <div class="section-heading">
                 <div>
                     <p class="eyebrow" style="color: var(--kw-red);">Buyer Tools</p>
-                    <h2>Work through the money and support pieces in one place.</h2>
+                    <h2>Work through the money, support, and process pieces in one place.</h2>
                 </div>
                 <p>
-                    Use the tabs below to move between monthly payment, lending partners, inspectors, and closing attorneys.
+                    Use the tabs below to move between monthly payment, lending partners, inspectors, closing attorneys, and the buyer process.
                 </p>
             </div>
 
@@ -548,6 +548,17 @@
                     data-buyer-resource-tab="buyer-attorneys"
                 >
                     Closing Attorneys
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-process"
+                    aria-selected="false"
+                    aria-controls="buyer-process"
+                    data-buyer-resource-tab="buyer-process"
+                >
+                    Buyer Process
                 </button>
             </div>
 
@@ -645,26 +656,30 @@
                     loading="lazy"
                 ></iframe>
             </section>
-        </section>
 
-        <section class="resource-panel" id="buyer-process">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow" style="color: var(--kw-red);">Buyer Process</p>
-                    <h2>See what the process usually looks like from preapproval to keys.</h2>
+            <section
+                class="resource-tab-panel"
+                id="buyer-process"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-process"
+                data-buyer-resource-panel="buyer-process"
+                hidden
+            >
+                <div class="resource-tab-copy">
+                    <h3>See what the process usually looks like from preapproval to keys.</h3>
+                    <p>
+                        Use this tracker to see the major stages and what usually comes next.
+                    </p>
                 </div>
-                <p>
-                    Use this tracker to see the major stages and what usually comes next.
-                </p>
-            </div>
 
-            <iframe
-                class="resource-frame is-process"
-                data-embed-target="buyer-process"
-                src="./journey.html?embed=buyer-process#buyer"
-                title="Buyer process tracker"
-                loading="lazy"
-            ></iframe>
+                <iframe
+                    class="resource-frame is-process"
+                    data-embed-target="buyer-process"
+                    src="./journey.html?embed=buyer-process#buyer"
+                    title="Buyer process tracker"
+                    loading="lazy"
+                ></iframe>
+            </section>
         </section>
 
         <section class="cta-panel">
@@ -705,7 +720,7 @@
 
         function getBuyerResourceTarget(hashValue) {
             const target = (hashValue || "").replace("#", "");
-            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" ? target : null;
+            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" || target === "buyer-process" ? target : null;
         }
 
         function setActiveBuyerResource(target, options = {}) {
