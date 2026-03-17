@@ -462,7 +462,6 @@ img {
     line-height: 1.4;
 }
 
-.tracker-action-row,
 .tracker-nav-row,
 .journey-cta-actions {
     display: flex;
@@ -471,12 +470,8 @@ img {
     align-items: stretch;
 }
 
-.tracker-action-row {
-    margin-top: 14px;
-}
-
 .tracker-nav-row {
-    margin-top: 12px;
+    margin-top: 14px;
 }
 
 .tracker-nav-button,
@@ -664,7 +659,6 @@ img {
         grid-template-columns: 1fr;
     }
 
-    .tracker-action-row,
     .tracker-nav-row,
     .journey-cta-actions {
         flex-direction: column;

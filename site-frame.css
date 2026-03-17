@@ -8,6 +8,15 @@
     --frame-surface-alt: #fafafa;
     --frame-line: #d9d9d9;
     --frame-white: #ffffff;
+    --site-frame-offset: 170px;
+}
+
+html {
+    scroll-padding-top: var(--site-frame-offset);
+}
+
+[id] {
+    scroll-margin-top: var(--site-frame-offset);
 }
 
 .site-frame-wrap {

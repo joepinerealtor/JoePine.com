@@ -4,14 +4,6 @@ const journeyData = {
         title: "From pre-approved to keys in hand.",
         intro: "Start with the money conversation, move through the contract milestones, and head into closing with a lot more confidence.",
         modeLabel: "Buyer Process",
-        primaryCta: {
-            label: "Open Buyer Resources",
-            href: "./buyers.html#buyer-payment",
-        },
-        secondaryCta: {
-            label: "View Buyer Lenders",
-            href: "./buyers.html#buyer-lenders",
-        },
         stages: [
             {
                 slug: "pre-approved",
@@ -118,14 +110,6 @@ const journeyData = {
         title: "From signed paperwork to SOLD.",
         intro: "Start with the listing strategy, move through market activity and contract checkpoints, and finish the handoff without feeling blindsided.",
         modeLabel: "Seller Process",
-        primaryCta: {
-            label: "Open Seller Resources",
-            href: "./sellers.html#seller-proceeds",
-        },
-        secondaryCta: {
-            label: "See Seller Process Hub",
-            href: "./sellers.html#seller-process",
-        },
         stages: [
             {
                 slug: "listing-agreement-signed",
@@ -278,8 +262,6 @@ const trackerElements = {
     stageWhy: document.querySelector("[data-stage-why]"),
     stageChecklist: document.querySelector("[data-stage-checklist]"),
     stageNote: document.querySelector("[data-stage-note]"),
-    primaryCta: document.querySelector("[data-primary-cta]"),
-    secondaryCta: document.querySelector("[data-secondary-cta]"),
     prevButton: document.querySelector("[data-prev-stage]"),
     nextButton: document.querySelector("[data-next-stage]"),
     modeTabs: Array.from(document.querySelectorAll("[data-mode-tab]")),
@@ -359,11 +341,6 @@ function renderTracker() {
         .map((item) => `<li>${item}</li>`)
         .join("");
     trackerElements.stageNote.textContent = stage.note;
-
-    trackerElements.primaryCta.textContent = config.primaryCta.label;
-    trackerElements.primaryCta.href = config.primaryCta.href;
-    trackerElements.secondaryCta.textContent = config.secondaryCta.label;
-    trackerElements.secondaryCta.href = config.secondaryCta.href;
 
     trackerElements.prevButton.disabled = trackerState.stageIndex === 0;
     trackerElements.nextButton.disabled = trackerState.stageIndex === stageCount - 1;

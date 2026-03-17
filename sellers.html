@@ -987,18 +987,6 @@
     </main>
 
     <script>
-        window.addEventListener("message", (event) => {
-            const data = event.data;
-            if (!data || data.type !== "joe-embed-resize" || !data.embed || !data.height) {
-                return;
-            }
-
-            const frame = document.querySelector(`[data-embed-target="${data.embed}"]`);
-            if (frame) {
-                frame.style.height = `${data.height}px`;
-            }
-        });
-
         const sellerResourceTabs = Array.from(document.querySelectorAll("[data-seller-resource-tab]"));
         const sellerResourcePanels = Array.from(document.querySelectorAll("[data-seller-resource-panel]"));
 
@@ -1055,6 +1043,33 @@
         if (initialSellerTarget) {
             setActiveSellerResource(initialSellerTarget, { scrollToPanel: true });
         }
+
+        window.addEventListener("message", (event) => {
+            const data = event.data;
+            if (!data) {
+                return;
+            }
+
+            if (data.type === "joe-embed-resize" && data.embed && data.height) {
+                const frame = document.querySelector(`[data-embed-target="${data.embed}"]`);
+                if (frame) {
+                    frame.style.height = `${data.height}px`;
+                }
+                return;
+            }
+
+            if (data.type === "joe-open-resource") {
+                const target = getSellerResourceTarget(`#${data.target || ""}`);
+                if (!target) {
+                    return;
+                }
+
+                setActiveSellerResource(target, {
+                    updateHash: true,
+                    scrollToPanel: true
+                });
+            }
+        });
     </script>
     <script src="./site-frame.js"></script>
 </body>
