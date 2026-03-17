@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Payment to Home Price Calculator | Joe Pine</title>
+    <script>
+        const monthlyPaymentParams = new URLSearchParams(window.location.search);
+        const monthlyPaymentEmbed = monthlyPaymentParams.get("embed") || "";
+        if (monthlyPaymentEmbed) {
+            document.documentElement.dataset.embed = monthlyPaymentEmbed;
+        }
+    </script>
     <link rel="stylesheet" href="../site-frame.css">
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -84,10 +91,12 @@
         .export-sheet * {
             box-sizing: border-box;
         }
+        html[data-embed] body,
         body.is-embed {
             padding: 0 !important;
             background: transparent;
         }
+        html[data-embed] .site-frame-wrap,
         body.is-embed .site-frame-wrap {
             display: none;
         }

@@ -54,7 +54,6 @@
 
         .hero-panel,
         .resource-panel,
-        .resource-card,
         .cta-panel {
             border: 1px solid rgba(229, 231, 235, 0.95);
             background: var(--surface);
@@ -116,7 +115,6 @@
 
         .hero-copy p,
         .section-heading p,
-        .resource-card p,
         .cta-panel p {
             margin: 0;
             color: var(--kw-slate);
@@ -158,15 +156,10 @@
             background: var(--kw-red);
         }
 
-        .hero-actions,
         .cta-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-        }
-
-        .hero-actions {
-            margin-top: 18px;
         }
 
         .button {
@@ -220,73 +213,6 @@
 
         .section-heading p {
             max-width: 760px;
-        }
-
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .jump-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 24px;
-            padding: 14px;
-            border: 1px solid rgba(229, 231, 235, 0.95);
-            border-radius: 22px;
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.16);
-        }
-
-        .jump-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 42px;
-            padding: 0 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(206, 1, 31, 0.16);
-            background: rgba(206, 1, 31, 0.05);
-            color: var(--kw-ink);
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            transition: background-color 160ms ease, transform 160ms ease;
-        }
-
-        .jump-link:hover,
-        .jump-link:focus-visible {
-            background: rgba(206, 1, 31, 0.12);
-            transform: translateY(-1px);
-        }
-
-        .resource-card {
-            border-radius: 22px;
-            padding: 18px;
-            background: #ffffff;
-        }
-
-        .resource-card span {
-            display: inline-block;
-            color: var(--kw-red);
-            font-size: 11px;
-            line-height: 1;
-            font-weight: 800;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-        }
-
-        .resource-card h3 {
-            margin: 10px 0 8px;
-            font-size: 1.15rem;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            text-transform: uppercase;
-            font-weight: 900;
         }
 
         .resource-panel {
@@ -449,7 +375,6 @@
         }
 
         @media (max-width: 980px) {
-            .quick-grid,
             .cta-panel,
             .brand-footer {
                 grid-template-columns: 1fr;
@@ -477,7 +402,6 @@
 
             .hero-panel,
             .resource-panel,
-            .resource-card,
             .cta-panel {
                 border-radius: 24px;
             }
@@ -485,13 +409,11 @@
             .hero-banner,
             .hero-content,
             .resource-panel,
-            .resource-card,
             .cta-panel {
                 padding-left: 16px;
                 padding-right: 16px;
             }
 
-            .hero-actions,
             .cta-actions {
                 flex-direction: column;
             }
@@ -548,80 +470,37 @@
         <section class="hero-panel">
             <div class="hero-banner">
                 <p class="eyebrow">Resources for Buyers</p>
-                <h1>Know your payment, compare lenders, and understand the path ahead.</h1>
+                <h1>Understand the numbers and follow the process with more confidence.</h1>
             </div>
 
             <div class="hero-content">
                 <div class="hero-copy">
-                    <p class="hero-hook">Buying gets easier when the money side and the process side live in one place.</p>
+                    <p class="hero-hook">Buying gets easier when you understand the numbers and the process makes sense.</p>
                     <p>
-                        This page is built to give buyers a cleaner starting point. You can work through payment comfort,
-                        compare lenders, and see what the buyer process usually looks like without jumping across three different pages.
-                    </p>
-                    <p>
-                        Use it as a real buyer resource hub, whether you are still getting your numbers together or already
-                        planning the move.
+                        My goal is to make the process as transparent as possible so you can move forward with more peace of mind.
+                        This page puts the main buyer pieces in one place so you can work through payment comfort,
+                        compare lenders, line up inspection and closing support, and understand what usually comes next.
                     </p>
 
                     <ul class="hero-highlights">
-                        <li>Monthly payment calculator and home-price range tool</li>
-                        <li>Trusted lending partners in one place</li>
+                        <li>Monthly payment and home-price range calculator</li>
+                        <li>Lenders, inspectors, and attorneys in one place</li>
                         <li>Buyer process tracker from preapproval to closing</li>
-                        <li>Simple starting point for real conversations</li>
+                        <li>Cleaner starting point before you make calls</li>
                     </ul>
 
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#buyer-payment">Start With Payment</a>
-                        <a class="button button-secondary" href="#buyer-lenders">Compare Lenders</a>
-                        <a class="button button-secondary" href="#buyer-attorneys">Closing Attorneys</a>
-                        <a class="button button-secondary" href="#buyer-inspectors">Inspectors</a>
-                    </div>
                 </div>
             </div>
-        </section>
-
-        <nav class="jump-panel" aria-label="Buyer resource sections">
-            <a class="jump-link" href="#buyer-payment">Monthly Payment</a>
-            <a class="jump-link" href="#buyer-lenders">Lending Partners</a>
-            <a class="jump-link" href="#buyer-attorneys">Closing Attorneys</a>
-            <a class="jump-link" href="#buyer-inspectors">Inspectors</a>
-            <a class="jump-link" href="#buyer-process">Buyer Process</a>
-        </nav>
-
-        <section class="quick-grid">
-            <article class="resource-card">
-                <span>Money First</span>
-                <h3>Start with a monthly payment you actually feel good about.</h3>
-                <p>
-                    Use the calculator to back into a price range from a payment comfort zone instead of starting with the wrong number.
-                </p>
-            </article>
-
-            <article class="resource-card">
-                <span>Lender Fit</span>
-                <h3>Compare lenders before you jump into preapproval.</h3>
-                <p>
-                    See lender options in one place so you can find someone whose communication style and loan approach fit your situation.
-                </p>
-            </article>
-
-            <article class="resource-card">
-                <span>Process Clarity</span>
-                <h3>Know what usually comes next after each buyer milestone.</h3>
-                <p>
-                    The buyer process tracker helps take some of the chaos out of the timeline once offers, inspections, and underwriting start moving.
-                </p>
-            </article>
         </section>
 
         <section class="resource-panel" id="buyer-tools">
             <div class="section-heading">
                 <div>
                     <p class="eyebrow" style="color: var(--kw-red);">Buyer Tools</p>
-                    <h2>Switch between your budget, lender options, inspection support, and closing support without stacking everything at once.</h2>
+                    <h2>Work through the money and support pieces in one place.</h2>
                 </div>
                 <p>
-                    Use the tabs below to move between the monthly payment calculator, lending partners, inspector options, and attorney options while keeping the buyer process tracker as its own section underneath.
+                    Use the tabs below to move between monthly payment, lending partners, inspectors, and closing attorneys.
                 </p>
             </div>
 
@@ -682,7 +561,7 @@
                 <div class="resource-tab-copy">
                     <h3>Start with the number that matters most.</h3>
                     <p>
-                        Use the monthly payment calculator here to estimate price range, cash to close, and what your budget may actually feel like month to month.
+                        Use the calculator to estimate price range, monthly payment, and cash to close.
                     </p>
                 </div>
 
@@ -706,7 +585,7 @@
                 <div class="resource-tab-copy">
                     <h3>Compare lender options without leaving the page.</h3>
                     <p>
-                        If you are not sure who to call first, this section gives you lender options in one place before you decide who to talk to about preapproval.
+                        Review lender options here before you decide who to call about preapproval.
                     </p>
                 </div>
 
@@ -730,7 +609,7 @@
                 <div class="resource-tab-copy">
                     <h3>Review inspection support before you book the appointment.</h3>
                     <p>
-                        This gives you Joe's current inspection partner and a simple inspection prep view without sending you to a different page mid-search.
+                        Review inspection support here without leaving the buyer page.
                     </p>
                 </div>
 
@@ -754,7 +633,7 @@
                 <div class="resource-tab-copy">
                     <h3>Review closing attorney options in the same place.</h3>
                     <p>
-                        If you want to understand your closing support before you are under contract, this gives you Joe's current attorney partners without leaving the buyer page.
+                        Review closing attorney options here before you get under contract.
                     </p>
                 </div>
 
@@ -775,7 +654,7 @@
                     <h2>See what the process usually looks like from preapproval to keys.</h2>
                 </div>
                 <p>
-                    This buyer-only process tracker walks through the major stages so you know what usually happens next and what to stay focused on at each milestone.
+                    Use this tracker to see the major stages and what usually comes next.
                 </p>
             </div>
 
@@ -791,9 +670,9 @@
         <section class="cta-panel">
             <div>
                 <p class="eyebrow" style="color: var(--kw-red);">Buyer Next Step</p>
-                <h2>If you want help turning these numbers into a real search plan, let's talk.</h2>
+                <h2>If you want help turning this into a real search plan, let's talk.</h2>
                 <p>
-                    I can help you work through payment comfort, lender options, and the next move so you can start the process with more clarity and less guesswork.
+                    I can help you sort through payment comfort, lender options, and next steps so you can move forward with more clarity.
                 </p>
             </div>
 

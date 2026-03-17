@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lending Partners | Joe Pine</title>
+    <script>
+        const lenderPageParams = new URLSearchParams(window.location.search);
+        const lenderEmbed = lenderPageParams.get("embed") || "";
+        if (lenderEmbed) {
+            document.documentElement.dataset.embed = lenderEmbed;
+        }
+    </script>
     <link rel="stylesheet" href="../site-frame.css">
     <style>
         :root {
@@ -32,15 +39,19 @@
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
         }
 
+        html[data-embed] body,
         body.is-embed {
             background: transparent;
         }
 
+        html[data-embed] .site-frame-wrap,
+        html[data-embed] .top-bar,
         body.is-embed .site-frame-wrap,
         body.is-embed .top-bar {
             display: none;
         }
 
+        html[data-embed] .page-shell,
         body.is-embed .page-shell {
             padding-top: 0;
         }
