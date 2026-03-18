@@ -26,6 +26,7 @@ html {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: padding-top 180ms ease, margin-bottom 180ms ease;
 }
 
 .site-frame-header {
@@ -37,6 +38,7 @@ html {
     border: 1px solid var(--frame-line);
     background: var(--frame-surface);
     box-shadow: 0 24px 48px -42px rgba(0, 0, 0, 0.24);
+    transition: border-radius 180ms ease, box-shadow 180ms ease;
 }
 
 .site-frame-header::before {
@@ -44,6 +46,7 @@ html {
     display: block;
     height: 6px;
     background: var(--frame-red);
+    transition: height 180ms ease;
 }
 
 .site-frame-top {
@@ -54,6 +57,7 @@ html {
     padding: 14px 16px 12px;
     position: relative;
     z-index: 1;
+    transition: padding 180ms ease, gap 180ms ease;
 }
 
 .site-frame-brand {
@@ -64,6 +68,7 @@ html {
     text-decoration: none;
     min-width: 0;
     max-width: 100%;
+    transition: gap 180ms ease;
 }
 
 .site-frame-photo {
@@ -74,6 +79,7 @@ html {
     flex: 0 0 auto;
     border: 2px solid var(--frame-red);
     box-shadow: 0 14px 24px -18px rgba(147, 0, 21, 0.45);
+    transition: width 180ms ease, height 180ms ease, box-shadow 180ms ease;
 }
 
 .site-frame-photo img {
@@ -89,6 +95,7 @@ html {
     gap: 4px;
     line-height: 1;
     min-width: 0;
+    transition: gap 180ms ease;
 }
 
 .site-frame-copy strong {
@@ -96,6 +103,7 @@ html {
     font-weight: 900;
     letter-spacing: -0.04em;
     text-transform: uppercase;
+    transition: font-size 180ms ease;
 }
 
 .site-frame-copy span {
@@ -104,6 +112,7 @@ html {
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    transition: font-size 180ms ease, letter-spacing 180ms ease;
 }
 
 .site-frame-right {
@@ -112,6 +121,7 @@ html {
     align-items: flex-end;
     gap: 2px;
     text-align: right;
+    transition: gap 180ms ease;
 }
 
 .site-frame-right a,
@@ -121,6 +131,7 @@ html {
     font-size: clamp(0.82rem, 1.3vw, 0.96rem);
     font-weight: 800;
     line-height: 1.25;
+    transition: font-size 180ms ease, line-height 180ms ease;
 }
 
 .site-frame-right .site-frame-website {
@@ -153,6 +164,7 @@ html {
     background: var(--frame-surface-alt);
     position: relative;
     z-index: 1;
+    transition: padding 180ms ease, gap 180ms ease;
 }
 
 .site-frame-nav a {
@@ -164,6 +176,68 @@ html {
     font-weight: 700;
     letter-spacing: 0.01em;
     transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.site-frame-wrap.is-condensed {
+    padding-top: 4px;
+    margin-bottom: 6px;
+}
+
+.site-frame-wrap.is-condensed .site-frame-header {
+    border-radius: 16px;
+    box-shadow: 0 12px 22px -24px rgba(0, 0, 0, 0.18);
+}
+
+.site-frame-wrap.is-condensed .site-frame-header::before {
+    height: 2px;
+}
+
+.site-frame-wrap.is-condensed .site-frame-top {
+    gap: 8px;
+    padding: 6px 12px 5px;
+}
+
+.site-frame-wrap.is-condensed .site-frame-brand {
+    gap: 8px;
+}
+
+.site-frame-wrap.is-condensed .site-frame-photo {
+    width: 34px;
+    height: 34px;
+    border-width: 1px;
+    box-shadow: 0 8px 12px -14px rgba(147, 0, 21, 0.36);
+}
+
+.site-frame-wrap.is-condensed .site-frame-copy {
+    gap: 0;
+}
+
+.site-frame-wrap.is-condensed .site-frame-copy strong {
+    font-size: clamp(0.84rem, 1.18vw, 1.02rem);
+}
+
+.site-frame-wrap.is-condensed .site-frame-copy span {
+    display: none;
+}
+
+.site-frame-wrap.is-condensed .site-frame-right {
+    gap: 0;
+}
+
+.site-frame-wrap.is-condensed .site-frame-right a,
+.site-frame-wrap.is-condensed .site-frame-right span {
+    font-size: clamp(0.64rem, 0.82vw, 0.74rem);
+    line-height: 1.05;
+}
+
+.site-frame-wrap.is-condensed .site-frame-nav {
+    gap: 4px;
+    padding: 5px 12px 6px;
+}
+
+.site-frame-wrap.is-condensed .site-frame-nav a {
+    padding: 5px 8px;
+    font-size: 0.72rem;
 }
 
 .site-frame-nav a:hover,
@@ -197,6 +271,11 @@ html {
         padding-top: 14px;
     }
 
+    .site-frame-wrap.is-condensed {
+        padding-top: 6px;
+        margin-bottom: 6px;
+    }
+
     .site-frame-header {
         border-radius: 22px;
     }
@@ -219,6 +298,23 @@ html {
     .site-frame-photo {
         width: 50px;
         height: 50px;
+    }
+
+    .site-frame-wrap.is-condensed .site-frame-top {
+        padding: 6px 10px 5px;
+    }
+
+    .site-frame-wrap.is-condensed .site-frame-photo {
+        width: 34px;
+        height: 34px;
+    }
+
+    .site-frame-wrap.is-condensed .site-frame-copy strong {
+        font-size: 0.82rem;
+    }
+
+    .site-frame-wrap.is-condensed .site-frame-right {
+        padding-top: 1px;
     }
 
     .site-frame-copy strong {
