@@ -374,6 +374,54 @@
             font-size: 12px;
         }
 
+        .footer-compliance {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 620px;
+            margin: 8px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .footer-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .footer-badge {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .footer-badge-realtor {
+            max-width: 44px;
+        }
+
+        .footer-badge-housing {
+            max-width: 44px;
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+            color: var(--kw-muted);
+        }
+
+        .footer-disclaimer p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
         @media (max-width: 980px) {
             .cta-panel,
             .brand-footer {
@@ -392,6 +440,11 @@
             .footer-logo-slot-kw,
             .footer-logo-slot-platinum {
                 justify-content: center;
+            }
+
+            .footer-compliance {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
         }
 
@@ -702,11 +755,19 @@
                 <img src="./Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
             </div>
             <div class="footer-copy">
-                <p>Joe Pine Realtor | REALTOR RI &amp; MA</p>
+                <p>Joe Pine, REALTOR&reg; | RI &amp; MA</p>
                 <p>28 Thurber Blvd, Smithfield, RI 02917</p>
                 <p class="fine-print">Massachusetts Real Estate License #1001085-RE-RS</p>
                 <p class="fine-print">Rhode Island Real Estate License #RES.0044759</p>
-                <p class="fine-print">Equal housing opportunity. Each office is independently owned and operated.</p>
+                <div class="footer-compliance" aria-label="REALTOR and Equal Housing Opportunity disclosure">
+                    <div class="footer-disclaimer">
+                        <p>Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                    </div>
+                    <div class="footer-badge-row">
+                        <img class="footer-badge footer-badge-realtor" src="./images/branding/realtor-mark-official.jpg" alt="REALTOR logo">
+                        <img class="footer-badge footer-badge-housing" src="./images/branding/equal-housing-mark-official.png" alt="Equal Housing Opportunity logo">
+                    </div>
+                </div>
             </div>
             <div class="footer-logo-slot footer-logo-slot-platinum">
                 <img src="./Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">

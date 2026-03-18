@@ -371,6 +371,25 @@
             margin: 0 auto;
         }
 
+        .page-footer-compliance {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 620px;
+            margin: 14px auto 0;
+            padding-top: 14px;
+            border-top: 1px solid rgba(77, 77, 77, 0.12);
+        }
+
+        .page-footer-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+        }
+
         .page-footer-copy {
             text-align: center;
         }
@@ -415,6 +434,38 @@
             max-height: 74px;
         }
 
+        .page-footer-badge {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .page-footer-badge-realtor {
+            max-width: 44px;
+        }
+
+        .page-footer-badge-housing {
+            max-width: 44px;
+        }
+
+        .page-footer-disclaimer {
+            text-align: center;
+        }
+
+        .page-footer-disclaimer p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
+        .page-footer-disclaimer-title {
+            color: rgba(77, 77, 77, 0.96);
+            font-weight: 800;
+        }
+
         @media (max-width: 920px) {
             .hero-bottom,
             .controls-card {
@@ -424,6 +475,11 @@
             .page-footer-band {
                 grid-template-columns: 1fr;
                 gap: 16px;
+            }
+
+            .page-footer-compliance {
+                grid-template-columns: 1fr;
+                gap: 14px;
             }
 
             .page-footer-logo-kw,
@@ -619,10 +675,27 @@
                 </div>
 
                 <div class="page-footer-copy">
-                    <p>Joe Pine Realtor</p>
-                    <p>Keller Williams Leading Edge | Platinum Real Estate Group</p>
+                    <p>Joe Pine, REALTOR&reg;</p>
+                    <p>Platinum Real Estate Group at Keller Williams Leading Edge</p>
                     <p class="page-footer-license">Massachusetts Real Estate License #1001085-RE-RS</p>
                     <p class="page-footer-license">Rhode Island Real Estate License #RES.0044759</p>
+                    <div class="page-footer-compliance" aria-label="REALTOR and Equal Housing Opportunity disclosure">
+                        <div class="page-footer-disclaimer">
+                            <p>Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                        </div>
+                        <div class="page-footer-badge-row">
+                            <img
+                                class="page-footer-badge page-footer-badge-realtor"
+                                src="./images/branding/realtor-mark-official.jpg"
+                                alt="REALTOR logo"
+                            >
+                            <img
+                                class="page-footer-badge page-footer-badge-housing"
+                                src="./images/branding/equal-housing-mark-official.png"
+                                alt="Equal Housing Opportunity logo"
+                            >
+                        </div>
+                    </div>
                 </div>
 
                 <div class="page-footer-logo page-footer-logo-platinum">

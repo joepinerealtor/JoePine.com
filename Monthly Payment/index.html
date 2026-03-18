@@ -1642,7 +1642,7 @@
 
                             <div className="text-center space-y-3">
                                 <p className="text-[9px] text-gray-400 uppercase tracking-[0.22em] font-black">Rhode Island and Massachusetts Real Estate</p>
-                                <p className="text-sm md:text-base uppercase tracking-[0.12em] text-[#4D4D4D] font-black">Joe Pine Realtor | {JOE_INFO.title}</p>
+                                <p className="text-sm md:text-base uppercase tracking-[0.12em] text-[#4D4D4D] font-black">Joe Pine, REALTOR&reg; | {JOE_INFO.title}</p>
                                 <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[11px] md:text-xs text-[#4D4D4D] leading-relaxed">
                                     <a href={`tel:${JOE_INFO.phone.replace(/\D/g,'')}`} className="hover:text-[#CE011F] transition-colors">{JOE_INFO.phone}</a>
                                     <a href={`mailto:${JOE_INFO.email}`} className="hover:text-[#CE011F] transition-colors">{JOE_INFO.email}</a>
@@ -1653,6 +1653,23 @@
                                     {JOE_INFO.licenses.map((license) => (
                                         <p key={license}>{license}</p>
                                     ))}
+                                </div>
+                                <div className="max-w-[760px] mx-auto mt-3 pt-3 flex flex-col items-center gap-3 border-t border-gray-200">
+                                    <div className="text-center leading-relaxed">
+                                        <p className="text-[10px] md:text-[11px] text-gray-500 font-black">Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                                    </div>
+                                    <div className="flex flex-wrap items-center justify-center gap-4">
+                                        <img
+                                            src="../images/branding/realtor-mark-official.jpg"
+                                            alt="REALTOR logo"
+                                            className="w-full max-w-[44px] h-auto"
+                                        />
+                                        <img
+                                            src="../images/branding/equal-housing-mark-official.png"
+                                            alt="Equal Housing Opportunity logo"
+                                            className="w-full max-w-[44px] h-auto"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 

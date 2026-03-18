@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-labelledby="title">
+  <title>REALTOR</title>
+  <rect x="36" y="18" width="128" height="128" fill="#000"/>
+  <path d="M58 42h28v80H58z" fill="#fff"/>
+  <path d="M102 42h18c22 0 40 17 40 39 0 14-7 25-20 33l24 32h-34l-28-40z" fill="#fff"/>
+  <path d="M102 42h18c22 0 40 17 40 39 0 14-7 25-20 33l24 32h-34l-28-40z" fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="3"/>
+  <text x="100" y="188" fill="#000" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" letter-spacing="1">REALTOR</text>
+  <text x="177" y="166" fill="#000" font-family="Arial, Helvetica, sans-serif" font-size="16" text-anchor="middle">&#174;</text>
+</svg>
