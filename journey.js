@@ -1,35 +1,153 @@
 const journeyData = {
     buyer: {
         eyebrow: "Buyer Process",
-        title: "From pre-approved to keys in hand.",
-        intro: "Start with the money conversation, move through the contract milestones, and head into closing with a lot more confidence.",
+        title: "From the moving bug to keys in hand.",
+        intro: "Start with the \"should we actually do this?\" conversation, connect with a lender, shape the search, and move through the contract milestones with a lot more confidence.",
         modeLabel: "Buyer Process",
         stages: [
+            {
+                slug: "moving-bug",
+                label: "Bit By The Moving Bug",
+                navLabel: "Moving Bug",
+                image: "./images/journey/buyer/01-pre-approved.png",
+                summary: "This is the stage where a house catches your eye online, the idea of moving will not leave you alone, and you want to see if a move is actually feasible.",
+                what: "We start with the real conversation: why you want to move, what kind of change you are hoping for, whether the timing makes sense, and whether it is worth turning that late-night house-scroll into an actual plan.",
+                why: "Before you go deep on showings or floor plans, it helps to figure out if this is just a passing itch or the start of a move that actually makes sense for your life.",
+                note: "Most moves start this way. One house online, one late-night thought, and suddenly you are mentally rearranging furniture.",
+                action: {
+                    label: "Try Monthly Payment Calculator",
+                    target: "buyer-payment",
+                    href: "./buyers.html#buyer-payment",
+                },
+                checklist: [
+                    "Think about why you want to move and what you hope the next home will solve.",
+                    "Talk through timeline, budget comfort, and whether the move feels realistic right now.",
+                    "Start a simple list of what is pushing you to move and what you want the next home to give you.",
+                ],
+            },
+            {
+                slug: "connect-with-a-lender",
+                label: "Connect With A Lender",
+                navLabel: "Lender",
+                image: "./images/journey/buyer/01-pre-approved.png",
+                summary: "Before we tour seriously, we get your financing lined up so your budget is based on real numbers instead of guesses.",
+                what: "You connect with a lender, review your income, debts, down payment, and monthly comfort zone, and get the preapproval process moving so we know what is actually feasible.",
+                why: "This is where the search gets real. It tells us what is possible, what monthly payment feels comfortable, and whether there is anything to clean up before you start falling for a house.",
+                note: "The goal is not just to find your max. It is to find the monthly payment that still feels comfortable in real life.",
+                actions: [
+                    {
+                        label: "View Lending Partners",
+                        target: "buyer-lenders",
+                        href: "./buyers.html#buyer-lenders",
+                        variant: "primary",
+                    },
+                    {
+                        label: "Try Monthly Payment Calculator",
+                        target: "buyer-payment",
+                        href: "./buyers.html#buyer-payment",
+                    },
+                ],
+                checklist: [
+                    "Pick a lender and start the preapproval conversation early.",
+                    "Gather pay stubs, bank statements, tax documents, and anything else the lender asks for.",
+                    "Use the monthly payment calculator to sanity-check what feels comfortable before you stretch too far.",
+                ],
+            },
             {
                 slug: "pre-approved",
                 label: "Pre-Approved",
                 image: "./images/journey/buyer/01-pre-approved.png",
-                summary: "You are officially pre-approved, which means we can stop guessing and start shopping with confidence.",
-                what: "We dial in your towns, your real payment comfort zone, your move timeline, and the must-haves that matter most so I can set up searches that actually fit.",
-                why: "Two homes at the same price can carry very different monthly payments once taxes and insurance enter the chat, so comfort matters more than sticker price.",
-                note: "Never be afraid to send a house to your lender and ask what the monthly payment would actually look like.",
+                summary: "Now you have a preapproval in hand, which means we can stop guessing and start shopping with more confidence and credibility.",
+                what: "Your lender has reviewed the big pieces of your financial picture and given you a price range, which means sellers will take your offer a lot more seriously when the right house shows up.",
+                why: "Preapproval turns the search from casual browsing into a real move plan. It keeps you focused on homes that fit both the approval and your actual comfort zone.",
+                note: "Just because you are approved for it does not mean you have to love the payment. Comfort still matters.",
+                action: {
+                    label: "Try Monthly Payment Calculator",
+                    target: "buyer-payment",
+                    href: "./buyers.html#buyer-payment",
+                },
                 checklist: [
-                    "Pick your top towns and any areas you want to avoid.",
-                    "Decide your comfortable monthly payment range.",
-                    "Send over must-haves, deal-breakers, and ideal move timeline.",
+                    "Keep your preapproval letter handy so it is ready when we need it.",
+                    "Let Joe know if the lender gave you any conditions or timing details that matter.",
+                    "Check in with your lender again if a specific home catches your eye and you want to know the likely monthly payment.",
                 ],
             },
             {
-                slug: "offer-accepted",
-                label: "Offer Accepted",
+                slug: "start-your-search",
+                label: "Start Your Search",
+                navLabel: "Search",
+                image: "./images/journey/buyer/02-offer-accepted.png",
+                summary: "This is where we sort through what you need, what you want, and what you know is not going to work so your search fits real life instead of just looking good online.",
+                what: "We talk through location, style, floor count, bedroom and bathroom needs, commute, yard, parking, and the difference between what would be nice and what actually matters for the way you live.",
+                why: "Clear criteria helps us avoid wasting time on homes that look great online but do not actually solve the reason you want to move.",
+                note: "Every buyer has needs, wants, and deal-breakers. Knowing the difference makes the search faster and less chaotic.",
+                action: {
+                    label: "Try Monthly Payment Calculator",
+                    target: "buyer-payment",
+                    href: "./buyers.html#buyer-payment",
+                },
+                checklist: [
+                    "Separate your must-haves from your nice-to-haves.",
+                    "Call out your deal-breakers early so we do not waste time touring the wrong homes.",
+                    "Get honest about location, layout, commute, and how much compromise you are actually willing to make.",
+                    "Use the monthly payment calculator to better understand how much home fits a monthly payment that feels comfortable based on your loan type and down payment, even if you are getting down payment assistance from Rhode Island or Massachusetts programs.",
+                ],
+            },
+            {
+                slug: "submitting-offers",
+                label: "Submitting Offers",
+                navLabel: "Offers",
+                image: "./images/journey/buyer/02-offer-accepted.png",
+                summary: "Once the right home shows up, we build a serious offer around price, terms, and how competitive the situation looks.",
+                what: "We review comparable sales, talk through contingencies, deposits, timelines, and lender strength, then decide how aggressive or protective the offer should be based on the house and the competition around it. This is also the right time to review inspectors and closing attorneys so you are not scrambling to line people up once the offer is accepted.",
+                why: "A strong offer is not just about the top number. Terms, speed, and presentation matter too, especially when multiple buyers are interested in the same home. Once you are under contract, the inspection window usually starts right away, so having your professionals in mind early makes the next step a lot smoother.",
+                note: "This is where strategy matters more than adrenaline. The more prepared you are before the offer is accepted, the calmer the first contract deadlines feel.",
+                actions: [
+                    {
+                        label: "Review Inspectors",
+                        target: "buyer-inspectors",
+                        href: "./buyers.html#buyer-inspectors",
+                        variant: "primary",
+                    },
+                    {
+                        label: "Review Closing Attorneys",
+                        target: "buyer-attorneys",
+                        href: "./buyers.html#buyer-attorneys",
+                    },
+                ],
+                checklist: [
+                    "Be ready to review comps and decide what the home is worth to you.",
+                    "Have your preapproval and any proof of funds ready to go with the offer.",
+                    "Review inspectors and closing attorneys now so you can loop the right people in quickly once the offer is accepted.",
+                    "Plan on the inspection window usually being the first 10 days after acceptance, excluding weekends and federal holidays, so speed matters.",
+                    "Know where you are flexible and where you want to hold your line on terms.",
+                ],
+            },
+            {
+                slug: "under-contract",
+                label: "Under Contract",
                 image: "./images/journey/buyer/02-offer-accepted.png",
                 summary: "Your offer was accepted, and now the deal gets real fast. This stage is all about staying on schedule and protecting the contract.",
                 what: "We handle the deposit, line up inspections inside the contract timeline, and start moving from home-shopping mode into contract-to-close mode.",
-                why: "Without the deposit and a fast inspection plan, the deal is basically just paper. Quick action here keeps momentum and protects your position.",
+                why: "Without the deposit and a fast inspection plan, the deal is basically just paper. Quick action here keeps momentum and protects your position. We usually have about 10 days to perform inspections, so moving early gives you time to review the report, decide whether any follow-up inspections make sense, and move forward with more confidence.",
                 note: "Exciting? Absolutely. Relaxed? Not really. This is where good calendar management wins.",
+                actions: [
+                    {
+                        label: "View Inspectors",
+                        target: "buyer-inspectors",
+                        href: "./buyers.html#buyer-inspectors",
+                        variant: "primary",
+                    },
+                    {
+                        label: "View Closing Attorneys",
+                        target: "buyer-attorneys",
+                        href: "./buyers.html#buyer-attorneys",
+                    },
+                ],
                 checklist: [
                     "Get the deposit where it needs to go as soon as possible.",
-                    "Decide which inspections you want to schedule.",
+                    "Schedule your inspection as soon as possible so you have enough time to review the report and line up any follow-up inspections if needed.",
+                    "Choose your closing attorney if you have not already.",
                     "Stay extra responsive while we lock in dates and deadlines.",
                 ],
             },
@@ -37,14 +155,14 @@ const journeyData = {
                 slug: "inspections",
                 label: "Inspections",
                 image: "./images/journey/buyer/03-inspections.png",
-                summary: "You made it through inspections, which is a major hurdle and one of the biggest points where deals can wobble.",
-                what: "Your lender keeps underwriting moving, the appraisal gets ordered if it is not already in motion, and we work through any remaining conditions so nothing sneaks up on us later.",
-                why: "Getting past inspections is a strong sign the deal is holding together and we are still moving in the right direction toward closing.",
-                note: "Huge step forward. Now we keep the paperwork moving and start packing a little at a time.",
+                summary: "This is where the home gets inspected and you figure out whether you are moving forward cleanly or negotiating repairs, credits, or a change in strategy.",
+                what: "You choose the inspections you want, attend if you can, review the findings, and decide whether to ask for repairs, a credit, or just keep the deal moving.",
+                why: "Inspections are one of the biggest checkpoints in a purchase. They help you understand the home better and make sure you are comfortable with what you are buying.",
+                note: "Not every inspection item is a deal-breaker. The goal is to understand what matters, what is normal, and what changes the risk for you.",
                 checklist: [
-                    "Respond quickly to any lender or processor document requests.",
-                    "Expect the appraisal fee and keep that step moving.",
-                    "Start packing the easy non-essentials now, not later.",
+                    "Decide which inspections you want to book and get them scheduled quickly inside the contract window.",
+                    "Plan to attend if you can so you can hear the inspector's big-picture take in real time.",
+                    "Review the report with perspective and decide what is worth addressing versus what is normal home ownership.",
                 ],
             },
             {
@@ -64,6 +182,7 @@ const journeyData = {
             {
                 slug: "mortgage-commitment",
                 label: "Mortgage Commitment",
+                navLabel: "Mortgage Approval",
                 image: "./images/journey/buyer/05-mortgage-commitment.png",
                 summary: "Mortgage commitment is the lender's big yes, with just a short final checklist left before clear to close.",
                 what: "We work through any last lender conditions, keep the file stable, and wait for the final clear-to-close approval to come through.",
@@ -72,6 +191,8 @@ const journeyData = {
                 checklist: [
                     "Do not open new credit or make major purchases.",
                     "Keep your documents and funds easy to access.",
+                    "Once you receive mortgage commitment, schedule movers and utility transfers if you are planning to move on closing day.",
+                    "Use the closing date in your contract as the working date for utility transfers so the home is on, accessible, and ready for a proper final walkthrough on closing day.",
                     "Stay responsive until the final clear to close comes in.",
                 ],
             },
@@ -80,7 +201,7 @@ const journeyData = {
                 label: "Clear To Close",
                 image: "./images/journey/buyer/06-clear-to-close.png",
                 summary: "Clear to close means underwriting is done, the lender is ready, and we are officially in the closing countdown.",
-                what: "We confirm the final walkthrough, the closing time and location, the exact money due, and the last attorney or title details before signing day.",
+                what: "We confirm the closing time and location, the exact money due, and the last attorney or title details before signing day.",
                 why: "There are no more big lender question marks here. Now it is about final coordination and making sure a tiny detail does not create last-minute stress.",
                 note: "You are in the final stretch now. It is getting real in the best way.",
                 checklist: [
@@ -90,17 +211,47 @@ const journeyData = {
                 ],
             },
             {
+                slug: "final-walkthrough",
+                label: "Final Walkthrough",
+                navLabel: "Walkthrough",
+                image: "./images/journey/buyer/07-closing-day.png",
+                summary: "Right before closing, you get one last look at the home to make sure it is in the condition you expected and everything that was supposed to stay is still there.",
+                what: "This is your last chance to confirm the home looks the way it should, negotiated repairs are done if any were agreed to, and included items like appliances or fixtures are still in place before you sign.",
+                why: "A clean walkthrough helps closing day stay calm. If something is off, we want to catch it before signatures and money start moving.",
+                note: "This is not another inspection. It is a final condition check before closing.",
+                checklist: [
+                    "Check the condition of the home, major systems, and any negotiated repair items.",
+                    "Make sure anything that was supposed to stay with the home is still there.",
+                    "Tell Joe right away if something looks different from what the contract says or what you expected.",
+                ],
+            },
+            {
                 slug: "closing-day",
                 label: "Closing Day",
                 image: "./images/journey/buyer/07-closing-day.png",
-                summary: "Signing day turns into key day, and then the deed records and it is officially yours.",
-                what: "You complete the final walkthrough, sign the documents, funds move, recording happens, and the keys officially hit your hand.",
-                why: "This is the moment all the showings, deadlines, underwriting, and signatures finally turn into home.",
+                summary: "This is signing day. Documents get signed, funds move, and the deal is officially crossing the finish line.",
+                what: "You head to the closing table, sign the final documents, confirm funds have been handled the right way, and wait for the recording process to finish so ownership can officially transfer.",
+                why: "This is the moment all the showings, deadlines, underwriting, and signatures finally turn into an actual closing.",
                 note: "Welcome home. You earned this.",
                 checklist: [
-                    "Use the walkthrough to check condition, systems, repairs, and included items.",
                     "Bring your valid photo ID and have funds handled exactly as instructed.",
-                    "After closing, save your documents, change the locks, and celebrate a little.",
+                    "Bring any final attorney or lender items you were told to have with you.",
+                    "Keep your phone handy in case the attorney, lender, or Joe needs a quick answer while funds or recording are wrapping up.",
+                ],
+            },
+            {
+                slug: "closed",
+                label: "Closed",
+                navLabel: "Closed",
+                image: "./images/journey/buyer/07-closing-day.png",
+                summary: "The deed records, the transaction is closed, and the home is officially yours.",
+                what: "Once recording is complete, keys get released if they have not already, you save your documents, and the move shifts from transaction mode into actually settling into the home.",
+                why: "This is the moment the process is no longer pending or scheduled. It is done.",
+                note: "Take a breath, save the paperwork, and enjoy the win.",
+                checklist: [
+                    "Save your closing documents somewhere easy to find later.",
+                    "Change the locks, update your address, and start transferring the services you need.",
+                    "Celebrate a little. Buying a home is a big deal.",
                 ],
             },
         ],
@@ -323,7 +474,6 @@ const trackerElements = {
     stageChecklist: document.querySelector("[data-stage-checklist]"),
     stageNote: document.querySelector("[data-stage-note]"),
     stageActionRow: document.querySelector("[data-stage-action-row]"),
-    stageActionButton: document.querySelector("[data-stage-action-button]"),
     prevButton: document.querySelector("[data-prev-stage]"),
     nextButton: document.querySelector("[data-next-stage]"),
     modeTabs: Array.from(document.querySelectorAll("[data-mode-tab]")),
@@ -397,6 +547,45 @@ function handleStageAction(action) {
     }
 }
 
+function getStageActions(stage) {
+    if (Array.isArray(stage.actions) && stage.actions.length) {
+        return stage.actions;
+    }
+
+    if (stage.action) {
+        return [stage.action];
+    }
+
+    return [];
+}
+
+function renderStageActions(stage) {
+    if (!trackerElements.stageActionRow) {
+        return;
+    }
+
+    const actions = getStageActions(stage);
+    trackerElements.stageActionRow.innerHTML = "";
+
+    if (!actions.length) {
+        trackerElements.stageActionRow.hidden = true;
+        return;
+    }
+
+    actions.forEach((action) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "journey-button tracker-stage-action-button";
+        button.textContent = action.label;
+        button.addEventListener("click", () => {
+            handleStageAction(action);
+        });
+        trackerElements.stageActionRow.appendChild(button);
+    });
+
+    trackerElements.stageActionRow.hidden = false;
+}
+
 function renderTracker() {
     const config = getJourneyConfig();
     const stage = config.stages[trackerState.stageIndex];
@@ -425,20 +614,7 @@ function renderTracker() {
         .map((item) => `<li>${item}</li>`)
         .join("");
     trackerElements.stageNote.textContent = stage.note;
-
-    if (trackerElements.stageActionRow && trackerElements.stageActionButton) {
-        if (stage.action) {
-            trackerElements.stageActionRow.hidden = false;
-            trackerElements.stageActionButton.textContent = stage.action.label;
-            trackerElements.stageActionButton.dataset.actionTarget = stage.action.target || "";
-            trackerElements.stageActionButton.dataset.actionHref = stage.action.href || "";
-        } else {
-            trackerElements.stageActionRow.hidden = true;
-            trackerElements.stageActionButton.textContent = "";
-            trackerElements.stageActionButton.dataset.actionTarget = "";
-            trackerElements.stageActionButton.dataset.actionHref = "";
-        }
-    }
+    renderStageActions(stage);
 
     trackerElements.prevButton.disabled = trackerState.stageIndex === 0;
     trackerElements.nextButton.disabled = trackerState.stageIndex === stageCount - 1;
@@ -509,14 +685,6 @@ trackerElements.nextButton.addEventListener("click", () => {
     trackerState.stageIndex = Math.min(lastIndex, trackerState.stageIndex + 1);
     renderTracker();
 });
-
-if (trackerElements.stageActionButton) {
-    trackerElements.stageActionButton.addEventListener("click", () => {
-        const target = trackerElements.stageActionButton.dataset.actionTarget || "";
-        const href = trackerElements.stageActionButton.dataset.actionHref || "";
-        handleStageAction({ target, href });
-    });
-}
 
 window.addEventListener("hashchange", initializeTrackerFromHash);
 

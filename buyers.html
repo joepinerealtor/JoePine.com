@@ -295,6 +295,13 @@
             font-weight: 700;
         }
 
+        .resource-tab-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
         .resource-frame {
             width: 100%;
             border: 0;
@@ -468,6 +475,10 @@
             }
 
             .cta-actions {
+                flex-direction: column;
+            }
+
+            .resource-tab-actions {
                 flex-direction: column;
             }
 
@@ -647,10 +658,21 @@
                 hidden
             >
                 <div class="resource-tab-copy">
-                    <h3>Compare lender options without leaving the page.</h3>
+                    <h3>Compare lender options and understand the cash side too.</h3>
                     <p>
                         Review lender options here before you decide who to call about preapproval.
                     </p>
+                    <p>
+                        This part is not just about rate quotes. It is also about understanding your likely down payment,
+                        closing costs, and what home price range makes sense once the full monthly payment comes into focus.
+                    </p>
+                    <p>
+                        Use the monthly payment calculator to get an estimate of home price, closing costs, and down payment
+                        so you can shop with clearer expectations.
+                    </p>
+                    <div class="resource-tab-actions">
+                        <a class="button button-secondary" href="#buyer-payment">Open Monthly Payment Calculator</a>
+                    </div>
                 </div>
 
                 <iframe

@@ -613,8 +613,8 @@
                     <p>Preapproval is where your affordability estimate becomes more real. A lender can review income, debts, credit, assets, and loan options so you know what may truly be possible before you start writing offers.</p>
                     <p>This page is set up to make lender options easy to compare. Each card shows who the lender is, how to reach them, where they are licensed, and where to start the preapproval conversation.</p>
                     <div class="hero-actions">
-                        <a class="button button-primary" href="index.html">Back to Calculator</a>
-                        <a id="budgetSearchLink" class="button button-secondary" href="index.html">Set Budget In Calculator</a>
+                        <a id="backToCalculatorLink" class="button button-primary" href="../buyers.html#buyer-payment">Back to Calculator</a>
+                        <a id="budgetSearchLink" class="button button-secondary" href="../buyers.html#buyer-payment">Set Budget In Calculator</a>
                         <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Connect%20Me%20With%20A%20Lender">Have Joe Make an Intro</a>
                     </div>
                 </div>
@@ -656,6 +656,7 @@
     <script>
         const HOME_SEARCH_URL_PREFIX = "https://joepine.kw.com/search/sale?viewport=42.536786872843024%2C-69.92003930749948%2C41.089594667716725%2C-72.55675805749948&price=0%2C";
         const HOME_SEARCH_URL_SUFFIX = "&property_subtype=HOUSE%2CTOWNHOUSE%2CCONDO%2CMANUFACTURED%2CMULTIFAMILY%2CCOOP%2CAPARTMENT";
+        const BUYER_CALCULATOR_URL = "../buyers.html#buyer-payment";
         const lenders = [
             {
                 name: "Darrin Ruzzano",
@@ -712,9 +713,14 @@
         ];
 
         const lenderGrid = document.getElementById('lenderGrid');
+        const backToCalculatorLink = document.getElementById('backToCalculatorLink');
         const budgetSearchLink = document.getElementById('budgetSearchLink');
         const budgetParam = Number.parseInt(new URLSearchParams(window.location.search).get('budget') || '0', 10);
         const searchBudget = Number.isFinite(budgetParam) && budgetParam > 0 ? budgetParam : 0;
+
+        if (backToCalculatorLink) {
+            backToCalculatorLink.href = BUYER_CALCULATOR_URL;
+        }
 
         if (budgetSearchLink) {
             if (searchBudget > 0) {
@@ -723,7 +729,7 @@
                 budgetSearchLink.rel = "noreferrer";
                 budgetSearchLink.textContent = "Browse Homes In Budget";
             } else {
-                budgetSearchLink.href = "index.html";
+                budgetSearchLink.href = BUYER_CALCULATOR_URL;
                 budgetSearchLink.removeAttribute("target");
                 budgetSearchLink.removeAttribute("rel");
                 budgetSearchLink.textContent = "Set Budget In Calculator";
@@ -830,18 +836,34 @@
             `;
         }).join('');
     </script>
-    <script>
-        (function () {
-            const embedMode = new URLSearchParams(window.location.search).get("embed");
-            if (!embedMode) {
-                return;
-            }
+        <script>
+            (function () {
+                const embedMode = new URLSearchParams(window.location.search).get("embed");
+                if (!embedMode) {
+                    return;
+                }
 
-            document.body.classList.add("is-embed");
+                document.body.classList.add("is-embed");
 
-            const postHeight = () => {
-                const height = Math.max(
-                    document.body.scrollHeight,
+                const openBuyerCalculator = (event) => {
+                    event.preventDefault();
+                    window.parent.postMessage(
+                        { type: "joe-open-resource", target: "buyer-payment" },
+                        "*"
+                    );
+                };
+
+                if (backToCalculatorLink) {
+                    backToCalculatorLink.addEventListener("click", openBuyerCalculator);
+                }
+
+                if (budgetSearchLink && searchBudget <= 0) {
+                    budgetSearchLink.addEventListener("click", openBuyerCalculator);
+                }
+
+                const postHeight = () => {
+                    const height = Math.max(
+                        document.body.scrollHeight,
                     document.documentElement.scrollHeight
                 );
                 window.parent.postMessage(
