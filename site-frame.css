@@ -26,7 +26,6 @@ html {
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: padding-top 180ms ease, margin-bottom 180ms ease;
 }
 
 .site-frame-header {
@@ -178,11 +177,6 @@ html {
     transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-.site-frame-wrap.is-condensed {
-    padding-top: 4px;
-    margin-bottom: 6px;
-}
-
 .site-frame-wrap.is-condensed .site-frame-header {
     border-radius: 16px;
     box-shadow: 0 12px 22px -24px rgba(0, 0, 0, 0.18);
@@ -269,11 +263,6 @@ html {
     .site-frame-wrap {
         width: min(100% - 20px, 1180px);
         padding-top: 14px;
-    }
-
-    .site-frame-wrap.is-condensed {
-        padding-top: 6px;
-        margin-bottom: 6px;
     }
 
     .site-frame-header {

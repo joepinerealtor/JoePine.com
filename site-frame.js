@@ -1,6 +1,7 @@
 const siteFrameRoot = document.documentElement;
 const siteFrameWrap = document.querySelector(".site-frame-wrap");
-const SITE_FRAME_SCROLL_THRESHOLD = 28;
+const SITE_FRAME_SCROLL_THRESHOLD_ENTER = 120;
+const SITE_FRAME_SCROLL_THRESHOLD_EXIT = 56;
 let siteFrameIsCondensed = false;
 let siteFrameScrollTicking = false;
 
@@ -34,7 +35,12 @@ function setSiteFrameCondensed(condensed) {
 }
 
 function syncSiteFrameCondensed() {
-    setSiteFrameCondensed(window.scrollY > SITE_FRAME_SCROLL_THRESHOLD);
+    const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    const shouldCondense = siteFrameIsCondensed
+        ? scrollTop > SITE_FRAME_SCROLL_THRESHOLD_EXIT
+        : scrollTop > SITE_FRAME_SCROLL_THRESHOLD_ENTER;
+
+    setSiteFrameCondensed(shouldCondense);
     siteFrameScrollTicking = false;
 }
 
