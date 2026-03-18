@@ -6,7 +6,7 @@
     <title>Listings | Joe Pine Real Estate</title>
     <meta
         name="description"
-        content="Browse Joe Pine's Keller Williams search page inside a branded website wrapper."
+        content="Browse Joe Pine's Keller Williams listings search inside JoePine.com with a cleaner branded search experience."
     >
     <link rel="stylesheet" href="site-frame.css">
     <style>
@@ -564,16 +564,16 @@
     <main class="page-shell">
         <section class="hero">
             <div class="hero-top">
-                <p class="eyebrow">Search Wrapper</p>
-                <h1>Keep visitors inside your site while they browse your KW search page.</h1>
+                <p class="eyebrow">Listings Search</p>
+                <h1>Browse Joe&rsquo;s live KW search without leaving the site.</h1>
             </div>
             <div class="hero-bottom">
                 <div class="hero-copy">
                     <p>
-                        This page wraps your main Keller Williams search experience inside `JoePine.com` so visitors can preview listings and keep your branding around the search.
+                        This page keeps Joe&rsquo;s Keller Williams search connected to the rest of the site so visitors can browse listings without losing the JoePine.com experience.
                     </p>
                     <p>
-                        If your KW/IDX provider allows framing, visitors can browse the embedded search directly below. If it blocks embedding, they can still open the live search in a new tab with one click.
+                        If Keller Williams and the IDX settings allow full embedding, visitors can browse directly below. If not, the full search is still one click away.
                     </p>
                 </div>
                 <div class="hero-points">
@@ -586,8 +586,8 @@
                         <strong>Preview, browse, and keep people inside your branded site</strong>
                     </div>
                     <div class="hero-point">
-                        <span>Reality Check</span>
-                        <strong>Cross-origin security may limit iframe controls unless KW supports embedding</strong>
+                        <span>What To Expect</span>
+                        <strong>Some KW or IDX settings may limit what the in-page search can do</strong>
                     </div>
                 </div>
             </div>
@@ -596,9 +596,9 @@
         <section class="controls-card">
             <div class="control-copy">
                 <p class="section-kicker">Browser Controls</p>
-                <h2>Use a website wrapper around your live KW search page.</h2>
+                <h2>Use a cleaner search wrapper around your live KW listings page.</h2>
                 <p>
-                    These controls are designed to feel more like a browser inside your site. `Back`, `Forward`, and `Reload` are implemented as a best effort, but true in-frame navigation depends on what the embedded KW page allows.
+                    These controls are designed to make the embedded search feel more familiar. Back, Forward, and Reload work on a best-effort basis, but true in-frame navigation still depends on what the embedded KW page allows.
                 </p>
             </div>
 
@@ -627,7 +627,7 @@
                 </div>
                 <div class="embed-meta">
                     <div class="embed-chip">KW Search</div>
-                    <div class="embed-chip">Website Wrapper</div>
+                    <div class="embed-chip">Embedded Search</div>
                 </div>
             </div>
 
@@ -651,17 +651,17 @@
             <p class="section-kicker">Important Note</p>
             <h2>Embedding may depend on KW or IDX restrictions.</h2>
             <p>
-                I wasn&rsquo;t able to fully verify frame permissions from the command line because the KW site is protected by a JavaScript and cookie challenge before the search page loads.
+                Some Keller Williams and IDX setups allow a search page to stay embedded cleanly, while others limit what can happen inside an iframe.
             </p>
             <p>
-                Browser security also limits how much one website can control another website inside an iframe. That means this page is ready for a real browser test, but one of two things will happen:
+                In practice, that means one of two things will happen:
             </p>
             <ul class="help-list">
                 <li>The iframe works, and visitors can browse the embedded search while staying inside your site shell.</li>
-                <li>The iframe is blocked by KW/IDX frame rules, and we should switch to their official embed widget or a direct-link preview experience instead.</li>
+                <li>The iframe is blocked or partially limited, and visitors should use the full-search button for the best experience.</li>
             </ul>
             <div class="notice">
-                If your Keller Williams website gives you a specific IDX embed snippet, script, or widget code, that is the best option. I can drop that in and make it look native to your site. Without that, cross-origin iframe navigation controls may be limited by browser security rules.
+                If Keller Williams gives you an official IDX embed snippet or widget, that is usually the cleanest long-term option for this page.
             </div>
         </section>
 
@@ -681,7 +681,7 @@
                     <p class="page-footer-license">Rhode Island Real Estate License #RES.0044759</p>
                     <div class="page-footer-compliance" aria-label="REALTOR and Equal Housing Opportunity disclosure">
                         <div class="page-footer-disclaimer">
-                            <p>Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                            <p>Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
                         </div>
                         <div class="page-footer-badge-row">
                             <img
@@ -747,7 +747,7 @@
                 frameWindow.history[direction]();
                 setStatus(`Trying to move ${direction} within the embedded KW search.`);
             } catch (error) {
-                setStatus("Browser security may prevent this site from controlling back/forward inside the embedded KW page. Use Open Full Search if needed.");
+                setStatus("This embedded search may not allow back or forward controls here. Use Open Full Search if you need the full experience.");
             }
         }
 
@@ -780,7 +780,7 @@
 
         frame.addEventListener("load", () => {
             frameLoading.classList.add("is-hidden");
-            setStatus("The embedded search finished loading. If you click deeper into the KW site, browser security may limit what the wrapper can detect.");
+            setStatus("The embedded search finished loading. If a deeper search action stops behaving normally here, use Open Full Search for the full KW experience.");
         });
 
         setFrameUrl(SEARCH_HOME_URL);

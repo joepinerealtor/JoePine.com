@@ -1,14 +1,14 @@
 const journeyData = {
     buyer: {
         eyebrow: "Buyer Process",
-        title: "From the moving bug to keys in hand.",
+        title: "From the moving itch to keys in hand.",
         intro: "Start with the \"should we actually do this?\" conversation, connect with a lender, shape the search, and move through the contract milestones with a lot more confidence.",
         modeLabel: "Buyer Process",
         stages: [
             {
                 slug: "moving-bug",
-                label: "Bit By The Moving Bug",
-                navLabel: "Moving Bug",
+                label: "Feeling The Moving Itch?",
+                navLabel: "Moving Itch",
                 image: "./images/journey/buyer/01-pre-approved.png",
                 summary: "This is the stage where a house catches your eye online, the idea of moving will not leave you alone, and you want to see if a move is actually feasible.",
                 what: "We start with the real conversation: why you want to move, what kind of change you are hoping for, whether the timing makes sense, and whether it is worth turning that late-night house-scroll into an actual plan.",

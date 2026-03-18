@@ -87,7 +87,7 @@
 
         .hero-banner h1 {
             margin: 0;
-            max-width: 12ch;
+            max-width: 760px;
             font-size: clamp(30px, 4.6vw, 48px);
             line-height: 0.96;
             letter-spacing: -0.05em;
@@ -247,6 +247,7 @@
             cursor: pointer;
             transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
             flex: 1 1 260px;
+            min-width: 0;
         }
 
         .resource-tab:hover,
@@ -486,6 +487,21 @@
                 width: 100%;
             }
         }
+
+        @media (min-width: 980px) {
+            .resource-tab-list {
+                gap: 10px;
+            }
+
+            .resource-tab {
+                flex: 1 1 calc((100% - 40px) / 5);
+                max-width: calc((100% - 40px) / 5);
+                padding: 0 12px;
+                font-size: 10px;
+                letter-spacing: 0.12em;
+                line-height: 1.15;
+            }
+        }
     </style>
 </head>
 <body>
@@ -534,12 +550,12 @@
         <section class="hero-panel">
             <div class="hero-banner">
                 <p class="eyebrow">Resources for Buyers</p>
-                <h1>Understand the numbers and follow the process with more confidence.</h1>
+                <h1>Buying a home feels more within reach when the numbers make sense and the process feels predictable.</h1>
             </div>
 
             <div class="hero-content">
                 <div class="hero-copy">
-                    <p class="hero-hook">Buying gets easier when you understand the numbers and the process makes sense.</p>
+                    <p class="hero-hook">Make your move with confidence.</p>
                     <p>
                         My goal is to make the process as transparent as possible so you can move forward with more peace of mind.
                         This page puts the main buyer pieces in one place so you can work through payment comfort,
@@ -564,7 +580,7 @@
                     <h2>Work through the money, support, and process pieces in one place.</h2>
                 </div>
                 <p>
-                    Use the tabs below to move between monthly payment, lending partners, inspectors, closing attorneys, and the buyer process.
+                    Use the tabs below to move between the buyer process, monthly payment, lending partners, inspectors, and closing attorneys.
                 </p>
             </div>
 
@@ -573,8 +589,19 @@
                     class="resource-tab is-active"
                     type="button"
                     role="tab"
-                    id="buyer-tab-payment"
+                    id="buyer-tab-process"
                     aria-selected="true"
+                    aria-controls="buyer-process"
+                    data-buyer-resource-tab="buyer-process"
+                >
+                    Buyer Process
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-payment"
+                    aria-selected="false"
                     aria-controls="buyer-payment"
                     data-buyer-resource-tab="buyer-payment"
                 >
@@ -613,18 +640,30 @@
                 >
                     Closing Attorneys
                 </button>
-                <button
-                    class="resource-tab"
-                    type="button"
-                    role="tab"
-                    id="buyer-tab-process"
-                    aria-selected="false"
-                    aria-controls="buyer-process"
-                    data-buyer-resource-tab="buyer-process"
-                >
-                    Buyer Process
-                </button>
             </div>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-process"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-process"
+                data-buyer-resource-panel="buyer-process"
+            >
+                <div class="resource-tab-copy">
+                    <h3>See what the process usually looks like from the moving itch to closed.</h3>
+                    <p>
+                        Use this tracker to see the major stages and what usually comes next.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-process"
+                    data-embed-target="buyer-process"
+                    src="./journey.html?embed=buyer-process#buyer"
+                    title="Buyer process tracker"
+                    loading="lazy"
+                ></iframe>
+            </section>
 
             <section
                 class="resource-tab-panel"
@@ -632,6 +671,7 @@
                 role="tabpanel"
                 aria-labelledby="buyer-tab-payment"
                 data-buyer-resource-panel="buyer-payment"
+                hidden
             >
                 <div class="resource-tab-copy">
                     <h3>Start with the number that matters most.</h3>
@@ -732,29 +772,6 @@
                 ></iframe>
             </section>
 
-            <section
-                class="resource-tab-panel"
-                id="buyer-process"
-                role="tabpanel"
-                aria-labelledby="buyer-tab-process"
-                data-buyer-resource-panel="buyer-process"
-                hidden
-            >
-                <div class="resource-tab-copy">
-                    <h3>See what the process usually looks like from preapproval to keys.</h3>
-                    <p>
-                        Use this tracker to see the major stages and what usually comes next.
-                    </p>
-                </div>
-
-                <iframe
-                    class="resource-frame is-process"
-                    data-embed-target="buyer-process"
-                    src="./journey.html?embed=buyer-process#buyer"
-                    title="Buyer process tracker"
-                    loading="lazy"
-                ></iframe>
-            </section>
         </section>
 
         <section class="cta-panel">
@@ -867,10 +884,10 @@
             }
         });
 
-        const initialBuyerTarget = getBuyerResourceTarget(window.location.hash);
-        if (initialBuyerTarget) {
-            setActiveBuyerResource(initialBuyerTarget, { scrollToPanel: true });
-        }
+        const initialBuyerTarget = getBuyerResourceTarget(window.location.hash) || "buyer-process";
+        setActiveBuyerResource(initialBuyerTarget, {
+            scrollToPanel: !!getBuyerResourceTarget(window.location.hash)
+        });
 
         window.addEventListener("message", (event) => {
             const data = event.data;
