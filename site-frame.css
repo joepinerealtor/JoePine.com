@@ -37,7 +37,6 @@ html {
     border: 1px solid var(--frame-line);
     background: var(--frame-surface);
     box-shadow: 0 24px 48px -42px rgba(0, 0, 0, 0.24);
-    transition: border-radius 180ms ease, box-shadow 180ms ease;
 }
 
 .site-frame-header::before {
@@ -45,7 +44,6 @@ html {
     display: block;
     height: 6px;
     background: var(--frame-red);
-    transition: height 180ms ease;
 }
 
 .site-frame-top {
@@ -56,7 +54,6 @@ html {
     padding: 14px 16px 12px;
     position: relative;
     z-index: 1;
-    transition: padding 180ms ease, gap 180ms ease;
 }
 
 .site-frame-brand {
@@ -67,7 +64,6 @@ html {
     text-decoration: none;
     min-width: 0;
     max-width: 100%;
-    transition: gap 180ms ease;
 }
 
 .site-frame-photo {
@@ -78,7 +74,6 @@ html {
     flex: 0 0 auto;
     border: 2px solid var(--frame-red);
     box-shadow: 0 14px 24px -18px rgba(147, 0, 21, 0.45);
-    transition: width 180ms ease, height 180ms ease, box-shadow 180ms ease;
 }
 
 .site-frame-photo img {
@@ -94,7 +89,6 @@ html {
     gap: 4px;
     line-height: 1;
     min-width: 0;
-    transition: gap 180ms ease;
 }
 
 .site-frame-copy strong {
@@ -102,7 +96,6 @@ html {
     font-weight: 900;
     letter-spacing: -0.04em;
     text-transform: uppercase;
-    transition: font-size 180ms ease;
 }
 
 .site-frame-copy span {
@@ -111,7 +104,6 @@ html {
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    transition: font-size 180ms ease, letter-spacing 180ms ease;
 }
 
 .site-frame-right {
@@ -120,7 +112,6 @@ html {
     align-items: flex-end;
     gap: 2px;
     text-align: right;
-    transition: gap 180ms ease;
 }
 
 .site-frame-right a,
@@ -130,7 +121,6 @@ html {
     font-size: clamp(0.82rem, 1.3vw, 0.96rem);
     font-weight: 800;
     line-height: 1.25;
-    transition: font-size 180ms ease, line-height 180ms ease;
 }
 
 .site-frame-right .site-frame-website {
@@ -163,7 +153,6 @@ html {
     background: var(--frame-surface-alt);
     position: relative;
     z-index: 1;
-    transition: padding 180ms ease, gap 180ms ease;
 }
 
 .site-frame-nav a {
