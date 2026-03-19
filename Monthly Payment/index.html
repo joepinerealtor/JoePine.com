@@ -785,7 +785,6 @@
             const ESCROW_HELP_TEXT = "Your principal and interest stay more predictable, but taxes and homeowners insurance can change from one property to the next. Lenders collect those yearly costs monthly through escrow, so two homes at the same price can still have different total payments.";
             const INSURANCE_TIP_TEXT = "Homeowners insurance is one cost you can shop before closing. The premium you choose can raise or lower your final monthly mortgage payment.";
             const BUYDOWN_TIP_TEXT = "This planner treats a permanent rate buydown as discount points paid at closing, not as part of the down payment. Program rules, lender overlays, and pricing can all vary by loan type, lender, lock period, and market. Please consult a lender for mortgage advice. This is only an example of how a buydown may work if allowed.";
-            const MULTIFAMILY_TIP_TEXT = `When Multi Family is selected, this planner uses a conservative ${formatCurrency(MULTIFAMILY_MARKET_RENT)} market-rent example and counts 75% of it, or ${formatCurrency(MULTIFAMILY_RENT_CREDIT)}/mo, toward affordability. Actual lenders can use different rent figures, reserve rules, lease requirements, or appraisal-based rent schedules.`;
             const showsTopPropertyFeeInput = propertyType === "condo" || propertyType === "mobile";
             const suggestedCondoFee = Number(stateTaxRate) === 1.15 ? CONDO_FEE_DEFAULTS.MA : CONDO_FEE_DEFAULTS.RI;
             const suggestedMobileFee = Number(stateTaxRate) === 1.15 ? MOBILE_FEE_DEFAULTS.MA : MOBILE_FEE_DEFAULTS.RI;
@@ -864,9 +863,12 @@
                 const insurance = (normalizedPrice * HOME_INSURANCE_RATE) / 12;
                 const pmi = loanAmount * pmiRate;
                 const buydownCost = loanAmount * (buydownPointsPercent / 100);
-                const grossPayment = principalInterest + taxes + insurance + pmi + normalizedHoaMonthly;
+                const baseHousingPayment = principalInterest + taxes + insurance + pmi;
+                const grossPayment = baseHousingPayment + normalizedHoaMonthly;
                 const rentalIncomeCredit = normalizedPropertyType === "mfh" ? MULTIFAMILY_RENT_CREDIT : 0;
-                const affordabilityPayment = Math.max(grossPayment - rentalIncomeCredit, 0);
+                const affordabilityPayment = normalizedPropertyType === "mfh"
+                    ? Math.max(grossPayment - rentalIncomeCredit, 0)
+                    : grossPayment;
 
                 return {
                     homePrice: normalizedPrice,
@@ -1118,9 +1120,10 @@
                 const roundedTaxes = Math.round(finalResults.piti.taxes);
                 const roundedInsurance = Math.round(finalResults.piti.insurance);
                 const roundedPmi = Math.round(finalResults.piti.pmi);
+                const roundedHoa = Math.round(finalResults.hoa);
                 const roundedTotalPayment = Math.round(finalResults.totalPayment);
                 const displayedComponentSum = roundedPrincipalInterest + roundedTaxes + roundedInsurance + roundedPmi;
-                const roundingDelta = roundedTotalPayment - displayedComponentSum;
+                const roundingDelta = roundedTotalPayment - (displayedComponentSum + roundedHoa);
 
                 setResults({
                     homePrice: Math.round(finalResults.homePrice),
@@ -1140,7 +1143,7 @@
                         pointsPercent: finalResults.buydown.pointsPercent,
                         cost: Math.round(finalResults.buydown.cost)
                     },
-                    hoa: Math.round(finalResults.hoa),
+                    hoa: roundedHoa,
                     rentalIncomeCredit: Math.round(finalResults.rentalIncomeCredit),
                     affordabilityPayment: Math.round(finalResults.affordabilityPayment),
                     grossPayment: Math.round(finalResults.grossPayment)
@@ -1156,6 +1159,7 @@
                 const parsed = Number(val);
                 return Number.isFinite(parsed) ? String(Number(parsed.toFixed(2))) : "0";
             };
+            const MULTIFAMILY_TIP_TEXT = `When Multi Family is selected, this planner uses a conservative ${formatCurrency(MULTIFAMILY_MARKET_RENT)} market-rent example and counts 75% of it, or ${formatCurrency(MULTIFAMILY_RENT_CREDIT)}/mo, toward affordability. Actual lenders can use different rent figures, reserve rules, lease requirements, or appraisal-based rent schedules.`;
 
             const captureSummaryCanvas = async () => {
                 const exportNode = exportRef.current?.querySelector('.export-sheet');
@@ -1269,7 +1273,11 @@
                 : estimatedGrossMonthlyPayment;
             const locationLabel = Number(stateTaxRate) === 1.15 ? "MA" : "RI";
             const closingCostLabel = results.buydown?.enabled ? "Closing costs + buydown" : `Estimated closing costs (${Math.round(ESTIMATED_CLOSING_COST_RATE * 100)}%)`;
-            const paymentSummaryLabel = propertyType === "mfh" ? "Net Monthly Payment" : "Monthly Payment";
+            const paymentSummaryLabel = propertyType === "mfh"
+                ? "Net Monthly Payment"
+                : (propertyType === "condo" || propertyType === "mobile")
+                    ? "Total Monthly Payment"
+                    : "Monthly Payment";
             const parsedInterestRate = Number.parseFloat(interestRate);
             const currentRateValue = Number.isFinite(parsedInterestRate) ? parsedInterestRate : (Number.isFinite(liveRateValue) ? liveRateValue : null);
             const formattedInterestRate = formatRatePercent(currentRateValue);
@@ -1572,6 +1580,9 @@
                                                             ? `Auto-filled planning default for ${Number(stateTaxRate) === 1.15 ? "MA" : "RI"} condos: ${formatCurrency(suggestedCondoFee)}/mo`
                                                             : `Auto-filled planning default for ${Number(stateTaxRate) === 1.15 ? "MA" : "RI"} manufactured homes: ${formatCurrency(suggestedMobileFee)}/mo`}
                                                     </p>
+                                                    <p className="mt-2 text-[11px] leading-relaxed text-gray-500 font-black">
+                                                        This fee is treated as part of the same monthly budget, so higher {propertyType === "mobile" ? "lot fees" : "HOA dues"} lower the home price this budget can support.
+                                                    </p>
                                                 </div>
                                             )}
                                             {propertyType === "mfh" && (
@@ -1802,7 +1813,9 @@
                                         <p className="mt-3 text-sm sm:text-base text-gray-500 max-w-2xl mx-auto leading-relaxed tracking-tight font-black">
                                             {propertyType === "mfh"
                                                 ? "This estimate uses your net monthly budget after the modeled rent offset and layers in taxes, insurance, and cash-to-close assumptions."
-                                                : "This estimate starts with your target monthly budget and layers in taxes, insurance, mortgage insurance when needed, and cash-to-close assumptions."}
+                                                : (propertyType === "condo" || propertyType === "mobile")
+                                                    ? `This estimate treats your ${formatCurrency(toNonNegativeNumber(monthlyGoal))}/mo target as the cap. It includes ${formatCurrency(results.hoa)}/mo in ${propertyType === "mobile" ? "lot fees" : "HOA dues"}, and higher fees lower the home price this budget can support.`
+                                                    : "This estimate starts with your target monthly budget and layers in taxes, insurance, mortgage insurance when needed, and cash-to-close assumptions."}
                                         </p>
                                     </div>
                                     <div className="max-w-4xl mx-auto mb-5">
@@ -1814,6 +1827,9 @@
                                                 </div>
                                                 {propertyType === "mfh" && (
                                                     <p className="mt-1 text-[9px] leading-tight text-gray-400 font-black">After {formatCurrency(MULTIFAMILY_MARKET_RENT)}/mo market rent and a {formatCurrency(estimatedRentalIncomeCredit)} planning offset</p>
+                                                )}
+                                                {(propertyType === "condo" || propertyType === "mobile") && (
+                                                    <p className="mt-1 text-[9px] leading-tight text-gray-400 font-black">Includes {formatCurrency(results.hoa)}/mo in {propertyType === "mobile" ? "lot fees" : "HOA dues"} inside the same {formatCurrency(toNonNegativeNumber(monthlyGoal))}/mo budget</p>
                                                 )}
                                             </div>
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
