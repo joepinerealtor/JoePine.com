@@ -839,6 +839,11 @@ img {
     padding-top: 22px;
 }
 
+.page-rent-vs-buy .wealth-panel[data-reveal] {
+    opacity: 1;
+    transform: none;
+}
+
 .section-heading {
     max-width: 720px;
 }
