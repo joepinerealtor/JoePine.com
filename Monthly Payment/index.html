@@ -652,7 +652,8 @@
                     surveyName: "30 Year Fixed",
                     sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-fixed",
                     minimumDownPaymentPercent: 5,
-                    defaultDownPaymentPercent: 5
+                    defaultDownPaymentPercent: 5,
+                    estimatedPointsPerQuarterReduction: 1
                 },
                 fha: {
                     label: "FHA",
@@ -661,7 +662,8 @@
                     surveyName: "30 Year FHA",
                     sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-fha",
                     minimumDownPaymentPercent: 3.5,
-                    defaultDownPaymentPercent: 3.5
+                    defaultDownPaymentPercent: 3.5,
+                    estimatedPointsPerQuarterReduction: 1
                 },
                 va: {
                     label: "VA",
@@ -670,16 +672,43 @@
                     surveyName: "30 Year VA",
                     sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-va",
                     minimumDownPaymentPercent: 0,
-                    defaultDownPaymentPercent: 0
+                    defaultDownPaymentPercent: 0,
+                    estimatedPointsPerQuarterReduction: 1
                 }
             };
             const HOME_INSURANCE_RATE = 0.005;
             const ESTIMATED_CLOSING_COST_RATE = 0.03;
             const PRESET_PERCENTAGES = [0, 3.5, 5, 10, 15, 20];
+            const RATE_BUYDOWN_INCREMENT = 0.25;
+            const RATE_BUYDOWN_OPTIONS = [0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 1];
+            const MULTIFAMILY_MARKET_RENT = 1400;
+            const MULTIFAMILY_RENT_CREDIT_SHARE = 0.75;
+            const MULTIFAMILY_RENT_CREDIT = MULTIFAMILY_MARKET_RENT * MULTIFAMILY_RENT_CREDIT_SHARE;
+            const CONDO_FEE_DEFAULTS = {
+                RI: 350,
+                MA: 415
+            };
+            const MOBILE_FEE_DEFAULTS = {
+                RI: 450,
+                MA: 525
+            };
+            const PROPERTY_TYPES = {
+                sfh: { label: "Single Family" },
+                condo: { label: "Condo" },
+                mfh: { label: "Multi Family" },
+                mobile: { label: "Manufactured Home" }
+            };
+            const PROPERTY_TYPE_SEARCH_SUFFIXES = {
+                sfh: "&property_subtype=HOUSE",
+                condo: "&property_subtype=CONDO%2CTOWNHOUSE%2CCOOP",
+                mfh: "&property_subtype=MULTIFAMILY",
+                mobile: "&property_subtype=MANUFACTURED"
+            };
             const persistedPrefsRef = useRef(readPersistedCalculatorPrefs());
             const persistedPrefs = persistedPrefsRef.current;
             const initialLoanProgram = RATE_PROGRAMS[persistedPrefs.loanProgram] ? persistedPrefs.loanProgram : "conventional";
             const initialDownPaymentMode = persistedPrefs.downPaymentMode === "custom" ? "custom" : "percentage";
+            const initialPropertyType = PROPERTY_TYPES[persistedPrefs.propertyType] ? persistedPrefs.propertyType : "sfh";
             const normalizePresetDownPaymentPercent = (loanProgramValue, rawPercent) => {
                 const program = RATE_PROGRAMS[loanProgramValue] || RATE_PROGRAMS.conventional;
                 const parsedPercent = Number(rawPercent);
@@ -689,26 +718,36 @@
                 }
                 return matchingPreset;
             };
+            const normalizeRateBuydownReduction = (rawReduction) => {
+                const parsedReduction = Number(rawReduction);
+                const matchingOption = RATE_BUYDOWN_OPTIONS.find((option) => Math.abs(option - parsedReduction) < 0.001);
+                return matchingOption == null ? 0.25 : matchingOption;
+            };
             const initialInterestRate = typeof persistedPrefs.interestRate === "string"
                 ? persistedPrefs.interestRate
                 : persistedPrefs.interestRate != null
                     ? String(persistedPrefs.interestRate)
                     : "6.25";
             const hasPersistedInterestRate = initialInterestRate.trim() !== "";
+            const initialRateBuydownReduction = normalizeRateBuydownReduction(persistedPrefs.rateBuydownReduction);
 
             const [user, setUser] = useState(null);
             const [db, setDb] = useState(null);
             const [monthlyGoal, setMonthlyGoal] = useState(() => Number.isFinite(Number(persistedPrefs.monthlyGoal)) ? Number(persistedPrefs.monthlyGoal) : 0);
+            const [propertyType, setPropertyType] = useState(initialPropertyType);
             const [loanProgram, setLoanProgram] = useState(initialLoanProgram);
             const [downPaymentMode, setDownPaymentMode] = useState(initialDownPaymentMode); 
             const [downPaymentPercent, setDownPaymentPercent] = useState(() => normalizePresetDownPaymentPercent(initialLoanProgram, persistedPrefs.downPaymentPercent));
             const [downPaymentFixed, setDownPaymentFixed] = useState(() => Number.isFinite(Number(persistedPrefs.downPaymentFixed)) ? Number(persistedPrefs.downPaymentFixed) : 60000);
             const [interestRate, setInterestRate] = useState(initialInterestRate || "6.25");
+            const [rateBuydownEnabled, setRateBuydownEnabled] = useState(persistedPrefs.rateBuydownEnabled === true);
+            const [rateBuydownReduction, setRateBuydownReduction] = useState(initialRateBuydownReduction);
             const [liveRateValue, setLiveRateValue] = useState(null);
             const [isRateLive, setIsRateLive] = useState(false);
             const [rateDate, setRateDate] = useState("");
             const [loanTerm, setLoanTerm] = useState(() => Number.isFinite(Number(persistedPrefs.loanTerm)) ? Number(persistedPrefs.loanTerm) : 30);
             const [stateTaxRate, setStateTaxRate] = useState(() => Number.isFinite(Number(persistedPrefs.stateTaxRate)) ? Number(persistedPrefs.stateTaxRate) : 1.25); 
+            const [hoaMonthly, setHoaMonthly] = useState(() => Number.isFinite(Number(persistedPrefs.hoaMonthly)) ? Number(persistedPrefs.hoaMonthly) : 0);
             const [showLeadForm, setShowLeadForm] = useState(false);
             const [formSubmitted, setFormSubmitted] = useState(false);
             const [isSubmitting, setIsSubmitting] = useState(false);
@@ -725,20 +764,32 @@
                 homePrice: 0,
                 loanAmount: 0,
                 downPaymentAmount: 0,
-                piti: { principalInterest: 0, taxes: 0, insurance: 0, pmi: 0 }
+                piti: { principalInterest: 0, taxes: 0, insurance: 0, pmi: 0 },
+                buydown: { enabled: false, baseRate: 0, adjustedRate: 0, reduction: 0, pointsPercent: 0, cost: 0 },
+                hoa: 0,
+                rentalIncomeCredit: 0,
+                affordabilityPayment: 0,
+                grossPayment: 0
             };
 
             const [results, setResults] = useState(zeroResults);
 
             const currentRateProgram = RATE_PROGRAMS[loanProgram] || RATE_PROGRAMS.conventional;
+            const currentPropertyType = PROPERTY_TYPES[propertyType] || PROPERTY_TYPES.sfh;
             const MND_RATE_SOURCE_URL = currentRateProgram.sourceUrl;
             const MND_RATE_PROXY_URL = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(MND_RATE_SOURCE_URL)}`;
             const activeDownPaymentPercent = normalizePresetDownPaymentPercent(loanProgram, downPaymentPercent);
             const isPresetDisabled = (pct) => pct < currentRateProgram.minimumDownPaymentPercent;
-            const DISCLAIMER_TEXT = "This calculator is a planning tool based on your target monthly payment and estimated taxes, homeowners insurance, and mortgage insurance when applicable. Final preapproval and monthly payment can change after a lender reviews income, debts, assets, credit, loan terms, and actual property costs; only a licensed mortgage professional can issue a preapproval, and each office is independently owned and operated in support of equal housing opportunity.";
+            const DISCLAIMER_TEXT = "This calculator is a planning tool based on your target monthly payment and estimated taxes, homeowners insurance, mortgage insurance when applicable, optional HOA dues, optional rate-buydown assumptions, and a simplified multi-family rent-offset example when Multi Family is selected. Final preapproval, rental-income treatment, discount-point pricing, closing costs, HOA dues, and monthly payment can change after a lender reviews income, debts, assets, credit, loan terms, lock period, leases, appraised market rent, reserves, and actual property costs; only a licensed mortgage professional can issue a preapproval, and each office is independently owned and operated in support of equal housing opportunity.";
             const DOWN_PAYMENT_TIP_TEXT = "RI and MA offer down payment and closing cost assistance for qualified buyers. Ask your lender during preapproval if you may be eligible.";
             const ESCROW_HELP_TEXT = "Your principal and interest stay more predictable, but taxes and homeowners insurance can change from one property to the next. Lenders collect those yearly costs monthly through escrow, so two homes at the same price can still have different total payments.";
             const INSURANCE_TIP_TEXT = "Homeowners insurance is one cost you can shop before closing. The premium you choose can raise or lower your final monthly mortgage payment.";
+            const BUYDOWN_TIP_TEXT = "This planner treats a permanent rate buydown as discount points paid at closing, not as part of the down payment. Program rules, lender overlays, and pricing can all vary by loan type, lender, lock period, and market. Please consult a lender for mortgage advice. This is only an example of how a buydown may work if allowed.";
+            const MULTIFAMILY_TIP_TEXT = "When Multi Family is selected, this planner applies an estimated $1,485 per month rent offset. That is modeled as 75% of $1,980 monthly market rent from the January 2026 rent example elsewhere on your site. Actual lenders may use different rent figures, documentation, reserve requirements, or underwriting rules by program and property.";
+            const showsTopPropertyFeeInput = propertyType === "condo" || propertyType === "mobile";
+            const suggestedCondoFee = Number(stateTaxRate) === 1.15 ? CONDO_FEE_DEFAULTS.MA : CONDO_FEE_DEFAULTS.RI;
+            const suggestedMobileFee = Number(stateTaxRate) === 1.15 ? MOBILE_FEE_DEFAULTS.MA : MOBILE_FEE_DEFAULTS.RI;
+            const suggestedTopPropertyFee = propertyType === "mobile" ? suggestedMobileFee : suggestedCondoFee;
 
             const toNonNegativeNumber = (value) => {
                 const parsed = Number.parseFloat(value);
@@ -767,9 +818,13 @@
 
             const calculateResultsForPrice = ({
                 price,
+                propertyTypeValue,
                 loanProgramValue,
                 interestRateValue,
+                rateBuydownEnabledValue,
+                rateBuydownReductionValue,
                 taxRateValue,
+                hoaMonthlyValue,
                 loanTermValue,
                 downPaymentModeValue,
                 downPaymentPercentValue,
@@ -777,15 +832,22 @@
             }) => {
                 const normalizedPrice = toNonNegativeNumber(price);
                 if (!(normalizedPrice > 0)) {
-                    return { ...zeroResults, totalPayment: 0 };
+                    return { ...zeroResults, totalPayment: 0, affordabilityPayment: 0, grossPayment: 0 };
                 }
 
                 const normalizedInterestRate = toNonNegativeNumber(interestRateValue);
+                const activeProgram = RATE_PROGRAMS[loanProgramValue] || RATE_PROGRAMS.conventional;
+                const normalizedPropertyType = PROPERTY_TYPES[propertyTypeValue] ? propertyTypeValue : "sfh";
+                const cappedRateBuydownReduction = rateBuydownEnabledValue
+                    ? Math.min(toNonNegativeNumber(rateBuydownReductionValue), normalizedInterestRate)
+                    : 0;
+                const adjustedInterestRate = Math.max(normalizedInterestRate - cappedRateBuydownReduction, 0);
                 const normalizedTaxRate = toNonNegativeNumber(taxRateValue);
+                const normalizedHoaMonthly = toNonNegativeNumber(hoaMonthlyValue);
                 const normalizedDownPaymentPercent = Math.min(toNonNegativeNumber(downPaymentPercentValue), 100);
                 const normalizedDownPaymentFixed = toNonNegativeNumber(downPaymentFixedValue);
                 const normalizedLoanTerm = Math.max(Number(loanTermValue) || 0, 1) * 12;
-                const r = (normalizedInterestRate / 100) / 12;
+                const r = (adjustedInterestRate / 100) / 12;
                 const t = (normalizedTaxRate / 100) / 12;
                 const mc = r > 0 ? (r * Math.pow(1 + r, normalizedLoanTerm)) / (Math.pow(1 + r, normalizedLoanTerm) - 1) : 1 / normalizedLoanTerm;
                 const downPaymentAmount = downPaymentModeValue === 'percentage'
@@ -794,10 +856,17 @@
                 const loanAmount = Math.max(normalizedPrice - downPaymentAmount, 0);
                 const ltv = loanAmount > 0 ? (loanAmount / normalizedPrice) * 100 : 0;
                 const pmiRate = loanAmount > 0 ? getMortgageInsuranceRate(loanProgramValue, ltv) : 0;
+                const buydownPointsPercent = cappedRateBuydownReduction > 0
+                    ? (cappedRateBuydownReduction / RATE_BUYDOWN_INCREMENT) * activeProgram.estimatedPointsPerQuarterReduction
+                    : 0;
                 const principalInterest = loanAmount * mc;
                 const taxes = normalizedPrice * t;
                 const insurance = (normalizedPrice * HOME_INSURANCE_RATE) / 12;
                 const pmi = loanAmount * pmiRate;
+                const buydownCost = loanAmount * (buydownPointsPercent / 100);
+                const grossPayment = principalInterest + taxes + insurance + pmi + normalizedHoaMonthly;
+                const rentalIncomeCredit = normalizedPropertyType === "mfh" ? MULTIFAMILY_RENT_CREDIT : 0;
+                const affordabilityPayment = Math.max(grossPayment - rentalIncomeCredit, 0);
 
                 return {
                     homePrice: normalizedPrice,
@@ -809,7 +878,19 @@
                         insurance,
                         pmi
                     },
-                    totalPayment: principalInterest + taxes + insurance + pmi
+                    buydown: {
+                        enabled: cappedRateBuydownReduction > 0,
+                        baseRate: normalizedInterestRate,
+                        adjustedRate: adjustedInterestRate,
+                        reduction: cappedRateBuydownReduction,
+                        pointsPercent: buydownPointsPercent,
+                        cost: buydownCost
+                    },
+                    hoa: normalizedHoaMonthly,
+                    rentalIncomeCredit,
+                    affordabilityPayment,
+                    grossPayment,
+                    totalPayment: grossPayment
                 };
             };
 
@@ -839,15 +920,19 @@
             useEffect(() => {
                 persistCalculatorPrefs({
                     monthlyGoal: monthlyGoal === "" ? 0 : Number(monthlyGoal) || 0,
+                    propertyType,
                     loanProgram,
                     downPaymentMode,
                     downPaymentPercent: activeDownPaymentPercent === "" ? 0 : Number(activeDownPaymentPercent) || 0,
                     downPaymentFixed: downPaymentFixed === "" ? 0 : Number(downPaymentFixed) || 0,
                     interestRate: interestRate == null ? "" : String(interestRate),
+                    rateBuydownEnabled,
+                    rateBuydownReduction,
                     loanTerm: Number(loanTerm) || 30,
-                    stateTaxRate: Number(stateTaxRate) || 1.25
+                    stateTaxRate: Number(stateTaxRate) || 1.25,
+                    hoaMonthly: hoaMonthly === "" ? 0 : Number(hoaMonthly) || 0
                 });
-            }, [monthlyGoal, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, loanTerm, stateTaxRate]);
+            }, [monthlyGoal, propertyType, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, rateBuydownEnabled, rateBuydownReduction, loanTerm, stateTaxRate, hoaMonthly]);
 
             useEffect(() => {
                 if (downPaymentMode !== "percentage") return;
@@ -959,9 +1044,13 @@
                 let high = 100000;
                 let highResults = calculateResultsForPrice({
                     price: high,
+                    propertyTypeValue: propertyType,
                     loanProgramValue: loanProgram,
                     interestRateValue: interestRate,
+                    rateBuydownEnabledValue: rateBuydownEnabled,
+                    rateBuydownReductionValue: rateBuydownReduction,
                     taxRateValue: stateTaxRate,
+                    hoaMonthlyValue: hoaMonthly,
                     loanTermValue: loanTerm,
                     downPaymentModeValue: downPaymentMode,
                     downPaymentPercentValue: activeDownPaymentPercent,
@@ -969,13 +1058,17 @@
                 });
                 let growthSteps = 0;
 
-                while (highResults.totalPayment <= normalizedMonthlyGoal && growthSteps < 25) {
+                while (highResults.affordabilityPayment <= normalizedMonthlyGoal && growthSteps < 25) {
                     high *= 2;
                     highResults = calculateResultsForPrice({
                         price: high,
+                        propertyTypeValue: propertyType,
                         loanProgramValue: loanProgram,
                         interestRateValue: interestRate,
+                        rateBuydownEnabledValue: rateBuydownEnabled,
+                        rateBuydownReductionValue: rateBuydownReduction,
                         taxRateValue: stateTaxRate,
+                        hoaMonthlyValue: hoaMonthly,
                         loanTermValue: loanTerm,
                         downPaymentModeValue: downPaymentMode,
                         downPaymentPercentValue: activeDownPaymentPercent,
@@ -988,15 +1081,19 @@
                     const mid = (low + high) / 2;
                     const midResults = calculateResultsForPrice({
                         price: mid,
+                        propertyTypeValue: propertyType,
                         loanProgramValue: loanProgram,
                         interestRateValue: interestRate,
+                        rateBuydownEnabledValue: rateBuydownEnabled,
+                        rateBuydownReductionValue: rateBuydownReduction,
                         taxRateValue: stateTaxRate,
+                        hoaMonthlyValue: hoaMonthly,
                         loanTermValue: loanTerm,
                         downPaymentModeValue: downPaymentMode,
                         downPaymentPercentValue: activeDownPaymentPercent,
                         downPaymentFixedValue: downPaymentFixed
                     });
-                    if (midResults.totalPayment <= normalizedMonthlyGoal) {
+                    if (midResults.affordabilityPayment <= normalizedMonthlyGoal) {
                         low = mid;
                     } else {
                         high = mid;
@@ -1005,9 +1102,13 @@
 
                 const finalResults = calculateResultsForPrice({
                     price: low,
+                    propertyTypeValue: propertyType,
                     loanProgramValue: loanProgram,
                     interestRateValue: interestRate,
+                    rateBuydownEnabledValue: rateBuydownEnabled,
+                    rateBuydownReductionValue: rateBuydownReduction,
                     taxRateValue: stateTaxRate,
+                    hoaMonthlyValue: hoaMonthly,
                     loanTermValue: loanTerm,
                     downPaymentModeValue: downPaymentMode,
                     downPaymentPercentValue: activeDownPaymentPercent,
@@ -1030,11 +1131,31 @@
                         taxes: roundedTaxes,
                         insurance: roundedInsurance,
                         pmi: roundedPmi
-                    }
+                    },
+                    buydown: {
+                        enabled: finalResults.buydown.enabled,
+                        baseRate: finalResults.buydown.baseRate,
+                        adjustedRate: finalResults.buydown.adjustedRate,
+                        reduction: finalResults.buydown.reduction,
+                        pointsPercent: finalResults.buydown.pointsPercent,
+                        cost: Math.round(finalResults.buydown.cost)
+                    },
+                    hoa: Math.round(finalResults.hoa),
+                    rentalIncomeCredit: Math.round(finalResults.rentalIncomeCredit),
+                    affordabilityPayment: Math.round(finalResults.affordabilityPayment),
+                    grossPayment: Math.round(finalResults.grossPayment)
                 });
-            }, [monthlyGoal, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, loanTerm, stateTaxRate]);
+            }, [monthlyGoal, propertyType, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, rateBuydownEnabled, rateBuydownReduction, loanTerm, stateTaxRate, hoaMonthly]);
 
             const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+            const formatRatePercent = (val) => {
+                const parsed = Number(val);
+                return Number.isFinite(parsed) ? String(Number(parsed.toFixed(3))) : "N/A";
+            };
+            const formatPointsPercent = (val) => {
+                const parsed = Number(val);
+                return Number.isFinite(parsed) ? String(Number(parsed.toFixed(2))) : "0";
+            };
 
             const captureSummaryCanvas = async () => {
                 const exportNode = exportRef.current?.querySelector('.export-sheet');
@@ -1124,7 +1245,8 @@
             };
 
             const calculatedBudget = Math.max(Number(results.homePrice) || 0, 0);
-            const stepTwoLink = `${JOE_INFO.kwSearchBase}${calculatedBudget}${JOE_INFO.kwSearchSuffix}`;
+            const propertySearchSuffix = PROPERTY_TYPE_SEARCH_SUFFIXES[propertyType] || JOE_INFO.kwSearchSuffix;
+            const stepTwoLink = `${JOE_INFO.kwSearchBase}${calculatedBudget}${propertySearchSuffix}`;
             const lenderLandingPageUrl = `lenders.html?budget=${calculatedBudget}`;
             const calculatorEmbedMode = new URLSearchParams(window.location.search).get("embed") || "";
             const addressMatch = JOE_INFO.address.match(/^(.*?,\s*[A-Z]{2})\s+(\d{5}(?:-\d{4})?)$/);
@@ -1136,28 +1258,53 @@
             const darkActionButtonClass = `${actionButtonBaseClass} bg-[#000000] text-white hover:bg-black`;
             const outlinedDarkActionButtonClass = `${actionButtonBaseClass} bg-white text-[#000000] border-2 border-[#000000] hover:bg-[#000000] hover:text-white`;
             const outlinedBrandActionButtonClass = `${actionButtonBaseClass} bg-white text-[#CE011F] border-2 border-[#CE011F] hover:bg-red-50`;
-            const estimatedClosingCosts = Math.round(results.homePrice * ESTIMATED_CLOSING_COST_RATE);
+            const estimatedBaseClosingCosts = Math.round(results.homePrice * ESTIMATED_CLOSING_COST_RATE);
+            const estimatedBuydownCost = results.buydown?.cost || 0;
+            const estimatedClosingCosts = estimatedBaseClosingCosts + estimatedBuydownCost;
             const estimatedCashNeeded = results.downPaymentAmount + estimatedClosingCosts;
-            const estimatedTotalMonthlyPayment = results.piti.principalInterest + results.piti.taxes + results.piti.insurance + results.piti.pmi;
+            const estimatedGrossMonthlyPayment = results.piti.principalInterest + results.piti.taxes + results.piti.insurance + results.piti.pmi + (results.hoa || 0);
+            const estimatedRentalIncomeCredit = results.rentalIncomeCredit || 0;
+            const estimatedTotalMonthlyPayment = propertyType === "mfh"
+                ? Math.max(estimatedGrossMonthlyPayment - estimatedRentalIncomeCredit, 0)
+                : estimatedGrossMonthlyPayment;
             const locationLabel = Number(stateTaxRate) === 1.15 ? "MA" : "RI";
-            const closingCostLabel = `Estimated closing costs (${Math.round(ESTIMATED_CLOSING_COST_RATE * 100)}%)`;
+            const closingCostLabel = results.buydown?.enabled ? "Closing costs + buydown" : `Estimated closing costs (${Math.round(ESTIMATED_CLOSING_COST_RATE * 100)}%)`;
+            const paymentSummaryLabel = propertyType === "mfh" ? "Net Monthly Payment" : "Monthly Payment";
             const parsedInterestRate = Number.parseFloat(interestRate);
             const currentRateValue = Number.isFinite(parsedInterestRate) ? parsedInterestRate : (Number.isFinite(liveRateValue) ? liveRateValue : null);
-            const formattedInterestRate = Number.isFinite(currentRateValue) ? currentRateValue.toFixed(2) : "N/A";
+            const formattedInterestRate = formatRatePercent(currentRateValue);
             const isUsingLiveRate = Number.isFinite(currentRateValue) && Number.isFinite(liveRateValue) && Math.abs(currentRateValue - liveRateValue) < 0.005;
             const loanProgramLabel = currentRateProgram.label;
-            const rateSummaryLine = isUsingLiveRate
-                ? `Rate used: ${formattedInterestRate}% from Mortgage News Daily ${currentRateProgram.summaryLabel}${rateDate ? ` (${rateDate})` : ""}.`
-                : `Rate used: ${formattedInterestRate}% entered manually in the calculator for the ${loanProgramLabel} option.`;
+            const formattedAdjustedInterestRate = results.buydown?.enabled ? formatRatePercent(results.buydown.adjustedRate) : formattedInterestRate;
+            const rateSummaryLine = results.buydown?.enabled
+                ? `Base rate used: ${formattedInterestRate}%${isUsingLiveRate ? ` from Mortgage News Daily ${currentRateProgram.summaryLabel}${rateDate ? ` (${rateDate})` : ""}` : ` entered manually for the ${loanProgramLabel} option`}. Modeled with a permanent buydown to ${formattedAdjustedInterestRate}% using about ${formatPointsPercent(results.buydown.pointsPercent)} point(s), paid at closing.`
+                : isUsingLiveRate
+                    ? `Rate used: ${formattedInterestRate}% from Mortgage News Daily ${currentRateProgram.summaryLabel}${rateDate ? ` (${rateDate})` : ""}.`
+                    : `Rate used: ${formattedInterestRate}% entered manually in the calculator for the ${loanProgramLabel} option.`;
             const rateSourceLine = isUsingLiveRate
                 ? `Source link: ${MND_RATE_SOURCE_URL}`
                 : Number.isFinite(liveRateValue)
                     ? `Latest Mortgage News Daily ${currentRateProgram.summaryLabel} on load: ${liveRateValue.toFixed(2)}%${rateDate ? ` (${rateDate})` : ""}. Source: ${MND_RATE_SOURCE_URL}`
                     : `Rate source link: ${MND_RATE_SOURCE_URL}`;
-            const estimateMethodLine = `Taxes reflect the ${locationLabel} setting and homeowners insurance is estimated using this calculator's current assumptions.`;
+            const estimateMethodLine = propertyType === "mfh"
+                ? `Taxes reflect the ${locationLabel} setting, homeowners insurance is estimated using this calculator's current assumptions, HOA dues are included only if entered, and Multi Family uses a ${formatCurrency(MULTIFAMILY_RENT_CREDIT)} monthly rent offset modeled as 75% of ${formatCurrency(MULTIFAMILY_MARKET_RENT)} market rent.`
+                : `Taxes reflect the ${locationLabel} setting, homeowners insurance is estimated using this calculator's current assumptions, and HOA dues are included only if entered.`;
             const shareSummaryLines = [
+                `Property type: ${currentPropertyType.label}`,
                 `Loan type: ${loanProgramLabel}`,
-                `Estimated monthly payment: ${formatCurrency(estimatedTotalMonthlyPayment)}`,
+                ...(results.buydown?.enabled ? [
+                    `Rate buydown: ${formatRatePercent(results.buydown.reduction)}% reduction`,
+                    `Bought-down rate: ${formattedAdjustedInterestRate}%`,
+                    `Estimated buydown cost: ${formatCurrency(estimatedBuydownCost)}`
+                ] : []),
+                ...(propertyType === "mfh"
+                    ? [
+                        `Gross monthly payment: ${formatCurrency(estimatedGrossMonthlyPayment)}`,
+                        `Estimated multi-family rent offset: ${formatCurrency(estimatedRentalIncomeCredit)}`,
+                        `Net monthly payment after offset: ${formatCurrency(estimatedTotalMonthlyPayment)}`
+                    ]
+                    : [`Estimated monthly payment: ${formatCurrency(estimatedTotalMonthlyPayment)}`]),
+                ...(results.hoa ? [`HOA dues: ${formatCurrency(results.hoa)}`] : []),
                 `Down payment: ${formatCurrency(results.downPaymentAmount)}`,
                 `${closingCostLabel}: ${formatCurrency(estimatedClosingCosts)}`,
                 `Estimated cash to close: ${formatCurrency(estimatedCashNeeded)}`,
@@ -1251,7 +1398,7 @@
 
                             <div className="export-summary-grid">
                                 <div className="export-stat">
-                                    <p className="export-stat-label">Monthly Payment</p>
+                                    <p className="export-stat-label">{paymentSummaryLabel}</p>
                                     <p className="export-stat-value">{formatCurrency(estimatedTotalMonthlyPayment)}</p>
                                 </div>
                                 <div className="export-stat">
@@ -1259,7 +1406,7 @@
                                     <p className="export-stat-value">{formatCurrency(results.downPaymentAmount)}</p>
                                 </div>
                                 <div className="export-stat">
-                                    <p className="export-stat-label">Closing Costs (3%)</p>
+                                    <p className="export-stat-label">{results.buydown?.enabled ? "Closing Costs + Buydown" : "Closing Costs (3%)"}</p>
                                     <p className="export-stat-value">{formatCurrency(estimatedClosingCosts)}</p>
                                 </div>
                                 <div className="export-stat">
@@ -1287,7 +1434,7 @@
                                     </div>
                                 </div>
                                 <div className="export-panel">
-                                    <p className="export-panel-title">Escrowed Funds</p>
+                                    <p className="export-panel-title">Property Costs</p>
                                     <div className="export-panel-row">
                                         <span className="export-panel-label">Taxes</span>
                                         <span className="export-panel-value">{formatCurrency(results.piti.taxes)}</span>
@@ -1296,6 +1443,18 @@
                                         <span className="export-panel-label">Insurance</span>
                                         <span className="export-panel-value">{formatCurrency(results.piti.insurance)}</span>
                                     </div>
+                                    {results.hoa > 0 && (
+                                        <div className="export-panel-row">
+                                            <span className="export-panel-label">{propertyType === "mobile" ? "Lot rent / association" : "HOA dues"}</span>
+                                            <span className="export-panel-value">{formatCurrency(results.hoa)}</span>
+                                        </div>
+                                    )}
+                                    {propertyType === "mfh" && (
+                                        <div className="export-panel-row">
+                                            <span className="export-panel-label">Estimated rent offset</span>
+                                            <span className="export-panel-value">-{formatCurrency(estimatedRentalIncomeCredit)}</span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
@@ -1317,15 +1476,15 @@
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch font-black">
                             
                             {/* Left Column */}
-                            <div className="lg:col-span-4 flex flex-col gap-6 h-full font-black">
+                            <div className="lg:col-span-5 flex flex-col gap-6 h-full font-black">
                                 <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black no-print">
                                     <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] p-4 text-white flex items-center gap-2 italic font-black">
                                         <Icon name="Calculator" size={14} /> 
                                         <h2 className="font-black uppercase text-xs tracking-widest leading-none">Monthly Affordability</h2>
                                     </div>
-                                    <div className="p-4 space-y-4 font-black">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-black">
-                                            <div>
+                                    <div className="p-4 space-y-5 font-black">
+                                        <div className="grid grid-cols-2 gap-3 font-black rounded-xl border border-gray-100 bg-white p-3">
+                                            <div className="col-span-2">
                                                 <label className="block text-xs uppercase mb-2 leading-none tracking-[0.15em] font-black text-gray-400">Monthly Target</label>
                                                 <div className="relative font-black">
                                                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
@@ -1334,14 +1493,92 @@
                                             </div>
                                             <div>
                                                 <label className="block text-xs uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Location</label>
-                                                <select value={stateTaxRate} onChange={(e) => setStateTaxRate(Number(e.target.value))} className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-base">
+                                                <select
+                                                    value={stateTaxRate}
+                                                    onChange={(e) => {
+                                                        const nextTaxRate = Number(e.target.value);
+                                                        if (propertyType === "condo") {
+                                                            setHoaMonthly(nextTaxRate === 1.15 ? CONDO_FEE_DEFAULTS.MA : CONDO_FEE_DEFAULTS.RI);
+                                                        } else if (propertyType === "mobile") {
+                                                            setHoaMonthly(nextTaxRate === 1.15 ? MOBILE_FEE_DEFAULTS.MA : MOBILE_FEE_DEFAULTS.RI);
+                                                        }
+                                                        setStateTaxRate(nextTaxRate);
+                                                    }}
+                                                    className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-base"
+                                                >
                                                     <option value={1.25}>RI</option>
                                                     <option value={1.15}>MA</option>
                                                 </select>
                                             </div>
+                                            <div>
+                                                <label className="block text-xs uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Property Type</label>
+                                                <select
+                                                    value={propertyType}
+                                                    onChange={(e) => {
+                                                        const nextPropertyType = e.target.value;
+                                                        const nextSuggestedFee = nextPropertyType === "condo"
+                                                            ? suggestedCondoFee
+                                                            : nextPropertyType === "mobile"
+                                                                ? suggestedMobileFee
+                                                                : 0;
+                                                        if (nextPropertyType === "condo" || nextPropertyType === "mobile") {
+                                                            setHoaMonthly(nextSuggestedFee);
+                                                        } else {
+                                                            setHoaMonthly(0);
+                                                        }
+                                                        setPropertyType(nextPropertyType);
+                                                    }}
+                                                    className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-base"
+                                                >
+                                                    {Object.entries(PROPERTY_TYPES).map(([typeKey, typeConfig]) => (
+                                                        <option key={typeKey} value={typeKey}>{typeConfig.label}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                            {showsTopPropertyFeeInput && (
+                                                <div className="col-span-2 rounded-xl border border-gray-100 bg-white p-3">
+                                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-2">
+                                                        <label className="block text-[10px] uppercase leading-none text-gray-400 tracking-[0.15em] font-black pt-1">
+                                                            {propertyType === "condo" ? "Monthly HOA / Condo Fee" : "Monthly Manufactured Home Lot Fee"}
+                                                        </label>
+                                                        {(propertyType === "condo" || propertyType === "mobile") && (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setHoaMonthly(suggestedTopPropertyFee)}
+                                                                className="w-full sm:w-auto shrink-0 rounded-md border border-[#CE011F] bg-red-50 px-3 py-1.5 text-[9px] uppercase tracking-[0.14em] text-[#CE011F] font-black hover:bg-red-100 transition-colors"
+                                                            >
+                                                                Use Avg Fee
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                    <div className="relative font-black">
+                                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
+                                                        <input
+                                                            type="number"
+                                                            value={hoaMonthly}
+                                                            onChange={(e) => setHoaMonthly(e.target.value === "" ? "" : Number(e.target.value))}
+                                                            className="w-full h-11 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-lg transition-all"
+                                                        />
+                                                    </div>
+                                                    <p className="mt-2 text-[10px] leading-tight text-gray-400 font-black">
+                                                        {propertyType === "condo"
+                                                            ? `Auto-filled planning default for ${Number(stateTaxRate) === 1.15 ? "MA" : "RI"} condos: ${formatCurrency(suggestedCondoFee)}/mo`
+                                                            : `Auto-filled planning default for ${Number(stateTaxRate) === 1.15 ? "MA" : "RI"} manufactured homes: ${formatCurrency(suggestedMobileFee)}/mo`}
+                                                    </p>
+                                                </div>
+                                            )}
+                                            {propertyType === "mfh" && (
+                                                <div className="col-span-2 rounded-xl border border-emerald-100 bg-emerald-50/70 p-3 text-left font-black">
+                                                    <p className="text-[10px] uppercase tracking-[0.18em] text-emerald-700 mb-1.5 font-black">Rent Used For Multi Family</p>
+                                                    <div className="space-y-1 text-[11px] leading-relaxed text-gray-500 font-black">
+                                                        <p>Modeled market rent: <span className="text-[#000000]">{formatCurrency(MULTIFAMILY_MARKET_RENT)}/mo</span></p>
+                                                        <p>Planning credit used: <span className="text-emerald-700">{formatCurrency(MULTIFAMILY_RENT_CREDIT)}/mo</span> <span className="text-gray-400">(75%)</span></p>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
 
-                                        <div className="space-y-4 font-black">
+                                        <div className="space-y-4 font-black rounded-xl border border-gray-100 bg-white p-3">
                                             <div>
                                                 <div className="flex justify-between items-center mb-2 leading-none font-black">
                                                     <label className="text-xs uppercase tracking-[0.15em] text-gray-400 font-black">Loan Type</label>
@@ -1396,10 +1633,80 @@
                                                         <span>{isRefreshingRate ? "Updating" : "Reset"}</span>
                                                     </button>
                                                 </div>
+                                                <div className="mt-3 rounded-xl border border-gray-100 bg-white p-3">
+                                                    <div className="flex justify-between items-center gap-3 mb-3">
+                                                        <label className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-black">Rate Buydown</label>
+                                                        <span className="text-[9px] uppercase tracking-[0.18em] text-gray-300 font-black">Closing Cost Item</span>
+                                                    </div>
+                                                    <div className="grid grid-cols-2 gap-1 mb-3">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setRateBuydownEnabled(false)}
+                                                            className={`py-2 text-xs font-black rounded-md border transition-all ${
+                                                                !rateBuydownEnabled
+                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
+                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                            }`}
+                                                        >
+                                                            Off
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setRateBuydownEnabled(true)}
+                                                            className={`py-2 text-xs font-black rounded-md border transition-all ${
+                                                                rateBuydownEnabled
+                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
+                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                            }`}
+                                                        >
+                                                            On
+                                                        </button>
+                                                    </div>
+                                                    {rateBuydownEnabled ? (
+                                                        <>
+                                                            <div className="grid grid-cols-4 gap-1">
+                                                                {RATE_BUYDOWN_OPTIONS.map((reductionOption) => {
+                                                                    const isActive = Math.abs(rateBuydownReduction - reductionOption) < 0.001;
+                                                                    return (
+                                                                        <button
+                                                                            key={reductionOption}
+                                                                            type="button"
+                                                                            onClick={() => setRateBuydownReduction(reductionOption)}
+                                                                            className={`py-2 text-xs font-black rounded-md border transition-all ${
+                                                                                isActive
+                                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
+                                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                                            }`}
+                                                                        >
+                                                                            -{formatRatePercent(reductionOption)}%
+                                                                        </button>
+                                                                    );
+                                                                })}
+                                                            </div>
+                                                            <div className="mt-3 rounded-lg border border-emerald-100 bg-emerald-50/70 p-3 text-left">
+                                                                <div className="flex justify-between items-center gap-3 mb-2">
+                                                                    <span className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-black">Bought-down rate</span>
+                                                                    <span className="text-sm text-[#000000] font-black">{formattedAdjustedInterestRate}%</span>
+                                                                </div>
+                                                                <div className="flex justify-between items-center gap-3 mb-2">
+                                                                    <span className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-black">Added to closing costs</span>
+                                                                    <span className="text-sm text-[#000000] font-black">{formatCurrency(estimatedBuydownCost)}</span>
+                                                                </div>
+                                                                <p className="text-[11px] leading-relaxed text-gray-500 font-black">
+                                                                    If allowed, this example is modeled as {formatPointsPercent(results.buydown.pointsPercent)} point(s) on the loan amount. One point equals 1% of the loan amount, but each loan program and lender can have different requirements, overlays, and pricing for rate buydowns. Please consult a lender for mortgage advice.
+                                                                </p>
+                                                            </div>
+                                                        </>
+                                                    ) : (
+                                                        <p className="text-[11px] leading-relaxed text-gray-500 font-black">
+                                                            A rate buydown means paying more at closing to try to lower the interest rate on the loan. This example shows how that tradeoff may affect the monthly payment and closing costs.
+                                                        </p>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div>
+                                        <div className="rounded-xl border border-gray-100 bg-white p-3">
                                             <div className="flex justify-between items-center mb-2 leading-none font-black">
                                                 <label className="text-xs uppercase tracking-[0.15em] text-gray-400 font-black">Down Payment</label>
                                                 <span className="text-[10px] uppercase tracking-widest text-gray-300 font-black">{downPaymentMode === 'percentage' ? "Percent" : "Custom Cash"}</span>
@@ -1453,32 +1760,28 @@
                                                         </div>
                                                     </div>
                                                 )}
-                                                <div className="rounded-lg border border-red-100 bg-red-50/60 p-3 text-left font-black">
-                                                    <p className="text-[10px] uppercase tracking-[0.18em] text-[#CE011F] mb-1.5 font-black">Tip</p>
+                                                <div className="rounded-lg border border-gray-100 bg-gray-50/80 p-3 text-left font-black">
+                                                    <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 mb-1.5 font-black">Down Payment Tip</p>
                                                     <p className="text-[11px] leading-relaxed text-gray-500 font-black">
                                                         {DOWN_PAYMENT_TIP_TEXT}
                                                     </p>
                                                 </div>
+                                                {propertyType === "mfh" && (
+                                                    <div className="rounded-lg border border-emerald-100 bg-emerald-50/70 p-3 text-left font-black">
+                                                        <p className="text-[10px] uppercase tracking-[0.18em] text-emerald-700 mb-1.5 font-black">Multi Family Rent Offset</p>
+                                                        <p className="text-[11px] leading-relaxed text-gray-500 font-black">
+                                                            {MULTIFAMILY_TIP_TEXT}
+                                                        </p>
+                                                    </div>
+                                                )}
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="section-surface soft-surface rounded-2xl premium-shadow p-4 font-black no-print mt-auto md:min-h-[188px]">
-                                    <div className="flex flex-col items-center justify-center gap-3 text-center font-black h-full">
-                                        <img src={JOE_INFO.logoUrl} alt="Keller Williams Leading Edge" className="h-10 w-auto object-contain" />
-                                        <img src={JOE_INFO.platinumLogoUrl} alt="Platinum Real Estate Group" className="h-12 w-auto object-contain" />
-                                        <div className="text-[13px] leading-snug text-[#4D4D4D] font-black">
-                                            <p className="uppercase tracking-[0.14em] text-[10px] text-gray-400 mb-2 font-black">Office & Brokerage</p>
-                                            <p className="font-black">{addressLineOne}</p>
-                                            {addressLineTwo && <p className="font-black">{addressLineTwo}</p>}
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div className="lg:col-span-8 flex flex-col gap-6 h-full text-center font-black">
+                            <div className="lg:col-span-7 flex flex-col gap-6 h-full text-center font-black">
                                 <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black avoid-print-break">
                                     <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] p-4 text-white flex items-center gap-2 italic font-black">
                                         <Icon name="Calculator" size={14} />
@@ -1486,12 +1789,15 @@
                                     </div>
                                     <div className="p-5 md:p-6 relative">
                                     <div className="max-w-4xl mx-auto mb-5">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 text-left">
+                                        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 text-left">
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
-                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Monthly Payment</p>
+                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">{paymentSummaryLabel}</p>
                                                 <div className="flex items-end justify-center">
                                                     <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedTotalMonthlyPayment)}</p>
                                                 </div>
+                                                {propertyType === "mfh" && (
+                                                    <p className="mt-1 text-[9px] leading-tight text-gray-400 font-black">After {formatCurrency(MULTIFAMILY_MARKET_RENT)}/mo market rent and a {formatCurrency(estimatedRentalIncomeCredit)} planning offset</p>
+                                                )}
                                             </div>
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Down Payment</p>
@@ -1500,7 +1806,7 @@
                                                 </div>
                                             </div>
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
-                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Closing Costs (3%)</p>
+                                                <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">{results.buydown?.enabled ? "Closing Costs + Buydown" : "Closing Costs (3%)"}</p>
                                                 <div className="flex items-end justify-center">
                                                     <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedClosingCosts)}</p>
                                                 </div>
@@ -1515,7 +1821,9 @@
                                     </div>
                                     <div className="mb-5">
                                         <p className="text-base text-gray-500 max-w-2xl mx-auto mb-3 leading-relaxed tracking-tight font-black">
-                                            Based on this estimated monthly payment and cash-to-close snapshot, homes in this range may be the right place to start.
+                                            {propertyType === "mfh"
+                                                ? "Based on this net payment after estimated rental income and cash-to-close snapshot, homes in this range may be the right place to start."
+                                                : "Based on this estimated monthly payment and cash-to-close snapshot, homes in this range may be the right place to start."}
                                         </p>
                                         <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-1.5 block font-black leading-none">Estimated Home Price</span>
                                         <RollingPrice value={formatCurrency(results.homePrice)} className="text-4xl md:text-6xl font-extrabold text-[#198754] leading-none drop-shadow-sm" />
@@ -1528,9 +1836,15 @@
                                             <div className="flex justify-between items-center leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black">Mortgage Insurance</span><span className="text-[17px] leading-none font-black font-black font-black font-black">{formatCurrency(results.piti.pmi)}</span></div>
                                         </div>
                                         <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 font-black font-black">
-                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="ShieldCheck" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black font-black">Escrowed Funds</h3></div>
+                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="ShieldCheck" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black font-black">Property Costs</h3></div>
                                             <div className="flex justify-between items-center mb-2 leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black">Taxes</span><span className="text-[17px] leading-none font-black font-black font-black font-black">{formatCurrency(results.piti.taxes)}</span></div>
                                             <div className="flex justify-between items-center leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black font-black font-black">Insurance</span><span className="text-[17px] leading-none font-black font-black font-black font-black font-black">{formatCurrency(results.piti.insurance)}</span></div>
+                                            {results.hoa > 0 && (
+                                                <div className="flex justify-between items-center mt-2 leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black">{propertyType === "mobile" ? "Lot Rent / Assn." : "HOA Dues"}</span><span className="text-[17px] leading-none font-black font-black font-black">{formatCurrency(results.hoa)}</span></div>
+                                            )}
+                                            {propertyType === "mfh" && (
+                                                <div className="flex justify-between items-center mt-2 leading-none font-black font-black"><span className="text-[10px] text-emerald-700 uppercase tracking-[0.18em] leading-none font-black font-black font-black">Rent Offset</span><span className="text-[17px] leading-none text-emerald-700 font-black font-black font-black">-{formatCurrency(estimatedRentalIncomeCredit)}</span></div>
+                                            )}
                                         </div>
                                     </div>
 
@@ -1544,7 +1858,7 @@
                                     <div className="text-left rounded-xl border border-red-100 bg-red-50/60 p-4 font-black">
                                         <p className="text-[10px] uppercase tracking-[0.18em] text-[#CE011F] mb-1.5 font-black">Tip</p>
                                         <p className="text-[11px] text-gray-500 leading-relaxed font-black">
-                                            {INSURANCE_TIP_TEXT}
+                                            {results.buydown?.enabled ? BUYDOWN_TIP_TEXT : INSURANCE_TIP_TEXT}
                                         </p>
                                     </div>
                                     </div>
