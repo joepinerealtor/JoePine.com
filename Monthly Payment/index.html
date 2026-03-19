@@ -1789,19 +1789,28 @@
 
                             </div>
 
-                            <div className="lg:col-span-7 flex flex-col gap-6 h-full text-center font-black">
+                            <div className="lg:col-span-7 flex flex-col gap-5 h-full text-center font-black">
                                 <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black avoid-print-break">
-                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] p-4 text-white flex items-center gap-2 italic font-black">
+                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] px-4 py-3.5 text-white flex items-center gap-2 italic font-black">
                                         <Icon name="Calculator" size={14} />
                                         <h2 className="font-black uppercase text-xs tracking-widest leading-none">Estimated Payment Snapshot</h2>
                                     </div>
-                                    <div className="p-5 md:p-6 relative">
+                                    <div className="p-4 sm:p-5 md:p-6 relative">
+                                    <div className="mb-5">
+                                        <span className="text-[10px] uppercase tracking-[0.32em] text-gray-400 mb-2 block font-black leading-none">Estimated Home Price</span>
+                                        <RollingPrice value={formatCurrency(results.homePrice)} className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#198754] leading-none drop-shadow-sm" />
+                                        <p className="mt-3 text-sm sm:text-base text-gray-500 max-w-2xl mx-auto leading-relaxed tracking-tight font-black">
+                                            {propertyType === "mfh"
+                                                ? "This estimate uses your net monthly budget after the modeled rent offset and layers in taxes, insurance, and cash-to-close assumptions."
+                                                : "This estimate starts with your target monthly budget and layers in taxes, insurance, mortgage insurance when needed, and cash-to-close assumptions."}
+                                        </p>
+                                    </div>
                                     <div className="max-w-4xl mx-auto mb-5">
                                         <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 text-left">
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">{paymentSummaryLabel}</p>
                                                 <div className="flex items-end justify-center">
-                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedTotalMonthlyPayment)}</p>
+                                                    <p className="text-[16px] sm:text-[18px] leading-none text-[#000000] font-black">{formatCurrency(estimatedTotalMonthlyPayment)}</p>
                                                 </div>
                                                 {propertyType === "mfh" && (
                                                     <p className="mt-1 text-[9px] leading-tight text-gray-400 font-black">After {formatCurrency(MULTIFAMILY_MARKET_RENT)}/mo market rent and a {formatCurrency(estimatedRentalIncomeCredit)} planning offset</p>
@@ -1810,54 +1819,46 @@
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Down Payment</p>
                                                 <div className="flex items-end justify-center">
-                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(results.downPaymentAmount)}</p>
+                                                    <p className="text-[16px] sm:text-[18px] leading-none text-[#000000] font-black">{formatCurrency(results.downPaymentAmount)}</p>
                                                 </div>
                                             </div>
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">{results.buydown?.enabled ? "Closing Costs + Buydown" : "Closing Costs (3%)"}</p>
                                                 <div className="flex items-end justify-center">
-                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedClosingCosts)}</p>
+                                                    <p className="text-[16px] sm:text-[18px] leading-none text-[#000000] font-black">{formatCurrency(estimatedClosingCosts)}</p>
                                                 </div>
                                             </div>
                                             <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 min-h-[74px] flex flex-col justify-between text-center">
                                                 <p className="text-[9px] uppercase tracking-[0.12em] text-gray-400 leading-tight font-black">Cash To Close</p>
                                                 <div className="flex items-end justify-center">
-                                                    <p className="text-[15px] leading-none text-[#000000] font-black">{formatCurrency(estimatedCashNeeded)}</p>
+                                                    <p className="text-[16px] sm:text-[18px] leading-none text-[#000000] font-black">{formatCurrency(estimatedCashNeeded)}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="mb-5">
-                                        <p className="text-base text-gray-500 max-w-2xl mx-auto mb-3 leading-relaxed tracking-tight font-black">
-                                            {propertyType === "mfh"
-                                                ? "Based on this net payment after estimated rental income and cash-to-close snapshot, homes in this range may be the right place to start."
-                                                : "Based on this estimated monthly payment and cash-to-close snapshot, homes in this range may be the right place to start."}
-                                        </p>
-                                        <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-1.5 block font-black leading-none">Estimated Home Price</span>
-                                        <RollingPrice value={formatCurrency(results.homePrice)} className="text-4xl md:text-6xl font-extrabold text-[#198754] leading-none drop-shadow-sm" />
-                                    </div>
-                                     
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left leading-none font-black mb-5">
-                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 font-black font-black">
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left leading-none font-black mb-4">
+                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
                                             <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="Building" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black">Loan Costs</h3></div>
-                                            <div className="flex justify-between items-center mb-2 leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Principal and Interest</span><span className="text-[17px] leading-none font-black font-black font-black">{formatCurrency(results.piti.principalInterest)}</span></div>
-                                            <div className="flex justify-between items-center leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black">Mortgage Insurance</span><span className="text-[17px] leading-none font-black font-black font-black font-black">{formatCurrency(results.piti.pmi)}</span></div>
+                                            <div className="flex justify-between items-center mb-2 leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Principal and Interest</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.principalInterest)}</span></div>
+                                            <div className="flex justify-between items-center leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Mortgage Insurance</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.pmi)}</span></div>
                                         </div>
-                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 font-black font-black">
-                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="ShieldCheck" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black font-black">Property Costs</h3></div>
-                                            <div className="flex justify-between items-center mb-2 leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black">Taxes</span><span className="text-[17px] leading-none font-black font-black font-black font-black">{formatCurrency(results.piti.taxes)}</span></div>
-                                            <div className="flex justify-between items-center leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black font-black font-black">Insurance</span><span className="text-[17px] leading-none font-black font-black font-black font-black font-black">{formatCurrency(results.piti.insurance)}</span></div>
+                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="ShieldCheck" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400">Property Costs</h3></div>
+                                            <div className="flex justify-between items-center mb-2 leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Taxes</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.taxes)}</span></div>
+                                            <div className="flex justify-between items-center leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Insurance</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.insurance)}</span></div>
                                             {results.hoa > 0 && (
-                                                <div className="flex justify-between items-center mt-2 leading-none font-black font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black font-black font-black">{propertyType === "mobile" ? "Lot Rent / Assn." : "HOA Dues"}</span><span className="text-[17px] leading-none font-black font-black font-black">{formatCurrency(results.hoa)}</span></div>
+                                                <div className="flex justify-between items-center mt-2 leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">{propertyType === "mobile" ? "Lot Rent / Assn." : "HOA Dues"}</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.hoa)}</span></div>
                                             )}
                                             {propertyType === "mfh" && (
-                                                <div className="flex justify-between items-center mt-2 leading-none font-black font-black"><span className="text-[10px] text-emerald-700 uppercase tracking-[0.18em] leading-none font-black font-black font-black">Rent Offset</span><span className="text-[17px] leading-none text-emerald-700 font-black font-black font-black">-{formatCurrency(estimatedRentalIncomeCredit)}</span></div>
+                                                <div className="flex justify-between items-center mt-2 leading-none font-black"><span className="text-[10px] text-emerald-700 uppercase tracking-[0.18em] leading-none font-black">Rent Offset</span><span className="text-[17px] leading-none text-emerald-700 font-black">-{formatCurrency(estimatedRentalIncomeCredit)}</span></div>
                                             )}
                                         </div>
                                     </div>
 
-                                    <div className="text-left bg-[#fcfcfc] p-4 rounded-xl border border-gray-100 border-l-4 border-l-[#CE011F] font-black font-black font-black">
-                                        <h3 className="uppercase text-[8px] mb-2 flex items-center gap-2 tracking-[0.2em] leading-none italic font-black text-[#CE011F] font-black font-black font-black"><Icon name="Calendar" size={12} color="#CE011F" /> How Escrow Works</h3>
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                                    <div className="text-left bg-[#fcfcfc] p-4 rounded-xl border border-gray-100 border-l-4 border-l-[#CE011F] font-black">
+                                        <h3 className="uppercase text-[8px] mb-2 flex items-center gap-2 tracking-[0.2em] leading-none italic font-black text-[#CE011F]"><Icon name="Calendar" size={12} color="#CE011F" /> How Escrow Works</h3>
                                         <p className="text-[11px] text-gray-500 leading-relaxed font-black">
                                             {ESCROW_HELP_TEXT}
                                         </p>
@@ -1870,11 +1871,12 @@
                                         </p>
                                     </div>
                                     </div>
+                                    </div>
                                 </div>
 
                                 <div className="font-black leading-none no-print mt-auto">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-black leading-none items-stretch">
-                                        <div className="bg-gradient-to-br from-[#CE011F] to-[#930015] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[185px] h-full flex flex-col justify-between border border-[#930015]">
+                                        <div className="bg-gradient-to-br from-[#CE011F] to-[#930015] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[168px] h-full flex flex-col justify-between border border-[#930015]">
                                             <div>
                                                 <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 1</p>
                                                 <h3 className="text-base italic uppercase mb-2 leading-none tracking-tight font-black">Get Preapproved</h3>
@@ -1887,7 +1889,7 @@
                                                 View Lender Options
                                             </button>
                                         </div>
-                                        <div className="bg-gradient-to-br from-[#E31837] to-[#CE011F] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[185px] h-full flex flex-col justify-between border border-[#CE011F]">
+                                        <div className="bg-gradient-to-br from-[#E31837] to-[#CE011F] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[168px] h-full flex flex-col justify-between border border-[#CE011F]">
                                             <div>
                                                 <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 2</p>
                                                 <h3 className="text-base italic uppercase mb-2 leading-none tracking-tight font-black">Start The Hunt</h3>
