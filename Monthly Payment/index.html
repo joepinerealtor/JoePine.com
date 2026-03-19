@@ -781,11 +781,11 @@
             const activeDownPaymentPercent = normalizePresetDownPaymentPercent(loanProgram, downPaymentPercent);
             const isPresetDisabled = (pct) => pct < currentRateProgram.minimumDownPaymentPercent;
             const DISCLAIMER_TEXT = "This calculator is a planning tool based on your target monthly payment and estimated taxes, homeowners insurance, mortgage insurance when applicable, optional HOA dues, optional rate-buydown assumptions, and a simplified multi-family rent-offset example when Multi Family is selected. Final preapproval, rental-income treatment, discount-point pricing, closing costs, HOA dues, and monthly payment can change after a lender reviews income, debts, assets, credit, loan terms, lock period, leases, appraised market rent, reserves, and actual property costs; only a licensed mortgage professional can issue a preapproval, and each office is independently owned and operated in support of equal housing opportunity.";
-            const DOWN_PAYMENT_TIP_TEXT = "RI and MA offer down payment and closing cost assistance for qualified buyers. Ask your lender during preapproval if you may be eligible.";
+            const DOWN_PAYMENT_TIP_TEXT = "RI and MA offer down payment and closing cost help for some buyers. Ask your lender what you may qualify for during preapproval.";
             const ESCROW_HELP_TEXT = "Your principal and interest stay more predictable, but taxes and homeowners insurance can change from one property to the next. Lenders collect those yearly costs monthly through escrow, so two homes at the same price can still have different total payments.";
             const INSURANCE_TIP_TEXT = "Homeowners insurance is one cost you can shop before closing. The premium you choose can raise or lower your final monthly mortgage payment.";
             const BUYDOWN_TIP_TEXT = "This planner treats a permanent rate buydown as discount points paid at closing, not as part of the down payment. Program rules, lender overlays, and pricing can all vary by loan type, lender, lock period, and market. Please consult a lender for mortgage advice. This is only an example of how a buydown may work if allowed.";
-            const MULTIFAMILY_TIP_TEXT = "When Multi Family is selected, this planner applies an estimated $1,485 per month rent offset. That is modeled as 75% of $1,980 monthly market rent from the January 2026 rent example elsewhere on your site. Actual lenders may use different rent figures, documentation, reserve requirements, or underwriting rules by program and property.";
+            const MULTIFAMILY_TIP_TEXT = `When Multi Family is selected, this planner uses a conservative ${formatCurrency(MULTIFAMILY_MARKET_RENT)} market-rent example and counts 75% of it, or ${formatCurrency(MULTIFAMILY_RENT_CREDIT)}/mo, toward affordability. Actual lenders can use different rent figures, reserve rules, lease requirements, or appraisal-based rent schedules.`;
             const showsTopPropertyFeeInput = propertyType === "condo" || propertyType === "mobile";
             const suggestedCondoFee = Number(stateTaxRate) === 1.15 ? CONDO_FEE_DEFAULTS.MA : CONDO_FEE_DEFAULTS.RI;
             const suggestedMobileFee = Number(stateTaxRate) === 1.15 ? MOBILE_FEE_DEFAULTS.MA : MOBILE_FEE_DEFAULTS.RI;
@@ -1472,18 +1472,25 @@
                     </div>
 
                     <div className="app-shell">
-                    <div className="max-w-6xl mx-auto px-4 pt-5 font-black">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch font-black">
+                    <div className="max-w-[1180px] mx-auto px-3 sm:px-4 pt-4 sm:pt-5 font-black">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch font-black">
                             
                             {/* Left Column */}
-                            <div className="lg:col-span-5 flex flex-col gap-6 h-full font-black">
+                            <div className="lg:col-span-5 flex flex-col gap-5 h-full font-black">
                                 <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black no-print">
-                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] p-4 text-white flex items-center gap-2 italic font-black">
+                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] px-4 py-3.5 text-white flex items-center gap-2 italic font-black">
                                         <Icon name="Calculator" size={14} /> 
                                         <h2 className="font-black uppercase text-xs tracking-widest leading-none">Monthly Affordability</h2>
                                     </div>
-                                    <div className="p-4 space-y-5 font-black">
-                                        <div className="grid grid-cols-2 gap-3 font-black rounded-xl border border-gray-100 bg-white p-3">
+                                    <div className="p-3 sm:p-4 space-y-4 font-black">
+                                        <div className="rounded-xl border border-gray-100 bg-white p-3 sm:p-4">
+                                            <div className="mb-3 border-b border-gray-100 pb-3">
+                                                <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-black">Start Here</p>
+                                                <p className="mt-1 text-[12px] leading-relaxed text-gray-500 font-black">
+                                                    Set the all-in monthly budget you want this home to fit inside, then adjust the property, loan, and down payment details below.
+                                                </p>
+                                            </div>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-black">
                                             <div className="col-span-2">
                                                 <label className="block text-xs uppercase mb-2 leading-none tracking-[0.15em] font-black text-gray-400">Monthly Target</label>
                                                 <div className="relative font-black">
@@ -1536,7 +1543,7 @@
                                                 </select>
                                             </div>
                                             {showsTopPropertyFeeInput && (
-                                                <div className="col-span-2 rounded-xl border border-gray-100 bg-white p-3">
+                                                <div className="col-span-2 rounded-xl border border-gray-100 bg-gray-50/80 p-3">
                                                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-2">
                                                         <label className="block text-[10px] uppercase leading-none text-gray-400 tracking-[0.15em] font-black pt-1">
                                                             {propertyType === "condo" ? "Monthly HOA / Condo Fee" : "Monthly Manufactured Home Lot Fee"}
@@ -1560,7 +1567,7 @@
                                                             className="w-full h-11 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-lg transition-all"
                                                         />
                                                     </div>
-                                                    <p className="mt-2 text-[10px] leading-tight text-gray-400 font-black">
+                                                    <p className="mt-2 text-[11px] leading-relaxed text-gray-500 font-black">
                                                         {propertyType === "condo"
                                                             ? `Auto-filled planning default for ${Number(stateTaxRate) === 1.15 ? "MA" : "RI"} condos: ${formatCurrency(suggestedCondoFee)}/mo`
                                                             : `Auto-filled planning default for ${Number(stateTaxRate) === 1.15 ? "MA" : "RI"} manufactured homes: ${formatCurrency(suggestedMobileFee)}/mo`}
@@ -1570,15 +1577,16 @@
                                             {propertyType === "mfh" && (
                                                 <div className="col-span-2 rounded-xl border border-emerald-100 bg-emerald-50/70 p-3 text-left font-black">
                                                     <p className="text-[10px] uppercase tracking-[0.18em] text-emerald-700 mb-1.5 font-black">Rent Used For Multi Family</p>
-                                                    <div className="space-y-1 text-[11px] leading-relaxed text-gray-500 font-black">
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] leading-relaxed text-gray-500 font-black">
                                                         <p>Modeled market rent: <span className="text-[#000000]">{formatCurrency(MULTIFAMILY_MARKET_RENT)}/mo</span></p>
                                                         <p>Planning credit used: <span className="text-emerald-700">{formatCurrency(MULTIFAMILY_RENT_CREDIT)}/mo</span> <span className="text-gray-400">(75%)</span></p>
                                                     </div>
                                                 </div>
                                             )}
                                         </div>
+                                        </div>
 
-                                        <div className="space-y-4 font-black rounded-xl border border-gray-100 bg-white p-3">
+                                        <div className="space-y-4 font-black rounded-xl border border-gray-100 bg-white p-3 sm:p-4">
                                             <div>
                                                 <div className="flex justify-between items-center mb-2 leading-none font-black">
                                                     <label className="text-xs uppercase tracking-[0.15em] text-gray-400 font-black">Loan Type</label>
@@ -1633,7 +1641,7 @@
                                                         <span>{isRefreshingRate ? "Updating" : "Reset"}</span>
                                                     </button>
                                                 </div>
-                                                <div className="mt-3 rounded-xl border border-gray-100 bg-white p-3">
+                                                <div className="mt-3 rounded-xl border border-gray-100 bg-gray-50/80 p-3">
                                                     <div className="flex justify-between items-center gap-3 mb-3">
                                                         <label className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-black">Rate Buydown</label>
                                                         <span className="text-[9px] uppercase tracking-[0.18em] text-gray-300 font-black">Closing Cost Item</span>
@@ -1664,7 +1672,7 @@
                                                     </div>
                                                     {rateBuydownEnabled ? (
                                                         <>
-                                                            <div className="grid grid-cols-4 gap-1">
+                                                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
                                                                 {RATE_BUYDOWN_OPTIONS.map((reductionOption) => {
                                                                     const isActive = Math.abs(rateBuydownReduction - reductionOption) < 0.001;
                                                                     return (
@@ -1706,13 +1714,13 @@
                                             </div>
                                         </div>
 
-                                        <div className="rounded-xl border border-gray-100 bg-white p-3">
+                                        <div className="rounded-xl border border-gray-100 bg-white p-3 sm:p-4">
                                             <div className="flex justify-between items-center mb-2 leading-none font-black">
                                                 <label className="text-xs uppercase tracking-[0.15em] text-gray-400 font-black">Down Payment</label>
                                                 <span className="text-[10px] uppercase tracking-widest text-gray-300 font-black">{downPaymentMode === 'percentage' ? "Percent" : "Custom Cash"}</span>
                                             </div>
                                             <div className="space-y-3 font-black">
-                                                <div className="grid grid-cols-4 gap-1 no-print font-black">
+                                                <div className="grid grid-cols-3 sm:grid-cols-4 gap-1 no-print font-black">
                                                     {PRESET_PERCENTAGES.map((pct) => {
                                                         const disabled = isPresetDisabled(pct);
                                                         const isActive = downPaymentMode === 'percentage' && activeDownPaymentPercent === pct;
@@ -1740,7 +1748,7 @@
                                                             </button>
                                                         );
                                                     })}
-                                                    <button type="button" onClick={() => setDownPaymentMode('custom')} className={`col-span-2 py-2 text-xs font-black rounded-md border transition-all ${downPaymentMode === 'custom' ? 'border-[#CE011F] bg-red-50 text-[#CE011F]' : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'}`}>Custom $</button>
+                                                    <button type="button" onClick={() => setDownPaymentMode('custom')} className={`col-span-full py-2 text-xs font-black rounded-md border transition-all ${downPaymentMode === 'custom' ? 'border-[#CE011F] bg-red-50 text-[#CE011F]' : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'}`}>Custom $</button>
                                                 </div>
                                                 {downPaymentMode === 'custom' && (
                                                     <div className="font-black">
