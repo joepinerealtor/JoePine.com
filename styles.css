@@ -1681,12 +1681,18 @@ img {
     border-color: rgba(206, 1, 31, 0.14);
 }
 
+.wealth-takeaway h3 {
+    min-height: 0;
+    max-width: 30ch;
+}
+
 .wealth-takeaway p:last-child {
     margin-bottom: 0;
 }
 
 .wealth-takeaway > p:not(.wealth-card-kicker) {
-    margin: 14px 0 0;
+    margin: 10px 0 0;
+    max-width: 72ch;
     color: rgba(30, 39, 34, 0.78);
     line-height: 1.62;
 }
@@ -1704,6 +1710,9 @@ img {
 }
 
 .wealth-move-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 18px;
     border-radius: 22px;
     background: rgba(255, 255, 255, 0.72);
@@ -1713,6 +1722,7 @@ img {
 
 .wealth-move-card h4 {
     margin: 10px 0 0;
+    min-height: 4.9rem;
     font-size: 1.05rem;
     line-height: 1.28;
     letter-spacing: -0.03em;
@@ -1720,10 +1730,21 @@ img {
     max-width: 28ch;
 }
 
+.wealth-move-card > p:not(.wealth-card-kicker) {
+    margin: 14px 0 0;
+    color: rgba(30, 39, 34, 0.76);
+    line-height: 1.62;
+}
+
 .wealth-move-stats {
     display: grid;
     gap: 8px;
     margin-top: 14px;
+    flex: 1 1 auto;
+}
+
+.wealth-move-stats .wealth-stat-row {
+    min-height: 58px;
 }
 
 .wealth-cta {
@@ -2731,6 +2752,11 @@ img {
 
     .wealth-move-grid {
         grid-template-columns: 1fr;
+    }
+
+    .wealth-move-card h4,
+    .wealth-move-stats .wealth-stat-row {
+        min-height: 0;
     }
 
     .wealth-chart-readout {

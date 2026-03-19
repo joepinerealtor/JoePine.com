@@ -288,6 +288,25 @@ if (wealthSection || wealthPreviewSection) {
             interestPaidFiveYears: 45809.3,
             appreciationFiveYears: 145053,
             totalWealthGainedFiveYears: 166835.48
+        },
+        nextPurchase: {
+            targetHomePrice: 475000,
+            buyerToday: {
+                monthlyMortgage: 3650,
+                downPayment: 16634,
+                closingCosts: 14258,
+                cashToClose: 30892,
+                riHousingAssistance: 20000
+            },
+            ownerToday: {
+                saleProceedsAvailable: 135214.07,
+                downPayment: 95000,
+                monthlyMortgage: 2905,
+                closingCosts: 27326,
+                cashToCloseBase: 109254,
+                pointsCost: 13072,
+                cashToClose: 122326
+            }
         }
     };
 
@@ -313,7 +332,6 @@ if (wealthSection || wealthPreviewSection) {
         rentMonthlyStart: wealthSection.querySelector("[data-wealth-rent-monthly-start]"),
         rentTotal: wealthSection.querySelector("[data-wealth-rent-total]"),
         rentMonthlyEnd: wealthSection.querySelector("[data-wealth-rent-monthly-end]"),
-        takeawayRentCurrent: wealthSection.querySelector("[data-wealth-takeaway-rent-current]"),
         rentMidpoint: wealthSection.querySelector("[data-wealth-rent-midpoint]"),
         renterWealth: wealthSection.querySelector("[data-wealth-renter-wealth]"),
         renterNet: wealthSection.querySelector("[data-wealth-renter-net]"),
@@ -340,9 +358,29 @@ if (wealthSection || wealthPreviewSection) {
         ownerAppreciation: wealthSection.querySelector("[data-wealth-owner-appreciation]"),
         ownerWealthRow: wealthSection.querySelector("[data-wealth-owner-wealth-row]"),
         ownerWealth: wealthSection.querySelector("[data-wealth-owner-wealth]"),
-        takeawayOwnerSellNet: wealthSection.querySelector("[data-wealth-takeaway-owner-sell-net]"),
-        takeawayOwnerAfterPaid: wealthSection.querySelector("[data-wealth-takeaway-owner-after-paid]"),
-        ownerNet: wealthSection.querySelector("[data-wealth-owner-net]")
+        ownerNet: wealthSection.querySelector("[data-wealth-owner-net]"),
+        nextBuyerMonthly: wealthSection.querySelector("[data-wealth-next-buyer-monthly]"),
+        nextBuyerCompareRow: wealthSection.querySelector("[data-wealth-next-buyer-compare-row]"),
+        nextBuyerCompare: wealthSection.querySelector("[data-wealth-next-buyer-compare]"),
+        nextBuyerPriorRow: wealthSection.querySelector("[data-wealth-next-buyer-prior-row]"),
+        nextBuyerPrior: wealthSection.querySelector("[data-wealth-next-buyer-prior]"),
+        nextBuyerDown: wealthSection.querySelector("[data-wealth-next-buyer-down]"),
+        nextBuyerClosing: wealthSection.querySelector("[data-wealth-next-buyer-closing]"),
+        nextBuyerClose: wealthSection.querySelector("[data-wealth-next-buyer-close]"),
+        nextBuyerGapRow: wealthSection.querySelector("[data-wealth-next-buyer-gap-row]"),
+        nextBuyerGap: wealthSection.querySelector("[data-wealth-next-buyer-gap]"),
+        nextBuyerNote: wealthSection.querySelector("[data-wealth-next-buyer-note]"),
+        nextOwnerMonthly: wealthSection.querySelector("[data-wealth-next-owner-monthly]"),
+        nextOwnerCompareRow: wealthSection.querySelector("[data-wealth-next-owner-compare-row]"),
+        nextOwnerCompare: wealthSection.querySelector("[data-wealth-next-owner-compare]"),
+        nextOwnerPriorRow: wealthSection.querySelector("[data-wealth-next-owner-prior-row]"),
+        nextOwnerPrior: wealthSection.querySelector("[data-wealth-next-owner-prior]"),
+        nextOwnerDown: wealthSection.querySelector("[data-wealth-next-owner-down]"),
+        nextOwnerClosing: wealthSection.querySelector("[data-wealth-next-owner-closing]"),
+        nextOwnerClose: wealthSection.querySelector("[data-wealth-next-owner-close]"),
+        nextOwnerLeftRow: wealthSection.querySelector("[data-wealth-next-owner-left-row]"),
+        nextOwnerLeft: wealthSection.querySelector("[data-wealth-next-owner-left]"),
+        nextOwnerNote: wealthSection.querySelector("[data-wealth-next-owner-note]")
     } : {};
 
     const wealthPreviewNodes = wealthPreviewSection ? {
@@ -673,6 +711,74 @@ if (wealthSection || wealthPreviewSection) {
         }
     }
 
+    function syncWealthMoveLayout() {
+        if (!wealthSection) {
+            return;
+        }
+
+        const moveGrid = wealthSection.querySelector(".wealth-move-grid");
+
+        if (!moveGrid) {
+            return;
+        }
+
+        const moveCards = Array.from(moveGrid.querySelectorAll(".wealth-move-card"));
+
+        if (!moveCards.length) {
+            return;
+        }
+
+        const moveHeadings = moveCards
+            .map((card) => card.querySelector("h4"))
+            .filter(Boolean);
+        const moveNotes = moveCards
+            .map((card) => card.querySelector("[data-wealth-next-buyer-note], [data-wealth-next-owner-note]"))
+            .filter(Boolean);
+        const moveRows = moveCards.map((card) =>
+            Array.from(card.querySelectorAll(".wealth-move-stats > .wealth-stat-row"))
+        );
+
+        moveHeadings.forEach((heading) => {
+            heading.style.minHeight = "";
+        });
+
+        moveNotes.forEach((note) => {
+            note.style.minHeight = "";
+        });
+
+        moveRows.flat().forEach((row) => {
+            row.style.minHeight = "";
+        });
+
+        if (window.innerWidth <= 980) {
+            return;
+        }
+
+        const maxHeadingHeight = Math.max(...moveHeadings.map((heading) => heading.offsetHeight), 0);
+        moveHeadings.forEach((heading) => {
+            heading.style.minHeight = `${maxHeadingHeight}px`;
+        });
+
+        const maxRowCount = Math.max(...moveRows.map((rows) => rows.length), 0);
+
+        for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex += 1) {
+            const matchingRows = moveRows
+                .map((rows) => rows[rowIndex])
+                .filter(Boolean);
+
+            const maxRowHeight = Math.max(...matchingRows.map((row) => row.offsetHeight), 0);
+
+            matchingRows.forEach((row) => {
+                row.style.minHeight = `${maxRowHeight}px`;
+            });
+        }
+
+        const maxNoteHeight = Math.max(...moveNotes.map((note) => note.offsetHeight), 0);
+        moveNotes.forEach((note) => {
+            note.style.minHeight = `${maxNoteHeight}px`;
+        });
+    }
+
     const rawAmortization = buildAmortizationSeries(
         RENT_VS_BUY_CONFIG.home.loanAmount,
         RENT_VS_BUY_CONFIG.home.mortgageRate2021,
@@ -759,18 +865,19 @@ if (wealthSection || wealthPreviewSection) {
     const paymentDifference2026 = homeownerEndingMonthlyHousingCost - renterEndingMonthlyHousingCost;
     const totalPaidDifference = homeownerTotalHousingPaidFiveYears - rentFiveYearModeledTotal;
     const renterWealthBuiltFiveYears = renterInvestmentSeries.series[renterInvestmentSeries.series.length - 1].value;
-    const homeownerRemainingBalanceAfterFiveYears = RENT_VS_BUY_CONFIG.home.loanAmount - RENT_VS_BUY_CONFIG.home.principalPaidDownFiveYears;
-    const homeownerListingCommission = RENT_VS_BUY_CONFIG.home.valueCurrent * 0.03;
-    const homeownerBuyerCommission = RENT_VS_BUY_CONFIG.home.valueCurrent * 0.02;
-    const homeownerTransferTax = Math.ceil(RENT_VS_BUY_CONFIG.home.valueCurrent / 500) * 3.75;
-    const homeownerEstimatedSaleClosingCosts = 2500;
-    const homeownerEstimatedSellNet = RENT_VS_BUY_CONFIG.home.valueCurrent
-        - homeownerListingCommission
-        - homeownerBuyerCommission
-        - homeownerTransferTax
-        - homeownerEstimatedSaleClosingCosts
-        - homeownerRemainingBalanceAfterFiveYears;
-    const homeownerSellNetAfterHousingPaid = homeownerEstimatedSellNet - homeownerTotalHousingPaidFiveYears;
+    const nextPurchaseBuyerShortfall = Math.min(
+        0,
+        RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.riHousingAssistance - RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.cashToClose
+    );
+    const nextPurchaseBuyerOutOfPocket = Math.max(
+        0,
+        RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.cashToClose - RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.riHousingAssistance
+    );
+    const nextPurchaseOwnerLeftAfterClose = RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.saleProceedsAvailable - RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.cashToClose;
+    const nextPurchaseMonthlyGap = RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.monthlyMortgage - RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.monthlyMortgage;
+    const nextPurchaseBuyerVsPriorGap = RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.monthlyMortgage - renterEndingMonthlyHousingCost;
+    const nextPurchaseOwnerVsPriorGap = RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.monthlyMortgage - homeownerEndingMonthlyHousingCost;
+
     function renderWealthPreview() {
         if (!wealthPreviewSection) {
             return;
@@ -936,10 +1043,6 @@ if (wealthSection || wealthPreviewSection) {
             wealthValueNodes.rentMonthlyEnd.textContent = formatCurrency(renterEndingMonthlyHousingCost, true);
         }
 
-        if (wealthValueNodes.takeawayRentCurrent) {
-            wealthValueNodes.takeawayRentCurrent.textContent = `${formatCurrency(RENT_VS_BUY_CONFIG.rent.monthlyCurrent)}/mo`;
-        }
-
         if (wealthValueNodes.rentMidpoint) {
             wealthValueNodes.rentMidpoint.textContent = formatCurrency(RENT_VS_BUY_CONFIG.rent.fiveYearBaseTotal);
         }
@@ -1031,16 +1134,104 @@ if (wealthSection || wealthPreviewSection) {
 
         applySignedRowStyle(wealthValueNodes.ownerWealthRow, wealthValueNodes.ownerWealth, RENT_VS_BUY_CONFIG.home.totalWealthGainedFiveYears);
 
-        if (wealthValueNodes.takeawayOwnerSellNet) {
-            wealthValueNodes.takeawayOwnerSellNet.textContent = formatCurrency(homeownerEstimatedSellNet);
-        }
-
-        if (wealthValueNodes.takeawayOwnerAfterPaid) {
-            wealthValueNodes.takeawayOwnerAfterPaid.textContent = formatCurrency(homeownerSellNetAfterHousingPaid);
-        }
-
         if (wealthValueNodes.ownerNet) {
             wealthValueNodes.ownerNet.textContent = formatCurrency(homeownerNetAfterHousingPaid);
+        }
+
+        if (wealthValueNodes.nextBuyerMonthly) {
+            wealthValueNodes.nextBuyerMonthly.textContent = `${formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.monthlyMortgage)}/mo`;
+        }
+
+        if (wealthValueNodes.nextBuyerCompare) {
+            wealthValueNodes.nextBuyerCompare.textContent = `${formatCurrency(Math.abs(nextPurchaseMonthlyGap), true)}/mo more`;
+        }
+
+        applySignedRowStyle(
+            wealthValueNodes.nextBuyerCompareRow,
+            wealthValueNodes.nextBuyerCompare,
+            -Math.abs(nextPurchaseMonthlyGap)
+        );
+
+        if (wealthValueNodes.nextBuyerPrior) {
+            wealthValueNodes.nextBuyerPrior.textContent = `${formatCurrency(nextPurchaseBuyerVsPriorGap, true)}/mo more`;
+        }
+
+        applySignedRowStyle(
+            wealthValueNodes.nextBuyerPriorRow,
+            wealthValueNodes.nextBuyerPrior,
+            -Math.abs(nextPurchaseBuyerVsPriorGap)
+        );
+
+        if (wealthValueNodes.nextBuyerDown) {
+            wealthValueNodes.nextBuyerDown.textContent = formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.downPayment);
+        }
+
+        if (wealthValueNodes.nextBuyerClosing) {
+            wealthValueNodes.nextBuyerClosing.textContent = formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.closingCosts);
+        }
+
+        if (wealthValueNodes.nextBuyerClose) {
+            wealthValueNodes.nextBuyerClose.textContent = formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.cashToClose);
+        }
+
+        if (wealthValueNodes.nextBuyerGap) {
+            wealthValueNodes.nextBuyerGap.textContent = formatSignedCurrency(nextPurchaseBuyerShortfall);
+        }
+
+        applySignedRowStyle(
+            wealthValueNodes.nextBuyerGapRow,
+            wealthValueNodes.nextBuyerGap,
+            nextPurchaseBuyerShortfall
+        );
+
+        if (wealthValueNodes.nextBuyerNote) {
+            wealthValueNodes.nextBuyerNote.textContent = `With ${formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.buyerToday.riHousingAssistance)} in Rhode Island Housing help, this FHA buyer would still need about ${formatCurrency(nextPurchaseBuyerOutOfPocket)} out of pocket to close on a roughly $475K home.`;
+        }
+
+        if (wealthValueNodes.nextOwnerMonthly) {
+            wealthValueNodes.nextOwnerMonthly.textContent = `${formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.monthlyMortgage)}/mo`;
+        }
+
+        if (wealthValueNodes.nextOwnerCompare) {
+            wealthValueNodes.nextOwnerCompare.textContent = `${formatCurrency(Math.abs(nextPurchaseMonthlyGap), true)}/mo less`;
+        }
+
+        applySignedRowStyle(
+            wealthValueNodes.nextOwnerCompareRow,
+            wealthValueNodes.nextOwnerCompare,
+            Math.abs(nextPurchaseMonthlyGap)
+        );
+
+        if (wealthValueNodes.nextOwnerPrior) {
+            wealthValueNodes.nextOwnerPrior.textContent = `${formatCurrency(nextPurchaseOwnerVsPriorGap, true)}/mo more`;
+        }
+
+        applySignedRowStyle(
+            wealthValueNodes.nextOwnerPriorRow,
+            wealthValueNodes.nextOwnerPrior,
+            -Math.abs(nextPurchaseOwnerVsPriorGap)
+        );
+
+        if (wealthValueNodes.nextOwnerDown) {
+            wealthValueNodes.nextOwnerDown.textContent = formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.downPayment);
+        }
+
+        if (wealthValueNodes.nextOwnerClosing) {
+            wealthValueNodes.nextOwnerClosing.textContent = formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.closingCosts);
+        }
+
+        if (wealthValueNodes.nextOwnerClose) {
+            wealthValueNodes.nextOwnerClose.textContent = formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.cashToClose);
+        }
+
+        if (wealthValueNodes.nextOwnerLeft) {
+            wealthValueNodes.nextOwnerLeft.textContent = formatSignedCurrency(nextPurchaseOwnerLeftAfterClose, true);
+        }
+
+        applySignedRowStyle(wealthValueNodes.nextOwnerLeftRow, wealthValueNodes.nextOwnerLeft, nextPurchaseOwnerLeftAfterClose);
+
+        if (wealthValueNodes.nextOwnerNote) {
+            wealthValueNodes.nextOwnerNote.textContent = `Using a ${formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.downPayment)} down payment and an estimated ${formatCurrency(RENT_VS_BUY_CONFIG.nextPurchase.ownerToday.pointsCost)} point-buydown cost to move the rate from 6.36% to 5.5% (modeled as about 1 point per 0.25% of rate reduction), this buyer may still have about ${formatCurrency(nextPurchaseOwnerLeftAfterClose, true)} left after closing instead of needing to bring new cash from scratch.`;
         }
 
         if (wealthRenterBreakdown) {
@@ -1158,6 +1349,7 @@ if (wealthSection || wealthPreviewSection) {
 
         renderWealthChart(chartSeries);
         syncWealthComparisonLayout();
+        syncWealthMoveLayout();
     }
 
     if (wealthChartNode) {
@@ -1183,7 +1375,10 @@ if (wealthSection || wealthPreviewSection) {
         });
     }
 
-    window.addEventListener("resize", syncWealthComparisonLayout);
+    window.addEventListener("resize", () => {
+        syncWealthComparisonLayout();
+        syncWealthMoveLayout();
+    });
 
     renderWealthPreview();
 
