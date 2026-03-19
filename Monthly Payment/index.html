@@ -1205,18 +1205,40 @@
                 const pageWidth = pdf.internal.pageSize.getWidth();
                 const pageHeight = pdf.internal.pageSize.getHeight();
                 const margin = 24;
+                const pdfQuickLinks = [
+                    { label: "Browse homes in budget", url: stepTwoLink },
+                    { label: "Mortgage News Daily rate source", url: MND_RATE_SOURCE_URL },
+                    { label: "JoePine.com", url: "https://joepine.com" }
+                ];
+                const linkSectionHeight = 84;
                 let renderWidth = pageWidth - (margin * 2);
                 let renderHeight = (canvas.height * renderWidth) / canvas.width;
+                const maxRenderHeight = pageHeight - (margin * 2) - linkSectionHeight;
 
-                if (renderHeight > pageHeight - (margin * 2)) {
-                    renderHeight = pageHeight - (margin * 2);
+                if (renderHeight > maxRenderHeight) {
+                    renderHeight = maxRenderHeight;
                     renderWidth = (canvas.width * renderHeight) / canvas.height;
                 }
 
                 const x = (pageWidth - renderWidth) / 2;
-                const y = (pageHeight - renderHeight) / 2;
+                const y = margin;
 
                 pdf.addImage(canvas.toDataURL('image/png'), 'PNG', x, y, renderWidth, renderHeight, undefined, 'FAST');
+                const linksTop = y + renderHeight + 18;
+                pdf.setFont('helvetica', 'bold');
+                pdf.setFontSize(9);
+                pdf.setTextColor(130, 130, 130);
+                pdf.text('Quick links', margin, linksTop);
+                pdf.setFont('helvetica', 'normal');
+                pdf.setFontSize(10);
+                pdf.setTextColor(206, 1, 31);
+                pdfQuickLinks.forEach((linkItem, index) => {
+                    const linkY = linksTop + 16 + (index * 14);
+                    pdf.textWithLink(linkItem.label, margin, linkY, { url: linkItem.url });
+                    pdf.setDrawColor(206, 1, 31);
+                    const textWidth = pdf.getTextWidth(linkItem.label);
+                    pdf.line(margin, linkY + 1.5, margin + textWidth, linkY + 1.5);
+                });
                 pdf.save('Joe Pine Monthly Affordability Summary.pdf');
             };
 
