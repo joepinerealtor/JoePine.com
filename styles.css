@@ -1450,12 +1450,18 @@ img {
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
+}
+
+.wealth-chart-header h3 {
+    min-height: 0;
+    max-width: 16ch;
+    margin-top: 8px;
 }
 
 .wealth-chart-readout {
-    min-width: 230px;
-    padding: 14px 16px;
+    min-width: 210px;
+    padding: 12px 14px;
     border-radius: 20px;
     background: var(--surface-soft);
     border: 1px solid rgba(217, 217, 217, 0.9);
@@ -1475,10 +1481,17 @@ img {
     line-height: 1.5;
 }
 
+.wealth-chart-note {
+    margin: 10px 0 0;
+    color: rgba(30, 39, 34, 0.72);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
 .wealth-chart-shell {
-    margin-top: 18px;
-    padding: 12px;
-    border-radius: 24px;
+    margin-top: 14px;
+    padding: 8px 10px 6px;
+    border-radius: 22px;
     border: 1px solid rgba(206, 1, 31, 0.12);
     background: linear-gradient(180deg, #fffdfd 0%, #f8f3f4 100%);
     overflow: hidden;
@@ -1488,6 +1501,8 @@ img {
     display: block;
     width: 100%;
     height: auto;
+    touch-action: pan-y;
+    cursor: crosshair;
 }
 
 .wealth-chart-grid-line {
@@ -1513,26 +1528,20 @@ img {
     stroke-width: 4;
 }
 
-.wealth-chart-line-rent {
-    stroke: #6b7280;
-    stroke-dasharray: 10 8;
+.wealth-chart-line-purchase {
+    stroke: #111111;
+    stroke-width: 3.5;
+    stroke-dasharray: 12 8;
 }
 
-.wealth-chart-line-owner-paid {
-    stroke: #8a5a44;
-    stroke-dasharray: 16 8;
-}
-
-.wealth-chart-line-principal {
-    stroke: #1f1f1f;
-}
-
-.wealth-chart-line-equity {
+.wealth-chart-line-value {
     stroke: #ce011f;
+    stroke-width: 5;
 }
 
-.wealth-chart-line-savings {
-    stroke: #51642f;
+.wealth-chart-line-balance {
+    stroke: #1d4ed8;
+    stroke-width: 4.5;
 }
 
 .wealth-chart-guide {
@@ -1545,11 +1554,32 @@ img {
     stroke-width: 2.5;
 }
 
+.wealth-chart-focus-label {
+    pointer-events: none;
+}
+
+.wealth-chart-focus-connector {
+    stroke-width: 1.5;
+    opacity: 0.52;
+}
+
+.wealth-chart-focus-label-bg {
+    fill: rgba(255, 255, 255, 0.97);
+    stroke-width: 1.4;
+}
+
+.wealth-chart-focus-label-text {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    dominant-baseline: middle;
+}
+
 .wealth-legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 16px;
-    margin-top: 16px;
+    gap: 8px 14px;
+    margin-top: 12px;
 }
 
 .wealth-legend span {
@@ -1557,7 +1587,7 @@ img {
     align-items: center;
     gap: 8px;
     color: rgba(30, 39, 34, 0.78);
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     font-weight: 700;
 }
 
@@ -1568,24 +1598,16 @@ img {
     flex-shrink: 0;
 }
 
-.wealth-legend-rent {
-    background: #6b7280;
+.wealth-legend-purchase {
+    background: #111111;
 }
 
-.wealth-legend-owner-paid {
-    background: #8a5a44;
-}
-
-.wealth-legend-principal {
-    background: #1f1f1f;
-}
-
-.wealth-legend-equity {
+.wealth-legend-value {
     background: #ce011f;
 }
 
-.wealth-legend-savings {
-    background: #51642f;
+.wealth-legend-balance {
+    background: #1d4ed8;
 }
 
 .wealth-breakdown-list {

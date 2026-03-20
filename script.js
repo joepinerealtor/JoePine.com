@@ -464,7 +464,7 @@ if (wealthSection || wealthPreviewSection) {
         let remainingBalance = principal;
         let cumulativePrincipal = 0;
         let cumulativeInterest = 0;
-        const series = [{ month: 0, principal: 0, interest: 0, payment: 0 }];
+        const series = [{ month: 0, principal: 0, interest: 0, payment: 0, balance: principal }];
 
         for (let month = 1; month <= monthsToTrack; month += 1) {
             const interestPaid = annualRate > 0 ? remainingBalance * monthlyRate : 0;
@@ -478,7 +478,8 @@ if (wealthSection || wealthPreviewSection) {
                 month,
                 principal: cumulativePrincipal,
                 interest: cumulativeInterest,
-                payment: cumulativePrincipal + cumulativeInterest
+                payment: cumulativePrincipal + cumulativeInterest,
+                balance: remainingBalance
             });
         }
 
@@ -849,6 +850,18 @@ if (wealthSection || wealthPreviewSection) {
         month: point.month,
         monthly: index === 0 ? 0 : RENT_VS_BUY_CONFIG.home.monthlyPrincipalInterest + homeownerTaxesSeries[index].monthly + homeownerInsuranceSeries[index].monthly + homeownerPmiSeries[index].monthly
     }));
+    const homeownerBalanceSeries = homeownerSeries.map((point) => ({
+        month: point.month,
+        value: Math.max(0, RENT_VS_BUY_CONFIG.home.loanAmount - point.principal)
+    }));
+    const purchasePriceSeries = Array.from({ length: RENT_VS_BUY_CONFIG.comparisonMonths + 1 }, (_, month) => ({
+        month,
+        value: RENT_VS_BUY_CONFIG.home.value2021
+    }));
+    const estimatedValueSeries = appreciationSeries.map((point) => ({
+        month: point.month,
+        value: RENT_VS_BUY_CONFIG.home.value2021 + point.value
+    }));
     const renterSavingsContributionSeries = rentPaidSeries.map((point, index) => {
         if (index === 0) {
             return 0;
@@ -906,8 +919,8 @@ if (wealthSection || wealthPreviewSection) {
         }
 
         const chartWidth = 760;
-        const chartHeight = 360;
-        const padding = { top: 18, right: 14, bottom: 42, left: 64 };
+        const chartHeight = 320;
+        const padding = { top: 14, right: 14, bottom: 34, left: 60 };
         const innerWidth = chartWidth - padding.left - padding.right;
         const innerHeight = chartHeight - padding.top - padding.bottom;
         const months = RENT_VS_BUY_CONFIG.comparisonMonths;
@@ -938,16 +951,72 @@ if (wealthSection || wealthPreviewSection) {
             return `<text class="wealth-chart-tick-label" x="${x}" y="${chartHeight - 12}" text-anchor="middle">${label}</text>`;
         }).join("");
 
-        const lineMarkup = seriesCollection.map((series) => {
+        const currentPoints = seriesCollection.map((series) => {
             const currentValue = series.values[currentMonth];
-            const currentX = xScale(currentMonth);
-            const currentY = yScale(currentValue);
+
+            return {
+                series,
+                value: currentValue,
+                x: xScale(currentMonth),
+                y: yScale(currentValue),
+                label: formatCurrency(currentValue)
+            };
+        });
+
+        const pointMarkup = currentPoints.map((point) =>
+            `<circle class="wealth-chart-focus-point" cx="${point.x}" cy="${point.y}" r="6" fill="${point.series.pointColor}"></circle>`
+        ).join("");
+
+        const labelDirection = currentMonth >= (months * 0.72) ? "left" : "right";
+        const minLabelGap = 30;
+        const labelHeight = 24;
+        const minLabelY = padding.top + 14;
+        const maxLabelY = padding.top + innerHeight - 14;
+        const positionedPoints = currentPoints
+            .slice()
+            .sort((a, b) => a.y - b.y)
+            .map((point) => ({ ...point }));
+
+        let previousLabelY = minLabelY - minLabelGap;
+        positionedPoints.forEach((point) => {
+            point.labelY = Math.max(point.y, previousLabelY + minLabelGap, minLabelY);
+            previousLabelY = point.labelY;
+        });
+
+        if (positionedPoints.length) {
+            const overflow = positionedPoints[positionedPoints.length - 1].labelY - maxLabelY;
+
+            if (overflow > 0) {
+                positionedPoints.forEach((point) => {
+                    point.labelY -= overflow;
+                });
+            }
+        }
+
+        const pointPositionMap = new Map(positionedPoints.map((point) => [point.series, point]));
+        const focusLabelMarkup = seriesCollection.map((series) => {
+            const point = pointPositionMap.get(series);
+            const textWidth = Math.max(58, point.label.length * 7.2);
+            const boxWidth = textWidth + 18;
+            const rectXBase = labelDirection === "right" ? point.x + 14 : point.x - 14 - boxWidth;
+            const rectX = clampValue(rectXBase, padding.left + 4, chartWidth - padding.right - boxWidth - 4);
+            const rectY = point.labelY - (labelHeight / 2);
+            const connectorX = labelDirection === "right" ? rectX : rectX + boxWidth;
+            const textAnchor = labelDirection === "right" ? "start" : "end";
+            const textX = labelDirection === "right" ? rectX + 9 : rectX + boxWidth - 9;
 
             return [
-                `<path class="wealth-chart-line ${series.lineClass}" d="${buildPath(series.values)}"></path>`,
-                `<circle class="wealth-chart-focus-point" cx="${currentX}" cy="${currentY}" r="6" fill="${series.pointColor}"></circle>`
+                '<g class="wealth-chart-focus-label" aria-hidden="true">',
+                `  <line class="wealth-chart-focus-connector" x1="${point.x}" y1="${point.y}" x2="${connectorX}" y2="${point.labelY}" stroke="${series.pointColor}"></line>`,
+                `  <rect class="wealth-chart-focus-label-bg" x="${rectX}" y="${rectY}" width="${boxWidth}" height="${labelHeight}" rx="12" ry="12" stroke="${series.pointColor}"></rect>`,
+                `  <text class="wealth-chart-focus-label-text" x="${textX}" y="${point.labelY + 0.5}" text-anchor="${textAnchor}" fill="${series.pointColor}">${point.label}</text>`,
+                "</g>"
             ].join("");
         }).join("");
+
+        const lineMarkup = seriesCollection.map((series) =>
+            `<path class="wealth-chart-line ${series.lineClass}" d="${buildPath(series.values)}"></path>`
+        ).join("");
 
         const guideX = xScale(currentMonth);
 
@@ -957,6 +1026,8 @@ if (wealthSection || wealthPreviewSection) {
             `<line class="wealth-chart-axis-line" x1="${padding.left}" y1="${padding.top + innerHeight}" x2="${chartWidth - padding.right}" y2="${padding.top + innerHeight}"></line>`,
             `<line class="wealth-chart-guide" x1="${guideX}" y1="${padding.top}" x2="${guideX}" y2="${padding.top + innerHeight}"></line>`,
             lineMarkup,
+            focusLabelMarkup,
+            pointMarkup,
             xAxisMarkup
         ].join("");
 
@@ -972,7 +1043,6 @@ if (wealthSection || wealthPreviewSection) {
 
     function renderWealthSection() {
         const renterNetAfterHousingPaid = renterWealthBuiltFiveYears - rentFiveYearModeledTotal;
-        const equitySeries = homeownerSeries.map((point, index) => point.principal + appreciationSeries[index].value);
         const renterPerspectivePayment2021 = paymentDifference2021;
         const renterPerspectivePayment2026 = paymentDifference2026;
         const renterPerspectiveTotal = totalPaidDifference;
@@ -1322,28 +1392,22 @@ if (wealthSection || wealthPreviewSection) {
 
         const chartSeries = [
             {
-                values: rentPaidSeries.map((point) => point.value),
-                lineClass: "wealth-chart-line-rent",
-                pointColor: "#6b7280",
-                readoutLabel: "Rent payments"
+                values: purchasePriceSeries.map((point) => point.value),
+                lineClass: "wealth-chart-line-purchase",
+                pointColor: "#111111",
+                readoutLabel: "Original purchase price"
             },
             {
-                values: homeownerPaidSeries.map((point) => point.value),
-                lineClass: "wealth-chart-line-owner-paid",
-                pointColor: "#8a5a44",
-                readoutLabel: "Mortgage payments"
-            },
-            {
-                values: homeownerSeries.map((point) => point.principal),
-                lineClass: "wealth-chart-line-principal",
-                pointColor: "#1f1f1f",
-                readoutLabel: "Owner principal paid down"
-            },
-            {
-                values: equitySeries,
-                lineClass: "wealth-chart-line-equity",
+                values: estimatedValueSeries.map((point) => point.value),
+                lineClass: "wealth-chart-line-value",
                 pointColor: "#ce011f",
-                readoutLabel: "Owner total wealth gained"
+                readoutLabel: "Estimated value"
+            },
+            {
+                values: homeownerBalanceSeries.map((point) => point.value),
+                lineClass: "wealth-chart-line-balance",
+                pointColor: "#1d4ed8",
+                readoutLabel: "Mortgage balance"
             }
         ];
 
