@@ -457,14 +457,24 @@ const trackerState = {
     stageIndex: 0,
 };
 
+const trackerStorageKeys = {
+    mode: "joeJourneyMode",
+    buyerStage: "joeJourneyBuyerStage",
+    sellerStage: "joeJourneySellerStage",
+};
+
 const isEmbeddedTracker = new URLSearchParams(window.location.search).has("embed");
 
 const trackerElements = {
     eyebrow: document.querySelector("[data-tracker-eyebrow]"),
     title: document.querySelector("[data-tracker-title]"),
     intro: document.querySelector("[data-tracker-intro]"),
-    stageList: document.querySelector("[data-stage-list]"),
+    progressTitle: document.querySelector("[data-tracker-progress-title]"),
+    progressCopy: document.querySelector("[data-tracker-progress-copy]"),
     progressFill: document.querySelector("[data-progress-fill]"),
+    rail: document.querySelector(".tracker-rail"),
+    stageList: document.querySelector("[data-stage-list]"),
+    copyCard: document.querySelector("[data-tracker-copy-card]"),
     stageStep: document.querySelector("[data-stage-step]"),
     stageMode: document.querySelector("[data-stage-mode]"),
     stageTitle: document.querySelector("[data-stage-title]"),
@@ -483,6 +493,47 @@ function getJourneyConfig() {
     return journeyData[trackerState.mode];
 }
 
+function readStoredTrackerValue(key) {
+    try {
+        return window.localStorage.getItem(key);
+    } catch (error) {
+        return null;
+    }
+}
+
+function writeStoredTrackerValue(key, value) {
+    try {
+        window.localStorage.setItem(key, String(value));
+    } catch (error) {
+        // Ignore storage issues and keep the tracker usable.
+    }
+}
+
+function getStageStorageKey(mode) {
+    return mode === "seller" ? trackerStorageKeys.sellerStage : trackerStorageKeys.buyerStage;
+}
+
+function getSavedStageIndex(mode) {
+    const config = journeyData[mode];
+    if (!config) {
+        return 0;
+    }
+
+    const rawValue = readStoredTrackerValue(getStageStorageKey(mode));
+    const parsedValue = Number.parseInt(rawValue || "", 10);
+
+    if (Number.isNaN(parsedValue)) {
+        return 0;
+    }
+
+    return Math.max(0, Math.min(parsedValue, config.stages.length - 1));
+}
+
+function persistTrackerState() {
+    writeStoredTrackerValue(trackerStorageKeys.mode, trackerState.mode);
+    writeStoredTrackerValue(getStageStorageKey(trackerState.mode), trackerState.stageIndex);
+}
+
 function setHash(mode) {
     const nextHash = `#${mode}`;
     if (window.location.hash !== nextHash) {
@@ -494,10 +545,10 @@ function renderStageButtons() {
     const config = getJourneyConfig();
 
     trackerElements.stageList.innerHTML = "";
-    trackerElements.stageList.style.setProperty("--tracker-stage-count", String(config.stages.length));
 
     config.stages.forEach((stage, index) => {
         const buttonLabel = stage.navLabel || stage.label;
+        const stepNumber = String(index + 1).padStart(2, "0");
         const button = document.createElement("button");
         button.type = "button";
         button.className = "tracker-stage-button";
@@ -515,8 +566,11 @@ function renderStageButtons() {
         }
 
         button.innerHTML = `
-            <span class="tracker-stage-name">${buttonLabel}</span>
-            <span class="tracker-stage-index">Step ${index + 1}</span>
+            <span class="tracker-stage-marker">${stepNumber}</span>
+            <span class="tracker-stage-copy">
+                <span class="tracker-stage-name">${buttonLabel}</span>
+                <span class="tracker-stage-index">${index === trackerState.stageIndex ? "Current step" : `Step ${index + 1}`}</span>
+            </span>
         `;
 
         button.addEventListener("click", () => {
@@ -586,12 +640,51 @@ function renderStageActions(stage) {
     trackerElements.stageActionRow.hidden = false;
 }
 
+function syncTrackerWorkspaceHeights() {
+    if (!trackerElements.rail || !trackerElements.copyCard) {
+        return;
+    }
+
+    const isDesktop = window.matchMedia("(min-width: 981px)").matches;
+
+    if (!isDesktop) {
+        trackerElements.rail.style.maxHeight = "";
+        return;
+    }
+
+    const cardHeight = Math.max(
+        trackerElements.copyCard.getBoundingClientRect().height,
+        trackerElements.copyCard.offsetHeight,
+        trackerElements.copyCard.clientHeight,
+        trackerElements.copyCard.scrollHeight,
+    );
+
+    if (cardHeight > 120) {
+        trackerElements.rail.style.maxHeight = `${Math.ceil(cardHeight)}px`;
+        return;
+    }
+
+    trackerElements.rail.style.maxHeight = "";
+}
+
+function getTrackerProgressInstruction() {
+    const isDesktop = window.matchMedia("(min-width: 981px)").matches;
+    return isDesktop ? "Use the left rail to move at your own pace." : "Swipe the steps above to move at your own pace.";
+}
+
+function refreshTrackerResponsiveCopy() {
+    const stage = getJourneyConfig().stages[trackerState.stageIndex];
+    if (trackerElements.progressCopy && stage) {
+        trackerElements.progressCopy.textContent = `You are in ${stage.label}. ${getTrackerProgressInstruction()}`;
+    }
+}
+
 function renderTracker() {
     const config = getJourneyConfig();
     const stage = config.stages[trackerState.stageIndex];
     const stageCount = config.stages.length;
     const progressPercent = stageCount > 1
-        ? (trackerState.stageIndex / (stageCount - 1)) * 100
+        ? ((trackerState.stageIndex + 1) / stageCount) * 100
         : 100;
 
     trackerElements.modeTabs.forEach((tab) => {
@@ -603,6 +696,8 @@ function renderTracker() {
     trackerElements.eyebrow.textContent = config.eyebrow;
     trackerElements.title.textContent = config.title;
     trackerElements.intro.textContent = config.intro;
+    trackerElements.progressTitle.textContent = `Step ${trackerState.stageIndex + 1} of ${stageCount}`;
+    trackerElements.progressCopy.textContent = `You are in ${stage.label}. ${getTrackerProgressInstruction()}`;
 
     trackerElements.stageStep.textContent = `Step ${trackerState.stageIndex + 1} of ${stageCount}`;
     trackerElements.stageMode.textContent = config.modeLabel;
@@ -618,16 +713,25 @@ function renderTracker() {
 
     trackerElements.prevButton.disabled = trackerState.stageIndex === 0;
     trackerElements.nextButton.disabled = trackerState.stageIndex === stageCount - 1;
-    trackerElements.progressFill.style.width = `${progressPercent}%`;
+    if (trackerElements.progressFill) {
+        trackerElements.progressFill.style.width = `${progressPercent}%`;
+    }
 
     renderStageButtons();
 
+    if (trackerElements.copyCard) {
+        trackerElements.copyCard.scrollTop = 0;
+    }
+
+    requestAnimationFrame(syncTrackerWorkspaceHeights);
+
     const activeButton = trackerElements.stageList.querySelector(".tracker-stage-button.is-active");
-    if (activeButton && !isEmbeddedTracker) {
-        activeButton.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    if (activeButton) {
+        activeButton.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
     }
 
     setHash(trackerState.mode);
+    persistTrackerState();
 }
 
 function setMode(mode) {
@@ -636,7 +740,7 @@ function setMode(mode) {
     }
 
     trackerState.mode = mode;
-    trackerState.stageIndex = 0;
+    trackerState.stageIndex = getSavedStageIndex(mode);
     renderTracker();
 }
 
@@ -662,9 +766,11 @@ function getRequestedMode() {
 
 function initializeTrackerFromHash() {
     const requestedMode = getRequestedMode();
-    if (requestedMode) {
-        trackerState.mode = requestedMode;
-    }
+    const storedMode = readStoredTrackerValue(trackerStorageKeys.mode);
+    const initialMode = requestedMode || (storedMode === "buyer" || storedMode === "seller" ? storedMode : trackerState.mode);
+
+    trackerState.mode = initialMode;
+    trackerState.stageIndex = getSavedStageIndex(initialMode);
 
     renderTracker();
 }
@@ -687,5 +793,10 @@ trackerElements.nextButton.addEventListener("click", () => {
 });
 
 window.addEventListener("hashchange", initializeTrackerFromHash);
+window.addEventListener("resize", () => {
+    syncTrackerWorkspaceHeights();
+    refreshTrackerResponsiveCopy();
+});
+window.addEventListener("load", syncTrackerWorkspaceHeights);
 
 initializeTrackerFromHash();

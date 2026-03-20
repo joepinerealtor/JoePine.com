@@ -151,9 +151,16 @@ img {
 
 .tracker-header {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 14px;
+    grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+    gap: 16px;
     align-items: start;
+}
+
+.tracker-heading-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
 }
 
 .tracker-heading h2 {
@@ -212,115 +219,194 @@ img {
     box-shadow: 0 18px 30px -20px rgba(76, 6, 14, 0.38);
 }
 
-.tracker-progress-shell {
-    margin-top: 18px;
-    padding: 18px 18px 14px;
-    border-radius: 24px;
+.tracker-progress-card {
     border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 24px;
     background: rgba(255, 255, 255, 0.12);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    padding: 18px;
+    align-self: stretch;
 }
 
-.tracker-progress-line {
-    position: relative;
-    height: 6px;
-    margin: 0 14px;
-    background: rgba(255, 255, 255, 0.2);
+.tracker-progress-head {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tracker-progress-head .journey-eyebrow {
+    margin: 0 0 4px;
+    color: rgba(255, 255, 255, 0.76);
+}
+
+.tracker-progress-head strong,
+.tracker-progress-head p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tracker-progress-head strong {
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+
+.tracker-progress-head p {
+    margin: 0;
+    max-width: 72ch;
+    line-height: 1.58;
+    font-size: 0.94rem;
+}
+
+.tracker-progress-bar {
+    width: 100%;
+    height: 10px;
+    margin-top: 14px;
     border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    overflow: hidden;
 }
 
-.tracker-progress-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+.tracker-progress-bar span {
+    display: block;
     width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #ffd7dd 0%, #ffffff 100%);
     border-radius: inherit;
-    background: linear-gradient(90deg, #ffd5db 0%, #ffffff 100%);
-    transition: width 240ms ease;
+    transition: width 180ms ease;
+}
+
+.tracker-workspace {
+    display: grid;
+    grid-template-columns: minmax(118px, 1fr) minmax(0, 11fr);
+    gap: 18px;
+    align-items: start;
+    margin-top: 18px;
+}
+
+.tracker-rail {
+    position: sticky;
+    top: calc(var(--site-frame-offset, 132px) + 14px);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - var(--site-frame-offset, 132px) - 28px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 6px;
 }
 
 .tracker-stage-list {
-    display: grid;
-    grid-template-columns: repeat(var(--tracker-stage-count, 1), minmax(0, 1fr));
-    gap: 6px;
-    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tracker-rail,
+.tracker-copy-card {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.44) rgba(255, 255, 255, 0.12);
+}
+
+.tracker-rail::-webkit-scrollbar,
+.tracker-copy-card::-webkit-scrollbar {
+    width: 10px;
+}
+
+.tracker-rail::-webkit-scrollbar-track,
+.tracker-copy-card::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+}
+
+.tracker-rail::-webkit-scrollbar-thumb,
+.tracker-copy-card::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.44);
+    border-radius: 999px;
 }
 
 .tracker-stage-button {
-    position: relative;
-    min-height: 110px;
-    padding: 20px 8px 8px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 16px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
     background: rgba(255, 255, 255, 0.08);
+    padding: 12px 10px;
     color: rgba(255, 255, 255, 0.78);
-    text-align: center;
+    text-align: left;
     font: inherit;
     cursor: pointer;
     transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 
-.tracker-stage-button::before {
-    content: "";
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    border-radius: 999px;
-    border: 4px solid rgba(193, 12, 33, 0.9);
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-    transform: translateX(-50%);
-    transition: background-color 160ms ease, box-shadow 160ms ease;
-}
-
 .tracker-stage-button:hover,
 .tracker-stage-button:focus-visible {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.16);
     color: #ffffff;
 }
 
-.tracker-stage-button.is-complete::before {
-    background: #ffdbe1;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.26);
-}
-
 .tracker-stage-button.is-active {
-    border-color: rgba(255, 255, 255, 0.85);
+    border-color: transparent;
     background: #ffffff;
     color: var(--journey-red-deep);
     box-shadow: 0 22px 34px -24px rgba(67, 5, 14, 0.45);
 }
 
-.tracker-stage-button.is-active::before {
-    background: var(--journey-red);
-    box-shadow: 0 0 0 2px rgba(193, 12, 33, 0.24);
+.tracker-stage-button.is-complete {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.tracker-stage-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--journey-red);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.tracker-stage-button.is-active .tracker-stage-marker {
+    background: rgba(193, 12, 33, 0.1);
+}
+
+.tracker-stage-copy {
+    display: block;
 }
 
 .tracker-stage-name {
     display: block;
-    font-size: 0.71rem;
-    font-weight: 800;
-    line-height: 1.18;
-    letter-spacing: 0.015em;
+    font-size: 0.73rem;
+    font-weight: 900;
+    line-height: 1.22;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     overflow-wrap: anywhere;
 }
 
 .tracker-stage-index {
     display: block;
-    margin-top: 4px;
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    margin-top: 6px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    color: inherit;
+    opacity: 0.72;
+}
+
+.tracker-content-shell {
+    position: sticky;
+    top: calc(var(--site-frame-offset, 132px) + 14px);
+    align-self: start;
+    min-width: 0;
 }
 
 .tracker-detail {
     display: block;
-    margin-top: 18px;
 }
 
 .tracker-copy-card {
@@ -335,6 +421,10 @@ img {
     border-top: 5px solid var(--journey-red);
     max-width: 1040px;
     margin: 0 auto;
+    max-height: calc(100vh - var(--site-frame-offset, 132px) - 28px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 18px;
 }
 
 .tracker-step-row {
@@ -672,15 +762,53 @@ img {
 @media (max-width: 980px) {
     .journey-hero-bottom,
     .tracker-header,
-    .tracker-detail,
     .journey-cta,
     .journey-footer {
         grid-template-columns: 1fr;
     }
 
+    .tracker-workspace {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .tracker-rail {
+        position: static;
+        display: block;
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        padding: 0 0 8px;
+        margin: 0 -2px;
+        scroll-snap-type: x proximity;
+    }
+
+    .tracker-stage-list {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(168px, 72vw);
+        gap: 10px;
+    }
+
+    .tracker-content-shell {
+        position: static;
+    }
+
+    .tracker-copy-card {
+        max-height: none;
+        overflow: visible;
+        padding-right: 18px;
+    }
+
     .tracker-mode-toggle,
     .journey-cta-actions {
         justify-content: flex-start;
+    }
+
+    .tracker-stage-button {
+        min-height: 104px;
+        scroll-snap-align: start;
     }
 
     .journey-footer {
@@ -711,22 +839,23 @@ img {
         padding: 16px;
     }
 
-    .tracker-progress-shell {
-        padding: 16px 12px 12px;
+    .tracker-stage-button {
+        min-width: 0;
+    }
+
+    .tracker-heading h2 {
+        max-width: 11ch;
+        font-size: clamp(1.55rem, 8vw, 2.2rem);
+    }
+
+    .tracker-heading p,
+    .tracker-progress-head p,
+    .tracker-summary {
+        font-size: 0.92rem;
     }
 
     .tracker-stage-list {
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        scroll-snap-type: x proximity;
-    }
-
-    .tracker-stage-button {
-        min-width: 132px;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
+        grid-auto-columns: minmax(156px, 78vw);
     }
 
     .tracker-copy-grid {
@@ -737,7 +866,12 @@ img {
         grid-template-columns: 1fr;
     }
 
-    .tracker-nav-row,
+    .tracker-nav-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
     .journey-cta-actions {
         flex-direction: column;
         align-items: stretch;
@@ -748,7 +882,14 @@ img {
         min-width: 0;
     }
 
-    .tracker-nav-button,
+    .tracker-nav-button {
+        width: auto;
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+    }
+
     .journey-button {
         width: 100%;
     }

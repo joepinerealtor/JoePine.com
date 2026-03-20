@@ -29,10 +29,8 @@
 
         body.is-embed .tracker-shell {
             margin: 0;
-            border-radius: 0;
+            border-radius: 30px;
             box-shadow: none;
-            border-left: 0;
-            border-right: 0;
         }
 
         body.is-embed .tracker-mode-toggle {
@@ -73,10 +71,10 @@
 
             <nav class="site-frame-nav" id="site-frame-nav-journey">
                 <a href="./index.html">Home</a>
-                <a href="./buyers.html">Buyer Resources</a>
+                <a href="./buyer-start-here.html">First Time Buyers</a>
+                <a href="./buyers.html#buyer-process">Buyer Resources</a>
                 <a href="./sellers.html">Seller Resources</a>
                 <a href="./search.html">Search Homes</a>
-                <a href="./rent-vs-buy.html">Rent vs Buy</a>
                 <a href="./index.html#about">About Joe</a>
                 <a class="site-frame-cta" href="./index.html#contact">Contact Joe</a>
             </nav>
@@ -117,78 +115,92 @@
 
         <section class="tracker-shell" id="tracker">
             <div class="tracker-header">
-                <div class="tracker-heading">
-                    <p class="journey-eyebrow" data-tracker-eyebrow>Buyer Process</p>
-                    <h2 data-tracker-title>From the moving itch to keys in hand.</h2>
-                    <p data-tracker-intro>
-                        Start with the "should we actually do this?" conversation, connect with a lender, shape the search, and move through the contract milestones with a lot more confidence.
-                    </p>
-                </div>
-
-                <div class="tracker-mode-toggle" role="tablist" aria-label="Choose buyer or seller process">
-                    <button type="button" class="tracker-mode-button is-active" data-mode-tab="buyer" aria-selected="true">Buyer</button>
-                    <button type="button" class="tracker-mode-button" data-mode-tab="seller" aria-selected="false">Seller</button>
-                </div>
-            </div>
-
-            <div class="tracker-progress-shell">
-                <div class="tracker-progress-line" aria-hidden="true">
-                    <span class="tracker-progress-fill" data-progress-fill></span>
-                </div>
-                <div class="tracker-stage-list" role="tablist" aria-label="Process stages" data-stage-list></div>
-            </div>
-
-            <div class="tracker-detail">
-                <div class="tracker-copy-card">
-                    <div class="tracker-step-row">
-                        <span class="tracker-step-badge" data-stage-step>Step 1 of 13</span>
-                        <span class="tracker-step-mode" data-stage-mode>Buyer Process</span>
+                <div class="tracker-heading-group">
+                    <div class="tracker-heading">
+                        <p class="journey-eyebrow" data-tracker-eyebrow>Buyer Process</p>
+                        <h2 data-tracker-title>From the moving itch to keys in hand.</h2>
+                        <p data-tracker-intro>
+                            Start with the "should we actually do this?" conversation, connect with a lender, shape the search, and move through the contract milestones with a lot more confidence.
+                        </p>
                     </div>
 
-                    <h3 data-stage-title>Feeling The Moving Itch?</h3>
-                    <p class="tracker-summary" data-stage-summary>
-                        This is the stage where a house catches your eye online, the idea of moving will not leave you alone, and you want to see if a move is actually feasible.
-                    </p>
-
-                    <div class="tracker-copy-grid">
-                        <article class="tracker-copy-block">
-                            <span>What Happens Next</span>
-                            <p data-stage-what>
-                                We start with the real conversation: why you want to move, what kind of change you are hoping for, whether the timing makes sense, and whether it is worth turning that late-night house-scroll into an actual plan.
-                            </p>
-                        </article>
-
-                        <article class="tracker-copy-block">
-                            <span>What To Keep In Mind</span>
-                            <p data-stage-why>
-                                Before you go deep on showings or floor plans, it helps to figure out if this is just a passing itch or the start of a move that actually makes sense for your life.
-                            </p>
-                        </article>
+                    <div class="tracker-mode-toggle" role="tablist" aria-label="Choose buyer or seller process">
+                        <button type="button" class="tracker-mode-button is-active" data-mode-tab="buyer" aria-selected="true">Buyer</button>
+                        <button type="button" class="tracker-mode-button" data-mode-tab="seller" aria-selected="false">Seller</button>
                     </div>
+                </div>
 
-                    <div class="tracker-lower-grid">
-                        <div class="tracker-checklist">
-                            <span class="tracker-checklist-title">Right Now Focus On</span>
-                            <ul data-stage-checklist>
-                                <li>Think about why you want to move and what you hope the next home will solve.</li>
-                                <li>Talk through timeline, budget comfort, and whether the move feels realistic right now.</li>
-                                <li>Start a simple list of what is pushing you to move and what you want the next home to give you.</li>
-                            </ul>
-                        </div>
+                <article class="tracker-progress-card">
+                    <div class="tracker-progress-head">
+                        <p class="journey-eyebrow">Where You Are</p>
+                        <strong data-tracker-progress-title>Step 1 of 13</strong>
+                        <p data-tracker-progress-copy>You are in Feeling The Moving Itch? Use the left rail to move at your own pace.</p>
+                    </div>
+                    <div class="tracker-progress-bar" aria-hidden="true">
+                        <span data-progress-fill></span>
+                    </div>
+                </article>
+            </div>
 
-                        <div class="tracker-side-stack">
-                            <div class="tracker-joe-note">
-                                <p class="journey-eyebrow">Joe's Take</p>
-                                <strong data-stage-note>Most moves start this way. One house online, one late-night thought, and suddenly you are mentally rearranging furniture.</strong>
+            <div class="tracker-workspace">
+                <aside class="tracker-rail" aria-label="Process steps">
+                    <div class="tracker-stage-list" role="tablist" aria-label="Process stages" data-stage-list></div>
+                </aside>
+
+                <div class="tracker-content-shell">
+                    <div class="tracker-detail">
+                        <div class="tracker-copy-card" data-tracker-copy-card>
+                            <div class="tracker-step-row">
+                                <span class="tracker-step-badge" data-stage-step>Step 1 of 13</span>
+                                <span class="tracker-step-mode" data-stage-mode>Buyer Process</span>
                             </div>
 
-                            <div class="tracker-stage-action-row" data-stage-action-row hidden></div>
-                        </div>
-                    </div>
+                            <h3 data-stage-title>Feeling The Moving Itch?</h3>
+                            <p class="tracker-summary" data-stage-summary>
+                                This is the stage where a house catches your eye online, the idea of moving will not leave you alone, and you want to see if a move is actually feasible.
+                            </p>
 
-                    <div class="tracker-nav-row">
-                        <button type="button" class="tracker-nav-button" data-prev-stage>Previous Stage</button>
-                        <button type="button" class="tracker-nav-button tracker-nav-button-primary" data-next-stage>Next Stage</button>
+                            <div class="tracker-copy-grid">
+                                <article class="tracker-copy-block">
+                                    <span>What Happens Next</span>
+                                    <p data-stage-what>
+                                        We start with the real conversation: why you want to move, what kind of change you are hoping for, whether the timing makes sense, and whether it is worth turning that late-night house-scroll into an actual plan.
+                                    </p>
+                                </article>
+
+                                <article class="tracker-copy-block">
+                                    <span>What To Keep In Mind</span>
+                                    <p data-stage-why>
+                                        Before you go deep on showings or floor plans, it helps to figure out if this is just a passing itch or the start of a move that actually makes sense for your life.
+                                    </p>
+                                </article>
+                            </div>
+
+                            <div class="tracker-lower-grid">
+                                <div class="tracker-checklist">
+                                    <span class="tracker-checklist-title">Right Now Focus On</span>
+                                    <ul data-stage-checklist>
+                                        <li>Think about why you want to move and what you hope the next home will solve.</li>
+                                        <li>Talk through timeline, budget comfort, and whether the move feels realistic right now.</li>
+                                        <li>Start a simple list of what is pushing you to move and what you want the next home to give you.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tracker-side-stack">
+                                    <div class="tracker-joe-note">
+                                        <p class="journey-eyebrow">Joe's Take</p>
+                                        <strong data-stage-note>Most moves start this way. One house online, one late-night thought, and suddenly you are mentally rearranging furniture.</strong>
+                                    </div>
+
+                                    <div class="tracker-stage-action-row" data-stage-action-row hidden></div>
+                                </div>
+                            </div>
+
+                            <div class="tracker-nav-row">
+                                <button type="button" class="tracker-nav-button" data-prev-stage>Previous Stage</button>
+                                <button type="button" class="tracker-nav-button tracker-nav-button-primary" data-next-stage>Next Stage</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

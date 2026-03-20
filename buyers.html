@@ -263,6 +263,24 @@
             box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
         }
 
+        .resource-tab-guided {
+            border-color: rgba(147, 0, 21, 0.24);
+            background: linear-gradient(180deg, rgba(206, 1, 31, 0.12) 0%, rgba(206, 1, 31, 0.07) 100%);
+            color: var(--kw-red-deep);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+        }
+
+        .resource-tab-guided:hover,
+        .resource-tab-guided:focus-visible {
+            background: linear-gradient(180deg, rgba(206, 1, 31, 0.18) 0%, rgba(206, 1, 31, 0.1) 100%);
+        }
+
+        .resource-tab-guided.is-active {
+            background: linear-gradient(135deg, #b40a1f 0%, #d31834 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.7);
+        }
+
         .resource-tab-link {
             color: var(--kw-slate);
         }
@@ -333,6 +351,10 @@
 
         .resource-frame.is-process {
             min-height: 980px;
+        }
+
+        .resource-frame.is-start-here {
+            min-height: 2500px;
         }
 
         .resource-frame.is-rent-vs-buy {
@@ -502,8 +524,8 @@
             }
 
             .resource-tab {
-                flex: 1 1 calc((100% - 50px) / 6);
-                max-width: calc((100% - 50px) / 6);
+                flex: 1 1 calc((100% - 60px) / 7);
+                max-width: calc((100% - 60px) / 7);
                 padding: 0 12px;
                 font-size: 10px;
                 letter-spacing: 0.12em;
@@ -545,10 +567,10 @@
 
             <nav class="site-frame-nav" id="site-frame-nav-buyers">
                 <a href="./index.html">Home</a>
-                <a href="./buyers.html" aria-current="page">Buyer Resources</a>
+                <a href="./buyer-start-here.html">First Time Buyers</a>
+                <a href="./buyers.html#buyer-process" aria-current="page">Buyer Resources</a>
                 <a href="./sellers.html">Seller Resources</a>
                 <a href="./search.html">Search Homes</a>
-                <a href="./rent-vs-buy.html">Rent vs Buy</a>
                 <a href="./index.html#about">About Joe</a>
                 <a class="site-frame-cta" href="./index.html#contact">Contact Joe</a>
             </nav>
@@ -561,34 +583,16 @@
                 <p class="eyebrow">Resources for Buyers</p>
                 <h1>Buying feels more manageable when the numbers and next steps make sense.</h1>
             </div>
-
-            <div class="hero-content">
-                <div class="hero-copy">
-                    <p class="hero-hook">See the money, the team, and the process in one place.</p>
-                    <p>
-                        This page is built to help you understand payment comfort, compare lender options, line up the right inspector and closing attorney,
-                        and see what usually comes next before anything starts to feel rushed.
-                    </p>
-
-                    <ul class="hero-highlights">
-                        <li>Monthly payment and home-price range calculator</li>
-                        <li>Lenders, inspectors, and attorneys in one place</li>
-                        <li>Buyer process tracker from preapproval to closing</li>
-                        <li>Cleaner starting point before you make calls</li>
-                    </ul>
-
-                </div>
-            </div>
         </section>
 
         <section class="resource-panel" id="buyer-tools">
             <div class="section-heading">
                 <div>
                     <p class="eyebrow" style="color: var(--kw-red);">Buyer Tools</p>
-                    <h2>See the money, the team, and the process in one place.</h2>
+                    <h2>Use the buyer tools below.</h2>
                 </div>
                 <p>
-                    Use the tools below to move between the buyer process, rent-vs-buy, monthly payment planning, lender options, inspectors, and closing attorneys.
+                    Use the tools below to move between the buyer process, monthly payment planning, lender options, inspectors, and closing attorneys.
                 </p>
             </div>
 
@@ -603,17 +607,6 @@
                     data-buyer-resource-tab="buyer-process"
                 >
                     Buyer Process
-                </button>
-                <button
-                    class="resource-tab"
-                    type="button"
-                    role="tab"
-                    id="buyer-tab-rent-vs-buy"
-                    aria-selected="false"
-                    aria-controls="buyer-rent-vs-buy"
-                    data-buyer-resource-tab="buyer-rent-vs-buy"
-                >
-                    Rent Vs Buy
                 </button>
                 <button
                     class="resource-tab"
@@ -668,42 +661,11 @@
                 aria-labelledby="buyer-tab-process"
                 data-buyer-resource-panel="buyer-process"
             >
-                <div class="resource-tab-copy">
-                    <h3>See what the process usually looks like from the moving itch to closed.</h3>
-                    <p>
-                        Use this tracker to see the major stages and what usually comes next.
-                    </p>
-                </div>
-
                 <iframe
                     class="resource-frame is-process"
                     data-embed-target="buyer-process"
                     src="./journey.html?embed=buyer-process#buyer"
                     title="Buyer process tracker"
-                    loading="lazy"
-                ></iframe>
-            </section>
-
-            <section
-                class="resource-tab-panel"
-                id="buyer-rent-vs-buy"
-                role="tabpanel"
-                aria-labelledby="buyer-tab-rent-vs-buy"
-                data-buyer-resource-panel="buyer-rent-vs-buy"
-                hidden
-            >
-                <div class="resource-tab-copy">
-                    <h3>See how renting and buying may separate over five years.</h3>
-                    <p>
-                        Open the side-by-side comparison here without leaving Buyer Resources.
-                    </p>
-                </div>
-
-                <iframe
-                    class="resource-frame is-rent-vs-buy"
-                    data-embed-target="buyer-rent-vs-buy"
-                    src="./rent-vs-buy.html?embed=buyer-rent-vs-buy"
-                    title="Rent versus buy comparison"
                     loading="lazy"
                 ></iframe>
             </section>
@@ -716,13 +678,6 @@
                 data-buyer-resource-panel="buyer-payment"
                 hidden
             >
-                <div class="resource-tab-copy">
-                    <h3>Start with the number that matters most.</h3>
-                    <p>
-                        Use the calculator to estimate price range, monthly payment, and cash to close.
-                    </p>
-                </div>
-
                 <iframe
                     class="resource-frame is-calculator"
                     data-embed-target="buyer-calculator"
@@ -740,24 +695,6 @@
                 data-buyer-resource-panel="buyer-lenders"
                 hidden
             >
-                <div class="resource-tab-copy">
-                    <h3>Compare lender options and understand the cash side too.</h3>
-                    <p>
-                        Review lender options here before you decide who to call about preapproval.
-                    </p>
-                    <p>
-                        This part is not just about rate quotes. It is also about understanding your likely down payment,
-                        closing costs, and what home price range makes sense once the full monthly payment comes into focus.
-                    </p>
-                    <p>
-                        Use the monthly payment calculator to get an estimate of home price, closing costs, and down payment
-                        so you can shop with clearer expectations.
-                    </p>
-                    <div class="resource-tab-actions">
-                        <a class="button button-secondary" href="#buyer-payment">Open Monthly Payment Calculator</a>
-                    </div>
-                </div>
-
                 <iframe
                     class="resource-frame is-lenders"
                     data-embed-target="buyer-lenders"
@@ -775,13 +712,6 @@
                 data-buyer-resource-panel="buyer-inspectors"
                 hidden
             >
-                <div class="resource-tab-copy">
-                    <h3>Review home inspectors before you book the appointment.</h3>
-                    <p>
-                        Review your home inspector options here without leaving the buyer page.
-                    </p>
-                </div>
-
                 <iframe
                     class="resource-frame is-inspectors"
                     data-embed-target="buyer-inspectors"
@@ -799,13 +729,6 @@
                 data-buyer-resource-panel="buyer-attorneys"
                 hidden
             >
-                <div class="resource-tab-copy">
-                    <h3>Review closing attorney options in the same place.</h3>
-                    <p>
-                        Review closing attorney options here before you get under contract.
-                    </p>
-                </div>
-
                 <iframe
                     class="resource-frame is-attorneys"
                     data-embed-target="buyer-attorneys"
@@ -863,7 +786,7 @@
 
         function getBuyerResourceTarget(hashValue) {
             const target = (hashValue || "").replace("#", "");
-            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" || target === "buyer-process" || target === "buyer-rent-vs-buy" ? target : null;
+            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" || target === "buyer-process" ? target : null;
         }
 
         function setActiveBuyerResource(target, options = {}) {
