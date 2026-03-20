@@ -582,6 +582,20 @@ function renderStageButtons() {
     });
 }
 
+function normalizeLocalActionHref(href) {
+    if (!href || window.location.protocol !== "file:" || !href.startsWith("/")) {
+        return href;
+    }
+
+    const localUrl = new URL(`..${href}`, window.location.href);
+
+    if (localUrl.pathname.endsWith("/")) {
+        localUrl.pathname = `${localUrl.pathname}index.html`;
+    }
+
+    return localUrl.href;
+}
+
 function handleStageAction(action) {
     if (!action) {
         return;
@@ -596,7 +610,7 @@ function handleStageAction(action) {
     }
 
     if (action.href) {
-        window.location.href = action.href;
+        window.location.href = normalizeLocalActionHref(action.href);
         return;
     }
 }
@@ -638,6 +652,10 @@ function renderStageActions(stage) {
     });
 
     trackerElements.stageActionRow.hidden = false;
+
+    if (typeof window.syncLocalFilePreviewUrls === "function") {
+        window.syncLocalFilePreviewUrls(trackerElements.stageActionRow);
+    }
 }
 
 function syncTrackerWorkspaceHeights() {

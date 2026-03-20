@@ -9,6 +9,43 @@ function normalizeSiteFramePath(pathname) {
     return pathname.replace(/\/+$/, "");
 }
 
+function normalizeLocalFileUrl(value) {
+    if (window.location.protocol !== "file:" || !value) {
+        return value;
+    }
+
+    if (/^(mailto:|tel:|https?:|javascript:|#)/i.test(value)) {
+        return value;
+    }
+
+    const url = new URL(value, window.location.href);
+
+    if (url.protocol !== "file:" || !url.pathname.endsWith("/")) {
+        return value;
+    }
+
+    url.pathname = `${url.pathname}index.html`;
+    return url.href;
+}
+
+function syncLocalFilePreviewUrls(root = document) {
+    if (window.location.protocol !== "file:") {
+        return;
+    }
+
+    root.querySelectorAll("a[href], iframe[src]").forEach((node) => {
+        const attr = node.tagName === "IFRAME" ? "src" : "href";
+        const originalValue = node.getAttribute(attr);
+        const normalizedValue = normalizeLocalFileUrl(originalValue);
+
+        if (normalizedValue && normalizedValue !== originalValue) {
+            node.setAttribute(attr, normalizedValue);
+        }
+    });
+}
+
+window.syncLocalFilePreviewUrls = syncLocalFilePreviewUrls;
+
 function getSiteFrameOffset() {
     if (!siteFrameWrap) {
         return 170;
@@ -82,6 +119,7 @@ function scrollToSiteFrameHash(hash, behavior = "smooth", updateHistory = false)
 
 syncSiteFrameCondensed();
 updateSiteFrameOffset();
+syncLocalFilePreviewUrls();
 
 window.addEventListener("resize", () => {
     syncSiteFrameCondensed();

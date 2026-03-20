@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
         name="description"
         content="Seller tools from Joe Pine to help you understand pricing, launch strategy, proceeds, and the selling process with more confidence."
     >
-    <link rel="stylesheet" href="/site-frame.css">
+    <link rel="stylesheet" href="../site-frame.css">
     <style>
         :root {
             --kw-red: #ce011f;
@@ -380,6 +380,159 @@
             margin-bottom: 0;
         }
 
+        .seller-marketing-shell {
+            padding: 24px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--kw-red-deep) 0%, var(--kw-red) 58%, var(--kw-red-bright) 100%);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+        }
+
+        .seller-marketing-header {
+            margin-bottom: 18px;
+        }
+
+        .seller-marketing-header .eyebrow {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .seller-marketing-header h3 {
+            margin: 10px 0 0;
+            max-width: 14ch;
+            color: #ffffff;
+            font-size: clamp(2rem, 4vw, 3.35rem);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .seller-marketing-stage {
+            display: grid;
+            grid-template-columns: 200px minmax(0, 1fr);
+            gap: 18px;
+            align-items: stretch;
+            min-height: 760px;
+        }
+
+        .seller-marketing-rail {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 0;
+        }
+
+        .seller-marketing-tab {
+            padding: 16px 18px 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+        }
+
+        .seller-marketing-tab:hover,
+        .seller-marketing-tab:focus-visible {
+            transform: translateY(-1px);
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.34);
+        }
+
+        .seller-marketing-tab span {
+            display: block;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .seller-marketing-tab strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .seller-marketing-tab.is-active {
+            background: #ffffff;
+            border-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 16px 28px -22px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+        }
+
+        .seller-marketing-tab.is-active span {
+            color: var(--kw-red);
+        }
+
+        .seller-marketing-tab.is-active strong {
+            color: var(--kw-ink);
+        }
+
+        .seller-marketing-panel-frame {
+            min-height: 0;
+            padding: 24px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            background: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+            overflow: hidden;
+        }
+
+        .seller-marketing-panel {
+            height: 100%;
+            overflow: auto;
+            padding-right: 14px;
+            scrollbar-gutter: stable;
+        }
+
+        .seller-marketing-panel[hidden] {
+            display: none;
+        }
+
+        .seller-marketing-panel .proof-panel,
+        .seller-marketing-panel .offer-panel,
+        .seller-marketing-panel .steps-panel {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .seller-marketing-panel .section-heading {
+            max-width: 64ch;
+            margin-bottom: 22px;
+        }
+
+        .seller-marketing-panel .section-heading .eyebrow {
+            margin: 0;
+        }
+
+        .seller-marketing-panel .section-heading h2 {
+            margin: 10px 0 0;
+            font-size: clamp(1.9rem, 3vw, 3.1rem);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .seller-marketing-panel .section-heading p:last-child {
+            margin: 14px 0 0;
+            color: rgba(30, 39, 34, 0.78);
+            line-height: 1.7;
+        }
+
+        .seller-marketing-panel .proof-grid,
+        .seller-marketing-panel .offer-list,
+        .seller-marketing-panel .step-list {
+            margin-top: 20px;
+        }
+
         .resource-tab-panel[hidden] {
             display: none;
         }
@@ -578,6 +731,32 @@
                 grid-template-columns: 1fr;
             }
 
+            .seller-marketing-stage {
+                grid-template-columns: 1fr;
+                min-height: 0;
+            }
+
+            .seller-marketing-rail {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+
+            .seller-marketing-tab {
+                min-width: 190px;
+                flex-shrink: 0;
+            }
+
+            .seller-marketing-panel-frame {
+                padding: 18px;
+            }
+
+            .seller-marketing-panel {
+                height: auto;
+                overflow: visible;
+                padding-right: 0;
+            }
+
             .hero-highlights {
                 grid-template-columns: 1fr;
             }
@@ -634,6 +813,16 @@
             .button {
                 width: 100%;
             }
+
+            .seller-marketing-shell {
+                padding: 18px;
+                border-radius: 24px;
+            }
+
+            .seller-marketing-header h3 {
+                max-width: none;
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -641,9 +830,9 @@
     <div class="site-frame-wrap">
         <header class="site-frame-header">
             <div class="site-frame-top">
-                <a class="site-frame-brand" href="/" aria-label="Joe Pine home">
+                <a class="site-frame-brand" href="../index.html" aria-label="Joe Pine home">
                     <span class="site-frame-photo">
-                        <img src="/Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                        <img src="../Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
                     </span>
                     <span class="site-frame-copy">
                         <strong>Joe Pine</strong>
@@ -669,13 +858,13 @@
             </div>
 
             <nav class="site-frame-nav" id="site-frame-nav-sellers">
-                <a href="/">Home</a>
-                <a href="/buyer-start-here/">First Time Buyers</a>
-                <a href="/buyers/#buyer-process">Buyer Resources</a>
-                <a href="/sellers/" aria-current="page">Seller Resources</a>
-                <a href="/search/">Search Homes</a>
-                <a href="/#about">About Joe</a>
-                <a class="site-frame-cta" href="/#contact">Contact Joe</a>
+                <a href="../index.html">Home</a>
+                <a href="../buyer-start-here/">First Time Buyers</a>
+                <a href="../buyers/#buyer-process">Buyer Resources</a>
+                <a href="../sellers/" aria-current="page">Seller Resources</a>
+                <a href="../search/">Search Homes</a>
+                <a href="../index.html#about">About Joe</a>
+                <a class="site-frame-cta" href="../index.html#contact">Contact Joe</a>
             </nav>
         </header>
     </div>
@@ -753,143 +942,173 @@
                 aria-labelledby="seller-tab-marketing"
                 data-seller-resource-panel="seller-marketing"
             >
-                <div class="marketing-stack">
-                    <section class="proof-panel">
-                        <div class="section-heading">
-                            <div>
-                                <p class="eyebrow" style="color: var(--kw-red);">Homes.com Advantage</p>
-                                <h2>My Homes.com membership gives your listing a real launch advantage.</h2>
-                            </div>
-                            <p>
-                                You do not need the platform jargon. What matters is simple: your listing can get stronger placement,
-                                broader reach, and direct lead flow back to me instead of feeling like just another upload.
-                            </p>
+                <div class="seller-marketing-shell">
+                    <div class="seller-marketing-header">
+                        <p class="eyebrow">Marketing Edge</p>
+                        <h3>See how the reach, package, and launch plan work together.</h3>
+                    </div>
+
+                    <div class="seller-marketing-stage">
+                        <div class="seller-marketing-rail" role="tablist" aria-label="Seller marketing sections">
+                            <button class="seller-marketing-tab is-active" type="button" role="tab" id="seller-marketing-tab-homescom" aria-selected="true" aria-controls="seller-marketing-panel-homescom" data-seller-marketing-tab="homescom">
+                                <span>Reach</span>
+                                <strong>Homes.com Advantage</strong>
+                            </button>
+                            <button class="seller-marketing-tab" type="button" role="tab" id="seller-marketing-tab-package" aria-selected="false" aria-controls="seller-marketing-panel-package" tabindex="-1" data-seller-marketing-tab="package">
+                                <span>Package</span>
+                                <strong>Marketing Package</strong>
+                            </button>
+                            <button class="seller-marketing-tab" type="button" role="tab" id="seller-marketing-tab-launch" aria-selected="false" aria-controls="seller-marketing-panel-launch" tabindex="-1" data-seller-marketing-tab="launch">
+                                <span>Launch</span>
+                                <strong>Launch Plan</strong>
+                            </button>
                         </div>
 
-                        <div class="proof-grid">
-                            <article class="proof-card">
-                                <span>Early Traction</span>
-                                <strong>25%</strong>
-                                <h3>Launch momentum is a real edge.</h3>
-                                <p>
-                                    Homes.com says member-marketed listings are 25% more likely to go under contract within the first
-                                    10 days. That early window matters, which is why I care so much about how your listing looks and launches.
-                                </p>
-                            </article>
+                        <div class="seller-marketing-panel-frame">
+                            <section class="seller-marketing-panel" id="seller-marketing-panel-homescom" role="tabpanel" aria-labelledby="seller-marketing-tab-homescom" data-seller-marketing-panel="homescom">
+                                <section class="proof-panel">
+                                    <div class="section-heading">
+                                        <div>
+                                            <p class="eyebrow" style="color: var(--kw-red);">Homes.com Advantage</p>
+                                            <h2>My Homes.com membership gives your listing a real launch advantage.</h2>
+                                        </div>
+                                        <p>
+                                            You do not need the platform jargon. What matters is simple: your listing can get stronger placement,
+                                            broader reach, and direct lead flow back to me instead of feeling like just another upload.
+                                        </p>
+                                    </div>
 
-                            <article class="proof-card">
-                                <span>Audience Reach</span>
-                                <strong>100M+</strong>
-                                <h3>Big audience helps good listings move faster.</h3>
-                                <p>
-                                    Homes.com says more than 100 million people search homes on the platform each month. Great
-                                    presentation and pricing still matter, but reach like that gives your listing a better chance to be seen quickly.
-                                </p>
-                            </article>
+                                    <div class="proof-grid">
+                                        <article class="proof-card">
+                                            <span>Early Traction</span>
+                                            <strong>25%</strong>
+                                            <h3>Launch momentum is a real edge.</h3>
+                                            <p>
+                                                Homes.com says member-marketed listings are 25% more likely to go under contract within the first
+                                                10 days. That early window matters, which is why I care so much about how your listing looks and launches.
+                                            </p>
+                                        </article>
 
-                            <article class="proof-card">
-                                <span>Retargeting Reach</span>
-                                <strong>1,000+</strong>
-                                <h3>Interested buyers keep seeing your home.</h3>
-                                <p>
-                                    Homes.com says retargeting can place listing ads across more than 1,000 websites and social
-                                    platforms. That helps your listing stay in front of buyers after the first click instead of disappearing.
-                                </p>
-                            </article>
+                                        <article class="proof-card">
+                                            <span>Audience Reach</span>
+                                            <strong>100M+</strong>
+                                            <h3>Big audience helps good listings move faster.</h3>
+                                            <p>
+                                                Homes.com says more than 100 million people search homes on the platform each month. Great
+                                                presentation and pricing still matter, but reach like that gives your listing a better chance to be seen quickly.
+                                            </p>
+                                        </article>
+
+                                        <article class="proof-card">
+                                            <span>Retargeting Reach</span>
+                                            <strong>1,000+</strong>
+                                            <h3>Interested buyers keep seeing your home.</h3>
+                                            <p>
+                                                Homes.com says retargeting can place listing ads across more than 1,000 websites and social
+                                                platforms. That helps your listing stay in front of buyers after the first click instead of disappearing.
+                                            </p>
+                                        </article>
+                                    </div>
+                                </section>
+                            </section>
+
+                            <section class="seller-marketing-panel" id="seller-marketing-panel-package" role="tabpanel" aria-labelledby="seller-marketing-tab-package" data-seller-marketing-panel="package" hidden>
+                                <section class="offer-panel">
+                                    <div class="section-heading">
+                                        <div>
+                                            <p class="eyebrow" style="color: var(--kw-red);">Marketing Package</p>
+                                            <h2>Here is what supports the launch.</h2>
+                                        </div>
+                                        <p>
+                                            Every piece is meant to help buyers notice your home faster, understand it better, and act with more confidence.
+                                        </p>
+                                    </div>
+
+                                    <div class="offer-list">
+                                        <article class="offer-item">
+                                            <span>Search Visibility</span>
+                                            <h3>Your listing starts with stronger placement, not a basic upload.</h3>
+                                            <p>
+                                                Because I am a Homes.com Member Agent, your listing can show higher on Homes.com right when
+                                                launch momentum matters most. In simple terms, that means more buyers can find your home sooner.
+                                            </p>
+                                        </article>
+
+                                        <article class="offer-item">
+                                            <span>Visual Package</span>
+                                            <h3>The media package is built to stop the scroll.</h3>
+                                            <p>
+                                                Cinematic video, twilight photography, and drone photography help your home feel more polished
+                                                online. Twilight brings out curb appeal, video adds emotion, and drone photography adds scale,
+                                                setting, and context.
+                                            </p>
+                                        </article>
+
+                                        <article class="offer-item">
+                                            <span>3D + Floor Plans</span>
+                                            <h3>Buyers can understand the home before they ever book a showing.</h3>
+                                            <p>
+                                                Interior and exterior 3D tours, plus detailed floor plans and measurements, help buyers understand
+                                                layout, flow, and fit before they ever schedule a showing.
+                                            </p>
+                                        </article>
+
+                                        <article class="offer-item">
+                                            <span>Retargeting + Lead Flow</span>
+                                            <h3>Your marketing does not stop at the listing page.</h3>
+                                            <p>
+                                                I send postcard mailers to the neighborhood because neighbors often know the next buyer. Your
+                                                listing can also show up in paid social, stay visible through retargeting, and point buyer interest
+                                                back to me so the follow-up stays cleaner and more direct.
+                                            </p>
+                                        </article>
+                                    </div>
+                                </section>
+                            </section>
+
+                            <section class="seller-marketing-panel" id="seller-marketing-panel-launch" role="tabpanel" aria-labelledby="seller-marketing-tab-launch" data-seller-marketing-panel="launch" hidden>
+                                <section class="steps-panel">
+                                    <div class="section-heading">
+                                        <div>
+                                            <p class="eyebrow" style="color: var(--kw-red);">Launch Plan</p>
+                                            <h2>Clear prep. Smarter showings. Stronger follow-through.</h2>
+                                        </div>
+                                        <p>
+                                            The best launches are coordinated. Pricing, media, showing strategy, and follow-up should all support each other from day one.
+                                        </p>
+                                    </div>
+
+                                    <div class="step-list">
+                                        <article class="step-item">
+                                            <span class="step-number">1</span>
+                                            <h3>Prep</h3>
+                                            <p>
+                                                We line up price, prep, media, and launch timing before your home goes live so nothing feels rushed.
+                                            </p>
+                                        </article>
+
+                                        <article class="step-item">
+                                            <span class="step-number">2</span>
+                                            <h3>Open House Strategy</h3>
+                                            <p>
+                                                I often prioritize open houses over scattered private showings because they respect your schedule
+                                                better and can create stronger buyer urgency. One focused block of traffic is usually easier on
+                                                you than constant interruptions all week.
+                                            </p>
+                                        </article>
+
+                                        <article class="step-item">
+                                            <span class="step-number">3</span>
+                                            <h3>Follow Through</h3>
+                                            <p>
+                                                I stay on the response and follow-up so buyer attention does not go cold after the first click, showing, or open house.
+                                            </p>
+                                        </article>
+                                    </div>
+                                </section>
+                            </section>
                         </div>
-                    </section>
-
-                    <section class="offer-panel">
-                        <div class="section-heading">
-                            <div>
-                                <p class="eyebrow" style="color: var(--kw-red);">Marketing Package</p>
-                                <h2>Here is what supports the launch.</h2>
-                            </div>
-                            <p>
-                                Every piece is meant to help buyers notice your home faster, understand it better, and act with more confidence.
-                            </p>
-                        </div>
-
-                        <div class="offer-list">
-                            <article class="offer-item">
-                                <span>Search Visibility</span>
-                                <h3>Your listing starts with stronger placement, not a basic upload.</h3>
-                                <p>
-                                    Because I am a Homes.com Member Agent, your listing can show higher on Homes.com right when
-                                    launch momentum matters most. In simple terms, that means more buyers can find your home sooner.
-                                </p>
-                            </article>
-
-                            <article class="offer-item">
-                                <span>Visual Package</span>
-                                <h3>The media package is built to stop the scroll.</h3>
-                                <p>
-                                    Cinematic video, twilight photography, and drone photography help your home feel more polished
-                                    online. Twilight brings out curb appeal, video adds emotion, and drone photography adds scale,
-                                    setting, and context.
-                                </p>
-                            </article>
-
-                            <article class="offer-item">
-                                <span>3D + Floor Plans</span>
-                                <h3>Buyers can understand the home before they ever book a showing.</h3>
-                                <p>
-                                    Interior and exterior 3D tours, plus detailed floor plans and measurements, help buyers understand
-                                    layout, flow, and fit before they ever schedule a showing.
-                                </p>
-                            </article>
-
-                            <article class="offer-item">
-                                <span>Retargeting + Lead Flow</span>
-                                <h3>Your marketing does not stop at the listing page.</h3>
-                                <p>
-                                    I send postcard mailers to the neighborhood because neighbors often know the next buyer. Your
-                                    listing can also show up in paid social, stay visible through retargeting, and point buyer interest
-                                    back to me so the follow-up stays cleaner and more direct.
-                                </p>
-                            </article>
-                        </div>
-                    </section>
-
-                    <section class="steps-panel">
-                        <div class="section-heading">
-                            <div>
-                                <p class="eyebrow" style="color: var(--kw-red);">Launch Plan</p>
-                                <h2>Clear prep. Smarter showings. Stronger follow-through.</h2>
-                            </div>
-                            <p>
-                                The best launches are coordinated. Pricing, media, showing strategy, and follow-up should all support each other from day one.
-                            </p>
-                        </div>
-
-                        <div class="step-list">
-                            <article class="step-item">
-                                <span class="step-number">1</span>
-                                <h3>Prep</h3>
-                                <p>
-                                    We line up price, prep, media, and launch timing before your home goes live so nothing feels rushed.
-                                </p>
-                            </article>
-
-                            <article class="step-item">
-                                <span class="step-number">2</span>
-                                <h3>Open House Strategy</h3>
-                                <p>
-                                    I often prioritize open houses over scattered private showings because they respect your schedule
-                                    better and can create stronger buyer urgency. One focused block of traffic is usually easier on
-                                    you than constant interruptions all week.
-                                </p>
-                            </article>
-
-                            <article class="step-item">
-                                <span class="step-number">3</span>
-                                <h3>Follow Through</h3>
-                                <p>
-                                    I stay on the response and follow-up so buyer attention does not go cold after the first click, showing, or open house.
-                                </p>
-                            </article>
-                        </div>
-                    </section>
+                    </div>
                 </div>
             </section>
 
@@ -904,7 +1123,7 @@
                 <iframe
                     class="resource-frame is-process"
                     data-embed-target="seller-process"
-                    src="/journey/?embed=seller-process#seller"
+                    src="../journey/index.html?embed=seller-process#seller"
                     title="Seller process tracker"
                     loading="lazy"
                 ></iframe>
@@ -921,7 +1140,7 @@
                 <iframe
                     class="resource-frame is-tool"
                     data-embed-target="seller-proceeds"
-                    src="/Seller%20Net/?embed=seller-proceeds"
+                    src="../Seller%20Net/index.html?embed=seller-proceeds"
                     title="Seller proceeds workbook"
                     loading="lazy"
                 ></iframe>
@@ -938,7 +1157,7 @@
                 <iframe
                     class="resource-frame is-attorneys"
                     data-embed-target="seller-attorneys"
-                    src="/attorneys/?embed=seller-attorneys"
+                    src="../attorneys/index.html?embed=seller-attorneys"
                     title="Closing attorney partners"
                     loading="lazy"
                 ></iframe>
@@ -963,7 +1182,7 @@
 
         <footer class="brand-footer">
             <div class="footer-logo-slot footer-logo-slot-kw">
-                <img src="/Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+                <img src="../Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
             </div>
             <div class="footer-copy">
                 <p>Joe Pine, REALTOR&reg; | RI &amp; MA</p>
@@ -975,13 +1194,13 @@
                         <p>Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
                     </div>
                     <div class="footer-badge-row">
-                        <img class="footer-badge footer-badge-realtor" src="/images/branding/realtor-mark-official.jpg" alt="REALTOR logo">
-                        <img class="footer-badge footer-badge-housing" src="/images/branding/equal-housing-mark-official.png" alt="Equal Housing Opportunity logo">
+                        <img class="footer-badge footer-badge-realtor" src="../images/branding/realtor-mark-official.jpg" alt="REALTOR logo">
+                        <img class="footer-badge footer-badge-housing" src="../images/branding/equal-housing-mark-official.png" alt="Equal Housing Opportunity logo">
                     </div>
                 </div>
             </div>
             <div class="footer-logo-slot footer-logo-slot-platinum">
-                <img src="/Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">
+                <img src="../Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">
             </div>
         </footer>
     </main>
@@ -989,6 +1208,8 @@
     <script>
         const sellerResourceTabs = Array.from(document.querySelectorAll("[data-seller-resource-tab]"));
         const sellerResourcePanels = Array.from(document.querySelectorAll("[data-seller-resource-panel]"));
+        const sellerMarketingTabs = Array.from(document.querySelectorAll("[data-seller-marketing-tab]"));
+        const sellerMarketingPanels = Array.from(document.querySelectorAll("[data-seller-marketing-panel]"));
 
         function getSellerResourceTarget(hashValue) {
             const target = (hashValue || "").replace("#", "");
@@ -1026,11 +1247,34 @@
             }
         }
 
+        function setActiveSellerMarketing(target) {
+            if (!target) {
+                return;
+            }
+
+            sellerMarketingTabs.forEach((tab) => {
+                const isActive = tab.dataset.sellerMarketingTab === target;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+                tab.tabIndex = isActive ? 0 : -1;
+            });
+
+            sellerMarketingPanels.forEach((panel) => {
+                panel.hidden = panel.dataset.sellerMarketingPanel !== target;
+            });
+        }
+
         sellerResourceTabs.forEach((tab) => {
             tab.addEventListener("click", () => {
                 setActiveSellerResource(tab.dataset.sellerResourceTab, {
                     updateHash: true
                 });
+            });
+        });
+
+        sellerMarketingTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setActiveSellerMarketing(tab.dataset.sellerMarketingTab);
             });
         });
 
@@ -1045,6 +1289,7 @@
         if (initialSellerTarget) {
             setActiveSellerResource(initialSellerTarget, { scrollToPanel: true });
         }
+        setActiveSellerMarketing("homescom");
 
         window.addEventListener("message", (event) => {
             const data = event.data;
@@ -1073,7 +1318,7 @@
             }
         });
     </script>
-    <script src="/site-frame.js"></script>
+    <script src="../site-frame.js"></script>
 </body>
 </html>
 

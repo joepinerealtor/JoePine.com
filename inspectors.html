@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=/inspectors/">
+  <meta http-equiv="refresh" content="0; url=inspectors/">
   <link rel="canonical" href="https://joepine.com/inspectors/">
   <script>
     (function () {
-      var target = '/inspectors/' + window.location.search + window.location.hash;
+      var baseTarget = window.location.protocol === 'file:' ? 'inspectors/index.html' : 'inspectors/';
+      var target = baseTarget + window.location.search + window.location.hash;
       window.location.replace(target);
     })();
   </script>
@@ -18,6 +19,6 @@
   </style>
 </head>
 <body>
-  <p>Redirecting to <a href="/inspectors/">/inspectors/</a>...</p>
+  <p>Redirecting to <a href="inspectors/">inspectors/</a>...</p>
 </body>
 </html>
