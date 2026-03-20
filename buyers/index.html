@@ -9,15 +9,23 @@
         content="Buyer tools from Joe Pine to help you understand monthly payment, compare lenders, weigh rent versus buy, and move through the process with more confidence."
     >
     <script>
+        document.documentElement.classList.add("buyers-page-preload");
+
         if ("scrollRestoration" in history) {
             history.scrollRestoration = "manual";
         }
 
-        if (!window.location.hash) {
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-        }
+        window.addEventListener("load", () => {
+            requestAnimationFrame(() => {
+                if (!window.location.hash) {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }
+
+                document.documentElement.classList.remove("buyers-page-preload");
+            });
+        });
     </script>
     <link rel="stylesheet" href="../site-frame.css">
     <style>
@@ -40,10 +48,15 @@
             margin: 0;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             color: var(--kw-ink);
+            overflow-anchor: none;
             background:
                 radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
                 radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
+        }
+
+        html.buyers-page-preload body {
+            visibility: hidden;
         }
 
         a {
