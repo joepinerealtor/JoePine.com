@@ -1,0 +1,1079 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources for Sellers | Joe Pine</title>
+    <meta
+        name="description"
+        content="Seller tools from Joe Pine to help you understand pricing, launch strategy, proceeds, and the selling process with more confidence."
+    >
+    <link rel="stylesheet" href="/site-frame.css">
+    <style>
+        :root {
+            --kw-red: #ce011f;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #e31837;
+            --kw-ink: #000000;
+            --kw-slate: #4d4d4d;
+            --kw-muted: #828282;
+            --kw-line: #d9d9d9;
+            --surface: rgba(255, 255, 255, 0.97);
+            --surface-soft: #f7f7f7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 18px 34px;
+        }
+
+        .hero-panel,
+        .proof-panel,
+        .offer-panel,
+        .steps-panel,
+        .resource-panel,
+        .cta-panel {
+            scroll-margin-top: 132px;
+        }
+
+        .hero-panel,
+        .proof-panel,
+        .proof-card,
+        .offer-panel,
+        .steps-panel,
+        .resource-panel,
+        .step-item,
+        .cta-panel {
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            background: var(--surface);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+        }
+
+        .hero-panel {
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 52%, var(--kw-red-deep) 100%);
+            color: #ffffff;
+            padding: 22px 22px 18px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .hero-banner .eyebrow {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .hero-banner h1 {
+            margin: 0;
+            max-width: 760px;
+            font-size: clamp(30px, 4.6vw, 48px);
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-content {
+            padding: 22px;
+        }
+
+        .hero-copy {
+            max-width: 780px;
+        }
+
+        .hero-hook {
+            margin: 0 0 14px;
+            color: var(--kw-red);
+            font-size: 13px;
+            line-height: 1.45;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-copy p,
+        .section-heading p,
+        .proof-card p,
+        .offer-item p,
+        .step-item p,
+        .cta-panel p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.62;
+            font-weight: 700;
+        }
+
+        .hero-copy p + p {
+            margin-top: 12px;
+        }
+
+        .hero-highlights {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px 14px;
+            margin: 18px 0 0;
+            padding: 0;
+        }
+
+        .hero-highlights li {
+            position: relative;
+            padding-left: 16px;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .hero-highlights li::before {
+            content: "";
+            position: absolute;
+            top: 9px;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--kw-red);
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 10px;
+            font-weight: 900;
+            text-align: center;
+            transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease, border-color 140ms ease;
+            flex: 1 1 180px;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px -20px rgba(15, 23, 42, 0.4);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+        }
+
+        .button-secondary {
+            background: #ffffff;
+            color: var(--kw-ink);
+            border-color: var(--kw-ink);
+        }
+
+        .proof-card h3,
+        .offer-item h3,
+        .step-item h3,
+        .cta-panel h2 {
+            display: block;
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.12;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .section-heading {
+            margin: 0 0 16px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 8px;
+            font-size: clamp(26px, 3vw, 38px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .section-heading p {
+            max-width: 760px;
+        }
+
+        .proof-panel {
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 250, 252, 0.98) 100%);
+        }
+
+        .proof-grid,
+        .step-list {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .proof-grid,
+        .step-list {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .proof-grid {
+            margin-bottom: 0;
+        }
+
+        .proof-card,
+        .step-item {
+            border-radius: 20px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .proof-card {
+            border-top: 6px solid var(--kw-ink);
+            background: #ffffff;
+        }
+
+        .proof-card span,
+        .offer-item span,
+        .step-number {
+            display: inline-block;
+            color: var(--kw-red);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .proof-card strong {
+            display: block;
+            margin: 0;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .proof-card h3 {
+            margin: 0;
+            font-size: 1.14rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .proof-card p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.58;
+            font-weight: 700;
+        }
+
+        .offer-panel,
+        .steps-panel,
+        .resource-panel {
+            border-radius: 28px;
+            padding: 22px;
+            margin-bottom: 24px;
+            background: #ffffff;
+        }
+
+        .resource-tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 0 18px;
+        }
+
+        .resource-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 18px;
+            border: 1px solid rgba(206, 1, 31, 0.16);
+            border-radius: 18px;
+            background: rgba(206, 1, 31, 0.05);
+            color: var(--kw-slate);
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+            flex: 1 1 260px;
+        }
+
+        .resource-tab:hover,
+        .resource-tab:focus-visible {
+            transform: translateY(-1px);
+            background: rgba(206, 1, 31, 0.12);
+        }
+
+        .resource-tab.is-active {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+        }
+
+        .resource-tab-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .marketing-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .marketing-stack > section {
+            margin-bottom: 0;
+        }
+
+        .resource-tab-panel[hidden] {
+            display: none;
+        }
+
+        .resource-tab-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .resource-tab-copy h3 {
+            margin: 0;
+            font-size: clamp(24px, 3vw, 34px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .resource-tab-copy p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.62;
+            font-weight: 700;
+        }
+
+        .resource-frame {
+            width: 100%;
+            min-height: 760px;
+            border: 0;
+            border-radius: 22px;
+            background: #ffffff;
+        }
+
+        .resource-frame.is-tool {
+            min-height: 1380px;
+        }
+
+        .resource-frame.is-attorneys {
+            min-height: 1400px;
+        }
+
+        .resource-frame.is-process {
+            min-height: 980px;
+        }
+
+        .offer-list {
+            display: grid;
+            gap: 0;
+        }
+
+        .offer-item {
+            padding: 18px 0;
+            border-top: 1px solid var(--kw-line);
+        }
+
+        .offer-item:first-child {
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .offer-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .offer-item h3 {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .step-item {
+            background: #ffffff;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: rgba(206, 1, 31, 0.08);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0;
+            font-size: 13px;
+        }
+
+        .cta-panel {
+            border-radius: 28px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+            gap: 18px;
+            align-items: center;
+            padding: 22px;
+        }
+
+        .cta-panel h2 {
+            font-size: clamp(24px, 3vw, 36px);
+        }
+
+        .brand-footer {
+            display: grid;
+            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            align-items: center;
+            gap: 24px;
+            padding: 20px 4px 0;
+        }
+
+        .footer-logo-slot {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo-slot-kw {
+            justify-content: flex-start;
+        }
+
+        .footer-logo-slot-platinum {
+            justify-content: flex-end;
+        }
+
+        .footer-logo-slot img:first-child {
+            width: min(220px, 100%);
+        }
+
+        .footer-copy {
+            text-align: center;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .footer-copy p {
+            margin: 4px 0;
+        }
+
+        .fine-print {
+            color: var(--kw-muted);
+            font-size: 12px;
+        }
+
+        .footer-compliance {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 620px;
+            margin: 8px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .footer-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .footer-badge {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .footer-badge-realtor {
+            max-width: 44px;
+        }
+
+        .footer-badge-housing {
+            max-width: 44px;
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+            color: var(--kw-muted);
+        }
+
+        .footer-disclaimer p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
+        @media (max-width: 980px) {
+            .proof-grid,
+            .step-list,
+            .cta-panel,
+            .brand-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-footer {
+                text-align: center;
+            }
+
+            .footer-logo-slot,
+            .footer-logo-slot-kw,
+            .footer-logo-slot-platinum {
+                justify-content: center;
+            }
+
+            .footer-compliance {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                padding: 0 10px 28px;
+            }
+
+            .hero-panel,
+            .proof-panel,
+            .proof-card,
+            .offer-panel,
+            .steps-panel,
+            .resource-panel,
+            .step-item,
+            .cta-panel {
+                border-radius: 24px;
+            }
+
+            .hero-banner,
+            .hero-content,
+            .proof-panel,
+            .proof-card,
+            .offer-panel,
+            .steps-panel,
+            .resource-panel,
+            .step-item,
+            .cta-panel {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .cta-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="/" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="/Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-sellers"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-sellers">
+                <a href="/">Home</a>
+                <a href="/buyer-start-here/">First Time Buyers</a>
+                <a href="/buyers/#buyer-process">Buyer Resources</a>
+                <a href="/sellers/" aria-current="page">Seller Resources</a>
+                <a href="/search/">Search Homes</a>
+                <a href="/#about">About Joe</a>
+                <a class="site-frame-cta" href="/#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-banner">
+                <p class="eyebrow">Resources for Sellers</p>
+                <h1>Sell with a clearer plan, stronger presentation, and fewer surprises.</h1>
+            </div>
+        </section>
+
+        <section class="resource-panel" id="seller-tools">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" style="color: var(--kw-red);">Seller Tools</p>
+                    <h2>Use the seller tools below.</h2>
+                </div>
+                <p>
+                    Start with marketing edge, then move into the seller timeline, proceeds estimate, or closing attorney tab as you need them.
+                </p>
+            </div>
+
+            <div class="resource-tab-list" role="tablist" aria-label="Seller tools">
+                <button
+                    class="resource-tab is-active"
+                    type="button"
+                    role="tab"
+                    id="seller-tab-marketing"
+                    aria-selected="true"
+                    aria-controls="seller-marketing"
+                    data-seller-resource-tab="seller-marketing"
+                >
+                    Marketing Edge
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="seller-tab-process"
+                    aria-selected="false"
+                    aria-controls="seller-process"
+                    data-seller-resource-tab="seller-process"
+                >
+                    Seller Process Timeline
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="seller-tab-proceeds"
+                    aria-selected="false"
+                    aria-controls="seller-proceeds"
+                    data-seller-resource-tab="seller-proceeds"
+                >
+                    Seller Proceeds
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="seller-tab-attorneys"
+                    aria-selected="false"
+                    aria-controls="seller-attorneys"
+                    data-seller-resource-tab="seller-attorneys"
+                >
+                    Closing Attorneys
+                </button>
+            </div>
+
+            <section
+                class="resource-tab-panel"
+                id="seller-marketing"
+                role="tabpanel"
+                aria-labelledby="seller-tab-marketing"
+                data-seller-resource-panel="seller-marketing"
+            >
+                <div class="marketing-stack">
+                    <section class="proof-panel">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow" style="color: var(--kw-red);">Homes.com Advantage</p>
+                                <h2>My Homes.com membership gives your listing a real launch advantage.</h2>
+                            </div>
+                            <p>
+                                You do not need the platform jargon. What matters is simple: your listing can get stronger placement,
+                                broader reach, and direct lead flow back to me instead of feeling like just another upload.
+                            </p>
+                        </div>
+
+                        <div class="proof-grid">
+                            <article class="proof-card">
+                                <span>Early Traction</span>
+                                <strong>25%</strong>
+                                <h3>Launch momentum is a real edge.</h3>
+                                <p>
+                                    Homes.com says member-marketed listings are 25% more likely to go under contract within the first
+                                    10 days. That early window matters, which is why I care so much about how your listing looks and launches.
+                                </p>
+                            </article>
+
+                            <article class="proof-card">
+                                <span>Audience Reach</span>
+                                <strong>100M+</strong>
+                                <h3>Big audience helps good listings move faster.</h3>
+                                <p>
+                                    Homes.com says more than 100 million people search homes on the platform each month. Great
+                                    presentation and pricing still matter, but reach like that gives your listing a better chance to be seen quickly.
+                                </p>
+                            </article>
+
+                            <article class="proof-card">
+                                <span>Retargeting Reach</span>
+                                <strong>1,000+</strong>
+                                <h3>Interested buyers keep seeing your home.</h3>
+                                <p>
+                                    Homes.com says retargeting can place listing ads across more than 1,000 websites and social
+                                    platforms. That helps your listing stay in front of buyers after the first click instead of disappearing.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="offer-panel">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow" style="color: var(--kw-red);">Marketing Package</p>
+                                <h2>Here is what supports the launch.</h2>
+                            </div>
+                            <p>
+                                Every piece is meant to help buyers notice your home faster, understand it better, and act with more confidence.
+                            </p>
+                        </div>
+
+                        <div class="offer-list">
+                            <article class="offer-item">
+                                <span>Search Visibility</span>
+                                <h3>Your listing starts with stronger placement, not a basic upload.</h3>
+                                <p>
+                                    Because I am a Homes.com Member Agent, your listing can show higher on Homes.com right when
+                                    launch momentum matters most. In simple terms, that means more buyers can find your home sooner.
+                                </p>
+                            </article>
+
+                            <article class="offer-item">
+                                <span>Visual Package</span>
+                                <h3>The media package is built to stop the scroll.</h3>
+                                <p>
+                                    Cinematic video, twilight photography, and drone photography help your home feel more polished
+                                    online. Twilight brings out curb appeal, video adds emotion, and drone photography adds scale,
+                                    setting, and context.
+                                </p>
+                            </article>
+
+                            <article class="offer-item">
+                                <span>3D + Floor Plans</span>
+                                <h3>Buyers can understand the home before they ever book a showing.</h3>
+                                <p>
+                                    Interior and exterior 3D tours, plus detailed floor plans and measurements, help buyers understand
+                                    layout, flow, and fit before they ever schedule a showing.
+                                </p>
+                            </article>
+
+                            <article class="offer-item">
+                                <span>Retargeting + Lead Flow</span>
+                                <h3>Your marketing does not stop at the listing page.</h3>
+                                <p>
+                                    I send postcard mailers to the neighborhood because neighbors often know the next buyer. Your
+                                    listing can also show up in paid social, stay visible through retargeting, and point buyer interest
+                                    back to me so the follow-up stays cleaner and more direct.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="steps-panel">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow" style="color: var(--kw-red);">Launch Plan</p>
+                                <h2>Clear prep. Smarter showings. Stronger follow-through.</h2>
+                            </div>
+                            <p>
+                                The best launches are coordinated. Pricing, media, showing strategy, and follow-up should all support each other from day one.
+                            </p>
+                        </div>
+
+                        <div class="step-list">
+                            <article class="step-item">
+                                <span class="step-number">1</span>
+                                <h3>Prep</h3>
+                                <p>
+                                    We line up price, prep, media, and launch timing before your home goes live so nothing feels rushed.
+                                </p>
+                            </article>
+
+                            <article class="step-item">
+                                <span class="step-number">2</span>
+                                <h3>Open House Strategy</h3>
+                                <p>
+                                    I often prioritize open houses over scattered private showings because they respect your schedule
+                                    better and can create stronger buyer urgency. One focused block of traffic is usually easier on
+                                    you than constant interruptions all week.
+                                </p>
+                            </article>
+
+                            <article class="step-item">
+                                <span class="step-number">3</span>
+                                <h3>Follow Through</h3>
+                                <p>
+                                    I stay on the response and follow-up so buyer attention does not go cold after the first click, showing, or open house.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="seller-process"
+                role="tabpanel"
+                aria-labelledby="seller-tab-process"
+                data-seller-resource-panel="seller-process"
+                hidden
+            >
+                <iframe
+                    class="resource-frame is-process"
+                    data-embed-target="seller-process"
+                    src="/journey/?embed=seller-process#seller"
+                    title="Seller process tracker"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="seller-proceeds"
+                role="tabpanel"
+                aria-labelledby="seller-tab-proceeds"
+                data-seller-resource-panel="seller-proceeds"
+                hidden
+            >
+                <iframe
+                    class="resource-frame is-tool"
+                    data-embed-target="seller-proceeds"
+                    src="/Seller%20Net/?embed=seller-proceeds"
+                    title="Seller proceeds workbook"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="seller-attorneys"
+                role="tabpanel"
+                aria-labelledby="seller-tab-attorneys"
+                data-seller-resource-panel="seller-attorneys"
+                hidden
+            >
+                <iframe
+                    class="resource-frame is-attorneys"
+                    data-embed-target="seller-attorneys"
+                    src="/attorneys/?embed=seller-attorneys"
+                    title="Closing attorney partners"
+                    loading="lazy"
+                ></iframe>
+            </section>
+        </section>
+
+        <section class="cta-panel">
+            <div>
+                <p class="eyebrow" style="color: var(--kw-red);">Seller Conversation</p>
+                <h2>If you are thinking about listing, this is the conversation to have before launch.</h2>
+                <p>
+                    I can walk you through pricing, positioning, marketing, showing strategy, and what your sale could look like from day one through closing.
+                </p>
+            </div>
+
+            <div class="cta-actions">
+                <a class="button button-primary" href="https://joepine.kw.com/discover-your-homes-worth" target="_blank" rel="noreferrer">Discover Your Home's Worth</a>
+                <a class="button button-secondary" href="tel:4013270888">Call Joe Pine</a>
+                <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=I%20Want%20To%20Talk%20About%20Selling">Email Joe</a>
+            </div>
+        </section>
+
+        <footer class="brand-footer">
+            <div class="footer-logo-slot footer-logo-slot-kw">
+                <img src="/Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+            </div>
+            <div class="footer-copy">
+                <p>Joe Pine, REALTOR&reg; | RI &amp; MA</p>
+                <p>28 Thurber Blvd, Smithfield, RI 02917</p>
+                <p class="fine-print">Massachusetts Real Estate License #1001085-RE-RS</p>
+                <p class="fine-print">Rhode Island Real Estate License #RES.0044759</p>
+                <div class="footer-compliance" aria-label="REALTOR and Equal Housing Opportunity disclosure">
+                    <div class="footer-disclaimer">
+                        <p>Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                    </div>
+                    <div class="footer-badge-row">
+                        <img class="footer-badge footer-badge-realtor" src="/images/branding/realtor-mark-official.jpg" alt="REALTOR logo">
+                        <img class="footer-badge footer-badge-housing" src="/images/branding/equal-housing-mark-official.png" alt="Equal Housing Opportunity logo">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-logo-slot footer-logo-slot-platinum">
+                <img src="/Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const sellerResourceTabs = Array.from(document.querySelectorAll("[data-seller-resource-tab]"));
+        const sellerResourcePanels = Array.from(document.querySelectorAll("[data-seller-resource-panel]"));
+
+        function getSellerResourceTarget(hashValue) {
+            const target = (hashValue || "").replace("#", "");
+            return target === "seller-marketing" || target === "seller-process" || target === "seller-proceeds" || target === "seller-attorneys" ? target : null;
+        }
+
+        function setActiveSellerResource(target, options = {}) {
+            if (!target) {
+                return;
+            }
+
+            sellerResourceTabs.forEach((tab) => {
+                const isActive = tab.dataset.sellerResourceTab === target;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            sellerResourcePanels.forEach((panel) => {
+                panel.hidden = panel.dataset.sellerResourcePanel !== target;
+            });
+
+            if (options.updateHash) {
+                history.replaceState(null, "", `#${target}`);
+            }
+
+            if (options.scrollToPanel) {
+                const section = document.getElementById("seller-tools");
+                const panel = document.getElementById(target);
+                const scrollTarget = section || panel;
+                if (scrollTarget) {
+                    requestAnimationFrame(() => {
+                        scrollTarget.scrollIntoView({ block: "start" });
+                    });
+                }
+            }
+        }
+
+        sellerResourceTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setActiveSellerResource(tab.dataset.sellerResourceTab, {
+                    updateHash: true
+                });
+            });
+        });
+
+        window.addEventListener("hashchange", () => {
+            const target = getSellerResourceTarget(window.location.hash);
+            if (target) {
+                setActiveSellerResource(target, { scrollToPanel: true });
+            }
+        });
+
+        const initialSellerTarget = getSellerResourceTarget(window.location.hash);
+        if (initialSellerTarget) {
+            setActiveSellerResource(initialSellerTarget, { scrollToPanel: true });
+        }
+
+        window.addEventListener("message", (event) => {
+            const data = event.data;
+            if (!data) {
+                return;
+            }
+
+            if (data.type === "joe-embed-resize" && data.embed && data.height) {
+                const frame = document.querySelector(`[data-embed-target="${data.embed}"]`);
+                if (frame) {
+                    frame.style.height = `${data.height}px`;
+                }
+                return;
+            }
+
+            if (data.type === "joe-open-resource") {
+                const target = getSellerResourceTarget(`#${data.target || ""}`);
+                if (!target) {
+                    return;
+                }
+
+                setActiveSellerResource(target, {
+                    updateHash: true,
+                    scrollToPanel: true
+                });
+            }
+        });
+    </script>
+    <script src="/site-frame.js"></script>
+</body>
+</html>
+

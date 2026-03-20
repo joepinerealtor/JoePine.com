@@ -6,7 +6,7 @@
     <title>Joe Pine Real Estate | Rhode Island & Massachusetts</title>
     <meta
         name="description"
-        content="Educational buyer and seller resources, payment planning, rent-vs-buy guidance, and local Rhode Island and Massachusetts real estate insight from Joe Pine."
+        content="Educational buyer and seller resources, payment planning, and local Rhode Island and Massachusetts real estate insight from Joe Pine."
     >
     <meta property="og:title" content="Joe Pine Real Estate | Rhode Island & Massachusetts">
     <meta property="og:description" content="Joe Pine helps buyers and sellers understand the numbers, the process, and the next step with more confidence across Rhode Island and Massachusetts.">
@@ -17,6 +17,12 @@
     <meta name="twitter:title" content="Joe Pine Real Estate | Rhode Island & Massachusetts">
     <meta name="twitter:description" content="Joe Pine helps buyers and sellers understand the numbers, the process, and the next step with more confidence across Rhode Island and Massachusetts.">
     <meta name="twitter:image" content="https://joepinerealtor.github.io/JoePine.com/images/photos/joe-front-steps.jpg">
+    <link rel="canonical" href="https://joepine.com/">
+    <script>
+        if (window.location.pathname.endsWith("/index.html")) {
+            window.history.replaceState({}, "", `/${window.location.search}${window.location.hash}`);
+        }
+    </script>
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -29,7 +35,7 @@
         <div class="site-frame-wrap">
             <header class="site-frame-header">
                 <div class="site-frame-top">
-                    <a class="site-frame-brand" href="./index.html" aria-label="Joe Pine home">
+                    <a class="site-frame-brand" href="/" aria-label="Joe Pine home">
                         <span class="site-frame-photo">
                             <img src="./Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
                         </span>
@@ -57,10 +63,10 @@
                 </div>
 
             <nav class="site-frame-nav" id="site-frame-nav-root">
-                <a href="./buyer-start-here.html">First Time Buyers</a>
-                <a href="./buyers.html#buyer-process">Buyer Resources</a>
-                <a href="./sellers.html">Seller Resources</a>
-                <a href="./search.html">Search Homes</a>
+                <a href="/buyer-start-here/">First Time Buyers</a>
+                <a href="/buyers/#buyer-process">Buyer Resources</a>
+                <a href="/sellers/">Seller Resources</a>
+                <a href="/search/">Search Homes</a>
                 <a href="#about">About Joe</a>
                 <a class="site-frame-cta" href="#contact">Contact Joe</a>
                 </nav>
@@ -111,11 +117,15 @@
                     </div>
 
                     <div class="spotlight-panel">
-                    <a class="spotlight-item spotlight-link" href="./buyers.html#buyer-process">
-                            <p>Buyer Resources</p>
-                            <strong>See payment planning, lender options, rent-vs-buy, and the buyer process in one place.</strong>
+                        <a class="spotlight-item spotlight-link" href="/buyer-start-here/">
+                            <p>First-Time Buyer</p>
+                            <strong>Start with a calmer workbook if you are still figuring out whether buying feels right.</strong>
                         </a>
-                        <a class="spotlight-item spotlight-link" href="./sellers.html">
+                        <a class="spotlight-item spotlight-link" href="/buyers/#buyer-process">
+                            <p>Buyer Resources</p>
+                            <strong>See payment planning, lender options, and the buyer process in one place.</strong>
+                        </a>
+                        <a class="spotlight-item spotlight-link" href="/sellers/">
                             <p>Seller Resources</p>
                             <strong>See seller proceeds, launch strategy, and the seller process in one place.</strong>
                         </a>
@@ -342,66 +352,68 @@
             </section>
 
             <section class="tools-section" id="tools">
-                <div class="section-heading" data-reveal>
-                    <p class="eyebrow">Resource Hubs</p>
-                    <h2>Start with the right place.</h2>
-                    <p>
-                        These are the clearest starting points whether you are still figuring out how to begin,
-                        ready to work through buyer tools, or planning for the seller side. Each page pulls the key guidance,
-                        tools, and practical next steps into one place.
-                    </p>
-                </div>
-
-                <div class="tool-grid">
-                    <article class="tool-card tool-card-sage" data-reveal>
-                        <div class="tool-topline">
-                            <span>First-Time Buyer</span>
-                        </div>
-                        <h3>If you are not sure where to begin, you are in the right place.</h3>
+                <div class="tools-shell" data-reveal>
+                    <div class="section-heading">
+                        <p class="eyebrow">Resource Hubs</p>
+                        <h2>Start with the right place.</h2>
                         <p>
-                            This page is built to help you understand credit, debt, monthly expenses, and first-time-buyer
-                            assistance in a calm, no-pressure way. It is a teaching space for people who are still figuring
-                            out whether buying feels right and what information they need to get the process started.
+                            These are the clearest starting points whether you are still figuring out how to begin,
+                            ready to work through buyer tools, or planning for the seller side. Each page pulls the key guidance,
+                            tools, and practical next steps into one place.
                         </p>
-                        <ul class="tool-list">
-                            <li>Credit and debt starting points</li>
-                            <li>Rhode Island and Massachusetts buyer assistance</li>
-                            <li>Practical steps before talking to a lender</li>
-                        </ul>
-                        <a class="button button-primary" href="./buyer-start-here.html">Open First-Time Buyer Guide</a>
-                    </article>
+                    </div>
 
-                    <article class="tool-card tool-card-sage" data-reveal>
-                        <div class="tool-topline">
-                            <span>Seller Resources</span>
-                        </div>
-                        <h3>Understand the seller side before the home goes live.</h3>
-                        <p>
-                            Review marketing, launch strategy, seller proceeds, and the seller process together so the plan feels clearer before the sign goes in the yard.
-                        </p>
-                        <ul class="tool-list">
-                            <li>Pricing and launch strategy</li>
-                            <li>Seller proceeds and seller process</li>
-                            <li>Clearer expectations before the home goes live</li>
-                        </ul>
-                        <a class="button button-secondary" href="./sellers.html">See Seller Resources</a>
-                    </article>
+                    <div class="tool-grid">
+                        <article class="tool-card tool-card-sage">
+                            <div class="tool-topline">
+                                <span>First-Time Buyer</span>
+                            </div>
+                            <h3>If you are not sure where to begin, you are in the right place.</h3>
+                            <p>
+                                This page is built to help you understand credit, debt, monthly expenses, and first-time-buyer
+                                assistance in a calm, no-pressure way. It is a teaching space for people who are still figuring
+                                out whether buying feels right and what information they need to get the process started.
+                            </p>
+                            <ul class="tool-list">
+                                <li>Credit and debt starting points</li>
+                                <li>Rhode Island and Massachusetts buyer assistance</li>
+                                <li>Practical steps before talking to a lender</li>
+                            </ul>
+                            <a class="button button-primary" href="/buyer-start-here/">Open First-Time Buyer Guide</a>
+                        </article>
 
-                    <article class="tool-card tool-card-sage" data-reveal>
-                        <div class="tool-topline">
-                            <span>Buyer Resources</span>
-                        </div>
-                        <h3>See the numbers, the team, and the buyer process in one place.</h3>
-                        <p>
-                            Start with monthly payment, compare lender options, and understand what usually comes next from preapproval through closing.
-                        </p>
-                        <ul class="tool-list">
-                            <li>Monthly payment calculator</li>
-                            <li>Lender options and contact info</li>
-                            <li>Buyer process tracker built in</li>
-                        </ul>
-                            <a class="button button-secondary" href="./buyers.html#buyer-process">Open Buyer Resources</a>
-                    </article>
+                        <article class="tool-card tool-card-sage">
+                            <div class="tool-topline">
+                                <span>Seller Resources</span>
+                            </div>
+                            <h3>Understand the seller side before the home goes live.</h3>
+                            <p>
+                                Review marketing, launch strategy, seller proceeds, and the seller process together so the plan feels clearer before the sign goes in the yard.
+                            </p>
+                            <ul class="tool-list">
+                                <li>Pricing and launch strategy</li>
+                                <li>Seller proceeds and seller process</li>
+                                <li>Clearer expectations before the home goes live</li>
+                            </ul>
+                            <a class="button button-secondary" href="/sellers/">See Seller Resources</a>
+                        </article>
+
+                        <article class="tool-card tool-card-sage">
+                            <div class="tool-topline">
+                                <span>Buyer Resources</span>
+                            </div>
+                            <h3>See the numbers, the team, and the buyer process in one place.</h3>
+                            <p>
+                                Start with monthly payment, compare lender options, and understand what usually comes next from preapproval through closing.
+                            </p>
+                            <ul class="tool-list">
+                                <li>Monthly payment calculator</li>
+                                <li>Lender options and contact info</li>
+                                <li>Buyer process tracker built in</li>
+                            </ul>
+                            <a class="button button-secondary" href="/buyers/#buyer-process">Open Buyer Resources</a>
+                        </article>
+                    </div>
                 </div>
             </section>
 
@@ -421,7 +433,7 @@
                         <p>
                             Review the lenders I work with regularly so you can compare communication style, loan approach, and next steps before preapproval starts.
                         </p>
-                        <a class="button button-primary" href="./Monthly%20Payment/lenders.html">View Lenders</a>
+                            <a class="button button-primary" href="/Monthly%20Payment/lenders.html">View Lenders</a>
                     </article>
 
                     <article class="service-card partner-team-card" data-reveal>
@@ -430,7 +442,7 @@
                         <p>
                             See when a general inspection makes sense, when follow-up testing may matter, and how sellers can prep ahead.
                         </p>
-                        <a class="button button-secondary" href="./inspectors.html">View Inspectors</a>
+                        <a class="button button-secondary" href="/inspectors/">View Inspectors</a>
                     </article>
 
                     <article class="service-card partner-team-card" data-reveal>
@@ -439,355 +451,265 @@
                         <p>
                             Get a clearer picture of buyer-side, seller-side, and more complex title or estate attorney work before closing gets close.
                         </p>
-                        <a class="button button-secondary" href="./attorneys.html">View Attorneys</a>
+                        <a class="button button-secondary" href="/attorneys/">View Attorneys</a>
                     </article>
                 </div>
             </section>
 
-            <section class="wealth-preview-section" id="rent-vs-buy-preview">
-                <div class="section-heading section-heading-tight" data-reveal>
-                    <p class="eyebrow">Rent Vs Buy</p>
-                    <h2>Still renting? See how the math may have changed over 5 years.</h2>
-                    <p>
-                        Same state. Same five-year window. A clearer way to see how renting and buying may have separated over time.
-                        The full page walks through the payments, equity, and what each path may have looked like five years later.
-                    </p>
-                </div>
 
-                <div class="tool-grid wealth-preview-grid">
-                    <article class="service-card wealth-preview-card wealth-preview-card-renter wealth-preview-card-hook" data-reveal>
-                        <p class="card-kicker">The Hook</p>
-                        <h3><span class="wealth-preview-inline-value" data-preview-rent-start>$1,511/mo</span> rent versus <span class="wealth-preview-inline-value" data-preview-owner-start>$1,604/mo</span> to buy in 2021 did not stay neck and neck for long.</h3>
-                        <p>
-                            By year 5, the modeled renter was paying more each month, while the buyer may have been building equity along the way.
-                            The full page shows just how far apart the two paths ended up.
-                        </p>
-                    </article>
 
-                    <article class="service-card wealth-preview-card wealth-preview-card-owner wealth-preview-card-outcome" data-reveal>
-                        <p class="card-kicker">What You'll See</p>
-                        <div class="wealth-preview-metrics">
-                            <div class="wealth-preview-metric">
-                                <span>2021 monthly edge</span>
-                                <strong data-preview-diff-2021>Renter started about $92.95/mo lower</strong>
-                            </div>
-                            <div class="wealth-preview-metric">
-                                <span>By year 5</span>
-                                <strong data-preview-diff-2026>Buyer was ahead about $110.55/mo</strong>
-                            </div>
-                            <div class="wealth-preview-metric wealth-preview-metric-highlight">
-                                <span>5-year outcome</span>
-                                <strong>A fuller look at where each path may have landed</strong>
-                            </div>
-                        </div>
-                        <p>Open the full page to see the side-by-side breakdown, the assumptions, and how the two paths separated over five years.</p>
-                    </article>
-                </div>
 
-                <div class="wealth-preview-actions" data-reveal>
-                    <a class="button button-primary" href="./rent-vs-buy.html">Open Rent vs Buy</a>
-                    <a class="button button-secondary" href="./buyers.html#buyer-payment">Open Buyer Resources</a>
-                </div>
-            </section>
 
-            <section class="about-section" id="about">
-                <div class="about-grid">
-                    <div class="about-copy" data-reveal>
-                        <p class="eyebrow">About Joe</p>
-                        <h2>Clear guidance, practical tools, and a calmer path through the move.</h2>
-                        <p>
-                            Joe Pine is a REALTOR with Platinum Real Estate Group, powered by Keller Williams Leading Edge, with more than six years of experience helping clients buy, sell, and invest across Rhode Island and Massachusetts.
-                            Based in North Providence, he combines local market knowledge with practical tools so clients can understand the numbers, timing, and strategy behind the move.
-                        </p>
-                        <p>
-                            Clients know Joe for being responsive, steady, and easy to reach. He explains the process plainly, keeps the details moving, and uses modern tools where they actually make decisions easier.
-                        </p>
-                        <p>
-                            Outside of real estate, Joe enjoys motorcycles, time with friends and family, and hanging out with Milo and Luna. He brings that same personal energy into the work: clear communication, real follow-through, and a focus on helping clients make a move that feels right.
-                        </p>
-                    </div>
-
-                    <figure class="about-photo-card" data-reveal>
-                        <img
-                            src="./Monthly%20Payment/Joe%20%281%29.JPG"
-                            alt="Joe Pine seated in a chair"
-                        >
-                    </figure>
-
-                    <div class="about-panel" data-reveal>
-                        <div class="about-detail">
-                            <span>Brokerage</span>
-                            <strong>Platinum Real Estate Group, powered by Keller Williams Leading Edge</strong>
-                        </div>
-                        <div class="about-detail">
-                            <span>Experience</span>
-                            <strong>Over six years helping buyers, sellers, and investors move with confidence</strong>
-                        </div>
-                        <div class="about-detail">
-                            <span>Licensed In</span>
-                            <strong>Rhode Island and Massachusetts</strong>
-                        </div>
-                        <div class="about-detail">
-                            <span>Main Service Area</span>
-                            <strong>Central and Northern RI, plus Central and Southeastern MA</strong>
-                        </div>
-                        <div class="about-detail">
-                            <span>Office</span>
-                            <strong>28 Thurber Blvd, Smithfield, RI 02917</strong>
-                        </div>
-                        <div class="about-detail">
-                            <span>Outside Real Estate</span>
-                            <strong>Motorcycles, time with friends and family, and hanging out with Milo and Luna</strong>
+            <section class="home-showcase-section" id="about">
+                <div class="home-showcase-shell" data-home-guide data-reveal>
+                    <div class="home-showcase-header">
+                        <div class="home-showcase-header-copy">
+                            <p class="eyebrow">Meet Joe</p>
+                            <h2>See the guidance, support, and trust behind your move.</h2>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <section class="service-area-section" id="service-areas">
-                <div class="section-heading" data-reveal>
-                    <p class="eyebrow">Service Areas</p>
-                    <h2>Local roots with real reach across Rhode Island and key Massachusetts markets.</h2>
-                    <p>
-                        I proudly serve buyers and sellers across a broad Rhode Island and Massachusetts market area,
-                        stretching west to Coventry, north to Worcester, east through Bridgewater and Mattapoisett,
-                        and back through Southeastern Massachusetts and Rhode Island's East Bay, covering the many
-                        communities in between, with especially strong focus in the towns where I already have
-                        active clients or recent closings.
-                    </p>
-                </div>
-
-                <div class="service-area-grid">
-                    <article class="service-area-overview" data-reveal>
-                        <p class="service-area-kicker">Core Coverage</p>
-                        <h3>Core service locations show where I already have real transaction experience on the ground.</h3>
-                        <p>
-                            Whether you are buying your first home, selling to make your next move, or planning an
-                            investment, I help clients navigate this corridor with clear advice, responsive
-                            communication, and local market perspective. The map now keeps it simple: each red radius
-                            marks a town where I already have active clients or recent closings, so you can see the
-                            markets where that experience is already rooted.
-                        </p>
-
-                        <div class="service-area-chip-group" aria-label="Broad service corridor">
-                            <p>Broad coverage</p>
-                            <div class="service-area-chips">
-                                <span>Coventry</span>
-                                <span>Worcester</span>
-                                <span>Bridgewater</span>
-                                <span>Mattapoisett</span>
-                                <span>Southeastern Massachusetts</span>
-                                <span>Rhode Island's East Bay</span>
-                            </div>
+                    <div class="home-showcase-stage">
+                        <div class="home-showcase-rail" role="tablist" aria-label="Homepage highlights">
+                            <button class="home-showcase-tab is-active" type="button" role="tab" id="home-showcase-tab-about" aria-selected="true" aria-controls="home-showcase-about-panel" data-home-tab="about" data-home-hash="about">
+                                <span>Profile</span>
+                                <strong>About Joe</strong>
+                            </button>
+                            <button class="home-showcase-tab" type="button" role="tab" id="home-showcase-tab-service" aria-selected="false" aria-controls="service-areas" tabindex="-1" data-home-tab="service" data-home-hash="service-areas">
+                                <span>Markets</span>
+                                <strong>Service Areas</strong>
+                            </button>
+                            <button class="home-showcase-tab" type="button" role="tab" id="home-showcase-tab-support" aria-selected="false" aria-controls="brokerage-support" tabindex="-1" data-home-tab="support" data-home-hash="brokerage-support">
+                                <span>Support</span>
+                                <strong>Brokerage Support</strong>
+                            </button>
+                            <button class="home-showcase-tab" type="button" role="tab" id="home-showcase-tab-reviews" aria-selected="false" aria-controls="reviews" tabindex="-1" data-home-tab="reviews" data-home-hash="reviews">
+                                <span>Proof</span>
+                                <strong>Reviews &amp; Results</strong>
+                            </button>
                         </div>
 
-                        <div class="service-area-chip-group" aria-label="Markets with active clients and closings">
-                            <p>Active + closed markets</p>
-                                <div class="service-area-chips service-area-chips-strong">
-                                    <span>Rehoboth</span>
-                                    <span>Taunton</span>
-                                    <span>Attleboro</span>
-                                    <span>Mattapoisett</span>
-                                    <span>Rochester</span>
-                                    <span>East Providence</span>
-                                <span>Barrington</span>
-                                <span>Woonsocket</span>
-                                <span>Burrillville</span>
-                                <span>Warwick</span>
-                                <span>Coventry</span>
-                                <span>Pawtucket</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <div class="service-area-map-card" data-reveal>
-                        <div class="service-area-map-header">
-                            <p>Core Coverage Map</p>
-                            <strong>Each red radius marks a town where Joe has active clients or recent closings across Rhode Island and Massachusetts.</strong>
-                        </div>
-                        <div
-                            class="service-area-map"
-                            id="service-area-map"
-                            aria-label="Static map showing Joe Pine's Rhode Island and Massachusetts service area"
-                        ></div>
-                        <div class="service-area-map-legend" aria-label="Map legend">
-                            <span><i class="service-area-legend service-area-legend-radius" aria-hidden="true"></i> Coverage radius around an active or closed market</span>
-                            <span><i class="service-area-legend service-area-legend-point" aria-hidden="true"></i> Town where Joe has active clients or recent closings</span>
-                        </div>
-                        <p class="service-area-map-note">
-                            The circles are centered on towns where Joe already has active clients or recent closings, giving a cleaner visual of the areas where that local experience is already in place.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="brand-ribbon" data-reveal>
-                <div class="ribbon-copy">
-                    <p class="eyebrow">Brokerage Support</p>
-                    <h2>Small-team guidance with big-brokerage tools behind the scenes.</h2>
-                    <p class="ribbon-summary">
-                        Clients get the close communication and personal guidance of Platinum Real Estate Group, led by
-                        Associate Broker and Team Leader Helen Pirri, with the added reach, systems, and resources of
-                        Keller Williams Leading Edge supporting the work in the background.
-                    </p>
-                </div>
-
-                <div class="logo-row" aria-label="Brokerage affiliations">
-                    <span class="logo-row-label">Brokerage Partners</span>
-                    <div class="logo-stack">
-                        <img
-                            class="logo-platinum"
-                            src="./Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png"
-                            alt="Platinum Real Estate Group"
-                        >
-                        <span class="logo-divider">Powered by</span>
-                        <img
-                            class="logo-kw"
-                            src="./Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png"
-                            alt="Keller Williams Leading Edge"
-                        >
-                    </div>
-                </div>
-            </section>
-
-            <section class="story-section">
-                <div class="section-heading section-heading-tight" data-reveal>
-                    <p class="eyebrow">Closing Day Energy</p>
-                    <h2>Real estate should feel personal, clear, and worth celebrating.</h2>
-                    <p>
-                        These moments are a big part of why I do this. I want clients to feel informed throughout the process
-                        and excited when the right move comes together.
-                    </p>
-                </div>
-
-                <div class="story-grid">
-                    <figure class="story-card" data-reveal>
-                        <img
-                            src="./images/photos/joe-front-steps.jpg"
-                            alt="Joe Pine sitting on the front steps of a home"
-                        >
-                        <figcaption>
-                            <strong>Approachable guidance</strong>
-                            <span>Clear conversations, steady support, and a process that feels human.</span>
-                        </figcaption>
-                    </figure>
-
-                    <figure class="story-card" data-reveal>
-                        <img
-                            src="./images/photos/joe-handing-keys.jpg"
-                            alt="Joe Pine handing over a key"
-                        >
-                        <figcaption>
-                            <strong>Focused on the finish line</strong>
-                            <span>The goal is not just a transaction. It is getting you confidently to closing day.</span>
-                        </figcaption>
-                    </figure>
-
-                    <figure class="story-card" data-reveal>
-                        <img
-                            src="./images/photos/joe-closing-day.jpg"
-                            alt="Joe Pine celebrating with keys in front of a home"
-                        >
-                        <figcaption>
-                            <strong>Moments worth celebrating</strong>
-                            <span>From first plan to final keys, I want the experience to feel like progress all the way through.</span>
-                        </figcaption>
-                    </figure>
-                </div>
-            </section>
-
-            <section class="reviews-section" id="reviews">
-                <div class="reviews-panel" data-reveal>
-                    <div class="reviews-banner">
-                        <p class="eyebrow">Reviews & Results</p>
-                        <h2>Real clients, real closings, and a track record people feel good about.</h2>
-                    </div>
-
-                    <div class="reviews-body">
-                        <p class="reviews-hook">Reviews consistently point to responsiveness, clear communication, and steady guidance from start to finish.</p>
-                        <p class="reviews-summary">
-                            The feedback tends to sound a lot alike in the best way: quick replies, honest advice, and a process that feels more organized and less stressful all the way through closing.
-                        </p>
-
-                        <!-- PROFILE_STATS_START -->
-                        <div class="review-stat-grid">
-                            <article class="review-stat-card" data-reveal>
-                                <span> Zillow rating </span>
-                                <strong id="stat-zillow-rating" data-profile-stat="zillow-rating">5.0</strong>
-                                <p>Five-star profile based on current public Zillow reviews.</p>
-                            </article>
-
-                            <article class="review-stat-card" data-reveal>
-                                <span> Reviews </span>
-                                <strong id="stat-zillow-reviews" data-profile-stat="zillow-reviews">5</strong>
-                                <p>Verified public client reviews across recent buyer and seller experiences.</p>
-                            </article>
-
-                            <article class="review-stat-card" data-reveal>
-                                <span> Public volume </span>
-                                <strong id="stat-homes-total-value" data-profile-stat="homes-total-value">$4.6M</strong>
-                                <p>Total value shown on Joe's public Homes.com profile for the prior five years.</p>
-                            </article>
-
-                            <article class="review-stat-card" data-reveal>
-                                <span> Average price </span>
-                                <strong id="stat-homes-average-price" data-profile-stat="homes-average-price">$417.1K</strong>
-                                <p>Average closed price shown on Joe's public Homes.com profile.</p>
-                            </article>
-                        </div>
-                        <!-- PROFILE_STATS_END -->
-
-                        <div class="reviews-grid">
-                            <article class="review-card" data-reveal>
-                                <div class="review-stars" aria-hidden="true">*****</div>
-                                <p class="review-quote">"Incredible throughout the entire home buying journey."</p>
-                                <div class="review-meta">
-                                    <strong>Buyer review</strong>
-                                    <span>Zillow, February 2026</span>
+                        <div class="home-showcase-panel-frame">
+                            <section class="home-showcase-panel is-active" id="home-showcase-about-panel" role="tabpanel" aria-labelledby="home-showcase-tab-about" data-home-panel="about">
+                                <div class="home-showcase-panel-heading">
+                                    <p class="eyebrow">About Joe</p>
+                                    <h3>Clear guidance, practical tools, and a calmer path through the move.</h3>
+                                    <p>Joe Pine helps buyers, sellers, and investors understand the numbers, the timing, and the strategy behind the move across Rhode Island and Massachusetts.</p>
                                 </div>
-                            </article>
 
-                            <article class="review-card" data-reveal>
-                                <div class="review-stars" aria-hidden="true">*****</div>
-                                <p class="review-quote">"Help get my house sold quickly."</p>
-                                <div class="review-meta">
-                                    <strong>Seller review</strong>
-                                    <span>Zillow, September 2023</span>
+                                <div class="home-showcase-about-layout">
+                                    <div class="home-showcase-about-top">
+                                        <div class="home-showcase-about-copy">
+                                            <p>Joe Pine is a REALTOR with Platinum Real Estate Group, powered by Keller Williams Leading Edge, with more than six years of experience helping clients buy, sell, and invest across Rhode Island and Massachusetts.</p>
+                                            <p>Based in North Providence, he combines local market knowledge with practical tools so clients can understand the numbers, timing, and strategy behind the move.</p>
+                                            <div class="home-showcase-approach-card">
+                                                <p class="service-area-kicker">How Joe Works</p>
+                                                <strong>Responsive, steady, and easy to reach when the details matter.</strong>
+                                                <p>Clients know Joe for clear explanations, real follow-through, and using modern tools where they actually make decisions easier.</p>
+                                            </div>
+                                        </div>
+
+                                        <figure class="about-photo-card home-showcase-about-photo">
+                                            <img src="./Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine seated in a chair">
+                                        </figure>
+                                    </div>
+
+                                    <div class="about-panel">
+                                        <div class="about-detail">
+                                            <span>Brokerage</span>
+                                            <strong>Platinum Real Estate Group, powered by Keller Williams Leading Edge</strong>
+                                        </div>
+                                        <div class="about-detail">
+                                            <span>Experience</span>
+                                            <strong>Over six years helping buyers, sellers, and investors move with confidence</strong>
+                                        </div>
+                                        <div class="about-detail">
+                                            <span>Licensed In</span>
+                                            <strong>Rhode Island and Massachusetts</strong>
+                                        </div>
+                                        <div class="about-detail">
+                                            <span>Main Service Area</span>
+                                            <strong>Central and Northern RI, plus Central and Southeastern MA</strong>
+                                        </div>
+                                        <div class="about-detail">
+                                            <span>Office</span>
+                                            <strong>28 Thurber Blvd, Smithfield, RI 02917</strong>
+                                        </div>
+                                        <div class="about-detail">
+                                            <span>Outside Real Estate</span>
+                                            <strong>Motorcycles, time with friends and family, and hanging out with Milo and Luna</strong>
+                                        </div>
+                                    </div>
                                 </div>
-                            </article>
+                            </section>
 
-                            <article class="review-card" data-reveal>
-                                <div class="review-stars" aria-hidden="true">*****</div>
-                                <p class="review-quote">"Always available to answer questions."</p>
-                                <div class="review-meta">
-                                    <strong>Buy and sell review</strong>
-                                    <span>Zillow, January 2023</span>
+                            <section class="home-showcase-panel" id="service-areas" role="tabpanel" aria-labelledby="home-showcase-tab-service" data-home-panel="service" hidden>
+                                <div class="home-showcase-panel-heading">
+                                    <p class="eyebrow">Service Areas</p>
+                                    <h3>Local roots with real reach across Rhode Island and key Massachusetts markets.</h3>
+                                    <p>Joe serves buyers and sellers across a broad Rhode Island and Massachusetts corridor, with especially strong focus in the towns where he already has active clients or recent closings.</p>
                                 </div>
-                            </article>
-                        </div>
 
-                        <div class="review-actions" data-reveal>
-                            <p class="review-source">
-                                Review excerpts from Zillow. Volume snapshot from public Homes.com profile data.
-                                <span id="profile-stats-checked" data-profile-stats-checked>Stats last checked March 17, 2026.</span>
-                            </p>
-                            <div class="review-action-buttons">
-                                <a
-                                    class="button button-primary"
-                                    href="https://www.zillow.com/profile/JoePineRealtor"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Read Reviews on Zillow
-                                </a>
-                                <a
-                                    class="button button-secondary"
-                                    href="https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    View Homes.com Profile
-                                </a>
-                            </div>
+                                <div class="service-area-grid">
+                                    <article class="service-area-overview">
+                                        <p class="service-area-kicker">Core Coverage</p>
+                                        <h3>Core service locations show where real transaction experience is already on the ground.</h3>
+                                        <p>Whether you are buying your first home, selling to make your next move, or planning an investment, Joe helps clients navigate this corridor with clear advice, responsive communication, and local market perspective.</p>
+
+                                        <div class="service-area-chip-group" aria-label="Broad service corridor">
+                                            <p>Broad coverage</p>
+                                            <div class="service-area-chips">
+                                                <span>Coventry</span>
+                                                <span>Worcester</span>
+                                                <span>Bridgewater</span>
+                                                <span>Mattapoisett</span>
+                                                <span>Southeastern Massachusetts</span>
+                                                <span>Rhode Island's East Bay</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="service-area-chip-group" aria-label="Markets with active clients and closings">
+                                            <p>Active + closed markets</p>
+                                            <div class="service-area-chips service-area-chips-strong">
+                                                <span>Rehoboth</span>
+                                                <span>Taunton</span>
+                                                <span>Attleboro</span>
+                                                <span>Mattapoisett</span>
+                                                <span>Rochester</span>
+                                                <span>East Providence</span>
+                                                <span>Barrington</span>
+                                                <span>Woonsocket</span>
+                                                <span>Burrillville</span>
+                                                <span>Warwick</span>
+                                                <span>Coventry</span>
+                                                <span>Pawtucket</span>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <div class="service-area-map-card">
+                                        <div class="service-area-map-header">
+                                            <p>Core Coverage Map</p>
+                                            <strong>Each red radius marks a town where Joe has active clients or recent closings across Rhode Island and Massachusetts.</strong>
+                                        </div>
+                                        <div class="service-area-map" id="service-area-map" aria-label="Static map showing Joe Pine's Rhode Island and Massachusetts service area"></div>
+                                        <div class="service-area-map-legend" aria-label="Map legend">
+                                            <span><i class="service-area-legend service-area-legend-radius" aria-hidden="true"></i> Coverage radius around an active or closed market</span>
+                                            <span><i class="service-area-legend service-area-legend-point" aria-hidden="true"></i> Town where Joe has active clients or recent closings</span>
+                                        </div>
+                                        <p class="service-area-map-note">The circles are centered on towns where Joe already has active clients or recent closings, giving a cleaner visual of the areas where that local experience is already in place.</p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="home-showcase-panel" id="brokerage-support" role="tabpanel" aria-labelledby="home-showcase-tab-support" data-home-panel="support" hidden>
+                                <div class="home-showcase-panel-heading">
+                                    <p class="eyebrow">Brokerage Support</p>
+                                </div>
+
+                                <div class="home-showcase-support-grid">
+                                    <article class="home-showcase-support-summary">
+                                        <p class="eyebrow">Powered Well</p>
+                                        <h3>Small-team guidance with big-brokerage tools behind the scenes.</h3>
+                                        <p>Joe works with Platinum Real Estate Group, led by Associate Broker and Team Leader Helen Pirri, while Keller Williams Leading Edge provides the broader brokerage support, marketing systems, and operational reach behind the scenes.</p>
+                                    </article>
+
+                                    <article class="home-showcase-support-card">
+                                        <span class="logo-row-label">Brokerage Partners</span>
+                                        <div class="logo-stack">
+                                            <img class="logo-platinum" src="./Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">
+                                            <span class="logo-divider">Powered by</span>
+                                            <img class="logo-kw" src="./Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+                                        </div>
+
+                                        <div class="home-showcase-support-points">
+                                            <div class="home-showcase-support-point">
+                                                <strong>Local guidance</strong>
+                                                <p>Clear communication, practical strategy, and a smaller-team feel throughout the move.</p>
+                                            </div>
+                                            <div class="home-showcase-support-point">
+                                                <strong>Bigger systems</strong>
+                                                <p>Marketing, operational support, and brokerage tools that help the details stay organized.</p>
+                                            </div>
+                                            <div class="home-showcase-support-point">
+                                                <strong>Office support</strong>
+                                                <p>Smithfield office resources and the backing of an established local leadership team.</p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <section class="home-showcase-panel" id="reviews" role="tabpanel" aria-labelledby="home-showcase-tab-reviews" data-home-panel="reviews" hidden>
+                                <div class="home-showcase-panel-heading">
+                                    <p class="eyebrow">Reviews &amp; Results</p>
+                                    <h3>Real clients, real closings, and a track record people feel good about.</h3>
+                                    <p>Reviews consistently point to responsiveness, clear communication, and steady guidance from start to finish.</p>
+                                </div>
+
+                                <!-- PROFILE_STATS_START -->
+                                <div class="review-stat-grid">
+                                    <article class="review-stat-card">
+                                        <span> Zillow rating </span>
+                                        <strong id="stat-zillow-rating" data-profile-stat="zillow-rating">5.0</strong>
+                                        <p>Five-star profile based on current public Zillow reviews.</p>
+                                    </article>
+                                    <article class="review-stat-card">
+                                        <span> Reviews </span>
+                                        <strong id="stat-zillow-reviews" data-profile-stat="zillow-reviews">5</strong>
+                                        <p>Verified public client reviews across recent buyer and seller experiences.</p>
+                                    </article>
+                                    <article class="review-stat-card">
+                                        <span> Public volume </span>
+                                        <strong id="stat-homes-total-value" data-profile-stat="homes-total-value">$4.6M</strong>
+                                        <p>Total value shown on Joe's public Homes.com profile for the prior five years.</p>
+                                    </article>
+                                    <article class="review-stat-card">
+                                        <span> Average price </span>
+                                        <strong id="stat-homes-average-price" data-profile-stat="homes-average-price">$417.1K</strong>
+                                        <p>Average closed price shown on Joe's public Homes.com profile.</p>
+                                    </article>
+                                </div>
+                                <!-- PROFILE_STATS_END -->
+
+                                <div class="reviews-grid">
+                                    <article class="review-card">
+                                        <div class="review-stars" aria-hidden="true">*****</div>
+                                        <p class="review-quote">"Incredible throughout the entire home buying journey."</p>
+                                        <div class="review-meta">
+                                            <strong>Buyer review</strong>
+                                            <span>Zillow, February 2026</span>
+                                        </div>
+                                    </article>
+                                    <article class="review-card">
+                                        <div class="review-stars" aria-hidden="true">*****</div>
+                                        <p class="review-quote">"Help get my house sold quickly."</p>
+                                        <div class="review-meta">
+                                            <strong>Seller review</strong>
+                                            <span>Zillow, September 2023</span>
+                                        </div>
+                                    </article>
+                                    <article class="review-card">
+                                        <div class="review-stars" aria-hidden="true">*****</div>
+                                        <p class="review-quote">"Always available to answer questions."</p>
+                                        <div class="review-meta">
+                                            <strong>Buy and sell review</strong>
+                                            <span>Zillow, January 2023</span>
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <div class="review-actions">
+                                    <p class="review-source">
+                                        Review excerpts from Zillow. Volume snapshot from public Homes.com profile data.
+                                        <span id="profile-stats-checked" data-profile-stats-checked>Stats last checked March 17, 2026.</span>
+                                    </p>
+                                    <div class="review-action-buttons">
+                                        <a class="button button-primary" href="https://www.zillow.com/profile/JoePineRealtor" target="_blank" rel="noreferrer">Read Reviews on Zillow</a>
+                                        <a class="button button-secondary" href="https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/" target="_blank" rel="noreferrer">View Homes.com Profile</a>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>

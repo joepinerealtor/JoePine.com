@@ -1,0 +1,848 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Inspector Partners | Joe Pine</title>
+    <meta
+        name="description"
+        content="Home inspector options and inspection prep from Joe Pine to help buyers and sellers understand the house more clearly before decisions get rushed."
+    >
+    <script>
+        const inspectorPageParams = new URLSearchParams(window.location.search);
+        const inspectorEmbedName = inspectorPageParams.get("embed") || "";
+        if (inspectorEmbedName) {
+            document.documentElement.dataset.embed = inspectorEmbedName;
+        }
+    </script>
+    <link rel="stylesheet" href="/site-frame.css">
+    <style>
+        :root {
+            --kw-red: #ce011f;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #e31837;
+            --kw-green: #198754;
+            --kw-ink: #000000;
+            --kw-slate: #4d4d4d;
+            --kw-muted: #828282;
+            --kw-line: #d9d9d9;
+            --surface: rgba(255, 255, 255, 0.96);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
+        }
+
+        html[data-embed] body {
+            background: transparent;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 18px 18px 34px;
+        }
+
+        html[data-embed] .site-frame-wrap,
+        html[data-embed] .hero-actions,
+        html[data-embed] .cta-panel {
+            display: none;
+        }
+
+        html[data-embed] .page-shell {
+            max-width: none;
+            padding: 0;
+        }
+
+        html[data-embed] .hero-panel {
+            margin-bottom: 18px;
+        }
+
+        .hero-panel,
+        .support-panel,
+        .partner-card,
+        .info-panel,
+        .prep-card,
+        .cta-panel {
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            background: var(--surface);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+            backdrop-filter: blur(14px);
+        }
+
+        .hero-panel {
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 52%, var(--kw-red-deep) 100%);
+            color: #ffffff;
+            padding: 20px 22px 18px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.82);
+            font-weight: 800;
+        }
+
+        .hero-banner h2 {
+            margin: 0;
+            max-width: 760px;
+            font-size: clamp(28px, 4.2vw, 44px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+            gap: 16px;
+            padding: 18px;
+        }
+
+        .hero-copy {
+            padding: 2px 2px 0;
+        }
+
+        .hero-copy p {
+            margin: 0 0 16px;
+            font-size: 15px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 10px;
+            font-weight: 900;
+            transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+            text-align: center;
+        }
+
+        .hero-actions .button,
+        .cta-actions .button,
+        .partner-actions .button {
+            flex: 1 1 170px;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px -20px rgba(15, 23, 42, 0.4);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+        }
+
+        .button-secondary {
+            background: #ffffff;
+            color: var(--kw-ink);
+            border-color: var(--kw-ink);
+        }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-panel {
+            border-radius: 22px;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
+        }
+
+        .info-label {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+            font-weight: 800;
+        }
+
+        .info-panel p,
+        .info-panel li {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .info-panel ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .section-heading {
+            margin: 0 0 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .section-heading h3 {
+            margin: 0;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .section-heading p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--kw-muted);
+            font-weight: 800;
+        }
+
+        .support-panel {
+            border-radius: 30px;
+            padding: 18px;
+            margin-bottom: 24px;
+        }
+
+        .support-tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 0 18px;
+        }
+
+        .support-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 18px;
+            border: 1px solid rgba(206, 1, 31, 0.16);
+            border-radius: 18px;
+            background: rgba(206, 1, 31, 0.05);
+            color: var(--kw-slate);
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+            flex: 1 1 240px;
+        }
+
+        .support-tab:hover,
+        .support-tab:focus-visible {
+            transform: translateY(-1px);
+            background: rgba(206, 1, 31, 0.12);
+        }
+
+        .support-tab.is-active {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+        }
+
+        .support-tab-panel[hidden] {
+            display: none;
+        }
+
+        .support-tab-copy {
+            margin: 0 0 16px;
+        }
+
+        .support-tab-copy h3 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .support-tab-copy p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .prep-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+            gap: 16px;
+        }
+
+        .prep-card {
+            border-radius: 22px;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
+        }
+
+        .prep-card h4 {
+            margin: 0 0 10px;
+            font-size: 22px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .prep-card p,
+        .prep-card li {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .prep-card ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .prep-card .cta-actions {
+            justify-content: flex-start;
+            margin-top: 14px;
+        }
+
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .partner-card {
+            border-radius: 26px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 100%;
+        }
+
+        .partner-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .partner-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            flex: 0 0 auto;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .partner-company {
+            margin: 0 0 6px;
+            font-size: 12px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--kw-muted);
+            font-weight: 800;
+        }
+
+        .partner-name {
+            margin: 0 0 6px;
+            font-size: 22px;
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .partner-title {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.45;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .focus-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .focus-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 48px;
+            min-height: 28px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            border: 1px solid var(--kw-line);
+            color: var(--kw-slate);
+            font-size: 10px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .partner-note {
+            margin: 0;
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #fafafa 0%, #f3f4f6 100%);
+            border: 1px solid var(--kw-line);
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .partner-meta {
+            display: grid;
+            gap: 10px;
+        }
+
+        .meta-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+        }
+
+        .meta-row:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .meta-label {
+            color: var(--kw-muted);
+            font-size: 10px;
+            line-height: 1.2;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .meta-value {
+            text-align: right;
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--kw-ink);
+            font-weight: 800;
+        }
+
+        .partner-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .partner-actions .button {
+            width: 100%;
+        }
+
+        .cta-panel {
+            border-radius: 28px;
+            padding: 18px 20px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+            gap: 18px;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 250, 251, 0.98) 100%);
+        }
+
+        .cta-panel h4 {
+            margin: 0 0 10px;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .cta-panel p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        @media (max-width: 980px) {
+            .hero-content,
+            .prep-grid,
+            .cta-panel,
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-actions {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .partner-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .page-shell {
+                padding: 16px 14px 30px;
+            }
+
+            .hero-banner,
+            .hero-content,
+            .support-panel,
+            .partner-card,
+            .prep-card,
+            .cta-panel {
+                padding: 16px;
+            }
+
+            .hero-banner h2 {
+                font-size: 30px;
+            }
+
+            .partner-name {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="/" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="/Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-inspectors"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-inspectors">
+                <a href="/">Home</a>
+                <a href="/buyer-start-here/">First Time Buyers</a>
+                <a href="/buyers/#buyer-process">Buyer Resources</a>
+                <a href="/sellers/">Seller Resources</a>
+                <a href="/search/">Search Homes</a>
+                <a href="/#about">About Joe</a>
+                <a class="site-frame-cta" href="/#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-banner">
+                <p class="eyebrow">Due Diligence | Inspection Prep</p>
+                <h2>Choose the home inspector who helps you understand the house before decisions get rushed.</h2>
+            </div>
+        </section>
+
+        <section class="support-panel">
+            <div class="section-heading">
+                <h3>Home Inspectors</h3>
+                <p>Use the inspector list and prep checklist together.</p>
+            </div>
+
+            <div class="support-tab-list" role="tablist" aria-label="Inspector support">
+                <button
+                    class="support-tab is-active"
+                    type="button"
+                    role="tab"
+                    id="inspector-tab-partner"
+                    aria-selected="true"
+                    aria-controls="inspector-partner-panel"
+                    data-inspector-tab="partner"
+                >
+                    Inspector Partner
+                </button>
+                <button
+                    class="support-tab"
+                    type="button"
+                    role="tab"
+                    id="inspector-tab-prep"
+                    aria-selected="false"
+                    aria-controls="inspector-prep-panel"
+                    data-inspector-tab="prep"
+                >
+                    Inspection Prep
+                </button>
+            </div>
+
+            <section
+                class="support-tab-panel"
+                id="inspector-partner-panel"
+                role="tabpanel"
+                aria-labelledby="inspector-tab-partner"
+                data-inspector-tab-panel="partner"
+            >
+                <div class="support-tab-copy">
+                    <h3>Inspector Partners</h3>
+                    <p>See Joe's current inspector options and get connected quickly when you are ready to schedule.</p>
+                </div>
+                <div id="inspectorGrid" class="partner-grid"></div>
+            </section>
+
+            <section
+                class="support-tab-panel"
+                id="inspector-prep-panel"
+                role="tabpanel"
+                aria-labelledby="inspector-tab-prep"
+                data-inspector-tab-panel="prep"
+                hidden
+            >
+                <div class="support-tab-copy">
+                    <h3>Inspection Prep</h3>
+                    <p>Use this as a quick gut-check before you book the inspection or decide whether specialty follow-up testing makes sense.</p>
+                </div>
+
+                <div class="prep-grid">
+                    <div class="prep-card">
+                        <h4>What To Ask</h4>
+                        <ul>
+                            <li>What is included in your general inspection?</li>
+                            <li>How quickly does the report come back?</li>
+                            <li>Do you also handle radon, WDI, septic, or well testing?</li>
+                            <li>Can you explain which items are urgent versus routine upkeep?</li>
+                        </ul>
+                    </div>
+
+                    <div class="prep-card">
+                        <h4>Need Help Choosing?</h4>
+                        <p>Joe can help you decide which inspector is the better fit for the home, the timeline, and any extra testing the file may need.</p>
+                        <div class="cta-actions">
+                            <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
+                            <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=Help%20Me%20Choose%20An%20Inspector">Email Joe</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+    <script>
+        const inspectors = [
+            {
+                name: "Patrick Geddes",
+                title: "Home inspector with Home Inspections by Bob Geddes.",
+                company: "Home Inspections by Bob Geddes",
+                initials: "PG",
+                focusAreas: ["Buyers", "Condos", "Homes"],
+                accent: "linear-gradient(135deg, #ce011f 0%, #e31837 100%)",
+                note: "Patrick Geddes with Home Inspections by Bob Geddes is a real inspection partner on Joe's list and a solid fit when buyers want a straightforward home inspection conversation before contingencies expire.",
+                meta: [
+                    { label: "Best For", value: "Single-family, condo, and multifamily buyers who want the big-picture walkthrough." },
+                    { label: "Website", value: "<a href=\"https://homeinspectionsbybobgeddes.net\" target=\"_blank\" rel=\"noreferrer\">homeinspectionsbybobgeddes.net</a>" },
+                    { label: "Phone", value: "<a href=\"tel:4016039310\">(401) 603-9310</a>" },
+                    { label: "Email", value: "<a href=\"mailto:patrickd.geddes@gmail.com\">patrickd.geddes@gmail.com</a>" }
+                ],
+                primaryActionLabel: "Visit Website",
+                primaryActionUrl: "https://homeinspectionsbybobgeddes.net",
+                secondaryActionLabel: "Email Patrick",
+                secondaryActionUrl: "mailto:patrickd.geddes@gmail.com"
+            },
+            {
+                name: "Doug Cavalieri",
+                title: "Founder, Arrow Home Inspections.",
+                company: "Arrow Home Inspections",
+                initials: "DC",
+                focusAreas: ["Buyers", "Sellers", "Homes"],
+                accent: "linear-gradient(135deg, #202020 0%, #4d4d4d 100%)",
+                note: "Doug brings nearly 30 years of construction knowledge, more than 2,000 inspections completed, and a straight-to-the-point style that helps buyers and sellers understand the house without getting buried in jargon.",
+                meta: [
+                    { label: "Best For", value: "Buyers and sellers who want a detailed inspection, same-day reporting when possible, and clear direct communication." },
+                    { label: "Website", value: "<a href=\"https://arrow-homeinspections.com/\" target=\"_blank\" rel=\"noreferrer\">arrow-homeinspections.com</a>" },
+                    { label: "Phone", value: "<a href=\"tel:4012434206\">(401) 243-4206</a>" },
+                    { label: "Email", value: "<a href=\"mailto:doug@arrow-homeinspections.com\">doug@arrow-homeinspections.com</a>" }
+                ],
+                primaryActionLabel: "Visit Website",
+                primaryActionUrl: "https://arrow-homeinspections.com/",
+                secondaryActionLabel: "Email Doug",
+                secondaryActionUrl: "mailto:doug@arrow-homeinspections.com"
+            }
+        ];
+
+        const inspectorGrid = document.getElementById("inspectorGrid");
+
+        inspectorGrid.innerHTML = inspectors.map((partner) => {
+            const chips = partner.focusAreas
+                .map((area) => `<span class="focus-chip">${area}</span>`)
+                .join("");
+
+            const metaRows = partner.meta
+                .map((item) => `
+                    <div class="meta-row">
+                        <span class="meta-label">${item.label}</span>
+                        <span class="meta-value">${item.value}</span>
+                    </div>
+                `)
+                .join("");
+
+            return `
+                <article class="partner-card">
+                    <div class="partner-top">
+                        <div>
+                            <p class="partner-company">${partner.company}</p>
+                            <h4 class="partner-name">${partner.name}</h4>
+                            <p class="partner-title">${partner.title}</p>
+                        </div>
+                        <div class="partner-avatar" style="background:${partner.accent};">${partner.initials}</div>
+                    </div>
+                    <div>
+                        <p class="info-label">Best Fit</p>
+                        <div class="focus-stack">${chips}</div>
+                    </div>
+                    <p class="partner-note">${partner.note}</p>
+                    <div class="partner-meta">${metaRows}</div>
+                    <div class="partner-actions">
+                        <a class="button button-primary" href="${partner.primaryActionUrl}">${partner.primaryActionLabel}</a>
+                        <a class="button button-secondary" href="${partner.secondaryActionUrl}">${partner.secondaryActionLabel}</a>
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+        const inspectorTabs = Array.from(document.querySelectorAll("[data-inspector-tab]"));
+        const inspectorPanels = Array.from(document.querySelectorAll("[data-inspector-tab-panel]"));
+
+        function setActiveInspectorTab(target) {
+            inspectorTabs.forEach((tab) => {
+                const isActive = tab.dataset.inspectorTab === target;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            inspectorPanels.forEach((panel) => {
+                panel.hidden = panel.dataset.inspectorTabPanel !== target;
+            });
+
+            requestAnimationFrame(postInspectorEmbedHeight);
+        }
+
+        inspectorTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setActiveInspectorTab(tab.dataset.inspectorTab);
+            });
+        });
+
+        function postInspectorEmbedHeight() {
+            if (!inspectorEmbedName || window.parent === window) {
+                return;
+            }
+
+            const height = Math.ceil(document.documentElement.scrollHeight);
+            window.parent.postMessage({
+                type: "joe-embed-resize",
+                embed: inspectorEmbedName,
+                height
+            }, "*");
+        }
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(postInspectorEmbedHeight);
+        });
+        window.addEventListener("load", postInspectorEmbedHeight);
+        window.addEventListener("resize", postInspectorEmbedHeight);
+    </script>
+    <script src="/site-frame.js"></script>
+</body>
+</html>
+

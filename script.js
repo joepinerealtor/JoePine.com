@@ -94,154 +94,15 @@ photoCarousels.forEach((carousel) => {
 });
 
 const serviceAreaMapNode = document.getElementById("service-area-map");
+let serviceAreaMap = null;
+let resetServiceAreaMapView = null;
 
-if (serviceAreaMapNode) {
-    if (window.L) {
-        const serviceAreaMap = L.map(serviceAreaMapNode, {
-            attributionControl: true,
-            scrollWheelZoom: false,
-            zoomControl: false,
-            dragging: false,
-            touchZoom: false,
-            doubleClickZoom: false,
-            boxZoom: false,
-            keyboard: false,
-            tap: false
-        });
+function initializeServiceAreaMap() {
+    if (!serviceAreaMapNode || serviceAreaMapNode.dataset.mapReady === "true") {
+        return;
+    }
 
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-            subdomains: "abcd",
-            maxZoom: 20,
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
-        }).addTo(serviceAreaMap);
-
-        const soldMarkets = [
-            {
-                name: "Rehoboth",
-                coords: [41.8404, -71.2495],
-                direction: "right",
-                offset: [14, -2]
-            },
-            {
-                name: "Taunton",
-                coords: [41.9001, -71.0898],
-                direction: "top",
-                offset: [0, -14]
-            },
-            {
-                name: "Attleboro",
-                coords: [41.9445, -71.2856],
-                direction: "top",
-                offset: [0, -14]
-            },
-            {
-                name: "Mattapoisett",
-                coords: [41.6358, -70.7858],
-                direction: "left",
-                offset: [-14, -4]
-            },
-            {
-                name: "Rochester",
-                coords: [41.7458, -70.8369],
-                direction: "right",
-                offset: [14, -4]
-            },
-            {
-                name: "Coventry",
-                coords: [41.7001, -71.6828],
-                direction: "left",
-                offset: [-14, 0]
-            },
-            {
-                name: "Woonsocket",
-                coords: [42.0029, -71.5148],
-                direction: "top",
-                offset: [0, -14]
-            },
-            {
-                name: "Burrillville",
-                coords: [41.9668, -71.6781],
-                direction: "left",
-                offset: [-14, -6]
-            },
-            {
-                name: "East Providence",
-                coords: [41.8137, -71.3701],
-                direction: "left",
-                offset: [-14, -2]
-            },
-            {
-                name: "Barrington",
-                coords: [41.7407, -71.3083],
-                direction: "bottom",
-                offset: [8, 14]
-            },
-            {
-                name: "Warwick",
-                coords: [41.7002, -71.4162],
-                direction: "left",
-                offset: [-14, 8]
-            },
-            {
-                name: "Pawtucket",
-                coords: [41.8787, -71.3826],
-                direction: "right",
-                offset: [14, -12]
-            }
-        ];
-
-        const soldMarketRadius = 12000;
-        const soldMarketBounds = L.latLngBounds(soldMarkets.map((market) => market.coords));
-
-        soldMarkets.forEach((market) => {
-            L.circle(market.coords, {
-                radius: soldMarketRadius,
-                color: "#ce011f",
-                weight: 1.5,
-                opacity: 0.28,
-                fillColor: "#ce011f",
-                fillOpacity: 0.12
-            }).addTo(serviceAreaMap);
-
-            L.circleMarker(market.coords, {
-                radius: 7,
-                color: "#ffffff",
-                weight: 2,
-                fillColor: "#ce011f",
-                fillOpacity: 1
-            })
-                .addTo(serviceAreaMap)
-                .bindTooltip(market.name, {
-                    permanent: true,
-                    direction: market.direction,
-                    className: "service-area-label",
-                    offset: market.offset || [0, -10]
-                });
-        });
-
-        const resetSoldMarketView = () => {
-            serviceAreaMap.invalidateSize();
-            serviceAreaMap.fitBounds(soldMarketBounds, {
-                padding: [36, 36]
-            });
-        };
-
-        resetSoldMarketView();
-        window.addEventListener("load", resetSoldMarketView);
-        window.addEventListener("resize", resetSoldMarketView);
-        setTimeout(resetSoldMarketView, 250);
-        setTimeout(resetSoldMarketView, 1000);
-
-        // Keep the map as a static visual on both desktop and touch devices.
-        serviceAreaMap.dragging.disable();
-        serviceAreaMap.touchZoom.disable();
-        serviceAreaMap.doubleClickZoom.disable();
-        serviceAreaMap.boxZoom.disable();
-        serviceAreaMap.keyboard.disable();
-        if (serviceAreaMap.tap) {
-            serviceAreaMap.tap.disable();
-        }
-    } else {
+    if (!window.L) {
         serviceAreaMapNode.classList.add("is-fallback");
         serviceAreaMapNode.innerHTML = [
             '<div class="service-area-map-fallback">',
@@ -249,7 +110,173 @@ if (serviceAreaMapNode) {
             "<span>Joe Pine serves the full corridor from Rhode Island into Massachusetts, with especially strong focus in markets where he has visible sales activity, including Coventry, East Providence, Riverside, Lincoln, Smithfield, Woonsocket, Warwick, and nearby communities.</span>",
             "</div>"
         ].join("");
+        serviceAreaMapNode.dataset.mapReady = "true";
+        return;
     }
+
+    serviceAreaMap = L.map(serviceAreaMapNode, {
+        attributionControl: true,
+        scrollWheelZoom: false,
+        zoomControl: false,
+        dragging: false,
+        touchZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        tap: false
+    });
+
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        subdomains: "abcd",
+        maxZoom: 20,
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+    }).addTo(serviceAreaMap);
+
+    const soldMarkets = [
+        { name: "Rehoboth", coords: [41.8404, -71.2495], direction: "right", offset: [14, -2] },
+        { name: "Taunton", coords: [41.9001, -71.0898], direction: "top", offset: [0, -14] },
+        { name: "Attleboro", coords: [41.9445, -71.2856], direction: "top", offset: [0, -14] },
+        { name: "Mattapoisett", coords: [41.6358, -70.7858], direction: "left", offset: [-14, -4] },
+        { name: "Rochester", coords: [41.7458, -70.8369], direction: "right", offset: [14, -4] },
+        { name: "Coventry", coords: [41.7001, -71.6828], direction: "left", offset: [-14, 0] },
+        { name: "Woonsocket", coords: [42.0029, -71.5148], direction: "top", offset: [0, -14] },
+        { name: "Burrillville", coords: [41.9668, -71.6781], direction: "left", offset: [-14, -6] },
+        { name: "East Providence", coords: [41.8137, -71.3701], direction: "left", offset: [-14, -2] },
+        { name: "Barrington", coords: [41.7407, -71.3083], direction: "bottom", offset: [8, 14] },
+        { name: "Warwick", coords: [41.7002, -71.4162], direction: "left", offset: [-14, 8] },
+        { name: "Pawtucket", coords: [41.8787, -71.3826], direction: "right", offset: [14, -12] }
+    ];
+
+    const soldMarketBounds = L.latLngBounds(soldMarkets.map((market) => market.coords));
+
+    soldMarkets.forEach((market) => {
+        L.circle(market.coords, {
+            radius: 12000,
+            color: "#ce011f",
+            weight: 1.5,
+            opacity: 0.28,
+            fillColor: "#ce011f",
+            fillOpacity: 0.12
+        }).addTo(serviceAreaMap);
+
+        L.circleMarker(market.coords, {
+            radius: 7,
+            color: "#ffffff",
+            weight: 2,
+            fillColor: "#ce011f",
+            fillOpacity: 1
+        })
+            .addTo(serviceAreaMap)
+            .bindTooltip(market.name, {
+                permanent: true,
+                direction: market.direction,
+                className: "service-area-label",
+                offset: market.offset || [0, -10]
+            });
+    });
+
+    resetServiceAreaMapView = () => {
+        if (!serviceAreaMap) {
+            return;
+        }
+
+        serviceAreaMap.invalidateSize();
+        serviceAreaMap.fitBounds(soldMarketBounds, {
+            padding: [36, 36]
+        });
+    };
+
+    serviceAreaMap.dragging.disable();
+    serviceAreaMap.touchZoom.disable();
+    serviceAreaMap.doubleClickZoom.disable();
+    serviceAreaMap.boxZoom.disable();
+    serviceAreaMap.keyboard.disable();
+    if (serviceAreaMap.tap) {
+        serviceAreaMap.tap.disable();
+    }
+
+    window.addEventListener("load", resetServiceAreaMapView);
+    window.addEventListener("resize", resetServiceAreaMapView);
+
+    serviceAreaMapNode.dataset.mapReady = "true";
+}
+
+function ensureServiceAreaMapVisible() {
+    if (!serviceAreaMapNode) {
+        return;
+    }
+
+    initializeServiceAreaMap();
+
+    if (resetServiceAreaMapView) {
+        requestAnimationFrame(() => {
+            setTimeout(() => resetServiceAreaMapView(), 60);
+        });
+    }
+}
+
+const homeGuide = document.querySelector("[data-home-guide]");
+
+if (homeGuide) {
+    const guideTabs = Array.from(homeGuide.querySelectorAll("[data-home-tab]"));
+    const guidePanels = Array.from(homeGuide.querySelectorAll("[data-home-panel]"));
+    const homeTabByHash = new Map(guideTabs.map((tab) => [tab.dataset.homeHash, tab.dataset.homeTab]));
+
+    const activateHomePanel = (panelName, options = {}) => {
+        const { updateHash = false } = options;
+        const activeTab = guideTabs.find((tab) => tab.dataset.homeTab === panelName) || guideTabs[0];
+        const activePanel = guidePanels.find((panel) => panel.dataset.homePanel === panelName) || guidePanels[0];
+
+        guideTabs.forEach((tab) => {
+            const isActive = tab === activeTab;
+            tab.classList.toggle("is-active", isActive);
+            tab.setAttribute("aria-selected", String(isActive));
+            tab.tabIndex = isActive ? 0 : -1;
+        });
+
+        guidePanels.forEach((panel) => {
+            const isActive = panel === activePanel;
+            panel.classList.toggle("is-active", isActive);
+            panel.hidden = !isActive;
+
+            if (isActive) {
+                panel.scrollTop = 0;
+            }
+        });
+
+        if (panelName === "service") {
+            ensureServiceAreaMapVisible();
+        }
+
+        if (updateHash && activeTab.dataset.homeHash) {
+            history.replaceState(null, "", `#${activeTab.dataset.homeHash}`);
+        }
+    };
+
+    guideTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            activateHomePanel(tab.dataset.homeTab, { updateHash: true });
+        });
+    });
+
+    const applyHomePanelFromHash = () => {
+        const currentHash = window.location.hash.replace("#", "");
+
+        if (currentHash === "about" || !currentHash) {
+            activateHomePanel("about");
+            return;
+        }
+
+        const matchedPanel = homeTabByHash.get(currentHash);
+        if (matchedPanel) {
+            activateHomePanel(matchedPanel);
+        }
+    };
+
+    applyHomePanelFromHash();
+    window.addEventListener("hashchange", applyHomePanelFromHash);
+} else if (serviceAreaMapNode) {
+    ensureServiceAreaMapVisible();
 }
 
 const wealthSection = document.querySelector(".wealth-section");

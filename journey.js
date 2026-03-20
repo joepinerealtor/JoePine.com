@@ -17,7 +17,7 @@ const journeyData = {
                 action: {
                     label: "Try Monthly Payment Calculator",
                     target: "buyer-payment",
-                    href: "./buyers.html#buyer-payment",
+                    href: "/buyers/#buyer-payment",
                 },
                 checklist: [
                     "Think about why you want to move and what you hope the next home will solve.",
@@ -38,13 +38,13 @@ const journeyData = {
                     {
                         label: "View Lending Partners",
                         target: "buyer-lenders",
-                        href: "./buyers.html#buyer-lenders",
+                        href: "/buyers/#buyer-lenders",
                         variant: "primary",
                     },
                     {
                         label: "Try Monthly Payment Calculator",
                         target: "buyer-payment",
-                        href: "./buyers.html#buyer-payment",
+                        href: "/buyers/#buyer-payment",
                     },
                 ],
                 checklist: [
@@ -64,7 +64,7 @@ const journeyData = {
                 action: {
                     label: "Try Monthly Payment Calculator",
                     target: "buyer-payment",
-                    href: "./buyers.html#buyer-payment",
+                    href: "/buyers/#buyer-payment",
                 },
                 checklist: [
                     "Keep your preapproval letter handy so it is ready when we need it.",
@@ -84,7 +84,7 @@ const journeyData = {
                 action: {
                     label: "Try Monthly Payment Calculator",
                     target: "buyer-payment",
-                    href: "./buyers.html#buyer-payment",
+                    href: "/buyers/#buyer-payment",
                 },
                 checklist: [
                     "Separate your must-haves from your nice-to-haves.",
@@ -106,13 +106,13 @@ const journeyData = {
                     {
                         label: "Review Inspectors",
                         target: "buyer-inspectors",
-                        href: "./buyers.html#buyer-inspectors",
+                        href: "/buyers/#buyer-inspectors",
                         variant: "primary",
                     },
                     {
                         label: "Review Closing Attorneys",
                         target: "buyer-attorneys",
-                        href: "./buyers.html#buyer-attorneys",
+                        href: "/buyers/#buyer-attorneys",
                     },
                 ],
                 checklist: [
@@ -135,13 +135,13 @@ const journeyData = {
                     {
                         label: "View Inspectors",
                         target: "buyer-inspectors",
-                        href: "./buyers.html#buyer-inspectors",
+                        href: "/buyers/#buyer-inspectors",
                         variant: "primary",
                     },
                     {
                         label: "View Closing Attorneys",
                         target: "buyer-attorneys",
-                        href: "./buyers.html#buyer-attorneys",
+                        href: "/buyers/#buyer-attorneys",
                     },
                 ],
                 checklist: [
@@ -348,7 +348,7 @@ const journeyData = {
                 action: {
                     label: "View Closing Attorneys",
                     target: "seller-attorneys",
-                    href: "./sellers.html#seller-attorneys",
+                    href: "/sellers/#seller-attorneys",
                 },
                 checklist: [
                     "Send over a few inspection availability windows.",

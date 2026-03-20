@@ -1,0 +1,888 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources for Buyers | Joe Pine</title>
+    <meta
+        name="description"
+        content="Buyer tools from Joe Pine to help you understand monthly payment, compare lenders, weigh rent versus buy, and move through the process with more confidence."
+    >
+    <link rel="stylesheet" href="/site-frame.css">
+    <style>
+        :root {
+            --kw-red: #ce011f;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #e31837;
+            --kw-ink: #000000;
+            --kw-slate: #4d4d4d;
+            --kw-muted: #828282;
+            --kw-line: #d9d9d9;
+            --surface: rgba(255, 255, 255, 0.97);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 18px 34px;
+        }
+
+        .hero-panel,
+        .resource-panel,
+        .cta-panel {
+            scroll-margin-top: 132px;
+        }
+
+        .hero-panel,
+        .resource-panel,
+        .cta-panel {
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            background: var(--surface);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+        }
+
+        .hero-panel {
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 52%, var(--kw-red-deep) 100%);
+            color: #ffffff;
+            padding: 22px 22px 18px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .hero-banner .eyebrow {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .hero-banner h1 {
+            margin: 0;
+            max-width: 760px;
+            font-size: clamp(30px, 4.6vw, 48px);
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-content {
+            padding: 22px;
+        }
+
+        .hero-copy {
+            max-width: 780px;
+        }
+
+        .hero-hook {
+            margin: 0 0 14px;
+            color: var(--kw-red);
+            font-size: 13px;
+            line-height: 1.45;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-copy p,
+        .section-heading p,
+        .cta-panel p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.62;
+            font-weight: 700;
+        }
+
+        .hero-copy p + p {
+            margin-top: 12px;
+        }
+
+        .hero-highlights {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px 14px;
+            margin: 18px 0 0;
+            padding: 0;
+        }
+
+        .hero-highlights li {
+            position: relative;
+            padding-left: 16px;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .hero-highlights li::before {
+            content: "";
+            position: absolute;
+            top: 9px;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--kw-red);
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 10px;
+            font-weight: 900;
+            text-align: center;
+            transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease, border-color 140ms ease;
+            flex: 1 1 180px;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px -20px rgba(15, 23, 42, 0.4);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+        }
+
+        .button-secondary {
+            background: #ffffff;
+            color: var(--kw-ink);
+            border-color: var(--kw-ink);
+        }
+
+        .section-heading {
+            margin: 0 0 16px;
+        }
+
+        .section-heading h2,
+        .cta-panel h2 {
+            display: block;
+            margin: 0 0 8px;
+            font-size: clamp(26px, 3vw, 38px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .section-heading p {
+            max-width: 760px;
+        }
+
+        .resource-panel {
+            border-radius: 28px;
+            padding: 22px;
+            margin-bottom: 24px;
+            background: #ffffff;
+        }
+
+        .resource-tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 0 18px;
+        }
+
+        .resource-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 18px;
+            border: 1px solid rgba(206, 1, 31, 0.16);
+            border-radius: 18px;
+            background: rgba(206, 1, 31, 0.05);
+            color: var(--kw-slate);
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+            flex: 1 1 260px;
+            min-width: 0;
+        }
+
+        .resource-tab:hover,
+        .resource-tab:focus-visible {
+            transform: translateY(-1px);
+            background: rgba(206, 1, 31, 0.12);
+        }
+
+        .resource-tab.is-active {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+        }
+
+        .resource-tab-guided {
+            border-color: rgba(147, 0, 21, 0.24);
+            background: linear-gradient(180deg, rgba(206, 1, 31, 0.12) 0%, rgba(206, 1, 31, 0.07) 100%);
+            color: var(--kw-red-deep);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+        }
+
+        .resource-tab-guided:hover,
+        .resource-tab-guided:focus-visible {
+            background: linear-gradient(180deg, rgba(206, 1, 31, 0.18) 0%, rgba(206, 1, 31, 0.1) 100%);
+        }
+
+        .resource-tab-guided.is-active {
+            background: linear-gradient(135deg, #b40a1f 0%, #d31834 100%);
+            color: #ffffff;
+            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.7);
+        }
+
+        .resource-tab-link {
+            color: var(--kw-slate);
+        }
+
+        .resource-tab-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .resource-tab-panel[hidden] {
+            display: none;
+        }
+
+        .resource-tab-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .resource-tab-copy h3 {
+            margin: 0;
+            font-size: clamp(24px, 3vw, 34px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .resource-tab-copy p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.62;
+            font-weight: 700;
+        }
+
+        .resource-tab-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .resource-frame {
+            width: 100%;
+            border: 0;
+            border-radius: 22px;
+            background: #ffffff;
+            min-height: 980px;
+        }
+
+        .resource-frame.is-calculator {
+            min-height: 1800px;
+        }
+
+        .resource-frame.is-lenders {
+            min-height: 1700px;
+        }
+
+        .resource-frame.is-attorneys {
+            min-height: 1400px;
+        }
+
+        .resource-frame.is-inspectors {
+            min-height: 1500px;
+        }
+
+        .resource-frame.is-process {
+            min-height: 980px;
+        }
+
+        .resource-frame.is-start-here {
+            min-height: 2500px;
+        }
+
+        .resource-frame.is-rent-vs-buy {
+            min-height: 2400px;
+        }
+
+        .cta-panel {
+            border-radius: 28px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+            gap: 18px;
+            align-items: center;
+            padding: 22px;
+        }
+
+        .brand-footer {
+            display: grid;
+            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            align-items: center;
+            gap: 24px;
+            padding: 20px 4px 0;
+        }
+
+        .footer-logo-slot {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo-slot-kw {
+            justify-content: flex-start;
+        }
+
+        .footer-logo-slot-platinum {
+            justify-content: flex-end;
+        }
+
+        .footer-logo-slot img:first-child {
+            width: min(220px, 100%);
+        }
+
+        .footer-copy {
+            text-align: center;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .footer-copy p {
+            margin: 4px 0;
+        }
+
+        .fine-print {
+            color: var(--kw-muted);
+            font-size: 12px;
+        }
+
+        .footer-compliance {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 620px;
+            margin: 8px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .footer-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .footer-badge {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .footer-badge-realtor {
+            max-width: 44px;
+        }
+
+        .footer-badge-housing {
+            max-width: 44px;
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+            color: var(--kw-muted);
+        }
+
+        .footer-disclaimer p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
+        @media (max-width: 980px) {
+            .cta-panel,
+            .brand-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-footer {
+                text-align: center;
+            }
+
+            .footer-logo-slot,
+            .footer-logo-slot-kw,
+            .footer-logo-slot-platinum {
+                justify-content: center;
+            }
+
+            .footer-compliance {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                padding: 0 10px 28px;
+            }
+
+            .hero-panel,
+            .resource-panel,
+            .cta-panel {
+                border-radius: 24px;
+            }
+
+            .hero-banner,
+            .hero-content,
+            .resource-panel,
+            .cta-panel {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .cta-actions {
+                flex-direction: column;
+            }
+
+            .resource-tab-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 980px) {
+            .resource-tab-list {
+                gap: 10px;
+            }
+
+            .resource-tab {
+                flex: 1 1 calc((100% - 60px) / 7);
+                max-width: calc((100% - 60px) / 7);
+                padding: 0 12px;
+                font-size: 10px;
+                letter-spacing: 0.12em;
+                line-height: 1.15;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="/" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="/Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-buyers"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-buyers">
+                <a href="/">Home</a>
+                <a href="/buyer-start-here/">First Time Buyers</a>
+                <a href="/buyers/#buyer-process" aria-current="page">Buyer Resources</a>
+                <a href="/sellers/">Seller Resources</a>
+                <a href="/search/">Search Homes</a>
+                <a href="/#about">About Joe</a>
+                <a class="site-frame-cta" href="/#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-banner">
+                <p class="eyebrow">Resources for Buyers</p>
+                <h1>Buying feels more manageable when the numbers and next steps make sense.</h1>
+            </div>
+        </section>
+
+        <section class="resource-panel" id="buyer-tools">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" style="color: var(--kw-red);">Buyer Tools</p>
+                    <h2>Use the buyer tools below.</h2>
+                </div>
+                <p>
+                    Use the tools below to move between the buyer process, monthly payment planning, lender options, inspectors, and closing attorneys.
+                </p>
+            </div>
+
+            <div class="resource-tab-list" role="tablist" aria-label="Buyer tools">
+                <button
+                    class="resource-tab is-active"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-process"
+                    aria-selected="true"
+                    aria-controls="buyer-process"
+                    data-buyer-resource-tab="buyer-process"
+                >
+                    Buyer Process
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-payment"
+                    aria-selected="false"
+                    aria-controls="buyer-payment"
+                    data-buyer-resource-tab="buyer-payment"
+                >
+                    Monthly Payment Calculator
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-lenders"
+                    aria-selected="false"
+                    aria-controls="buyer-lenders"
+                    data-buyer-resource-tab="buyer-lenders"
+                >
+                    Lending Partners
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-inspectors"
+                    aria-selected="false"
+                    aria-controls="buyer-inspectors"
+                    data-buyer-resource-tab="buyer-inspectors"
+                >
+                    Inspectors
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-attorneys"
+                    aria-selected="false"
+                    aria-controls="buyer-attorneys"
+                    data-buyer-resource-tab="buyer-attorneys"
+                >
+                    Closing Attorneys
+                </button>
+            </div>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-process"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-process"
+                data-buyer-resource-panel="buyer-process"
+            >
+                <iframe
+                    class="resource-frame is-process"
+                    data-embed-target="buyer-process"
+                    src="/journey/?embed=buyer-process#buyer"
+                    title="Buyer process tracker"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-payment"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-payment"
+                data-buyer-resource-panel="buyer-payment"
+                hidden
+            >
+                <iframe
+                    class="resource-frame is-calculator"
+                    data-embed-target="buyer-calculator"
+                    src="/Monthly%20Payment/?embed=buyer-calculator"
+                    title="Monthly payment calculator"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-lenders"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-lenders"
+                data-buyer-resource-panel="buyer-lenders"
+                hidden
+            >
+                <iframe
+                    class="resource-frame is-lenders"
+                    data-embed-target="buyer-lenders"
+                    src="/Monthly%20Payment/lenders.html?embed=buyer-lenders"
+                    title="Lending partners"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-inspectors"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-inspectors"
+                data-buyer-resource-panel="buyer-inspectors"
+                hidden
+            >
+                <iframe
+                    class="resource-frame is-inspectors"
+                    data-embed-target="buyer-inspectors"
+                    src="/inspectors/?embed=buyer-inspectors"
+                    title="Home inspectors"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-attorneys"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-attorneys"
+                data-buyer-resource-panel="buyer-attorneys"
+                hidden
+            >
+                <iframe
+                    class="resource-frame is-attorneys"
+                    data-embed-target="buyer-attorneys"
+                    src="/attorneys/?embed=buyer-attorneys"
+                    title="Closing attorney partners"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+        </section>
+
+        <section class="cta-panel">
+            <div>
+                <p class="eyebrow" style="color: var(--kw-red);">Buyer Next Step</p>
+                <h2>If you want help turning this into a real search plan, let's talk.</h2>
+                <p>
+                    I can help you sort through payment comfort, lender options, and next steps so you can move forward with more clarity.
+                </p>
+            </div>
+
+            <div class="cta-actions">
+                <a class="button button-primary" href="tel:4013270888">Call Joe Pine</a>
+                <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=I%20Want%20To%20Talk%20About%20Buying">Email Joe</a>
+            </div>
+        </section>
+
+        <footer class="brand-footer">
+            <div class="footer-logo-slot footer-logo-slot-kw">
+                <img src="/Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+            </div>
+            <div class="footer-copy">
+                <p>Joe Pine, REALTOR&reg; | RI &amp; MA</p>
+                <p>28 Thurber Blvd, Smithfield, RI 02917</p>
+                <p class="fine-print">Massachusetts Real Estate License #1001085-RE-RS</p>
+                <p class="fine-print">Rhode Island Real Estate License #RES.0044759</p>
+                <div class="footer-compliance" aria-label="REALTOR and Equal Housing Opportunity disclosure">
+                    <div class="footer-disclaimer">
+                        <p>Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                    </div>
+                    <div class="footer-badge-row">
+                        <img class="footer-badge footer-badge-realtor" src="/images/branding/realtor-mark-official.jpg" alt="REALTOR logo">
+                        <img class="footer-badge footer-badge-housing" src="/images/branding/equal-housing-mark-official.png" alt="Equal Housing Opportunity logo">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-logo-slot footer-logo-slot-platinum">
+                <img src="/Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const buyerResourceTabs = Array.from(document.querySelectorAll("[data-buyer-resource-tab]"));
+        const buyerResourcePanels = Array.from(document.querySelectorAll("[data-buyer-resource-panel]"));
+
+        function getBuyerResourceTarget(hashValue) {
+            const target = (hashValue || "").replace("#", "");
+            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" || target === "buyer-process" ? target : null;
+        }
+
+        function setActiveBuyerResource(target, options = {}) {
+            if (!target) {
+                return;
+            }
+
+            buyerResourceTabs.forEach((tab) => {
+                const isActive = tab.dataset.buyerResourceTab === target;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            buyerResourcePanels.forEach((panel) => {
+                panel.hidden = panel.dataset.buyerResourcePanel !== target;
+            });
+
+            if (options.updateHash) {
+                history.replaceState(null, "", `#${target}`);
+            }
+
+            if (options.scrollToPanel) {
+                const section = document.getElementById("buyer-tools");
+                const panel = document.getElementById(target);
+                const scrollTarget = section || panel;
+                if (scrollTarget) {
+                    requestAnimationFrame(() => {
+                        scrollTarget.scrollIntoView({ block: "start" });
+                    });
+                }
+            }
+        }
+
+        buyerResourceTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                setActiveBuyerResource(tab.dataset.buyerResourceTab, {
+                    updateHash: true
+                });
+            });
+        });
+
+        document.querySelectorAll('a[href^="#buyer-"]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const target = getBuyerResourceTarget(link.getAttribute("href"));
+                if (!target) {
+                    return;
+                }
+
+                event.preventDefault();
+                setActiveBuyerResource(target, {
+                    updateHash: true,
+                    scrollToPanel: true
+                });
+            });
+        });
+
+        window.addEventListener("hashchange", () => {
+            const target = getBuyerResourceTarget(window.location.hash);
+            if (target) {
+                setActiveBuyerResource(target, { scrollToPanel: true });
+            }
+        });
+
+        const initialBuyerTarget = getBuyerResourceTarget(window.location.hash) || "buyer-process";
+        setActiveBuyerResource(initialBuyerTarget, {
+            scrollToPanel: !!getBuyerResourceTarget(window.location.hash)
+        });
+
+        window.addEventListener("message", (event) => {
+            const data = event.data;
+            if (!data) {
+                return;
+            }
+
+            if (data.type === "joe-embed-resize" && data.embed && data.height) {
+                const frame = document.querySelector(`[data-embed-target="${data.embed}"]`);
+                if (frame) {
+                    frame.style.height = `${data.height}px`;
+                }
+                return;
+            }
+
+            if (data.type === "joe-open-resource") {
+                const target = getBuyerResourceTarget(`#${data.target || ""}`);
+                if (!target) {
+                    return;
+                }
+
+                setActiveBuyerResource(target, {
+                    updateHash: true,
+                    scrollToPanel: true
+                });
+            }
+        });
+    </script>
+    <script src="/site-frame.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1089 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Homes | Joe Pine Real Estate</title>
+    <meta
+        name="description"
+        content="Browse homes from Joe Pine's Keller Williams search while keeping a simple monthly payment target in view."
+    >
+    <link rel="stylesheet" href="/site-frame.css">
+    <style>
+        :root {
+            --kw-red: #ce011f;
+            --kw-red-deep: #930015;
+            --kw-red-bright: #e31837;
+            --kw-ink: #000000;
+            --kw-slate: #4d4d4d;
+            --kw-muted: #7f7f7f;
+            --kw-line: #d9d9d9;
+            --kw-white: #ffffff;
+            --surface: rgba(255, 255, 255, 0.97);
+            --surface-soft: #f7f7f7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body.search-page {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(206, 1, 31, 0.08), transparent 24%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.04), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f5f5f5 54%, #fafafa 100%);
+        }
+
+        .search-page a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .search-page .site-frame-wrap {
+            width: min(1360px, calc(100% - 24px));
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .search-page .site-frame-header {
+            border-radius: 20px;
+        }
+
+        .search-page .site-frame-header::before {
+            height: 4px;
+        }
+
+        .search-page .site-frame-top {
+            padding: 10px 14px 9px;
+            gap: 10px;
+        }
+
+        .search-page .site-frame-photo {
+            width: 42px;
+            height: 42px;
+        }
+
+        .search-page .site-frame-copy strong {
+            font-size: clamp(1rem, 1.6vw, 1.38rem);
+        }
+
+        .search-page .site-frame-copy span {
+            font-size: clamp(0.68rem, 1vw, 0.82rem);
+            letter-spacing: 0.15em;
+        }
+
+        .search-page .site-frame-right a,
+        .search-page .site-frame-right span {
+            font-size: clamp(0.76rem, 1vw, 0.88rem);
+        }
+
+        .search-page .site-frame-nav {
+            padding: 9px 14px 11px;
+            gap: 6px;
+        }
+
+        .search-page .site-frame-nav a {
+            padding: 7px 11px;
+            font-size: 0.82rem;
+        }
+
+        .page-shell {
+            width: min(1360px, calc(100% - 24px));
+            margin: 0 auto;
+            padding: 0 0 28px;
+        }
+
+        .search-hud {
+            display: grid;
+            gap: 8px;
+            border-radius: 24px;
+            padding: 12px 16px 10px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(147, 0, 21, 0.9);
+            background: linear-gradient(135deg, var(--kw-red) 0%, #c4122f 55%, var(--kw-red-deep) 100%);
+            box-shadow: 0 24px 40px -28px rgba(147, 0, 21, 0.55);
+        }
+
+        .search-results-shell,
+        .brand-footer {
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            background: var(--surface);
+            box-shadow: 0 20px 40px -34px rgba(15, 23, 42, 0.2);
+        }
+
+        .search-hud-top {
+            display: grid;
+            grid-template-columns: minmax(390px, 1.1fr) minmax(0, 1.95fr);
+            gap: 12px;
+            align-items: start;
+        }
+
+        .section-kicker {
+            margin: 0 0 6px;
+            font-size: 10px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .search-hud-copy h1 {
+            margin: 0;
+            max-width: 17ch;
+            font-size: clamp(18px, 1.7vw, 23px);
+            line-height: 0.94;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .search-hud-copy p {
+            margin: 4px 0 0;
+            max-width: 42ch;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 10px;
+            line-height: 1.36;
+            font-weight: 700;
+        }
+
+        .search-hud-copy h1 {
+            color: var(--kw-white);
+        }
+
+        .mini-estimator {
+            display: grid;
+            grid-template-columns: minmax(150px, 1fr) minmax(130px, 0.8fr) minmax(130px, 0.8fr) minmax(190px, 1fr);
+            gap: 8px;
+            align-items: start;
+            margin: 0;
+        }
+
+        .compact-field,
+        .estimate-chip {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-height: 70px;
+            padding: 7px 10px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 16px 26px -22px rgba(0, 0, 0, 0.35);
+        }
+
+        .compact-field span,
+        .estimate-chip span {
+            font-size: 10px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+        }
+
+        .compact-field input,
+        .compact-field select {
+            width: 100%;
+            min-height: 38px;
+            padding: 0 12px;
+            border: 1px solid rgba(217, 217, 217, 0.92);
+            border-radius: 12px;
+            background: var(--surface-soft);
+            color: var(--kw-ink);
+            font: inherit;
+            font-size: 15px;
+            font-weight: 900;
+            outline: none;
+        }
+
+        .compact-field input:focus,
+        .compact-field select:focus {
+            border-color: rgba(206, 1, 31, 0.55);
+            background: #ffffff;
+        }
+
+        .compact-helper {
+            display: block;
+            min-height: 0;
+            color: var(--kw-slate);
+            font-size: 9px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .currency-wrap {
+            position: relative;
+        }
+
+        .currency-wrap strong {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            font-size: 15px;
+            line-height: 1;
+            color: var(--kw-muted);
+        }
+
+        .currency-wrap input {
+            padding-left: 28px;
+        }
+
+        .estimate-chip {
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .estimate-chip strong {
+            display: block;
+            margin-top: 1px;
+            font-size: clamp(22px, 2vw, 31px);
+            line-height: 0.92;
+            letter-spacing: -0.05em;
+            font-weight: 900;
+            color: var(--kw-red);
+        }
+
+        .estimate-chip-meta {
+            display: grid;
+            gap: 1px;
+            margin-top: 1px;
+        }
+
+        .estimate-chip-meta span {
+            font-size: 9px;
+            line-height: 1.22;
+            letter-spacing: normal;
+            text-transform: none;
+            color: var(--kw-slate);
+            font-weight: 800;
+        }
+
+        .search-disclaimer {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 10px;
+            line-height: 1.38;
+            font-weight: 800;
+            padding-left: 2px;
+        }
+
+        .search-disclaimer strong {
+            color: var(--kw-white);
+        }
+
+        .search-disclaimer a {
+            color: var(--kw-white);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .search-hud .results-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 9px 11px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .search-hud .results-toolbar strong {
+            display: block;
+            font-size: 13px;
+            line-height: 1.2;
+            color: var(--kw-white);
+        }
+
+        .search-hud .results-toolbar p,
+        .search-hud .results-toolbar span {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 11px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .search-hud .results-toolbar .section-kicker {
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .search-results-shell {
+            border-radius: 28px;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .results-toolbar-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .results-toolbar-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .results-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--kw-red);
+            font-size: 9px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .results-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+            padding: 0 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.96);
+            color: var(--kw-ink);
+            font-size: 9px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 160ms ease, background-color 160ms ease;
+        }
+
+        .results-link:hover,
+        .results-link:focus-visible {
+            transform: translateY(-1px);
+            background: #ffffff;
+        }
+
+        .frame-wrap {
+            position: relative;
+            height: calc(100vh - 160px);
+            min-height: 920px;
+            background: #ffffff;
+        }
+
+        .frame-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 247, 247, 0.92) 100%);
+            color: var(--kw-slate);
+            text-align: center;
+            z-index: 2;
+            transition: opacity 180ms ease, visibility 180ms ease;
+        }
+
+        .frame-loading strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--kw-ink);
+            font-size: 16px;
+        }
+
+        .frame-loading.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #idx-frame {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: #ffffff;
+        }
+
+        .brand-footer {
+            display: grid;
+            grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) minmax(140px, 220px);
+            gap: 16px;
+            align-items: center;
+            border-radius: 28px;
+            padding: 20px;
+        }
+
+        .footer-logo-slot {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo-slot-kw {
+            justify-content: flex-start;
+        }
+
+        .footer-logo-slot-platinum {
+            justify-content: flex-end;
+        }
+
+        .footer-logo-slot img {
+            display: block;
+            width: 100%;
+            max-width: 190px;
+            height: auto;
+        }
+
+        .footer-copy {
+            text-align: center;
+        }
+
+        .footer-copy p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
+        .footer-copy .fine-print {
+            font-size: 12px;
+        }
+
+        .footer-compliance {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            max-width: 620px;
+            margin: 8px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .footer-badge-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .footer-badge {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .footer-badge-realtor,
+        .footer-badge-housing {
+            max-width: 44px;
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+        }
+
+        .footer-disclaimer p {
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1080px) {
+            .search-hud-top {
+                grid-template-columns: 1fr;
+            }
+
+            .mini-estimator {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .brand-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-logo-slot,
+            .footer-logo-slot-kw,
+            .footer-logo-slot-platinum {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .search-page .site-frame-wrap {
+                width: min(100% - 20px, 1360px);
+                padding-top: 12px;
+            }
+
+            .page-shell {
+                width: min(100% - 20px, 1360px);
+            }
+
+            .search-hud,
+            .search-results-shell,
+            .brand-footer {
+                border-radius: 22px;
+            }
+
+            .mini-estimator {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-hud .results-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .results-toolbar-meta {
+                justify-content: flex-start;
+            }
+
+            .frame-wrap {
+                height: 78vh;
+                min-height: 760px;
+            }
+        }
+    </style>
+</head>
+<body class="search-page">
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="/" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="/Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-search"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-search">
+                <a href="/">Home</a>
+                <a href="/buyer-start-here/">First Time Buyers</a>
+                <a href="/buyers/#buyer-process">Buyer Resources</a>
+                <a href="/sellers/">Seller Resources</a>
+                <a href="/search/" aria-current="page">Search Homes</a>
+                <a href="/#about">About Joe</a>
+                <a class="site-frame-cta" href="/#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+
+    <main class="page-shell">
+        <section class="search-hud">
+            <div class="search-hud-top">
+                <div class="search-hud-copy">
+                    <p class="section-kicker">Search Homes</p>
+                    <h1>Browse homes without losing sight of a comfortable monthly number.</h1>
+                    <p>Set a quick estimate up top, then browse the live KW search with better context.</p>
+                </div>
+
+                <form class="mini-estimator" id="mini-estimator">
+                    <label class="compact-field" for="monthly-goal">
+                        <span>Monthly Payment</span>
+                        <div class="currency-wrap">
+                            <strong>$</strong>
+                            <input id="monthly-goal" type="number" min="0" step="50" value="2500" inputmode="numeric">
+                        </div>
+                        <small class="compact-helper" id="estimate-closing-cost">Est. closing costs $0</small>
+                    </label>
+
+                    <label class="compact-field" for="loan-type">
+                        <span>Loan Type</span>
+                        <select id="loan-type">
+                            <option value="conventional" selected>Conventional</option>
+                            <option value="fha">FHA</option>
+                            <option value="va">VA</option>
+                        </select>
+                        <small class="compact-helper" id="loan-rate-indicator">Rate 6.29%</small>
+                    </label>
+
+                    <label class="compact-field" for="down-payment">
+                        <span>Down Payment</span>
+                        <select id="down-payment">
+                            <option value="0">0%</option>
+                            <option value="3.5">3.5%</option>
+                            <option value="5" selected>5%</option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                        </select>
+                        <small class="compact-helper" id="down-payment-estimate">Est. down payment $0</small>
+                    </label>
+
+                    <div class="estimate-chip" aria-live="polite">
+                        <span>Est. Home Value</span>
+                        <strong id="estimated-home-value">$0</strong>
+                        <div class="estimate-chip-meta">
+                            <span id="estimate-cash-close">Est. cash to close $0</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <p class="search-disclaimer" id="search-rate-summary">
+                Auto-updated with Mortgage News Daily, 1.20% RI/MA midpoint taxes, and 0.50% annual homeowners insurance. Quick estimate only.
+                <a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" rel="noreferrer">View source</a>
+            </p>
+
+            <div class="results-toolbar">
+                <div>
+                    <p class="section-kicker">Live Search</p>
+                    <strong>Live KW home search</strong>
+                    <span id="embed-status">Showing homes up to about $325,000.</span>
+                </div>
+
+                <div class="results-toolbar-meta">
+                    <div class="results-toolbar-group">
+                        <a class="results-link" href="/buyers/#buyer-process">Buyer Resources</a>
+                        <a class="results-link" href="/buyers/#buyer-payment">Payment Calculator</a>
+                        <a class="results-link" href="/buyers/#buyer-lenders">Lending Partners</a>
+                    </div>
+                    <div class="results-toolbar-group">
+                        <button class="results-link" id="reset-search" type="button">Reset Search</button>
+                        <a class="results-link" id="open-search" href="https://joepine.kw.com/search/sale?viewport=42.259405249522786%2C-70.48454463134766%2C41.53673134588156%2C-71.80290400634766&price=null%2C100000&property_subtype=HOUSE%2CTOWNHOUSE%2CCONDO%2CCOOP%2CMULTIFAMILY%2CMANUFACTURED" target="_blank" rel="noreferrer">Open Full Search</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-results-shell">
+            <div class="frame-wrap">
+                <div class="frame-loading" id="frame-loading">
+                    <div>
+                        <strong>Loading live search</strong>
+                        <div>If the embedded search stays blank, use Open Full Search to jump straight to the KW site.</div>
+                    </div>
+                </div>
+
+                <iframe
+                    id="idx-frame"
+                    title="Joe Pine Keller Williams home search"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+            </div>
+        </section>
+
+        <footer class="brand-footer">
+            <div class="footer-logo-slot footer-logo-slot-kw">
+                <img src="/Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png" alt="Keller Williams Leading Edge">
+            </div>
+            <div class="footer-copy">
+                <p>Joe Pine, REALTOR&reg; | RI &amp; MA</p>
+                <p>28 Thurber Blvd, Smithfield, RI 02917</p>
+                <p class="fine-print">Massachusetts Real Estate License #1001085-RE-RS</p>
+                <p class="fine-print">Rhode Island Real Estate License #RES.0044759</p>
+                <div class="footer-compliance" aria-label="REALTOR and Equal Housing Opportunity disclosure">
+                    <div class="footer-disclaimer">
+                        <p>Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                    </div>
+                    <div class="footer-badge-row">
+                        <img class="footer-badge footer-badge-realtor" src="/images/branding/realtor-mark-official.jpg" alt="REALTOR logo">
+                        <img class="footer-badge footer-badge-housing" src="/images/branding/equal-housing-mark-official.png" alt="Equal Housing Opportunity logo">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-logo-slot footer-logo-slot-platinum">
+                <img src="/Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png" alt="Platinum Real Estate Group">
+            </div>
+        </footer>
+    </main>
+
+    <script src="/site-frame.js"></script>
+    <script>
+        const SEARCH_HOME_URL = "https://joepine.kw.com/search/sale?viewport=42.259405249522786%2C-70.48454463134766%2C41.53673134588156%2C-71.80290400634766&price=null%2C100000&property_subtype=HOUSE%2CTOWNHOUSE%2CCONDO%2CCOOP%2CMULTIFAMILY%2CMANUFACTURED";
+        const SEARCH_BUDGET_TEMPLATE = "https://joepine.kw.com/search/sale?viewport=42.259405249522786%2C-70.48454463134766%2C41.53673134588156%2C-71.80290400634766&price=null%2C__MAX_PRICE__&property_subtype=HOUSE%2CTOWNHOUSE%2CCONDO%2CCOOP%2CMULTIFAMILY%2CMANUFACTURED";
+        const RI_PROPERTY_TAX_RATE = 0.0125;
+        const MA_PROPERTY_TAX_RATE = 0.0115;
+        const PROPERTY_TAX_RATE = (RI_PROPERTY_TAX_RATE + MA_PROPERTY_TAX_RATE) / 2;
+        const HOME_INSURANCE_RATE = 0.005;
+        const ESTIMATED_CLOSING_COST_RATE = 0.03;
+        const RATE_PROGRAMS = {
+            conventional: {
+                label: "Conventional",
+                summaryLabel: "30-Year Fixed",
+                surveyName: "30 Year Fixed",
+                sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-fixed",
+                fallbackRate: 6.29,
+                minimumDownPayment: 5,
+                defaultDownPayment: 5
+            },
+            fha: {
+                label: "FHA",
+                summaryLabel: "30-Year FHA",
+                surveyName: "30 Year FHA",
+                sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-fha",
+                fallbackRate: 5.84,
+                minimumDownPayment: 3.5,
+                defaultDownPayment: 3.5
+            },
+            va: {
+                label: "VA",
+                summaryLabel: "30-Year VA",
+                surveyName: "30 Year VA",
+                sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-va",
+                fallbackRate: 5.85,
+                minimumDownPayment: 0,
+                defaultDownPayment: 0
+            }
+        };
+        const MND_RATE_PROXY_BASE = "https://api.codetabs.com/v1/proxy/?quest=";
+
+        const monthlyGoalInput = document.getElementById("monthly-goal");
+        const downPaymentSelect = document.getElementById("down-payment");
+        const loanTypeSelect = document.getElementById("loan-type");
+        const estimatedHomeValue = document.getElementById("estimated-home-value");
+        const loanRateIndicator = document.getElementById("loan-rate-indicator");
+        const downPaymentEstimate = document.getElementById("down-payment-estimate");
+        const estimateClosingCost = document.getElementById("estimate-closing-cost");
+        const estimateCashClose = document.getElementById("estimate-cash-close");
+        const searchRateSummary = document.getElementById("search-rate-summary");
+        const resetSearchButton = document.getElementById("reset-search");
+        const openSearchLink = document.getElementById("open-search");
+        const embedStatus = document.getElementById("embed-status");
+        const frame = document.getElementById("idx-frame");
+        const frameLoading = document.getElementById("frame-loading");
+
+        let currentEstimate = 0;
+        let activeUrl = SEARCH_HOME_URL;
+        let lastAppliedEstimate = null;
+        let currentRateRequestId = 0;
+        let searchUpdateTimeout = null;
+        const liveRateCache = {
+            conventional: null,
+            fha: null,
+            va: null
+        };
+        let rateError = "";
+        let isRefreshingRate = false;
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+                maximumFractionDigits: 0
+            }).format(Math.max(0, value || 0));
+        }
+
+        function getCurrentProgram() {
+            return RATE_PROGRAMS[loanTypeSelect.value] || RATE_PROGRAMS.conventional;
+        }
+
+        function getActiveRateSnapshot(programKey) {
+            const program = RATE_PROGRAMS[programKey] || RATE_PROGRAMS.conventional;
+            const liveRate = liveRateCache[programKey];
+
+            return {
+                rate: Number.isFinite(liveRate?.rate) ? liveRate.rate : program.fallbackRate,
+                isLive: Number.isFinite(liveRate?.rate),
+                date: liveRate?.date || "",
+                program
+            };
+        }
+
+        function parseLatestMortgageNewsDailyRate(html, surveyName) {
+            const escapedSurveyName = surveyName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            const surveyHeading = `MND's ${escapedSurveyName} \\(daily survey\\)`;
+            const surveyPatterns = [
+                new RegExp(`${surveyHeading}[\\s\\S]*?<span class="hidden-xs">([^<]+)<\\/span>[\\s\\S]*?<td class="rate">([0-9.]+)%<\\/td>`, "i"),
+                new RegExp(`${surveyHeading}[\\s\\S]*?<td[^>]*>\\s*([0-9./-]+)\\s*<\\/td>[\\s\\S]*?<td class="rate">([0-9.]+)%<\\/td>`, "i")
+            ];
+
+            for (const pattern of surveyPatterns) {
+                const surveyMatch = html.match(pattern);
+                if (surveyMatch) {
+                    return {
+                        date: surveyMatch[1].trim(),
+                        rate: Number.parseFloat(surveyMatch[2])
+                    };
+                }
+            }
+
+            const currentRateMatch = html.match(/<div class="current-rate"[^>]*>\s*([0-9.]+)%/i);
+            if (currentRateMatch) {
+                return {
+                    date: "",
+                    rate: Number.parseFloat(currentRateMatch[1])
+                };
+            }
+
+            return null;
+        }
+
+        function renderRateSummary() {
+            const { rate, isLive, date, program } = getActiveRateSnapshot(loanTypeSelect.value);
+            const prefix = isRefreshingRate
+                ? "Refreshing from Mortgage News Daily now."
+                : rateError
+                    ? "Latest MND rate unavailable."
+                    : isLive
+                        ? "Auto-updated."
+                        : "Using fallback rate.";
+
+            searchRateSummary.innerHTML = `${prefix} <strong>${program.label} ${rate.toFixed(2)}%</strong>${date ? ` from ${date}` : ""}, with 1.20% RI/MA midpoint taxes and 0.50% annual homeowners insurance. <a href="${program.sourceUrl}" target="_blank" rel="noreferrer">View source</a>`;
+            loanRateIndicator.textContent = isRefreshingRate
+                ? "Refreshing rate..."
+                : `Rate ${rate.toFixed(2)}%`;
+        }
+
+        async function fetchLiveRate(programKey) {
+            const program = RATE_PROGRAMS[programKey] || RATE_PROGRAMS.conventional;
+            const requestId = ++currentRateRequestId;
+            isRefreshingRate = true;
+            rateError = "";
+            renderRateSummary();
+
+            try {
+                const proxyUrl = `${MND_RATE_PROXY_BASE}${encodeURIComponent(program.sourceUrl)}`;
+                const response = await fetch(proxyUrl, { cache: "no-store" });
+                if (!response.ok) {
+                    throw new Error(`Rate request failed with status ${response.status}`);
+                }
+
+                const html = await response.text();
+                const latestRate = parseLatestMortgageNewsDailyRate(html, program.surveyName);
+                if (!latestRate || !Number.isFinite(latestRate.rate)) {
+                    throw new Error("Could not parse the latest Mortgage News Daily rate.");
+                }
+
+                if (requestId !== currentRateRequestId) {
+                    return;
+                }
+
+                liveRateCache[programKey] = latestRate;
+            } catch (error) {
+                if (requestId !== currentRateRequestId) {
+                    return;
+                }
+
+                console.error(`Unable to refresh the Mortgage News Daily ${program.summaryLabel} rate.`, error);
+                rateError = "Latest MND rate unavailable.";
+            } finally {
+                if (requestId === currentRateRequestId) {
+                    isRefreshingRate = false;
+                    if (programKey === loanTypeSelect.value) {
+                        updateEstimator();
+                    } else {
+                        renderRateSummary();
+                    }
+                }
+            }
+        }
+
+        function getPMIRate(ltvPercent) {
+            if (ltvPercent <= 80) return 0;
+            if (ltvPercent > 95) return (0.65 / 100) / 12;
+            if (ltvPercent > 90) return (0.5 / 100) / 12;
+            if (ltvPercent > 85) return (0.35 / 100) / 12;
+            return (0.2 / 100) / 12;
+        }
+
+        function getMortgageInsuranceRate(programKey, ltvPercent) {
+            if (programKey === "va") {
+                return 0;
+            }
+
+            return getPMIRate(ltvPercent);
+        }
+
+        function calculateTotalPaymentForPrice(price, programKey, downPaymentPercent, interestRateOverride) {
+            const program = RATE_PROGRAMS[programKey] || RATE_PROGRAMS.conventional;
+            const normalizedPrice = Math.max(Number(price) || 0, 0);
+            const normalizedDownPaymentPercent = Math.max(Number(downPaymentPercent) || 0, 0);
+            const downPaymentAmount = normalizedPrice * (normalizedDownPaymentPercent / 100);
+            const loanAmount = Math.max(normalizedPrice - downPaymentAmount, 0);
+            const ltv = normalizedPrice > 0 ? (loanAmount / normalizedPrice) * 100 : 0;
+            const activeRate = Number.isFinite(Number(interestRateOverride)) ? Number(interestRateOverride) : program.fallbackRate;
+            const monthlyRate = (activeRate / 100) / 12;
+            const months = 30 * 12;
+            const factor = monthlyRate === 0
+                ? loanAmount / months
+                : loanAmount * ((monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1));
+            const taxes = normalizedPrice * (PROPERTY_TAX_RATE / 12);
+            const insurance = normalizedPrice * (HOME_INSURANCE_RATE / 12);
+            const mortgageInsurance = loanAmount * getMortgageInsuranceRate(programKey, ltv);
+
+            return factor + taxes + insurance + mortgageInsurance;
+        }
+
+        function estimateHomePrice(monthlyTarget, programKey, downPaymentPercent, interestRateOverride) {
+            const target = Math.max(Number(monthlyTarget) || 0, 0);
+            if (target <= 0) {
+                return 0;
+            }
+
+            let low = 0;
+            let high = 250000;
+            let growthSteps = 0;
+
+            while (calculateTotalPaymentForPrice(high, programKey, downPaymentPercent, interestRateOverride) <= target && growthSteps < 25) {
+                high *= 2;
+                growthSteps += 1;
+            }
+
+            for (let iteration = 0; iteration < 40; iteration += 1) {
+                const mid = (low + high) / 2;
+                if (calculateTotalPaymentForPrice(mid, programKey, downPaymentPercent, interestRateOverride) <= target) {
+                    low = mid;
+                } else {
+                    high = mid;
+                }
+            }
+
+            return Math.round(low / 1000) * 1000;
+        }
+
+        function buildBudgetSearchUrl(maxPrice) {
+            const roundedBudget = Math.max(50000, Math.round((maxPrice || 0) / 1000) * 1000);
+            return SEARCH_BUDGET_TEMPLATE.replace("__MAX_PRICE__", String(roundedBudget));
+        }
+
+        function setStatus(message) {
+            embedStatus.textContent = message;
+        }
+
+        function setFrameUrl(url, statusMessage) {
+            activeUrl = url;
+            openSearchLink.href = url;
+            frameLoading.classList.remove("is-hidden");
+            frame.src = url;
+            setStatus(statusMessage);
+        }
+
+        function scheduleAutoSearchUpdate(force) {
+            if (searchUpdateTimeout) {
+                clearTimeout(searchUpdateTimeout);
+            }
+
+            searchUpdateTimeout = window.setTimeout(() => {
+                if (currentEstimate <= 0) {
+                    return;
+                }
+
+                if (!force && currentEstimate === lastAppliedEstimate) {
+                    return;
+                }
+
+                lastAppliedEstimate = currentEstimate;
+                setFrameUrl(
+                    buildBudgetSearchUrl(currentEstimate),
+                    `Showing homes up to about ${formatCurrency(currentEstimate)}.`
+                );
+            }, force ? 0 : 350);
+        }
+
+        function syncDownPaymentToLoanType(forceDefault) {
+            const program = RATE_PROGRAMS[loanTypeSelect.value] || RATE_PROGRAMS.conventional;
+            const currentDownPayment = Number(downPaymentSelect.value) || 0;
+
+            Array.from(downPaymentSelect.options).forEach((option) => {
+                const optionValue = Number(option.value) || 0;
+                option.disabled = optionValue < program.minimumDownPayment;
+            });
+
+            if (forceDefault) {
+                downPaymentSelect.value = String(program.defaultDownPayment);
+                return;
+            }
+
+            if (currentDownPayment < program.minimumDownPayment) {
+                downPaymentSelect.value = String(program.defaultDownPayment);
+            }
+        }
+
+        function updateEstimator() {
+            syncDownPaymentToLoanType(false);
+
+            const { rate, program } = getActiveRateSnapshot(loanTypeSelect.value);
+            const monthlyTarget = Number(monthlyGoalInput.value) || 0;
+            const downPaymentPercent = Number(downPaymentSelect.value) || program.defaultDownPayment;
+            currentEstimate = estimateHomePrice(monthlyTarget, loanTypeSelect.value, downPaymentPercent, rate);
+            const estimatedDownPaymentAmount = currentEstimate * (downPaymentPercent / 100);
+            const estimatedLoanAmount = Math.max(currentEstimate - estimatedDownPaymentAmount, 0);
+            const estimatedClosingCosts = estimatedLoanAmount * ESTIMATED_CLOSING_COST_RATE;
+            const estimatedCashDueAtClosing = estimatedDownPaymentAmount + estimatedClosingCosts;
+
+            estimatedHomeValue.textContent = formatCurrency(currentEstimate);
+            downPaymentEstimate.textContent = currentEstimate > 0
+                ? `Est. down payment ${formatCurrency(estimatedDownPaymentAmount)}`
+                : "Est. down payment $0";
+            estimateClosingCost.textContent = currentEstimate > 0
+                ? `Est. closing costs ${formatCurrency(estimatedClosingCosts)}`
+                : "Est. closing costs $0";
+            estimateCashClose.textContent = currentEstimate > 0
+                ? `Est. cash to close ${formatCurrency(estimatedCashDueAtClosing)}`
+                : "Est. cash to close $0";
+            openSearchLink.href = currentEstimate > 0
+                ? buildBudgetSearchUrl(currentEstimate)
+                : SEARCH_HOME_URL;
+            renderRateSummary();
+            scheduleAutoSearchUpdate(false);
+        }
+
+        monthlyGoalInput.addEventListener("input", updateEstimator);
+        downPaymentSelect.addEventListener("change", updateEstimator);
+        loanTypeSelect.addEventListener("change", () => {
+            syncDownPaymentToLoanType(true);
+            updateEstimator();
+            fetchLiveRate(loanTypeSelect.value);
+        });
+
+        resetSearchButton.addEventListener("click", () => {
+            setFrameUrl(SEARCH_HOME_URL, "Showing your base KW search.");
+            lastAppliedEstimate = null;
+        });
+
+        frame.addEventListener("load", () => {
+            frameLoading.classList.add("is-hidden");
+
+            if (activeUrl === SEARCH_HOME_URL) {
+                setStatus("Showing your base KW search.");
+                return;
+            }
+
+            setStatus(`Showing homes up to about ${formatCurrency(currentEstimate)}.`);
+        });
+
+        updateEstimator();
+        scheduleAutoSearchUpdate(true);
+        fetchLiveRate(loanTypeSelect.value);
+    </script>
+</body>
+</html>
+
