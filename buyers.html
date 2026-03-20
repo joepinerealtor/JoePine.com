@@ -263,6 +263,10 @@
             box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
         }
 
+        .resource-tab-link {
+            color: var(--kw-slate);
+        }
+
         .resource-tab-panel {
             display: flex;
             flex-direction: column;
@@ -329,6 +333,10 @@
 
         .resource-frame.is-process {
             min-height: 980px;
+        }
+
+        .resource-frame.is-rent-vs-buy {
+            min-height: 2400px;
         }
 
         .cta-panel {
@@ -494,8 +502,8 @@
             }
 
             .resource-tab {
-                flex: 1 1 calc((100% - 40px) / 5);
-                max-width: calc((100% - 40px) / 5);
+                flex: 1 1 calc((100% - 50px) / 6);
+                max-width: calc((100% - 50px) / 6);
                 padding: 0 12px;
                 font-size: 10px;
                 letter-spacing: 0.12em;
@@ -581,7 +589,7 @@
                     <h2>Work through the money, vendor, and process pieces in one place.</h2>
                 </div>
                 <p>
-                    Use the tabs below to move between the buyer process, monthly payment, lending partners, inspectors, and closing attorneys.
+                    Use the tools below to move between the buyer process, monthly payment, lending partners, inspectors, closing attorneys, and the rent-vs-buy comparison.
                 </p>
             </div>
 
@@ -596,6 +604,17 @@
                     data-buyer-resource-tab="buyer-process"
                 >
                     Buyer Process
+                </button>
+                <button
+                    class="resource-tab"
+                    type="button"
+                    role="tab"
+                    id="buyer-tab-rent-vs-buy"
+                    aria-selected="false"
+                    aria-controls="buyer-rent-vs-buy"
+                    data-buyer-resource-tab="buyer-rent-vs-buy"
+                >
+                    Rent Vs Buy
                 </button>
                 <button
                     class="resource-tab"
@@ -662,6 +681,30 @@
                     data-embed-target="buyer-process"
                     src="./journey.html?embed=buyer-process#buyer"
                     title="Buyer process tracker"
+                    loading="lazy"
+                ></iframe>
+            </section>
+
+            <section
+                class="resource-tab-panel"
+                id="buyer-rent-vs-buy"
+                role="tabpanel"
+                aria-labelledby="buyer-tab-rent-vs-buy"
+                data-buyer-resource-panel="buyer-rent-vs-buy"
+                hidden
+            >
+                <div class="resource-tab-copy">
+                    <h3>See how renting and buying may separate over five years.</h3>
+                    <p>
+                        Open the side-by-side comparison here without leaving Buyer Resources.
+                    </p>
+                </div>
+
+                <iframe
+                    class="resource-frame is-rent-vs-buy"
+                    data-embed-target="buyer-rent-vs-buy"
+                    src="./rent-vs-buy.html?embed=buyer-rent-vs-buy"
+                    title="Rent versus buy comparison"
                     loading="lazy"
                 ></iframe>
             </section>
@@ -821,7 +864,7 @@
 
         function getBuyerResourceTarget(hashValue) {
             const target = (hashValue || "").replace("#", "");
-            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" || target === "buyer-process" ? target : null;
+            return target === "buyer-payment" || target === "buyer-lenders" || target === "buyer-inspectors" || target === "buyer-attorneys" || target === "buyer-process" || target === "buyer-rent-vs-buy" ? target : null;
         }
 
         function setActiveBuyerResource(target, options = {}) {

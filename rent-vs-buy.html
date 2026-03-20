@@ -19,6 +19,42 @@
     <meta name="twitter:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
     <link rel="stylesheet" href="./site-frame.css">
     <link rel="stylesheet" href="./styles.css">
+    <style>
+        body.is-embed {
+            background: transparent;
+        }
+
+        body.is-embed::before {
+            display: none;
+        }
+
+        body.is-embed .site-frame-wrap,
+        body.is-embed .site-footer {
+            display: none;
+        }
+
+        body.is-embed .page-shell {
+            width: 100%;
+            max-width: none;
+            padding: 0;
+        }
+
+        body.is-embed .rent-vs-buy-page {
+            padding: 0;
+        }
+
+        body.is-embed .wealth-section {
+            padding-top: 0;
+        }
+
+        body.is-embed .wealth-panel {
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            border-left: 0;
+            border-right: 0;
+        }
+    </style>
 </head>
 <body class="page-rent-vs-buy">
     <div class="page-shell">
@@ -358,6 +394,41 @@
         </footer>
     </div>
 
+    <script>
+        (function () {
+            const embedMode = new URLSearchParams(window.location.search).get("embed");
+            if (!embedMode) {
+                return;
+            }
+
+            document.body.classList.add("is-embed");
+
+            const postHeight = () => {
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight
+                );
+
+                window.parent.postMessage(
+                    { type: "joe-embed-resize", embed: embedMode, height },
+                    "*"
+                );
+            };
+
+            window.addEventListener("load", () => {
+                postHeight();
+                setTimeout(postHeight, 250);
+                setTimeout(postHeight, 1000);
+            });
+
+            window.addEventListener("resize", postHeight);
+
+            if (typeof ResizeObserver !== "undefined") {
+                const observer = new ResizeObserver(postHeight);
+                observer.observe(document.body);
+            }
+        })();
+    </script>
     <script src="./script.js"></script>
     <script src="./site-frame.js"></script>
 </body>
