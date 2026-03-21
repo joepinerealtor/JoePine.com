@@ -6,7 +6,7 @@
     <title>Resources for Buyers | Joe Pine</title>
     <meta
         name="description"
-        content="Buyer tools from Joe Pine to help you understand monthly payment, compare lenders, weigh rent versus buy, and move through the process with more confidence."
+        content="Buyer resources from Joe Pine to help you understand the process, monthly payment, lender options, inspectors, and closing attorneys with more confidence."
     >
     <script>
         document.documentElement.classList.add("buyers-page-preload");
@@ -119,25 +119,6 @@
             font-weight: 900;
         }
 
-        .hero-content {
-            padding: 22px;
-        }
-
-        .hero-copy {
-            max-width: 780px;
-        }
-
-        .hero-hook {
-            margin: 0 0 14px;
-            color: var(--kw-red);
-            font-size: 13px;
-            line-height: 1.45;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-weight: 900;
-        }
-
-        .hero-copy p,
         .section-heading p,
         .cta-panel p {
             margin: 0;
@@ -145,39 +126,6 @@
             font-size: 15px;
             line-height: 1.62;
             font-weight: 700;
-        }
-
-        .hero-copy p + p {
-            margin-top: 12px;
-        }
-
-        .hero-highlights {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px 14px;
-            margin: 18px 0 0;
-            padding: 0;
-        }
-
-        .hero-highlights li {
-            position: relative;
-            padding-left: 16px;
-            color: var(--kw-slate);
-            font-size: 14px;
-            line-height: 1.5;
-            font-weight: 700;
-        }
-
-        .hero-highlights li::before {
-            content: "";
-            position: absolute;
-            top: 9px;
-            left: 0;
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: var(--kw-red);
         }
 
         .cta-actions {
@@ -220,10 +168,6 @@
             border-color: var(--kw-ink);
         }
 
-        .section-heading {
-            margin: 0 0 16px;
-        }
-
         .section-heading h2,
         .cta-panel h2 {
             display: block;
@@ -241,16 +185,16 @@
 
         .resource-panel {
             border-radius: 28px;
-            padding: 22px;
+            padding: 18px;
             margin-bottom: 24px;
             background: #ffffff;
         }
 
         .resource-tab-list {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 12px;
-            margin: 0 0 18px;
+            margin: 0 0 14px;
         }
 
         .resource-tab {
@@ -270,7 +214,6 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
-            flex: 1 1 260px;
             min-width: 0;
         }
 
@@ -312,7 +255,19 @@
         .resource-tab-panel {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
+        }
+
+        .resource-panel-note {
+            margin: 0;
+            padding: 14px 16px;
+            border: 1px solid rgba(206, 1, 31, 0.12);
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(206, 1, 31, 0.04) 0%, rgba(206, 1, 31, 0.02) 100%);
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.55;
+            font-weight: 700;
         }
 
         .resource-tab-panel[hidden] {
@@ -490,8 +445,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .hero-highlights {
-                grid-template-columns: 1fr;
+            .resource-tab-list {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
 
             .brand-footer {
@@ -533,27 +488,12 @@
                 flex-direction: column;
             }
 
-            .resource-tab-actions {
-                flex-direction: column;
+            .resource-tab-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
             .button {
                 width: 100%;
-            }
-        }
-
-        @media (min-width: 980px) {
-            .resource-tab-list {
-                gap: 10px;
-            }
-
-            .resource-tab {
-                flex: 1 1 calc((100% - 60px) / 7);
-                max-width: calc((100% - 60px) / 7);
-                padding: 0 12px;
-                font-size: 10px;
-                letter-spacing: 0.12em;
-                line-height: 1.15;
             }
         }
     </style>
@@ -610,16 +550,6 @@
         </section>
 
         <section class="resource-panel" id="buyer-tools">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow" style="color: var(--kw-red);">Buyer Tools</p>
-                    <h2>Use the buyer tools below.</h2>
-                </div>
-                <p>
-                    Use the tools below to move between the buyer process, monthly payment planning, lender options, inspectors, and closing attorneys.
-                </p>
-            </div>
-
             <div class="resource-tab-list" role="tablist" aria-label="Buyer tools">
                 <button
                     class="resource-tab is-active"
@@ -702,6 +632,7 @@
                 data-buyer-resource-panel="buyer-payment"
                 hidden
             >
+                <p class="resource-panel-note">Use this when you want to turn a monthly comfort number into a real home-price range, down payment picture, and cash-to-close estimate.</p>
                 <iframe
                     class="resource-frame is-calculator"
                     data-embed-target="buyer-calculator"
@@ -719,6 +650,7 @@
                 data-buyer-resource-panel="buyer-lenders"
                 hidden
             >
+                <p class="resource-panel-note">Review lender options once you know your likely starting point and want to compare the people who can help you get preapproved.</p>
                 <iframe
                     class="resource-frame is-lenders"
                     data-embed-target="buyer-lenders"
@@ -736,6 +668,7 @@
                 data-buyer-resource-panel="buyer-inspectors"
                 hidden
             >
+                <p class="resource-panel-note">Use this list when you are getting closer to offer or contract stage and want to understand who could inspect the home.</p>
                 <iframe
                     class="resource-frame is-inspectors"
                     data-embed-target="buyer-inspectors"
@@ -753,6 +686,7 @@
                 data-buyer-resource-panel="buyer-attorneys"
                 hidden
             >
+                <p class="resource-panel-note">Closing attorneys matter most once you are under contract or preparing to be, so this is where that part of the team comes into focus.</p>
                 <iframe
                     class="resource-frame is-attorneys"
                     data-embed-target="buyer-attorneys"

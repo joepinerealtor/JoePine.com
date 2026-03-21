@@ -17,9 +17,33 @@
     <meta name="twitter:title" content="First-Time Buyer Workbook | Joe Pine">
     <meta name="twitter:description" content="A calm workbook to help first-time buyers understand the money side, credit, assistance programs, and what to work on before preapproval.">
     <meta name="twitter:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
+    <script>
+        document.documentElement.classList.add("buyer-start-page-preload");
+
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+
+        window.addEventListener("load", () => {
+            requestAnimationFrame(() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                document.documentElement.classList.remove("buyer-start-page-preload");
+            });
+        });
+    </script>
     <link rel="stylesheet" href="../site-frame.css">
     <link rel="stylesheet" href="../styles.css">
     <style>
+        body.page-buyer-start {
+            overflow-anchor: none;
+        }
+
+        html.buyer-start-page-preload body {
+            visibility: hidden;
+        }
+
         body.is-embed {
             background: transparent;
         }
@@ -719,7 +743,7 @@
                             <article class="starter-progress-card">
                                 <div class="starter-progress-head">
                                     <span class="eyebrow">Where You Are</span>
-                                        <strong data-starter-progress-title>Step 1 of 11</strong>
+                                        <strong data-starter-progress-title>Step 1 of 12</strong>
                                         <p data-starter-progress-copy>You are on 01 5-Year Cost. Use the left rail to move at your own pace.</p>
                                 </div>
                                 <div class="starter-progress-bar" aria-hidden="true">
@@ -773,6 +797,10 @@
                                 <button class="starter-pill" type="button" role="tab" aria-selected="false" data-starter-step-tab="plan">
                                     <span class="starter-pill-number">11</span>
                                     <span class="starter-pill-label">Build The Plan</span>
+                                </button>
+                                <button class="starter-pill" type="button" role="tab" aria-selected="false" data-starter-step-tab="ready-to-start">
+                                    <span class="starter-pill-number">12</span>
+                                    <span class="starter-pill-label">Ready To Start</span>
                                 </button>
                             </aside>
 
@@ -1489,6 +1517,65 @@
 
                                     <div class="starter-nav">
                                         <button class="button button-secondary" type="button" data-starter-target="docs">Previous Step</button>
+                                        <button class="button button-secondary" type="button" data-starter-target="ready-to-start">Next Step</button>
+                                    </div>
+                                </section>
+
+                                <section class="starter-step-panel" data-starter-step-panel="ready-to-start">
+                                    <p class="eyebrow">Step 12</p>
+                                    <h2>If these steps feel like you, you may be ready to start the real buying process.</h2>
+                                    <p class="starter-step-lead">
+                                        You do not need to feel perfect. You just need to feel like the money, credit,
+                                        cash-to-close, and next-step pieces are making more sense. If this workbook
+                                        helped you get there, Buyer Resources is the next place to go.
+                                    </p>
+
+                                    <div class="starter-focus">
+                                        <article class="starter-focus-card">
+                                            <h4>You may be ready for the tools now</h4>
+                                            <p>If the workbook helped you understand your starting point, the next step may be opening the practical side: monthly payment, lenders, buyer process, and the rest of the moving pieces.</p>
+                                        </article>
+                                        <article class="starter-focus-card">
+                                            <h4>You still do not need to rush</h4>
+                                            <p>Getting clearer does not mean forcing a timeline. It just means you are in a better position to ask smarter questions and make decisions with less guesswork.</p>
+                                        </article>
+                                        <article class="starter-focus-card">
+                                            <h4>This is where planning turns practical</h4>
+                                            <p>Buyer Resources is built to help you take what you learned here and apply it to real payments, real lender options, and the actual buyer process.</p>
+                                        </article>
+                                    </div>
+
+                                    <div class="starter-next-card">
+                                        <h4>If most of these feel true, Buyer Resources is probably your next page</h4>
+                                        <ul>
+                                            <li>You have a general sense of your credit starting point and which loan paths may be realistic for you.</li>
+                                            <li>You understand that you do not need perfect credit, but you do need a score and monthly payment that make sense together.</li>
+                                            <li>You have been working to lower monthly pressure by trimming bills, subscriptions, credit card balances, or other recurring costs where you can.</li>
+                                            <li>You know that keeping card balances lower, ideally somewhere under roughly 15-20% of the limit when possible, is usually healthier than carrying high balances, and that balances above roughly 50% often hurt more.</li>
+                                            <li>You know whether Rhode Island or Massachusetts is the state that matters for your first-time-buyer assistance path.</li>
+                                            <li>You understand the early cash pieces of the process, including inspection, appraisal, and the earnest money deposit.</li>
+                                            <li>You have, or are working toward, roughly $3,000-$5,000 in the bank so the process itself does not feel like a scramble.</li>
+                                            <li>You know the monthly payment you are trying to protect and feel ready to look at the real buyer tools.</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="starter-next-card">
+                                        <h4>What to do next</h4>
+                                        <ul>
+                                            <li>Open Buyer Resources if you want to start with the monthly payment, lender options, and the buyer process itself.</li>
+                                            <li>Reach out if you want help figuring out whether your next move is payment planning, a lender intro, or just a little more cleanup first.</li>
+                                            <li>Remember that being ready usually looks like understanding your next step, not having everything solved all at once.</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="starter-actions">
+                                        <a class="button button-primary" href="../buyers/" data-open-resource="buyer-process">Open Buyer Resources</a>
+                                        <a class="button button-secondary" href="tel:4013270888">Talk It Through With Joe</a>
+                                        <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=I%20Think%20I%20May%20Be%20Ready%20To%20Buy">Email Joe</a>
+                                    </div>
+
+                                    <div class="starter-nav">
+                                        <button class="button button-secondary" type="button" data-starter-target="plan">Previous Step</button>
                                         <span></span>
                                     </div>
                                 </section>
@@ -1629,7 +1716,44 @@
                 document.body.classList.add("is-embed");
             }
 
-            function setActiveStep(stepName) {
+            function scrollActiveTabIntoRail(tab, animate = true) {
+                const rail = tab?.closest(".starter-rail");
+                if (!rail || !tab) {
+                    return;
+                }
+
+                const behavior = animate ? "smooth" : "auto";
+
+                if (rail.scrollHeight > rail.clientHeight + 2) {
+                    const nextTop = tab.offsetTop - 8;
+                    const nextBottom = tab.offsetTop + tab.offsetHeight + 8;
+                    const visibleTop = rail.scrollTop;
+                    const visibleBottom = visibleTop + rail.clientHeight;
+
+                    if (nextTop < visibleTop) {
+                        rail.scrollTo({ top: Math.max(0, nextTop), behavior });
+                    } else if (nextBottom > visibleBottom) {
+                        rail.scrollTo({ top: Math.max(0, nextBottom - rail.clientHeight), behavior });
+                    }
+
+                    return;
+                }
+
+                if (rail.scrollWidth > rail.clientWidth + 2) {
+                    const nextLeft = tab.offsetLeft - 8;
+                    const nextRight = tab.offsetLeft + tab.offsetWidth + 8;
+                    const visibleLeft = rail.scrollLeft;
+                    const visibleRight = visibleLeft + rail.clientWidth;
+
+                    if (nextLeft < visibleLeft) {
+                        rail.scrollTo({ left: Math.max(0, nextLeft), behavior });
+                    } else if (nextRight > visibleRight) {
+                        rail.scrollTo({ left: Math.max(0, nextRight - rail.clientWidth), behavior });
+                    }
+                }
+            }
+
+            function setActiveStep(stepName, options = {}) {
                 const activeIndex = stepTabs.findIndex((tab) => tab.dataset.starterStepTab === stepName);
                 const resolvedStepName = activeIndex === -1
                     ? (stepTabs[0] ? stepTabs[0].dataset.starterStepTab : stepName)
@@ -1654,7 +1778,7 @@
 
                 const activeTab = stepTabs[resolvedIndex];
                 if (activeTab) {
-                    activeTab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+                    scrollActiveTabIntoRail(activeTab, options.animateRail !== false);
                 }
 
                 if (resolvedStepName) {
@@ -1749,7 +1873,7 @@
                 setCreditTopic(initialTopic);
             }
 
-            setActiveStep(initialStep);
+            setActiveStep(initialStep, { animateRail: false });
 
             window.addEventListener("load", () => {
                 postHeight();
