@@ -2,7 +2,6 @@ const navToggle = document.querySelector("[data-nav-toggle]");
 const nav = document.querySelector("[data-nav]");
 const yearNode = document.querySelector("[data-current-year]");
 const revealNodes = document.querySelectorAll("[data-reveal]");
-const photoCarousels = document.querySelectorAll("[data-photo-carousel]");
 
 if (yearNode) {
     yearNode.textContent = new Date().getFullYear();
@@ -42,56 +41,6 @@ if ("IntersectionObserver" in window) {
 } else {
     revealNodes.forEach((node) => node.classList.add("is-visible"));
 }
-
-photoCarousels.forEach((carousel) => {
-    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
-    const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
-    const prevButton = carousel.querySelector("[data-carousel-prev]");
-    const nextButton = carousel.querySelector("[data-carousel-next]");
-
-    if (slides.length < 2 || !prevButton || !nextButton) {
-        return;
-    }
-
-    let currentIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
-
-    if (currentIndex < 0) {
-        currentIndex = 0;
-    }
-
-    const setActiveSlide = (nextIndex) => {
-        currentIndex = (nextIndex + slides.length) % slides.length;
-
-        slides.forEach((slide, index) => {
-            const isActive = index === currentIndex;
-            slide.classList.toggle("is-active", isActive);
-            slide.setAttribute("aria-hidden", String(!isActive));
-            slide.tabIndex = isActive ? 0 : -1;
-        });
-
-        dots.forEach((dot, index) => {
-            const isActive = index === currentIndex;
-            dot.classList.toggle("is-active", isActive);
-            dot.setAttribute("aria-pressed", String(isActive));
-        });
-    };
-
-    prevButton.addEventListener("click", () => {
-        setActiveSlide(currentIndex - 1);
-    });
-
-    nextButton.addEventListener("click", () => {
-        setActiveSlide(currentIndex + 1);
-    });
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-            setActiveSlide(index);
-        });
-    });
-
-    setActiveSlide(currentIndex);
-});
 
 const serviceAreaMapNode = document.getElementById("service-area-map");
 let serviceAreaMap = null;
