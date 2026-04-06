@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="../site-frame.css">
     <style>
         :root {
-            --kw-red: #ce011f;
-            --kw-red-deep: #930015;
-            --kw-red-bright: #e31837;
+            --kw-red: #b40101;
+            --kw-red-deep: #8f0000;
+            --kw-red-bright: #b40101;
             --kw-green: #198754;
             --kw-ink: #000000;
             --kw-slate: #4d4d4d;
@@ -35,10 +35,10 @@
 
         body {
             margin: 0;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "Roboto", Arial, sans-serif;
             color: var(--kw-ink);
             background:
-                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
+                radial-gradient(circle at top left, rgba(180, 1, 1, 0.1), transparent 28%),
                 radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
         }
@@ -260,9 +260,9 @@
             justify-content: center;
             min-height: 52px;
             padding: 0 18px;
-            border: 1px solid rgba(206, 1, 31, 0.16);
+            border: 1px solid rgba(180, 1, 1, 0.16);
             border-radius: 18px;
-            background: rgba(206, 1, 31, 0.05);
+            background: rgba(180, 1, 1, 0.05);
             color: var(--kw-slate);
             font: inherit;
             font-size: 11px;
@@ -277,14 +277,14 @@
         .support-tab:hover,
         .support-tab:focus-visible {
             transform: translateY(-1px);
-            background: rgba(206, 1, 31, 0.12);
+            background: rgba(180, 1, 1, 0.12);
         }
 
         .support-tab.is-active {
             border-color: transparent;
             background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
             color: #ffffff;
-            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+            box-shadow: 0 16px 28px -22px rgba(143, 0, 0, 0.6);
         }
 
         .support-tab-panel[hidden] {
@@ -726,7 +726,7 @@
                 company: "Home Inspections by Bob Geddes",
                 initials: "PG",
                 focusAreas: ["Buyers", "Condos", "Homes"],
-                accent: "linear-gradient(135deg, #ce011f 0%, #e31837 100%)",
+                accent: "linear-gradient(135deg, #b40101 0%, #b40101 100%)",
                 note: "Patrick Geddes with Home Inspections by Bob Geddes is a real inspection partner on Joe's list and a solid fit when buyers want a straightforward home inspection conversation before contingencies expire.",
                 meta: [
                     { label: "Best For", value: "Single-family, condo, and multifamily buyers who want the big-picture walkthrough." },

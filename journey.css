@@ -1,16 +1,16 @@
 :root {
-    --journey-red: #c10c21;
-    --journey-red-bright: #df2237;
-    --journey-red-deep: #8b0717;
-    --journey-red-soft: #ffe8eb;
-    --journey-ink: #171717;
-    --journey-gray: #5f5f5f;
-    --journey-muted: #7d7d7d;
-    --journey-line: #dfd6d8;
+    --journey-red: #b40101;
+    --journey-red-bright: #b40101;
+    --journey-red-deep: #8f0000;
+    --journey-red-soft: #f8e7e7;
+    --journey-ink: #000000;
+    --journey-gray: #666666;
+    --journey-muted: #999999;
+    --journey-line: #d9d9d9;
     --journey-surface: #ffffff;
-    --journey-surface-alt: #fbf7f7;
-    --journey-shadow: 0 28px 54px -38px rgba(92, 9, 20, 0.34);
-    --journey-shadow-soft: 0 20px 36px -28px rgba(0, 0, 0, 0.18);
+    --journey-surface-alt: #f7f7f7;
+    --journey-shadow: 0 16px 32px -24px rgba(0, 0, 0, 0.16);
+    --journey-shadow-soft: 0 12px 24px -22px rgba(0, 0, 0, 0.12);
 }
 
 * {
@@ -19,9 +19,9 @@
 
 body {
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--kw-body-font, "Roboto", Arial, sans-serif);
     color: var(--journey-ink);
-    background: linear-gradient(180deg, #fff6f7 0%, #ffffff 22%, #f4f4f4 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
 }
 
 a {
@@ -54,7 +54,7 @@ img {
 
 .journey-hero-top {
     padding: 22px 24px 18px;
-    background: linear-gradient(135deg, var(--journey-red-deep) 0%, var(--journey-red) 58%, var(--journey-red-bright) 100%);
+    background: var(--journey-red);
     color: #ffffff;
 }
 
@@ -76,6 +76,7 @@ img {
 .tracker-copy-card h3,
 .journey-cta h2 {
     margin: 0;
+    font-family: var(--kw-display-font, "Nimbus Sans", "Nimbus Sans L", "Arial Narrow", "Helvetica Neue", Arial, sans-serif);
     font-weight: 900;
     letter-spacing: -0.05em;
     text-transform: uppercase;
@@ -141,11 +142,11 @@ img {
 
 .tracker-shell {
     padding: 18px;
-    border: 1px solid rgba(139, 7, 23, 0.5);
+    border: 1px solid rgba(143, 0, 0, 0.5);
     border-radius: 26px;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 18%),
-        linear-gradient(135deg, #8e0819 0%, #bf0e22 52%, #ea3b49 100%);
+        linear-gradient(135deg, #8f0000 0%, #b40101 52%, #b40101 100%);
     box-shadow: 0 32px 58px -34px rgba(100, 10, 20, 0.5);
 }
 
@@ -410,7 +411,7 @@ img {
 }
 
 .tracker-copy-card {
-    border: 1px solid rgba(139, 7, 23, 0.16);
+    border: 1px solid rgba(143, 0, 0, 0.16);
     border-radius: 22px;
     background: #ffffff;
     box-shadow: 0 24px 36px -30px rgba(61, 13, 20, 0.32);
@@ -637,7 +638,7 @@ img {
 .journey-button-primary {
     background: linear-gradient(135deg, var(--journey-red-deep) 0%, var(--journey-red) 60%, var(--journey-red-bright) 100%);
     color: #ffffff;
-    box-shadow: 0 18px 30px -24px rgba(147, 0, 21, 0.58);
+    box-shadow: 0 18px 30px -24px rgba(143, 0, 0, 0.58);
 }
 
 .journey-cta {

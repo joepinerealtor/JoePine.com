@@ -31,9 +31,9 @@
 
     <style>
         :root {
-            --kw-red: #CE011F;
-            --kw-red-deep: #930015;
-            --kw-red-bright: #E31837;
+            --kw-red: #b40101;
+            --kw-red-deep: #8f0000;
+            --kw-red-bright: #b40101;
             --kw-green: #198754;
             --kw-ink: #000000;
             --kw-slate: #4D4D4D;
@@ -41,9 +41,9 @@
             --kw-line: #D9D9D9;
         }
         body { 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            font-family: "Roboto", Arial, sans-serif; 
             background:
-                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 24%),
+                radial-gradient(circle at top left, rgba(180, 1, 1, 0.1), transparent 24%),
                 radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 50%, #fafafa 100%);
             color: var(--kw-ink);
@@ -1280,10 +1280,10 @@
             const addressLineTwo = addressMatch ? addressMatch[2] : "";
             const formatWholeNumber = (val) => new Intl.NumberFormat('en-US').format(val);
             const actionButtonBaseClass = "flex-1 sm:flex-none sm:min-w-[148px] inline-flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-xl uppercase text-[9px] tracking-[0.16em] shadow-sm leading-none font-black transition-all";
-            const printButtonClass = `${actionButtonBaseClass} bg-[#CE011F] text-white hover:bg-red-700`;
+            const printButtonClass = `${actionButtonBaseClass} bg-[#b40101] text-white hover:bg-red-700`;
             const darkActionButtonClass = `${actionButtonBaseClass} bg-[#000000] text-white hover:bg-black`;
             const outlinedDarkActionButtonClass = `${actionButtonBaseClass} bg-white text-[#000000] border-2 border-[#000000] hover:bg-[#000000] hover:text-white`;
-            const outlinedBrandActionButtonClass = `${actionButtonBaseClass} bg-white text-[#CE011F] border-2 border-[#CE011F] hover:bg-red-50`;
+            const outlinedBrandActionButtonClass = `${actionButtonBaseClass} bg-white text-[#b40101] border-2 border-[#b40101] hover:bg-red-50`;
             const estimatedBaseClosingCosts = Math.round(results.homePrice * ESTIMATED_CLOSING_COST_RATE);
             const estimatedBuydownCost = results.buydown?.cost || 0;
             const estimatedClosingCosts = estimatedBaseClosingCosts + estimatedBuydownCost;
@@ -1508,7 +1508,7 @@
                             {/* Left Column */}
                             <div className="lg:col-span-5 flex flex-col gap-5 h-full font-black">
                                 <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black no-print">
-                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] px-4 py-3.5 text-white flex items-center gap-2 italic font-black">
+                                    <div className="bg-gradient-to-r from-[#b40101] via-[#b40101] to-[#8f0000] px-4 py-3.5 text-white flex items-center gap-2 italic font-black">
                                         <Icon name="Calculator" size={14} /> 
                                         <h2 className="font-black uppercase text-xs tracking-widest leading-none">Monthly Affordability</h2>
                                     </div>
@@ -1525,7 +1525,7 @@
                                                 <label className="block text-xs uppercase mb-2 leading-none tracking-[0.15em] font-black text-gray-400">Monthly Target</label>
                                                 <div className="relative font-black">
                                                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
-                                                    <input type="number" value={monthlyGoal} onChange={(e) => setMonthlyGoal(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-xl transition-all font-black" />
+                                                    <input type="number" value={monthlyGoal} onChange={(e) => setMonthlyGoal(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#b40101] outline-none font-black text-xl transition-all font-black" />
                                                 </div>
                                             </div>
                                             <div>
@@ -1541,7 +1541,7 @@
                                                         }
                                                         setStateTaxRate(nextTaxRate);
                                                     }}
-                                                    className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-base"
+                                                    className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#b40101] outline-none font-black text-base"
                                                 >
                                                     <option value={1.25}>RI</option>
                                                     <option value={1.15}>MA</option>
@@ -1565,7 +1565,7 @@
                                                         }
                                                         setPropertyType(nextPropertyType);
                                                     }}
-                                                    className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#CE011F] outline-none font-black text-base"
+                                                    className="w-full h-12 bg-gray-50 border-2 border-gray-100 rounded-lg px-4 focus:border-[#b40101] outline-none font-black text-base"
                                                 >
                                                     {Object.entries(PROPERTY_TYPES).map(([typeKey, typeConfig]) => (
                                                         <option key={typeKey} value={typeKey}>{typeConfig.label}</option>
@@ -1582,7 +1582,7 @@
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setHoaMonthly(suggestedTopPropertyFee)}
-                                                                className="w-full sm:w-auto shrink-0 rounded-md border border-[#CE011F] bg-red-50 px-3 py-1.5 text-[9px] uppercase tracking-[0.14em] text-[#CE011F] font-black hover:bg-red-100 transition-colors"
+                                                                className="w-full sm:w-auto shrink-0 rounded-md border border-[#b40101] bg-red-50 px-3 py-1.5 text-[9px] uppercase tracking-[0.14em] text-[#b40101] font-black hover:bg-red-100 transition-colors"
                                                             >
                                                                 Use Avg Fee
                                                             </button>
@@ -1594,7 +1594,7 @@
                                                             type="number"
                                                             value={hoaMonthly}
                                                             onChange={(e) => setHoaMonthly(e.target.value === "" ? "" : Number(e.target.value))}
-                                                            className="w-full h-11 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-lg transition-all"
+                                                            className="w-full h-11 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#b40101] outline-none font-black text-lg transition-all"
                                                         />
                                                     </div>
                                                     <p className="mt-2 text-[11px] leading-relaxed text-gray-500 font-black">
@@ -1633,8 +1633,8 @@
                                                             onClick={() => handleLoanProgramChange(programKey)}
                                                             className={`py-2.5 text-xs font-black rounded-md border transition-all ${
                                                                 loanProgram === programKey
-                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
-                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                                    ? 'border-[#b40101] bg-red-50 text-[#b40101]'
+                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'
                                                             }`}
                                                         >
                                                             {programConfig.label}
@@ -1649,7 +1649,7 @@
                                                     <div className="text-right min-h-[28px] font-black">
                                                         {isRateLive ? (
                                                             <div className="flex flex-col items-end gap-0.5 font-black">
-                                                                <a href={MND_RATE_SOURCE_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[10px] text-[#CE011F] font-black uppercase underline-offset-2 hover:underline">
+                                                                <a href={MND_RATE_SOURCE_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[10px] text-[#b40101] font-black uppercase underline-offset-2 hover:underline">
                                                                     <Icon name="Activity" size={10} className="animate-pulse" />
                                                                     Mortgage News Daily
                                                                 </a>
@@ -1668,8 +1668,8 @@
                                                         shouldAutoApplyLiveRateRef.current = false;
                                                         rateInputVersionRef.current += 1;
                                                         setInterestRate(e.target.value);
-                                                    }} className="w-full min-w-0 bg-gray-50 border-2 border-gray-100 rounded-lg py-2.5 px-4 focus:border-[#CE011F] outline-none font-black text-lg" />
-                                                    <button type="button" onClick={() => fetchLiveRate(true)} disabled={isRefreshingRate} title={`Reset to the latest Mortgage News Daily ${currentRateProgram.statusLabel} rate`} className="w-full sm:w-auto sm:min-w-[92px] shrink-0 inline-flex min-h-[44px] items-center justify-center gap-1.5 px-4 rounded-lg border-2 border-[#CE011F] bg-[#CE011F] text-white hover:bg-red-700 hover:border-red-700 transition-colors leading-none text-[9px] uppercase font-black shadow-sm disabled:opacity-50 disabled:bg-[#CE011F] disabled:border-[#CE011F] disabled:text-white">
+                                                    }} className="w-full min-w-0 bg-gray-50 border-2 border-gray-100 rounded-lg py-2.5 px-4 focus:border-[#b40101] outline-none font-black text-lg" />
+                                                    <button type="button" onClick={() => fetchLiveRate(true)} disabled={isRefreshingRate} title={`Reset to the latest Mortgage News Daily ${currentRateProgram.statusLabel} rate`} className="w-full sm:w-auto sm:min-w-[92px] shrink-0 inline-flex min-h-[44px] items-center justify-center gap-1.5 px-4 rounded-lg border-2 border-[#b40101] bg-[#b40101] text-white hover:bg-red-700 hover:border-red-700 transition-colors leading-none text-[9px] uppercase font-black shadow-sm disabled:opacity-50 disabled:bg-[#b40101] disabled:border-[#b40101] disabled:text-white">
                                                         <Icon name="RefreshCw" size={10} color="white" className={isRefreshingRate ? "animate-spin" : ""} />
                                                         <span>{isRefreshingRate ? "Updating" : "Reset"}</span>
                                                     </button>
@@ -1685,8 +1685,8 @@
                                                             onClick={() => setRateBuydownEnabled(false)}
                                                             className={`py-2 text-xs font-black rounded-md border transition-all ${
                                                                 !rateBuydownEnabled
-                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
-                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                                    ? 'border-[#b40101] bg-red-50 text-[#b40101]'
+                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'
                                                             }`}
                                                         >
                                                             Off
@@ -1696,8 +1696,8 @@
                                                             onClick={() => setRateBuydownEnabled(true)}
                                                             className={`py-2 text-xs font-black rounded-md border transition-all ${
                                                                 rateBuydownEnabled
-                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
-                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                                    ? 'border-[#b40101] bg-red-50 text-[#b40101]'
+                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'
                                                             }`}
                                                         >
                                                             On
@@ -1715,8 +1715,8 @@
                                                                             onClick={() => setRateBuydownReduction(reductionOption)}
                                                                             className={`py-2 text-xs font-black rounded-md border transition-all ${
                                                                                 isActive
-                                                                                    ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
-                                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                                                    ? 'border-[#b40101] bg-red-50 text-[#b40101]'
+                                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'
                                                                             }`}
                                                                         >
                                                                             -{formatRatePercent(reductionOption)}%
@@ -1773,22 +1773,22 @@
                                                                     disabled
                                                                         ? 'cursor-not-allowed border-gray-100 bg-gray-50 text-gray-300'
                                                                         : isActive
-                                                                            ? 'border-[#CE011F] bg-red-50 text-[#CE011F]'
-                                                                            : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'
+                                                                            ? 'border-[#b40101] bg-red-50 text-[#b40101]'
+                                                                            : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'
                                                                 }`}
                                                             >
                                                                 {pct}%
                                                             </button>
                                                         );
                                                     })}
-                                                    <button type="button" onClick={() => setDownPaymentMode('custom')} className={`col-span-full py-2 text-xs font-black rounded-md border transition-all ${downPaymentMode === 'custom' ? 'border-[#CE011F] bg-red-50 text-[#CE011F]' : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#CE011F]'}`}>Custom $</button>
+                                                    <button type="button" onClick={() => setDownPaymentMode('custom')} className={`col-span-full py-2 text-xs font-black rounded-md border transition-all ${downPaymentMode === 'custom' ? 'border-[#b40101] bg-red-50 text-[#b40101]' : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'}`}>Custom $</button>
                                                 </div>
                                                 {downPaymentMode === 'custom' && (
                                                     <div className="font-black">
                                                         <label className="block text-[10px] uppercase mb-2 leading-none text-gray-400 tracking-[0.15em] font-black">Custom Down Payment</label>
                                                         <div className="relative font-black">
                                                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-black">$</span>
-                                                            <input type="number" value={downPaymentFixed} onChange={(e) => setDownPaymentFixed(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-11 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#CE011F] outline-none font-black text-lg transition-all" />
+                                                            <input type="number" value={downPaymentFixed} onChange={(e) => setDownPaymentFixed(e.target.value === "" ? "" : Number(e.target.value))} className="w-full h-11 bg-gray-50 border-2 border-gray-100 rounded-lg pl-10 pr-4 focus:border-[#b40101] outline-none font-black text-lg transition-all" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -1824,7 +1824,7 @@
 
                             <div className="lg:col-span-7 flex flex-col gap-5 h-full text-center font-black">
                                 <div className="section-surface soft-surface rounded-2xl premium-shadow overflow-hidden font-black avoid-print-break">
-                                    <div className="bg-gradient-to-r from-[#CE011F] via-[#c41212] to-[#930015] px-4 py-3.5 text-white flex items-center gap-2 italic font-black">
+                                    <div className="bg-gradient-to-r from-[#b40101] via-[#b40101] to-[#8f0000] px-4 py-3.5 text-white flex items-center gap-2 italic font-black">
                                         <Icon name="Calculator" size={14} />
                                         <h2 className="font-black uppercase text-xs tracking-widest leading-none">Estimated Payment Snapshot</h2>
                                     </div>
@@ -1877,12 +1877,12 @@
                                     
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left leading-none font-black mb-4">
                                         <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="Building" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black">Loan Costs</h3></div>
+                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="Building" color="#b40101" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400 font-black font-black">Loan Costs</h3></div>
                                             <div className="flex justify-between items-center mb-2 leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Principal and Interest</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.principalInterest)}</span></div>
                                             <div className="flex justify-between items-center leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Mortgage Insurance</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.pmi)}</span></div>
                                         </div>
                                         <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="ShieldCheck" color="#CE011F" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400">Property Costs</h3></div>
+                                            <div className="flex items-center gap-2 mb-2.5 leading-none font-black"><Icon name="ShieldCheck" color="#b40101" size={14} /><h3 className="text-[12px] uppercase font-black leading-none tracking-[0.12em] text-gray-400">Property Costs</h3></div>
                                             <div className="flex justify-between items-center mb-2 leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Taxes</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.taxes)}</span></div>
                                             <div className="flex justify-between items-center leading-none font-black"><span className="text-[10px] text-gray-500 uppercase tracking-[0.18em] leading-none font-black">Insurance</span><span className="text-[17px] leading-none font-black">{formatCurrency(results.piti.insurance)}</span></div>
                                             {results.hoa > 0 && (
@@ -1895,15 +1895,15 @@
                                     </div>
 
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                                    <div className="text-left bg-[#fcfcfc] p-4 rounded-xl border border-gray-100 border-l-4 border-l-[#CE011F] font-black">
-                                        <h3 className="uppercase text-[8px] mb-2 flex items-center gap-2 tracking-[0.2em] leading-none italic font-black text-[#CE011F]"><Icon name="Calendar" size={12} color="#CE011F" /> How Escrow Works</h3>
+                                    <div className="text-left bg-[#fcfcfc] p-4 rounded-xl border border-gray-100 border-l-4 border-l-[#b40101] font-black">
+                                        <h3 className="uppercase text-[8px] mb-2 flex items-center gap-2 tracking-[0.2em] leading-none italic font-black text-[#b40101]"><Icon name="Calendar" size={12} color="#b40101" /> How Escrow Works</h3>
                                         <p className="text-[11px] text-gray-500 leading-relaxed font-black">
                                             {ESCROW_HELP_TEXT}
                                         </p>
                                     </div>
 
                                     <div className="text-left rounded-xl border border-red-100 bg-red-50/60 p-4 font-black">
-                                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#CE011F] mb-1.5 font-black">Tip</p>
+                                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#b40101] mb-1.5 font-black">Tip</p>
                                         <p className="text-[11px] text-gray-500 leading-relaxed font-black">
                                             {results.buydown?.enabled ? BUYDOWN_TIP_TEXT : INSURANCE_TIP_TEXT}
                                         </p>
@@ -1914,7 +1914,7 @@
 
                                 <div className="font-black leading-none no-print mt-auto">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-black leading-none items-stretch">
-                                        <div className="bg-gradient-to-br from-[#CE011F] to-[#930015] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[168px] h-full flex flex-col justify-between border border-[#930015]">
+                                        <div className="bg-gradient-to-br from-[#b40101] to-[#8f0000] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[168px] h-full flex flex-col justify-between border border-[#8f0000]">
                                             <div>
                                                 <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 1</p>
                                                 <h3 className="text-base italic uppercase mb-2 leading-none tracking-tight font-black">Get Preapproved</h3>
@@ -1922,12 +1922,12 @@
                                                     Confirm your buying power with a licensed lender before you start touring homes.
                                                 </p>
                                             </div>
-                                            <button type="button" onClick={handleOpenLenderOptions} className="w-full bg-white hover:bg-red-50 text-[#CE011F] font-black py-3 rounded-xl transition-all uppercase tracking-[0.18em] text-[9px] shadow-lg flex items-center justify-center gap-2 leading-none">
-                                                <Icon name="ArrowRight" size={10} color="#CE011F" />
+                                            <button type="button" onClick={handleOpenLenderOptions} className="w-full bg-white hover:bg-red-50 text-[#b40101] font-black py-3 rounded-xl transition-all uppercase tracking-[0.18em] text-[9px] shadow-lg flex items-center justify-center gap-2 leading-none">
+                                                <Icon name="ArrowRight" size={10} color="#b40101" />
                                                 View Lender Options
                                             </button>
                                         </div>
-                                        <div className="bg-gradient-to-br from-[#E31837] to-[#CE011F] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[168px] h-full flex flex-col justify-between border border-[#CE011F]">
+                                        <div className="bg-gradient-to-br from-[#b40101] to-[#b40101] text-white p-4 rounded-2xl shadow-lg text-left relative overflow-hidden group font-black min-h-[168px] h-full flex flex-col justify-between border border-[#b40101]">
                                             <div>
                                                 <p className="text-[9px] uppercase tracking-[0.22em] text-red-100 mb-2 font-black">Step 2</p>
                                                 <h3 className="text-base italic uppercase mb-2 leading-none tracking-tight font-black">Start The Hunt</h3>
@@ -1935,8 +1935,8 @@
                                                     Browse homes up to <span className="font-black text-white text-sm">{formatCurrency(results.homePrice)}</span> and see what is available right now.
                                                 </p>
                                             </div>
-                                            <a href={stepTwoLink} target="_blank" rel="noreferrer" className="w-full bg-white hover:bg-red-50 text-[#CE011F] font-black py-3 rounded-xl text-center uppercase tracking-[0.18em] text-[9px] transition-all flex items-center justify-center gap-2 leading-none shadow-lg">
-                                                <Icon name="Home" size={10} color="#CE011F" />
+                                            <a href={stepTwoLink} target="_blank" rel="noreferrer" className="w-full bg-white hover:bg-red-50 text-[#b40101] font-black py-3 rounded-xl text-center uppercase tracking-[0.18em] text-[9px] transition-all flex items-center justify-center gap-2 leading-none shadow-lg">
+                                                <Icon name="Home" size={10} color="#b40101" />
                                                 Browse Homes In Budget
                                             </a>
                                         </div>
@@ -1960,7 +1960,7 @@
                                 <button onClick={handleSavePdf} className={darkActionButtonClass}><Icon name="FileText" size={12} color="white" /> Save PDF</button>
                                 <button onClick={handleSaveImage} className={outlinedDarkActionButtonClass}><Icon name="Image" size={12} color="currentColor" /> Save Image</button>
                                 <a href={mailtoLink} className={darkActionButtonClass}><Icon name="Mail" size={12} color="white" /> Send as Email</a>
-                                <a href={smsLink} className={outlinedBrandActionButtonClass}><Icon name="MessageSquare" size={12} color="#CE011F" /> Send as Text</a>
+                                <a href={smsLink} className={outlinedBrandActionButtonClass}><Icon name="MessageSquare" size={12} color="#b40101" /> Send as Text</a>
                             </div>
                         </div>
                     </div>
@@ -1968,17 +1968,17 @@
                     {showLeadForm && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#000000]/80 backdrop-blur-sm animate-in fade-in duration-300 font-black font-black">
                             <div className="bg-white w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden font-black text-[#000000] font-black font-black">
-                                <div className="bg-[#CE011F] p-5 text-white flex justify-between items-center font-black font-black font-black">
+                                <div className="bg-[#b40101] p-5 text-white flex justify-between items-center font-black font-black font-black">
                                     <h3 className="text-base italic uppercase leading-none font-black font-black font-black">Verify Power</h3>
                                     <button onClick={() => setShowLeadForm(false)} className="text-white hover:text-red-200 transition-colors leading-none font-black font-black font-black"><Icon name="X" size={16} /></button>
                                 </div>
                                 <div className="p-6 font-black font-black font-black">
                                     {!formSubmitted ? (
                                         <form onSubmit={handleSubmitLead} className="space-y-4 font-black leading-none font-black font-black font-black">
-                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Full Name</label><input required name="name" type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#CE011F] font-black text-sm font-black font-black font-black" /></div>
-                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Email Address</label><input required name="email" type="email" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#CE011F] font-black text-sm font-black font-black font-black font-black" /></div>
-                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Cell</label><input required name="phone" type="tel" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#CE011F] font-black text-sm font-black font-black font-black font-black font-black" /></div>
-                                            <button type="submit" disabled={isSubmitting} className="w-full bg-[#000000] hover:bg-[#CE011F] text-white font-black py-3 rounded-lg uppercase text-[9px] tracking-widest transition-all mt-2 font-black leading-none font-black font-black font-black font-black disabled:opacity-50">{isSubmitting ? "Sending" : "Send to Joe Pine"}</button>
+                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Full Name</label><input required name="name" type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#b40101] font-black text-sm font-black font-black font-black" /></div>
+                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Email Address</label><input required name="email" type="email" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#b40101] font-black text-sm font-black font-black font-black font-black" /></div>
+                                            <div><label className="block text-[8px] uppercase mb-1.5 tracking-widest text-gray-400 font-black font-black font-black">Cell</label><input required name="phone" type="tel" className="w-full bg-gray-50 border-2 border-gray-100 rounded-lg py-2 px-3 outline-none focus:border-[#b40101] font-black text-sm font-black font-black font-black font-black font-black" /></div>
+                                            <button type="submit" disabled={isSubmitting} className="w-full bg-[#000000] hover:bg-[#b40101] text-white font-black py-3 rounded-lg uppercase text-[9px] tracking-widest transition-all mt-2 font-black leading-none font-black font-black font-black font-black disabled:opacity-50">{isSubmitting ? "Sending" : "Send to Joe Pine"}</button>
                                         </form>
                                     ) : (
                                         <div className="text-center py-8 space-y-5 font-black font-black font-black font-black">
@@ -2007,9 +2007,9 @@
                                 <p className="text-[9px] text-gray-400 uppercase tracking-[0.22em] font-black">Rhode Island and Massachusetts Real Estate</p>
                                 <p className="text-sm md:text-base uppercase tracking-[0.12em] text-[#4D4D4D] font-black">Joe Pine, REALTOR&reg; | {JOE_INFO.title}</p>
                                 <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[11px] md:text-xs text-[#4D4D4D] leading-relaxed">
-                                    <a href={`tel:${JOE_INFO.phone.replace(/\D/g,'')}`} className="hover:text-[#CE011F] transition-colors">{JOE_INFO.phone}</a>
-                                    <a href={`mailto:${JOE_INFO.email}`} className="hover:text-[#CE011F] transition-colors">{JOE_INFO.email}</a>
-                                    <a href={`https://${JOE_INFO.website}`} target="_blank" rel="noreferrer" className="text-[#CE011F] underline underline-offset-2 hover:text-red-700">{JOE_INFO.website}</a>
+                                    <a href={`tel:${JOE_INFO.phone.replace(/\D/g,'')}`} className="hover:text-[#b40101] transition-colors">{JOE_INFO.phone}</a>
+                                    <a href={`mailto:${JOE_INFO.email}`} className="hover:text-[#b40101] transition-colors">{JOE_INFO.email}</a>
+                                    <a href={`https://${JOE_INFO.website}`} target="_blank" rel="noreferrer" className="text-[#b40101] underline underline-offset-2 hover:text-red-700">{JOE_INFO.website}</a>
                                     <span>{JOE_INFO.address}</span>
                                 </div>
                                 <div className="space-y-1 text-[10px] md:text-[11px] text-[#4D4D4D] leading-relaxed font-black">

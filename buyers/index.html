@@ -30,14 +30,14 @@
     <link rel="stylesheet" href="../site-frame.css">
     <style>
         :root {
-            --kw-red: #ce011f;
-            --kw-red-deep: #930015;
-            --kw-red-bright: #e31837;
+            --kw-red: #b40101;
+            --kw-red-deep: #8f0000;
+            --kw-red-bright: #b40101;
             --kw-ink: #000000;
-            --kw-slate: #4d4d4d;
-            --kw-muted: #828282;
-            --kw-line: #d9d9d9;
-            --surface: rgba(255, 255, 255, 0.97);
+            --kw-slate: #666666;
+            --kw-muted: #999999;
+            --kw-line: #cccccc;
+            --surface: #ffffff;
         }
 
         * {
@@ -46,13 +46,12 @@
 
         body {
             margin: 0;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: var(--kw-body-font, "Roboto", Arial, sans-serif);
             color: var(--kw-ink);
             overflow-anchor: none;
             background:
-                radial-gradient(circle at top left, rgba(206, 1, 31, 0.1), transparent 28%),
-                radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
-                linear-gradient(180deg, #ffffff 0%, #f4f4f4 52%, #fafafa 100%);
+                radial-gradient(circle at top left, rgba(180, 1, 1, 0.06), transparent 28%),
+                linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
         }
 
         html.buyers-page-preload body {
@@ -81,7 +80,7 @@
         .cta-panel {
             border: 1px solid rgba(229, 231, 235, 0.95);
             background: var(--surface);
-            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.28), 0 10px 22px -18px rgba(15, 23, 42, 0.18);
+            box-shadow: 0 14px 28px -24px rgba(0, 0, 0, 0.14);
         }
 
         .hero-panel {
@@ -91,7 +90,7 @@
         }
 
         .hero-banner {
-            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 52%, var(--kw-red-deep) 100%);
+            background: var(--kw-red);
             color: #ffffff;
             padding: 22px 22px 18px;
         }
@@ -158,7 +157,7 @@
         }
 
         .button-primary {
-            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            background: var(--kw-red);
             color: #ffffff;
         }
 
@@ -203,9 +202,9 @@
             justify-content: center;
             min-height: 52px;
             padding: 0 18px;
-            border: 1px solid rgba(206, 1, 31, 0.16);
+            border: 1px solid rgba(180, 1, 1, 0.16);
             border-radius: 18px;
-            background: rgba(206, 1, 31, 0.05);
+            background: rgba(180, 1, 1, 0.05);
             color: var(--kw-slate);
             font: inherit;
             font-size: 11px;
@@ -220,32 +219,32 @@
         .resource-tab:hover,
         .resource-tab:focus-visible {
             transform: translateY(-1px);
-            background: rgba(206, 1, 31, 0.12);
+            background: rgba(180, 1, 1, 0.12);
         }
 
         .resource-tab.is-active {
             border-color: transparent;
-            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-bright) 100%);
+            background: var(--kw-red);
             color: #ffffff;
-            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.6);
+            box-shadow: 0 10px 18px -16px rgba(0, 0, 0, 0.18);
         }
 
         .resource-tab-guided {
-            border-color: rgba(147, 0, 21, 0.24);
-            background: linear-gradient(180deg, rgba(206, 1, 31, 0.12) 0%, rgba(206, 1, 31, 0.07) 100%);
+            border-color: rgba(143, 0, 0, 0.24);
+            background: linear-gradient(180deg, rgba(180, 1, 1, 0.12) 0%, rgba(180, 1, 1, 0.07) 100%);
             color: var(--kw-red-deep);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
         }
 
         .resource-tab-guided:hover,
         .resource-tab-guided:focus-visible {
-            background: linear-gradient(180deg, rgba(206, 1, 31, 0.18) 0%, rgba(206, 1, 31, 0.1) 100%);
+            background: linear-gradient(180deg, rgba(180, 1, 1, 0.18) 0%, rgba(180, 1, 1, 0.1) 100%);
         }
 
         .resource-tab-guided.is-active {
-            background: linear-gradient(135deg, #b40a1f 0%, #d31834 100%);
+            background: var(--kw-red-deep);
             color: #ffffff;
-            box-shadow: 0 16px 28px -22px rgba(147, 0, 21, 0.7);
+            box-shadow: 0 10px 18px -16px rgba(0, 0, 0, 0.18);
         }
 
         .resource-tab-link {
@@ -261,9 +260,9 @@
         .resource-panel-note {
             margin: 0;
             padding: 14px 16px;
-            border: 1px solid rgba(206, 1, 31, 0.12);
+            border: 1px solid rgba(180, 1, 1, 0.12);
             border-radius: 18px;
-            background: linear-gradient(180deg, rgba(206, 1, 31, 0.04) 0%, rgba(206, 1, 31, 0.02) 100%);
+            background: linear-gradient(180deg, rgba(180, 1, 1, 0.04) 0%, rgba(180, 1, 1, 0.02) 100%);
             color: var(--kw-slate);
             font-size: 14px;
             line-height: 1.55;
