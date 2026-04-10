@@ -1935,6 +1935,17 @@ img {
     grid-column: 1 / -1;
   }
 
+  .mobile-menu-summary {
+    padding: 0.85rem 2.2rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+  }
+
+  .mobile-menu-summary::after {
+    right: 0.8rem;
+    font-size: 1rem;
+  }
+
   .site-header .header-time-card {
     display: grid;
     order: 3;
