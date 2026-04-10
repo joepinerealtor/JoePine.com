@@ -1877,10 +1877,9 @@ img {
 
   .section-nav {
     grid-area: sections;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+    align-items: start;
     gap: 6px;
     padding: 10px 12px;
   }
@@ -1902,16 +1901,14 @@ img {
 
   .sidebar-link-stack {
     flex: 1 1 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
     gap: 6px;
   }
 
   .section-nav-link,
   .sidebar-button {
-    flex: 0 0 auto;
-    width: auto;
+    width: 100%;
     min-height: 34px;
     padding: 0.42rem 0.72rem;
     font-size: 0.66rem;
