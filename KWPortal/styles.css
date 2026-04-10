@@ -1899,8 +1899,27 @@ img {
     padding: 18px;
   }
 
+  .brand-link {
+    order: 1;
+  }
+
   .mobile-sidebar-menus {
     display: grid;
+    order: 2;
+    width: 100%;
+  }
+
+  .site-header .header-time-card {
+    display: grid;
+    order: 3;
+    width: 100%;
+    margin: 0;
+    justify-items: flex-start;
+    text-align: left;
+  }
+
+  .portal-content > .content-strip {
+    display: none;
   }
 
   .section-nav,
