@@ -18,6 +18,7 @@ const rateRefs = {
   fha: document.getElementById("portalFhaRateValue"),
   va: document.getElementById("portalVaRateValue"),
   jumbo: document.getElementById("portalJumboRateValue"),
+  sourceDateLabel: document.getElementById("portalRatesSourceDateLabel"),
   updatedLabel: document.getElementById("portalRatesUpdatedLabel")
 };
 const hasRateTargets = Object.values(rateRefs).some(Boolean);
@@ -172,6 +173,66 @@ function writeRates(state) {
   if (rateRefs.jumbo) rateRefs.jumbo.textContent = state.jumboRate || "--";
 }
 
+function formatSourceDate(value) {
+  const normalized = String(value || "").trim();
+  if (!normalized) {
+    return "";
+  }
+
+  const parsed = Date.parse(`${normalized} 12:00:00`);
+  if (!Number.isFinite(parsed)) {
+    return normalized;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "America/New_York"
+  }).format(new Date(parsed));
+}
+
+function setRatesSourceDateLabel(state) {
+  if (!rateRefs.sourceDateLabel) {
+    return;
+  }
+
+  const surveyDates = [
+    state.conventionalSurveyDate,
+    state.fhaSurveyDate,
+    state.vaSurveyDate,
+    state.jumboSurveyDate
+  ].filter(Boolean);
+
+  if (!surveyDates.length) {
+    rateRefs.sourceDateLabel.textContent = "date unavailable";
+    return;
+  }
+
+  const uniqueDates = [...new Set(surveyDates)];
+  if (uniqueDates.length === 1) {
+    rateRefs.sourceDateLabel.textContent = `dated ${formatSourceDate(uniqueDates[0])}`;
+    return;
+  }
+
+  const programLabels = {
+    conventionalSurveyDate: "Conv",
+    fhaSurveyDate: "FHA",
+    vaSurveyDate: "VA",
+    jumboSurveyDate: "Jumbo"
+  };
+
+  const summary = Object.entries(programLabels)
+    .map(([key, label]) => {
+      const surveyDate = state[key];
+      return surveyDate ? `${label} ${formatSourceDate(surveyDate)}` : "";
+    })
+    .filter(Boolean)
+    .join(", ");
+
+  rateRefs.sourceDateLabel.textContent = summary || "date unavailable";
+}
+
 function formatRatesUpdatedLabel(value) {
   const parsed = Date.parse(String(value || ""));
   if (!Number.isFinite(parsed)) {
@@ -269,18 +330,25 @@ async function refreshRates() {
       fhaRate: fha.rate.toFixed(2),
       vaRate: va.rate.toFixed(2),
       jumboRate: jumbo.rate.toFixed(2),
+      conventionalSurveyDate: conventional.date || "",
+      fhaSurveyDate: fha.date || "",
+      vaSurveyDate: va.date || "",
+      jumboSurveyDate: jumbo.date || "",
       ratesFetchedAt: new Date().toISOString()
     };
 
     writeRates(nextState);
     saveStoredRates(nextState);
+    setRatesSourceDateLabel(nextState);
     setRatesUpdatedLabel(nextState.ratesFetchedAt);
   } catch {
     const storedState = loadStoredRates();
     if (storedState) {
       writeRates(storedState);
+      setRatesSourceDateLabel(storedState);
       setRatesUpdatedLabel(storedState.ratesFetchedAt);
     } else {
+      setRatesSourceDateLabel({});
       setRatesUpdatedLabel("");
     }
   } finally {
@@ -302,6 +370,7 @@ window.addEventListener("resize", requestActiveSectionUpdate);
 const storedRates = loadStoredRates();
 if (storedRates && hasRateTargets) {
   writeRates(storedRates);
+  setRatesSourceDateLabel(storedRates);
   setRatesUpdatedLabel(storedRates.ratesFetchedAt);
 }
 
