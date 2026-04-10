@@ -112,6 +112,8 @@ img {
   display: grid;
   gap: 14px;
   text-decoration: none;
+  justify-items: center;
+  text-align: center;
 }
 
 .brand-lockup {
@@ -120,6 +122,7 @@ img {
   padding: 14px 16px;
   background: var(--kw-white);
   border: 1px solid var(--kw-border);
+  justify-self: center;
 }
 
 .brand-logo {
@@ -130,6 +133,8 @@ img {
 .brand-copy {
   display: grid;
   gap: 4px;
+  justify-items: center;
+  text-align: center;
 }
 
 .brand-kicker,
@@ -184,6 +189,65 @@ img {
 .sidebar-link-stack {
   display: grid;
   gap: 10px;
+}
+
+.mobile-sidebar-menus {
+  display: none;
+  width: 100%;
+}
+
+.mobile-menu-panel {
+  border: 1px solid var(--kw-border);
+  background: var(--kw-paper-soft);
+}
+
+.mobile-menu-panel + .mobile-menu-panel {
+  margin-top: 10px;
+}
+
+.mobile-menu-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mobile-menu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu-summary::after {
+  content: "+";
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--kw-red);
+}
+
+.mobile-menu-panel[open] .mobile-menu-summary {
+  border-bottom: 1px solid rgba(221, 212, 200, 0.92);
+}
+
+.mobile-menu-panel[open] .mobile-menu-summary::after {
+  content: "-";
+}
+
+.mobile-menu-links {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.mobile-menu-links .section-nav-link,
+.mobile-menu-links .button {
+  width: 100%;
 }
 
 .sidebar-rates {
@@ -1595,6 +1659,7 @@ img {
 
 .button:focus-visible,
 .brand-link:focus-visible,
+.mobile-menu-summary:focus-visible,
 .launch-card:focus-visible,
 .course-card:focus-visible,
 .portal-action-card:focus-visible,
@@ -1661,6 +1726,15 @@ img {
 @media (max-width: 920px) {
   .site-shell {
     padding: 18px;
+  }
+
+  .mobile-sidebar-menus {
+    display: grid;
+  }
+
+  .section-nav,
+  .sidebar-utility {
+    display: none;
   }
 
   .site-header,
@@ -1735,7 +1809,7 @@ img {
 
   .brand-lockup {
     min-width: 0;
-    width: 100%;
+    width: min(100%, 280px);
     max-width: 100%;
   }
 
