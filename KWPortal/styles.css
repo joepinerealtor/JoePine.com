@@ -1986,6 +1986,29 @@ img {
     text-align: left;
   }
 
+  .dashboard-rate-grid {
+    gap: 8px;
+  }
+
+  .dashboard-rate-chip {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    min-height: 58px;
+    padding: 0.55rem 0.45rem;
+  }
+
+  .dashboard-rate-chip .rate-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.09em;
+  }
+
+  .dashboard-rate-chip .rate-value {
+    font-size: 0.94rem;
+    white-space: nowrap;
+  }
+
   .course-grid,
   .dashboard-status-grid,
   .directory-summary-grid,
