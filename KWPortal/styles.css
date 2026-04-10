@@ -774,6 +774,7 @@ img {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  text-align: center;
   text-transform: uppercase;
   transition: transform var(--transition), background var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
 }
