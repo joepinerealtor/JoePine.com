@@ -816,7 +816,7 @@ img {
 }
 
 .overview-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+  grid-template-columns: 1fr;
 }
 
 .overview-card {
@@ -854,9 +854,15 @@ img {
   gap: 12px;
 }
 
+.overview-link-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .overview-link {
   display: grid;
   gap: 5px;
+  align-content: start;
+  min-height: 100%;
   padding: 14px 16px;
   border: 1px solid var(--kw-border);
   background: var(--kw-paper-soft);
@@ -1782,6 +1788,7 @@ img {
   .course-grid,
   .dashboard-status-grid,
   .directory-summary-grid,
+  .overview-link-list,
   .office-grid,
   .leadership-grid,
   .vision-grid,
