@@ -217,7 +217,7 @@ img {
 .mobile-menu-summary {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
   padding: 0.9rem 1rem;
   cursor: pointer;
@@ -227,6 +227,8 @@ img {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  position: relative;
+  text-align: center;
 }
 
 .mobile-menu-summary::-webkit-details-marker {
@@ -235,6 +237,8 @@ img {
 
 .mobile-menu-summary::after {
   content: "+";
+  position: absolute;
+  right: 1rem;
   font-size: 1.15rem;
   line-height: 1;
   color: var(--kw-red);
