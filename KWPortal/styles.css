@@ -424,6 +424,10 @@ img {
   padding: 12px 14px;
   border: 1px solid var(--kw-border);
   background: var(--kw-paper-soft);
+  justify-items: center;
+  width: min(100%, 250px);
+  margin: 0 auto;
+  text-align: center;
 }
 
 .header-time-card strong {
@@ -435,6 +439,10 @@ img {
 .header-time-card span:last-child {
   color: var(--kw-gray);
   font-size: 0.84rem;
+}
+
+.site-header .header-time-card {
+  display: none;
 }
 
 .button {
@@ -1841,6 +1849,10 @@ img {
     padding: 20px 18px;
   }
 
+  .site-header .header-time-card {
+    display: grid;
+  }
+
   .section-nav {
     grid-area: sections;
     display: flex;
@@ -1875,6 +1887,10 @@ img {
     padding: 0.58rem 0.72rem;
     font-size: 0.74rem;
     letter-spacing: 0.11em;
+  }
+
+  .portal-content > .content-strip {
+    display: none;
   }
 }
 

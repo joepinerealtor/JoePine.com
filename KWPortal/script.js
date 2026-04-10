@@ -1,5 +1,5 @@
-const headerClock = document.getElementById("headerClock");
-const headerDate = document.getElementById("headerDate");
+const headerClockRefs = [...document.querySelectorAll("[data-header-clock]")];
+const headerDateRefs = [...document.querySelectorAll("[data-header-date]")];
 const currentYear = document.getElementById("currentYear");
 const scrollContainer = document.querySelector(".portal-content");
 const contentStrip = document.querySelector(".content-strip");
@@ -167,13 +167,13 @@ function updateDateTime() {
     timeZone: "America/New_York"
   });
 
-  if (headerClock) {
-    headerClock.textContent = `${timeFormatter.format(now)} ET`;
-  }
+  headerClockRefs.forEach((clockRef) => {
+    clockRef.textContent = `${timeFormatter.format(now)} ET`;
+  });
 
-  if (headerDate) {
-    headerDate.textContent = dateFormatter.format(now);
-  }
+  headerDateRefs.forEach((dateRef) => {
+    dateRef.textContent = dateFormatter.format(now);
+  });
 
   if (currentYear) {
     currentYear.textContent = String(now.getFullYear());
