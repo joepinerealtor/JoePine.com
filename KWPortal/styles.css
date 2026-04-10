@@ -1782,6 +1782,11 @@ img {
     overflow: visible;
   }
 
+  .section-nav,
+  .sidebar-link-stack {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .portal-frame {
     grid-template-columns: 1fr;
     height: auto;
