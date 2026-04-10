@@ -425,20 +425,27 @@ img {
   border: 1px solid var(--kw-border);
   background: var(--kw-paper-soft);
   justify-items: center;
+  align-items: center;
   width: min(100%, 250px);
   margin: 0 auto;
   text-align: center;
 }
 
 .header-time-card strong {
+  display: block;
   font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
   font-size: 1.15rem;
   line-height: 1;
+  width: 100%;
+  text-align: center;
 }
 
 .header-time-card span:last-child {
+  display: block;
   color: var(--kw-gray);
   font-size: 0.84rem;
+  width: 100%;
+  text-align: center;
 }
 
 .site-header .header-time-card {
