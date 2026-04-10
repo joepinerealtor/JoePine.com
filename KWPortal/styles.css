@@ -1849,11 +1849,11 @@ img {
 
 @media (min-aspect-ratio: 5/4) and (max-width: 1366px), (max-aspect-ratio: 5/4) and (min-width: 700px) {
   .portal-sidebar {
-    grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
+    grid-template-columns: minmax(220px, 238px) minmax(0, 1fr);
     grid-template-areas:
       "brand sections"
       "brand quick";
-    gap: 16px 18px;
+    gap: 10px 12px;
     align-items: start;
   }
 
@@ -1861,51 +1861,89 @@ img {
     grid-area: brand;
     height: 100%;
     align-content: center;
-    padding: 20px 18px;
+    gap: 10px;
+    padding: 12px 14px;
   }
 
   .site-header .header-time-card {
     display: grid;
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    gap: 2px;
   }
 
   .section-nav {
     grid-area: sections;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: start;
-    gap: 8px;
-    padding: 14px 16px;
+    gap: 6px;
+    padding: 10px 12px;
   }
 
   .sidebar-utility {
     grid-area: quick;
-    padding: 14px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    padding: 10px 12px;
   }
 
   .sidebar-utility .eyebrow {
-    margin-bottom: 2px;
+    margin: 0;
+    flex: 0 0 auto;
+    font-size: 0.64rem;
   }
 
   .sidebar-link-stack {
+    flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    justify-content: flex-start;
+    gap: 6px;
   }
 
   .section-nav-link,
   .sidebar-button {
-    flex: 0 1 120px;
+    flex: 0 0 auto;
     width: auto;
-    min-height: 40px;
-    padding: 0.58rem 0.72rem;
-    font-size: 0.74rem;
-    letter-spacing: 0.11em;
+    min-height: 34px;
+    padding: 0.42rem 0.72rem;
+    border-radius: 999px;
+    font-size: 0.66rem;
+    letter-spacing: 0.09em;
   }
 
   .portal-content > .content-strip {
     display: none;
+  }
+
+  .brand-link {
+    gap: 8px;
+  }
+
+  .brand-lockup {
+    min-width: 0;
+    width: min(100%, 196px);
+    max-width: 196px;
+    padding: 10px 12px;
+  }
+
+  .brand-copy strong {
+    font-size: 1.16rem;
+  }
+
+  .site-header .header-time-card strong {
+    font-size: 0.98rem;
+  }
+
+  .site-header .header-time-card span:last-child {
+    font-size: 0.76rem;
   }
 }
 
