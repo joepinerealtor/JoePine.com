@@ -24,6 +24,8 @@ const hasRateTargets = Object.values(rateRefs).some(Boolean);
 let scrollTicking = false;
 let ratesRefreshInFlight = false;
 
+const PORTAL_ACCESS_STORAGE_KEY = "kw-leading-edge-portal.access.v1";
+const PORTAL_PASSCODE_HASH = "4030C42B313A82B953D14F04A85FF9DD9739E49A97D90631B7FB3029CCA1D6E1";
 const RATE_STORAGE_KEY = "kw-leading-edge-portal.rates.v1";
 const RATE_REFRESH_INTERVAL_MS = 15 * 60 * 1000;
 const RATE_PROGRAMS = {
@@ -48,6 +50,104 @@ const RATE_PROGRAMS = {
     sourceUrl: "https://www.mortgagenewsdaily.com/mortgage-rates/30-year-jumbo"
   }
 };
+
+function removePortalGate() {
+  document.querySelector(".portal-lock")?.remove();
+  document.body.classList.remove("portal-protected");
+}
+
+function isPortalUnlocked() {
+  try {
+    return window.localStorage.getItem(PORTAL_ACCESS_STORAGE_KEY) === PORTAL_PASSCODE_HASH;
+  } catch {
+    return false;
+  }
+}
+
+function storePortalAccess() {
+  try {
+    window.localStorage.setItem(PORTAL_ACCESS_STORAGE_KEY, PORTAL_PASSCODE_HASH);
+  } catch {
+    // Ignore storage failures and keep access for this page load only.
+  }
+}
+
+async function hashPasscode(value) {
+  if (!window.crypto?.subtle) {
+    return value;
+  }
+
+  const encoded = new TextEncoder().encode(String(value || "").trim());
+  const digest = await window.crypto.subtle.digest("SHA-256", encoded);
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("")
+    .toUpperCase();
+}
+
+function createPortalGateMarkup() {
+  const pageLabel = document.body.dataset.portalLockLabel || "Portal";
+  const overlay = document.createElement("div");
+  overlay.className = "portal-lock";
+  overlay.innerHTML = `
+    <div class="portal-lock-panel" role="dialog" aria-modal="true" aria-labelledby="portalLockTitle">
+      <img src="brand/kw-leading-edge-logo.png" alt="Keller Williams Realty Leading Edge" class="portal-lock-logo">
+      <div class="portal-lock-copy">
+        <p class="eyebrow small">Protected Preview</p>
+        <h1 id="portalLockTitle">${pageLabel}</h1>
+        <p>Enter the passcode to view this portal preview.</p>
+      </div>
+      <form class="portal-lock-form">
+        <input class="portal-lock-input" name="passcode" type="password" inputmode="numeric" autocomplete="off" placeholder="Passcode" aria-label="Passcode">
+        <button class="button primary portal-lock-button" type="submit">Unlock Portal</button>
+        <p class="portal-lock-error" aria-live="polite"></p>
+      </form>
+    </div>
+  `;
+  return overlay;
+}
+
+async function ensurePortalAccess() {
+  if (isPortalUnlocked()) {
+    removePortalGate();
+    return;
+  }
+
+  const overlay = createPortalGateMarkup();
+  document.body.append(overlay);
+
+  const form = overlay.querySelector(".portal-lock-form");
+  const input = overlay.querySelector(".portal-lock-input");
+  const error = overlay.querySelector(".portal-lock-error");
+
+  requestAnimationFrame(() => {
+    input?.focus();
+  });
+
+  await new Promise((resolve) => {
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const attemptedPasscode = input?.value.trim() || "";
+      const attemptedHash = await hashPasscode(attemptedPasscode);
+
+      if (attemptedHash === PORTAL_PASSCODE_HASH || attemptedPasscode === "0715") {
+        storePortalAccess();
+        removePortalGate();
+        resolve();
+        return;
+      }
+
+      if (error) {
+        error.textContent = "Incorrect passcode. Try again.";
+      }
+
+      if (input) {
+        input.value = "";
+        input.focus();
+      }
+    });
+  });
+}
 
 function updateDateTime() {
   const now = new Date();
@@ -313,24 +413,30 @@ async function refreshRates() {
   }
 }
 
-updateDateTime();
-setInterval(updateDateTime, 30000);
-syncContentStripVisibility();
-updateActiveSectionFromScroll();
-if (scrollContainer) {
-  scrollContainer.addEventListener("scroll", requestActiveSectionUpdate, { passive: true });
-} else {
-  window.addEventListener("scroll", requestActiveSectionUpdate, { passive: true });
-}
-window.addEventListener("resize", requestActiveSectionUpdate);
+async function initializePortal() {
+  await ensurePortalAccess();
 
-const storedRates = loadStoredRates();
-if (storedRates && hasRateTargets) {
-  writeRates(storedRates);
-  setRatesSourceDateLabel(storedRates);
+  updateDateTime();
+  setInterval(updateDateTime, 30000);
+  syncContentStripVisibility();
+  updateActiveSectionFromScroll();
+  if (scrollContainer) {
+    scrollContainer.addEventListener("scroll", requestActiveSectionUpdate, { passive: true });
+  } else {
+    window.addEventListener("scroll", requestActiveSectionUpdate, { passive: true });
+  }
+  window.addEventListener("resize", requestActiveSectionUpdate);
+
+  const storedRates = loadStoredRates();
+  if (storedRates && hasRateTargets) {
+    writeRates(storedRates);
+    setRatesSourceDateLabel(storedRates);
+  }
+
+  if (hasRateTargets) {
+    refreshRates();
+    setInterval(refreshRates, RATE_REFRESH_INTERVAL_MS);
+  }
 }
 
-if (hasRateTargets) {
-  refreshRates();
-  setInterval(refreshRates, RATE_REFRESH_INTERVAL_MS);
-}
+initializePortal();
