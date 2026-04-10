@@ -1075,6 +1075,10 @@ img {
   gap: 14px;
 }
 
+.office-card-wide {
+  grid-column: 1 / -1;
+}
+
 .office-card p {
   margin: 0;
 }
