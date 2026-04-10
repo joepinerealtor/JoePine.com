@@ -14,13 +14,19 @@ const sections = sectionLinks
   })
   .filter(Boolean);
 const rateRefs = {
-  conventional: document.getElementById("portalConventionalRateValue"),
-  fha: document.getElementById("portalFhaRateValue"),
-  va: document.getElementById("portalVaRateValue"),
-  jumbo: document.getElementById("portalJumboRateValue"),
-  sourceDateLabel: document.getElementById("portalRatesSourceDateLabel")
+  conventional: [...document.querySelectorAll('[data-rate-value="conventional"]')],
+  fha: [...document.querySelectorAll('[data-rate-value="fha"]')],
+  va: [...document.querySelectorAll('[data-rate-value="va"]')],
+  jumbo: [...document.querySelectorAll('[data-rate-value="jumbo"]')],
+  sourceDateLabels: [...document.querySelectorAll("[data-rates-source-date]")]
 };
-const hasRateTargets = Object.values(rateRefs).some(Boolean);
+const hasRateTargets = [
+  ...rateRefs.conventional,
+  ...rateRefs.fha,
+  ...rateRefs.va,
+  ...rateRefs.jumbo,
+  ...rateRefs.sourceDateLabels
+].length > 0;
 let scrollTicking = false;
 let ratesRefreshInFlight = false;
 
@@ -226,13 +232,7 @@ function syncContentStripVisibility() {
     return;
   }
 
-  if (!document.querySelector(".content-strip-market")) {
-    contentStrip.classList.remove("is-rates-collapsed");
-    return;
-  }
-
-  const scrollTop = readScrollTop();
-  contentStrip.classList.toggle("is-rates-collapsed", scrollTop > 48);
+  contentStrip.classList.remove("is-rates-collapsed");
 }
 
 function requestActiveSectionUpdate() {
@@ -266,10 +266,18 @@ function saveStoredRates(state) {
 }
 
 function writeRates(state) {
-  if (rateRefs.conventional) rateRefs.conventional.textContent = state.conventionalRate || "--";
-  if (rateRefs.fha) rateRefs.fha.textContent = state.fhaRate || "--";
-  if (rateRefs.va) rateRefs.va.textContent = state.vaRate || "--";
-  if (rateRefs.jumbo) rateRefs.jumbo.textContent = state.jumboRate || "--";
+  rateRefs.conventional.forEach((ref) => {
+    ref.textContent = state.conventionalRate || "--";
+  });
+  rateRefs.fha.forEach((ref) => {
+    ref.textContent = state.fhaRate || "--";
+  });
+  rateRefs.va.forEach((ref) => {
+    ref.textContent = state.vaRate || "--";
+  });
+  rateRefs.jumbo.forEach((ref) => {
+    ref.textContent = state.jumboRate || "--";
+  });
 }
 
 function formatSourceDate(value) {
@@ -292,7 +300,7 @@ function formatSourceDate(value) {
 }
 
 function setRatesSourceDateLabel(state) {
-  if (!rateRefs.sourceDateLabel) {
+  if (!rateRefs.sourceDateLabels.length) {
     return;
   }
 
@@ -304,17 +312,24 @@ function setRatesSourceDateLabel(state) {
   ].filter(Boolean);
 
   if (!surveyDates.length) {
-    rateRefs.sourceDateLabel.textContent = "date unavailable";
+    rateRefs.sourceDateLabels.forEach((ref) => {
+      ref.textContent = "date unavailable";
+    });
     return;
   }
 
   const uniqueDates = [...new Set(surveyDates)];
   if (uniqueDates.length === 1) {
-    rateRefs.sourceDateLabel.textContent = formatSourceDate(uniqueDates[0]);
+    const formattedDate = formatSourceDate(uniqueDates[0]);
+    rateRefs.sourceDateLabels.forEach((ref) => {
+      ref.textContent = formattedDate;
+    });
     return;
   }
 
-  rateRefs.sourceDateLabel.textContent = "date varies by product";
+  rateRefs.sourceDateLabels.forEach((ref) => {
+    ref.textContent = "date varies by product";
+  });
 }
 
 async function fetchTextViaProxy(sourceUrl) {

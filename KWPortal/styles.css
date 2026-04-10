@@ -513,9 +513,8 @@ img {
 }
 
 .content-strip {
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  position: relative;
+  z-index: 1;
   min-height: 74px;
   margin-bottom: 22px;
   padding: 14px 18px;
@@ -806,7 +805,7 @@ img {
 }
 
 .dashboard-market-strip {
-  display: grid;
+  display: none;
   gap: 12px;
 }
 
@@ -1926,6 +1925,10 @@ img {
   .dashboard-head {
     padding: 24px;
     background-position: 58% 56%;
+  }
+
+  .dashboard-market-strip {
+    display: grid;
   }
 
   .dashboard-rate-grid--strip {
