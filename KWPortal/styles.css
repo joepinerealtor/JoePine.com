@@ -1843,27 +1843,38 @@ img {
 
   .section-nav {
     grid-area: sections;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-content: start;
-    padding: 16px 18px;
+    gap: 8px;
+    padding: 14px 16px;
   }
 
   .sidebar-utility {
     grid-area: quick;
-    padding: 16px 18px;
+    padding: 14px 16px;
   }
 
   .sidebar-utility .eyebrow {
-    margin-bottom: 0;
+    margin-bottom: 2px;
   }
 
   .sidebar-link-stack {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
   }
 
   .section-nav-link,
   .sidebar-button {
-    min-height: 48px;
+    flex: 0 1 120px;
+    width: auto;
+    min-height: 40px;
+    padding: 0.58rem 0.72rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.11em;
   }
 }
 
