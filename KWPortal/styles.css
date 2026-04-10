@@ -1776,7 +1776,7 @@ img {
   outline-offset: 3px;
 }
 
-@media (max-width: 1240px) {
+@media (max-width: 1024px) {
   .site-shell {
     height: auto;
     overflow: visible;
