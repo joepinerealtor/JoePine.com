@@ -729,13 +729,13 @@ img {
 
 .dashboard-head {
   position: relative;
-  grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
+  grid-template-columns: minmax(340px, 1.1fr) minmax(0, 0.9fr);
   align-items: start;
   padding: 28px;
   overflow: hidden;
   border: 1px solid rgba(212, 201, 188, 0.92);
   background:
-    linear-gradient(102deg, rgba(17, 17, 17, 0.84) 0%, rgba(17, 17, 17, 0.68) 34%, rgba(17, 17, 17, 0.28) 64%, rgba(17, 17, 17, 0.08) 100%),
+    linear-gradient(258deg, rgba(17, 17, 17, 0.84) 0%, rgba(17, 17, 17, 0.68) 34%, rgba(17, 17, 17, 0.28) 64%, rgba(17, 17, 17, 0.08) 100%),
     linear-gradient(180deg, rgba(180, 1, 1, 0.18), rgba(180, 1, 1, 0.04)),
     url("images/portal-morning-ascent.jpg") 56% 54% / cover no-repeat;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -802,6 +802,11 @@ img {
 .dashboard-head .dashboard-title-block {
   align-content: start;
   gap: 14px;
+  order: 2;
+}
+
+.dashboard-head .dashboard-status-grid {
+  order: 1;
 }
 
 .overview-card.dashboard-market-strip {
@@ -1924,7 +1929,16 @@ img {
 
   .dashboard-head {
     padding: 24px;
+    background:
+      linear-gradient(102deg, rgba(17, 17, 17, 0.84) 0%, rgba(17, 17, 17, 0.68) 34%, rgba(17, 17, 17, 0.28) 64%, rgba(17, 17, 17, 0.08) 100%),
+      linear-gradient(180deg, rgba(180, 1, 1, 0.18), rgba(180, 1, 1, 0.04)),
+      url("images/portal-morning-ascent.jpg") 56% 54% / cover no-repeat;
     background-position: 58% 56%;
+  }
+
+  .dashboard-head .dashboard-title-block,
+  .dashboard-head .dashboard-status-grid {
+    order: initial;
   }
 
   .overview-card.dashboard-market-strip {
