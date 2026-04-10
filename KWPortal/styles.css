@@ -1776,7 +1776,7 @@ img {
   outline-offset: 3px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1240px) {
   .site-shell {
     height: auto;
     overflow: visible;
@@ -1824,7 +1824,7 @@ img {
   }
 }
 
-@media (min-width: 921px) and (max-width: 1024px) {
+@media (min-width: 921px) and (max-width: 1240px) {
   .portal-sidebar {
     grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
     grid-template-areas:
