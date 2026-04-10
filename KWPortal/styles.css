@@ -1951,8 +1951,20 @@ img {
     order: 3;
     width: 100%;
     margin: 0;
+    padding: 2px 0 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
     justify-items: center;
     text-align: center;
+  }
+
+  .site-header .header-time-card strong {
+    font-size: 1rem;
+  }
+
+  .site-header .header-time-card span:last-child {
+    font-size: 0.78rem;
   }
 
   .portal-content > .content-strip {
