@@ -7,7 +7,12 @@ const sectionLinks = [...document.querySelectorAll(".section-nav-link")].filter(
   const href = link.getAttribute("href") || "";
   return href.startsWith("#");
 });
-const sections = [...document.querySelectorAll("main section[id]")];
+const sections = sectionLinks
+  .map((link) => {
+    const href = link.getAttribute("href") || "";
+    return document.querySelector(href);
+  })
+  .filter(Boolean);
 const rateRefs = {
   conventional: document.getElementById("portalConventionalRateValue"),
   fha: document.getElementById("portalFhaRateValue"),
