@@ -18,8 +18,7 @@ const rateRefs = {
   fha: document.getElementById("portalFhaRateValue"),
   va: document.getElementById("portalVaRateValue"),
   jumbo: document.getElementById("portalJumboRateValue"),
-  sourceDateLabel: document.getElementById("portalRatesSourceDateLabel"),
-  updatedLabel: document.getElementById("portalRatesUpdatedLabel")
+  sourceDateLabel: document.getElementById("portalRatesSourceDateLabel")
 };
 const hasRateTargets = Object.values(rateRefs).some(Boolean);
 let scrollTicking = false;
@@ -211,50 +210,11 @@ function setRatesSourceDateLabel(state) {
 
   const uniqueDates = [...new Set(surveyDates)];
   if (uniqueDates.length === 1) {
-    rateRefs.sourceDateLabel.textContent = `dated ${formatSourceDate(uniqueDates[0])}`;
+    rateRefs.sourceDateLabel.textContent = formatSourceDate(uniqueDates[0]);
     return;
   }
 
-  const programLabels = {
-    conventionalSurveyDate: "Conv",
-    fhaSurveyDate: "FHA",
-    vaSurveyDate: "VA",
-    jumboSurveyDate: "Jumbo"
-  };
-
-  const summary = Object.entries(programLabels)
-    .map(([key, label]) => {
-      const surveyDate = state[key];
-      return surveyDate ? `${label} ${formatSourceDate(surveyDate)}` : "";
-    })
-    .filter(Boolean)
-    .join(", ");
-
-  rateRefs.sourceDateLabel.textContent = summary || "date unavailable";
-}
-
-function formatRatesUpdatedLabel(value) {
-  const parsed = Date.parse(String(value || ""));
-  if (!Number.isFinite(parsed)) {
-    return "Unavailable";
-  }
-
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "America/New_York"
-  });
-
-  return `${formatter.format(new Date(parsed))} ET`;
-}
-
-function setRatesUpdatedLabel(value) {
-  if (rateRefs.updatedLabel) {
-    rateRefs.updatedLabel.textContent = formatRatesUpdatedLabel(value);
-  }
+  rateRefs.sourceDateLabel.textContent = "date varies by product";
 }
 
 async function fetchTextViaProxy(sourceUrl) {
@@ -340,16 +300,13 @@ async function refreshRates() {
     writeRates(nextState);
     saveStoredRates(nextState);
     setRatesSourceDateLabel(nextState);
-    setRatesUpdatedLabel(nextState.ratesFetchedAt);
   } catch {
     const storedState = loadStoredRates();
     if (storedState) {
       writeRates(storedState);
       setRatesSourceDateLabel(storedState);
-      setRatesUpdatedLabel(storedState.ratesFetchedAt);
     } else {
       setRatesSourceDateLabel({});
-      setRatesUpdatedLabel("");
     }
   } finally {
     ratesRefreshInFlight = false;
@@ -371,7 +328,6 @@ const storedRates = loadStoredRates();
 if (storedRates && hasRateTargets) {
   writeRates(storedRates);
   setRatesSourceDateLabel(storedRates);
-  setRatesUpdatedLabel(storedRates.ratesFetchedAt);
 }
 
 if (hasRateTargets) {
