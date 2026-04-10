@@ -248,6 +248,8 @@ img {
 .mobile-menu-links .section-nav-link,
 .mobile-menu-links .button {
   width: 100%;
+  justify-content: center;
+  text-align: center;
 }
 
 .sidebar-rates {
