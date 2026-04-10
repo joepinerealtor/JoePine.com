@@ -810,7 +810,7 @@ img {
   gap: 14px;
 }
 
-.dashboard-market-strip {
+.overview-card.dashboard-market-strip {
   display: none;
   gap: 12px;
 }
@@ -1933,7 +1933,7 @@ img {
     background-position: 58% 56%;
   }
 
-  .dashboard-market-strip {
+  .overview-card.dashboard-market-strip {
     display: grid;
   }
 
