@@ -1918,6 +1918,17 @@ img {
     display: grid;
     order: 2;
     width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    align-items: start;
+  }
+
+  .mobile-menu-panel + .mobile-menu-panel {
+    margin-top: 0;
+  }
+
+  .mobile-menu-panel[open] {
+    grid-column: 1 / -1;
   }
 
   .site-header .header-time-card {
