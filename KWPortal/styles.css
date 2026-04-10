@@ -1914,8 +1914,8 @@ img {
     order: 3;
     width: 100%;
     margin: 0;
-    justify-items: flex-start;
-    text-align: left;
+    justify-items: center;
+    text-align: center;
   }
 
   .portal-content > .content-strip {
