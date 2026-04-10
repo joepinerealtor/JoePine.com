@@ -2046,17 +2046,24 @@ img {
     padding: 18px;
   }
 
-  .brand-link {
-    order: 1;
+  .portal-frame {
+    gap: 14px;
+  }
+
+  .portal-sidebar {
+    gap: 12px;
   }
 
   .mobile-sidebar-menus {
     display: grid;
-    order: 2;
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 10px;
     align-items: stretch;
+    align-self: start;
+    position: sticky;
+    top: 12px;
+    z-index: 45;
   }
 
   .mobile-menu-panel + .mobile-menu-panel {
@@ -2085,7 +2092,6 @@ img {
 
   .site-header .header-time-card {
     display: grid;
-    order: 3;
     width: 100%;
     margin: 0;
     padding: 2px 0 0;
