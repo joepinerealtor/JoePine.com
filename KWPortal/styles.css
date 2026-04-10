@@ -1782,11 +1782,6 @@ img {
     overflow: visible;
   }
 
-  .section-nav,
-  .sidebar-link-stack {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .portal-frame {
     grid-template-columns: 1fr;
     height: auto;
@@ -1826,6 +1821,49 @@ img {
   .dashboard-head {
     padding: 24px;
     background-position: 58% 56%;
+  }
+}
+
+@media (min-width: 921px) and (max-width: 1024px) {
+  .portal-sidebar {
+    grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
+    grid-template-areas:
+      "brand sections"
+      "brand quick";
+    gap: 16px 18px;
+    align-items: start;
+  }
+
+  .site-header {
+    grid-area: brand;
+    height: 100%;
+    align-content: center;
+    padding: 20px 18px;
+  }
+
+  .section-nav {
+    grid-area: sections;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    align-content: start;
+    padding: 16px 18px;
+  }
+
+  .sidebar-utility {
+    grid-area: quick;
+    padding: 16px 18px;
+  }
+
+  .sidebar-utility .eyebrow {
+    margin-bottom: 0;
+  }
+
+  .sidebar-link-stack {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .section-nav-link,
+  .sidebar-button {
+    min-height: 48px;
   }
 }
 
