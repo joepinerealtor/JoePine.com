@@ -1188,6 +1188,8 @@ img {
   background: var(--kw-paper-soft);
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   text-decoration: none;
   font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
   font-size: 0.8rem;
