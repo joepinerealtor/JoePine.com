@@ -2056,11 +2056,15 @@ img {
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 10px;
-    align-items: start;
+    align-items: stretch;
   }
 
   .mobile-menu-panel + .mobile-menu-panel {
     margin-top: 0;
+  }
+
+  .mobile-menu-panel {
+    height: 100%;
   }
 
   .mobile-menu-panel[open] {
@@ -2068,6 +2072,7 @@ img {
   }
 
   .mobile-menu-summary {
+    min-height: 56px;
     padding: 0.85rem 2.2rem;
     font-size: 0.74rem;
     letter-spacing: 0.1em;
