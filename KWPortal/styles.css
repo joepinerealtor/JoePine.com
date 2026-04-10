@@ -1795,7 +1795,7 @@ img {
   outline-offset: 3px;
 }
 
-@media (max-width: 1240px), (max-aspect-ratio: 5/4) {
+@media (max-width: 1366px), (max-aspect-ratio: 5/4) {
   .site-shell {
     height: auto;
     overflow: visible;
@@ -1843,7 +1843,7 @@ img {
   }
 }
 
-@media (min-aspect-ratio: 5/4) and (max-width: 1240px), (max-aspect-ratio: 5/4) and (min-width: 700px) {
+@media (min-aspect-ratio: 5/4) and (max-width: 1366px), (max-aspect-ratio: 5/4) and (min-width: 700px) {
   .portal-sidebar {
     grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
     grid-template-areas:
