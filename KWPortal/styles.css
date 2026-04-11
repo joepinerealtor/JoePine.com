@@ -730,9 +730,6 @@ img {
 .dashboard-head {
   position: relative;
   grid-template-columns: minmax(340px, 1.1fr) minmax(0, 0.9fr);
-  grid-template-areas:
-    "actions agenda"
-    "title agenda";
   align-items: start;
   padding: 28px;
   overflow: hidden;
@@ -758,6 +755,12 @@ img {
     radial-gradient(circle at 72% 68%, rgba(255, 208, 132, 0.16), transparent 28%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 34%);
   pointer-events: none;
+}
+
+.dashboard-lead-column {
+  display: grid;
+  gap: 10px;
+  align-content: start;
 }
 
 .dashboard-title-block,
@@ -803,19 +806,17 @@ img {
 }
 
 .dashboard-head .dashboard-title-block {
-  grid-area: title;
   align-content: start;
   gap: 14px;
+  order: 2;
 }
 
 .dashboard-head .dashboard-status-card--actions {
-  grid-area: actions;
+  order: 1;
 }
 
 .dashboard-head .dashboard-status-card--agenda {
-  grid-area: agenda;
-  align-self: stretch;
-  height: 100%;
+  align-self: start;
 }
 
 .overview-card.dashboard-market-strip {
@@ -1949,15 +1950,19 @@ img {
 
   .dashboard-head {
     padding: 24px;
-    grid-template-areas:
-      "title"
-      "actions"
-      "agenda";
     background:
       linear-gradient(102deg, rgba(17, 17, 17, 0.84) 0%, rgba(17, 17, 17, 0.68) 34%, rgba(17, 17, 17, 0.28) 64%, rgba(17, 17, 17, 0.08) 100%),
       linear-gradient(180deg, rgba(180, 1, 1, 0.18), rgba(180, 1, 1, 0.04)),
       url("images/portal-morning-ascent.jpg") 56% 54% / cover no-repeat;
     background-position: 58% 56%;
+  }
+
+  .dashboard-head .dashboard-title-block {
+    order: 1;
+  }
+
+  .dashboard-head .dashboard-status-card--actions {
+    order: 2;
   }
 
   .overview-card.dashboard-market-strip {
