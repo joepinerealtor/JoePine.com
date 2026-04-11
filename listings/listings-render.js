@@ -336,6 +336,7 @@
     function initializeListingGallery(root, listing) {
         const lightbox = root.querySelector("[data-gallery-lightbox]");
         const triggerButtons = Array.from(root.querySelectorAll("[data-gallery-trigger]"));
+        const galleryActivationReadyAt = Date.now() + 700;
 
         if (!lightbox || !triggerButtons.length || lightbox.dataset.galleryReady === "true") {
             return;
@@ -401,7 +402,13 @@
         };
 
         triggerButtons.forEach((buttonNode) => {
-            buttonNode.addEventListener("click", () => {
+            buttonNode.addEventListener("click", (event) => {
+                // Prevent the navigation click from the previous page from opening the gallery on load.
+                if (Date.now() < galleryActivationReadyAt) {
+                    event.preventDefault();
+                    return;
+                }
+
                 const requestedIndex = Number.parseInt(buttonNode.dataset.galleryIndex || "0", 10);
                 openLightbox(Number.isNaN(requestedIndex) ? 0 : requestedIndex, buttonNode);
             });
