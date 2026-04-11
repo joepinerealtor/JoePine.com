@@ -63,6 +63,7 @@
     }
 
     function buildFactChips(listing) {
+        const primaryOpenHouse = getPrimaryOpenHouse(listing);
         const chips = [
             `${listing.beds} beds`,
             `${formatBaths(listing.baths)} baths`,
@@ -70,8 +71,8 @@
             `${formatNumber(listing.lotSqft)} sq ft lot`
         ];
 
-        if (listing.openHouse?.chipLabel) {
-            chips.push(listing.openHouse.chipLabel);
+        if (primaryOpenHouse?.chipLabel) {
+            chips.push(primaryOpenHouse.chipLabel);
         }
 
         return chips;
@@ -111,6 +112,67 @@
             itemsMarkup,
             paragraphsMarkup,
             "</article>"
+        ].join("");
+    }
+
+    function getOpenHouseCollection(listing) {
+        if (Array.isArray(listing.openHouses)) {
+            return listing.openHouses
+                .filter((entry) => entry && entry.startIso && entry.endIso)
+                .slice()
+                .sort((left, right) => String(left.startIso).localeCompare(String(right.startIso)));
+        }
+
+        if (listing.openHouse?.dateLabel) {
+            return [listing.openHouse];
+        }
+
+        return [];
+    }
+
+    function getUpcomingOpenHouses(listing, now = new Date()) {
+        return getOpenHouseCollection(listing).filter((entry) => {
+            if (!entry.endIso) {
+                return true;
+            }
+
+            return new Date(entry.endIso).getTime() >= now.getTime();
+        });
+    }
+
+    function getPrimaryOpenHouse(listing, now = new Date()) {
+        return getUpcomingOpenHouses(listing, now)[0] || null;
+    }
+
+    function buildOpenHousePanelMarkup(listing) {
+        const upcomingOpenHouses = getUpcomingOpenHouses(listing);
+
+        if (!upcomingOpenHouses.length) {
+            return [
+                '        <p class="eyebrow">Showing Info</p>',
+                '        <h2>No public open house is currently scheduled.</h2>',
+                '        <p>Private showings and timing questions can still go straight to Joe.</p>',
+                '        <p style="margin-top: 10px;">Source listing states the sale is subject to seller finding suitable housing.</p>'
+            ].join("");
+        }
+
+        const heading = upcomingOpenHouses.length > 1 ? "Upcoming Open Houses" : "Open House";
+        const cards = upcomingOpenHouses
+            .map((entry) => {
+                return [
+                    '<div class="open-house-entry">',
+                    `    <strong>${escapeHtml(entry.dateLabel)}</strong>`,
+                    `    <span>${escapeHtml(entry.timeLabel)}</span>`,
+                    "</div>"
+                ].join("");
+            })
+            .join("");
+
+        return [
+            `        <p class="eyebrow">${heading}</p>`,
+            `        <h2>${escapeHtml(upcomingOpenHouses[0].dateLabel.replace(/^[A-Za-z]+, /, ""))}</h2>`,
+            `        <div class="open-house-stack">${cards}</div>`,
+            '        <p style="margin-top: 10px;">Source listing states the sale is subject to seller finding suitable housing.</p>'
         ].join("");
     }
 
@@ -387,6 +449,7 @@
     function renderHomeFeatured() {
         const root = document.querySelector("[data-listings-home-featured]");
         const listing = getFeaturedListing();
+        const primaryOpenHouse = listing ? getPrimaryOpenHouse(listing) : null;
 
         if (!root || !listing) {
             return;
@@ -412,7 +475,9 @@
             buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
             buildButton(listing.links.homes, "View Source Listing", "button-secondary", ' target="_blank" rel="noreferrer"'),
             "        </div>",
-            `        <p class="featured-listing-note">Open house is scheduled for ${escapeHtml(listing.openHouse.dateLabel)} from ${escapeHtml(listing.openHouse.timeLabel)}. Seller plans to pay off the solar loan at closing.</p>`,
+            primaryOpenHouse
+                ? `        <p class="featured-listing-note">Open house is scheduled for ${escapeHtml(primaryOpenHouse.dateLabel)} from ${escapeHtml(primaryOpenHouse.timeLabel)}. Seller plans to pay off the solar loan at closing.</p>`
+                : '        <p class="featured-listing-note">Seller plans to pay off the solar loan at closing. Reach out to Joe for the latest showing availability.</p>',
             "    </div>",
             '    <div class="featured-media-card">',
             '        <div class="featured-media-heading">',
@@ -434,6 +499,7 @@
     function renderListingsFeatured() {
         const root = document.querySelector("[data-listings-page-featured]");
         const listing = getFeaturedListing();
+        const primaryOpenHouse = listing ? getPrimaryOpenHouse(listing) : null;
 
         if (!root || !listing) {
             return;
@@ -462,7 +528,9 @@
             buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
             buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`${listing.title} Showing Request`)}`, "Email Joe", "button-secondary"),
             "        </div>",
-            `        <p class="featured-property-note">${escapeHtml(listing.sourceNote)}</p>`,
+            primaryOpenHouse
+                ? `        <p class="featured-property-note">${escapeHtml(`${primaryOpenHouse.dateLabel} from ${primaryOpenHouse.timeLabel}. ${listing.sourceNote}`)}</p>`
+                : `        <p class="featured-property-note">${escapeHtml(listing.sourceNote)}</p>`,
             "    </div>",
             "</div>"
         ].join("");
@@ -480,7 +548,7 @@
         const cards = secondaryListings
             .map((listing) => {
                 const propertyHref = buildPropertyHref("./property/?slug=", listing.slug);
-                const detailChip = listing.openHouse?.chipLabel || listing.statusLabel;
+                const detailChip = getPrimaryOpenHouse(listing)?.chipLabel || listing.statusLabel;
 
                 return [
                     '<article class="listing-card">',
@@ -530,8 +598,10 @@
     }
 
     function updateListingMeta(listing) {
+        const primaryOpenHouse = getPrimaryOpenHouse(listing);
+        const openHouseFragment = primaryOpenHouse ? `, next open house ${primaryOpenHouse.dateLabel}` : "";
         const title = `${listing.title}, ${listing.city} ${listing.state} ${listing.zip} | Joe Pine Real Estate`;
-        const description = `Featured listing at ${listing.title} in ${listing.city}, ${listing.state}. ${formatPrice(listing.price)}, ${listing.beds} bedrooms, ${formatBaths(listing.baths)} baths, ${formatNumber(listing.sqft)} square feet, fenced yard, porch, patio, solar, and open house ${listing.openHouse.dateLabel}.`;
+        const description = `Featured listing at ${listing.title} in ${listing.city}, ${listing.state}. ${formatPrice(listing.price)}, ${listing.beds} bedrooms, ${formatBaths(listing.baths)} baths, ${formatNumber(listing.sqft)} square feet, fenced yard, porch, patio, and solar${openHouseFragment}.`;
         const image = listing.images[0];
         const canonicalHref = `https://joepine.com/listings/property/?slug=${encodeURIComponent(listing.slug)}`;
         const schemaNode = document.querySelector("[data-listing-schema]");
@@ -626,6 +696,7 @@
 
         updateListingMeta(listing);
 
+        const primaryOpenHouse = getPrimaryOpenHouse(listing);
         const heroImage = listing.images[0];
         const imageFigures = listing.images
             .map((image, index) => {
@@ -662,7 +733,7 @@
             '    <div class="listing-copy">',
             '        <div class="status-row">',
             '            <span class="status-pill">Featured Listing</span>',
-            `            <span class="status-pill">Open House: ${escapeHtml(listing.openHouse.fullLabel)}</span>`,
+            primaryOpenHouse ? `            <span class="status-pill">Open House: ${escapeHtml(primaryOpenHouse.fullLabel)}</span>` : "",
             "        </div>",
             `        <p class="eyebrow">${escapeHtml(listing.areaLabel)}</p>`,
             `        <h1>${escapeHtml(listing.title)}</h1>`,
@@ -721,10 +792,7 @@
             "        </div>",
             "    </div>",
             '    <div class="cta-band-detail">',
-            '        <p class="eyebrow">Open House</p>',
-            `        <h2>${escapeHtml(listing.openHouse.dateLabel.replace("Saturday, ", ""))}</h2>`,
-            `        <p>${escapeHtml(listing.openHouse.timeLabel)}</p>`,
-            '        <p style="margin-top: 10px;">Source listing states the sale is subject to seller finding suitable housing.</p>',
+            buildOpenHousePanelMarkup(listing),
             "    </div>",
             "</section>"
         ].join("");

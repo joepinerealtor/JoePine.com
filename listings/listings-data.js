@@ -39,12 +39,16 @@
                     homes: "https://www.homes.com/property/122-leigh-st-warwick-ri/q6rdmyyx3s5qp/",
                     tour3d: "https://tour.riliving.com/122-Leigh-Street-Warwick-RI-02889"
                 },
-                openHouse: {
-                    chipLabel: "Open House: April 11, 2026",
-                    dateLabel: "Saturday, April 11, 2026",
-                    timeLabel: "11:30 AM to 1:30 PM",
-                    fullLabel: "Saturday, April 11, 2026 | 11:30 AM to 1:30 PM"
-                },
+                openHouses: [
+                    {
+                        startIso: "2026-04-11T11:30:00-04:00",
+                        endIso: "2026-04-11T13:30:00-04:00",
+                        chipLabel: "Open House: April 11, 2026",
+                        dateLabel: "Saturday, April 11, 2026",
+                        timeLabel: "11:30 AM to 1:30 PM",
+                        fullLabel: "Saturday, April 11, 2026 | 11:30 AM to 1:30 PM"
+                    }
+                ],
                 highlights: [
                     "Hardwood floors through the main living spaces and bedrooms",
                     "2024 vinyl siding with a transferable warranty",
@@ -83,7 +87,7 @@
                         title: "Close to the everyday stops buyers actually use.",
                         paragraphs: [
                             "The listing places this home near shopping, dining, I-95, T.F. Green International Airport, Warwick Mall, Warwick City Park, and Oakland Beach, which makes it an easy option for someone balancing commute convenience with local recreation.",
-                            "Sale is subject to the seller finding suitable housing. The current open house is scheduled for Saturday, April 11, 2026 from 11:30 AM to 1:30 PM."
+                            "Sale is subject to the seller finding suitable housing. Open house details on this page are intended to reflect the current public schedule for the listing."
                         ]
                     }
                 ],
