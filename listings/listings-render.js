@@ -114,8 +114,20 @@
         ].join("");
     }
 
+    function getCarouselImages(listing) {
+        if (Array.isArray(listing.featuredImageIndexes) && listing.featuredImageIndexes.length) {
+            const selectedImages = listing.featuredImageIndexes.map((index) => listing.images[index]).filter(Boolean);
+            if (selectedImages.length) {
+                return selectedImages;
+            }
+        }
+
+        return listing.images;
+    }
+
     function buildCarouselMarkup(listing) {
-        const slides = listing.images
+        const carouselImages = getCarouselImages(listing);
+        const slides = carouselImages
             .map((image, index) => {
                 const activeClass = index === 0 ? " is-active" : "";
                 return [
@@ -126,7 +138,7 @@
             })
             .join("");
 
-        const dots = listing.images
+        const dots = carouselImages
             .map((image, index) => {
                 const activeClass = index === 0 ? " is-active" : "";
                 const activePressed = index === 0 ? "true" : "false";
@@ -478,7 +490,7 @@
             .map((image) => {
                 return [
                     "<figure>",
-                    `    <img src="${escapeHtml(image.src)}" referrerpolicy="no-referrer" alt="${escapeHtml(image.alt)}">`,
+                    `    <img src="${escapeHtml(image.src)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(image.alt)}">`,
                     `    <figcaption>${escapeHtml(image.caption)}</figcaption>`,
                     "</figure>"
                 ].join("");
@@ -546,7 +558,7 @@
             '<section class="gallery-card">',
             '    <p class="eyebrow">Photo Gallery</p>',
             `    <h2>A quick look around ${escapeHtml(listing.title)}.</h2>`,
-            "    <p>The current public listing includes exterior, porch, and interior views. Those photos are shown here so visitors can stay on your site while they browse.</p>",
+            "    <p>The full photo gallery for this listing is shown here so visitors can stay on your site while they browse.</p>",
             `    <div class="gallery-grid">${imageFigures}</div>`,
             "</section>",
             '<section class="cta-band">',

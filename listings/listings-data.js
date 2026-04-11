@@ -101,39 +101,120 @@
                         "If someone lands here and wants the full conversation, the cleanest path is still straight to Joe. Call, text, or email for a private showing, timing questions, or anything about the solar payoff note and current seller terms."
                 },
                 sourceNote:
-                    "Photos and listing facts on this page are pulled from the public Homes.com listing, and listing facts were sourced from that page on April 10, 2026.",
+                    "Photos on this page are from the MLS photo set for the listing, and listing facts were sourced from the public Homes.com page on April 10, 2026.",
                 schemaDescription:
                     "Move-in ready 3-bedroom, 1.5-bath Cape in Warwick's Hoxie neighborhood with a fenced yard, patio, porch, solar, central air, and updated mechanicals.",
+                featuredImageIndexes: [0, 1, 4, 7, 9, 20],
                 images: [
                     {
-                        src: "https://images.homes.com/listings/102/4805662584-619672812/122-leigh-st-warwick-ri-primaryphoto.jpg",
-                        alt: "Front exterior of 122 Leigh Street in Warwick, Rhode Island",
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-01.jpg",
+                        alt: "Front exterior of 122 Leigh Street in Warwick, Rhode Island, at dusk",
                         caption: "Front exterior with driveway and covered porch."
                     },
                     {
-                        src: "https://imagescdn.homes.com/i2/tQClB-Yl6FHQqNRXOARUYr-X8JIhfyLZdMfAshhE1Vk/117/122-leigh-st-warwick-ri-thumb.jpg?p=1",
-                        alt: "Dining area at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Bright dining area with hardwood flooring and stair access nearby."
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-02.jpg",
+                        alt: "Front porch entry at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Covered front porch leading into the home."
                     },
                     {
-                        src: "https://images.homes.com/listings/214/1905662584-619672812/122-leigh-st-warwick-ri-buildingphoto-4.jpg",
-                        alt: "Front porch at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Covered front porch with a clean entry sequence and room to sit outside."
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-03.jpg",
+                        alt: "Street-facing porch seating at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Porch seating angle looking back toward the street."
                     },
                     {
-                        src: "https://images.homes.com/listings/214/6905662584-619672812/122-leigh-st-warwick-ri-buildingphoto-5.jpg",
-                        alt: "Porch seating view at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Another porch angle showing the street-facing seating area."
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-04.jpg",
+                        alt: "Wide street view of 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Wider exterior angle showing the home from across the street."
                     },
                     {
-                        src: "https://images.homes.com/listings/214/2015662584-619672812/122-leigh-st-warwick-ri-buildingphoto-6.jpg",
-                        alt: "Street view of 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Street-side view for a wider look at the home and immediate setting."
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-05.jpg",
+                        alt: "Dining room at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Dining area with hardwood floors and open stair detail."
                     },
                     {
-                        src: "https://images.homes.com/listings/214/0115662584-619672812/122-leigh-st-warwick-ri-buildingphoto-7.jpg",
-                        alt: "Additional dining room view at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Additional interior angle showing the dining space and staircase wall."
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-06.jpg",
+                        alt: "Second dining room angle at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Reverse dining room view with the stair and hallway connection."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-07.jpg",
+                        alt: "Dining room and front entry at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Dining space looking toward the front windows and entry door."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-08.jpg",
+                        alt: "Living room at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Living room with hardwood floors and flexible seating space."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-09.jpg",
+                        alt: "Living room media wall at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Second living room angle showing the media wall and open floor area."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-10.jpg",
+                        alt: "Kitchen and breakfast area at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Eat-in kitchen view with tile flooring and access to the backyard."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-11.jpg",
+                        alt: "Kitchen with stainless appliances at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Galley kitchen with stainless appliances and white cabinetry."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-12.jpg",
+                        alt: "Kitchen counters and sink at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Kitchen prep side with sink, upper cabinets, and open counter space."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-13.jpg",
+                        alt: "Full bathroom vanity at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Full bath vanity area with pedestal sink and natural light."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-14.jpg",
+                        alt: "Full bathroom tub and shower at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Tub and shower area in the main full bathroom."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-15.jpg",
+                        alt: "Upstairs bedroom at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Bedroom with hardwood floors and access to the upper bath area."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-16.jpg",
+                        alt: "Second angle of the upstairs bedroom at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Alternate bedroom angle showing the closet and adjoining rooms."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-17.jpg",
+                        alt: "Storage nook off the upstairs bedroom at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Built-in storage nook tucked off the upper-level bedroom."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-18.jpg",
+                        alt: "Half bathroom upstairs at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Upper-level half bath with vanity storage."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-19.jpg",
+                        alt: "Bedroom or office at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Additional room set up as a home office or bedroom."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-20.jpg",
+                        alt: "Reverse office or bedroom view at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Second angle of the office or bedroom with storage and desk space."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-21.jpg",
+                        alt: "Backyard patio at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Fenced backyard with patio, fire pit, and shed."
+                    },
+                    {
+                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-22.jpg",
+                        alt: "Rear exterior of 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Rear exterior angle showing the patio area and yard layout."
                     }
                 ]
             }
