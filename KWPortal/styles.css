@@ -730,7 +730,7 @@ img {
 .dashboard-head {
   position: relative;
   grid-template-columns: minmax(340px, 1.1fr) minmax(0, 0.9fr);
-  align-items: start;
+  align-items: stretch;
   padding: 28px;
   overflow: hidden;
   border: 1px solid rgba(212, 201, 188, 0.92);
@@ -759,8 +759,9 @@ img {
 
 .dashboard-lead-column {
   display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   gap: 10px;
-  align-content: start;
+  align-self: stretch;
 }
 
 .dashboard-title-block,
@@ -808,15 +809,15 @@ img {
 .dashboard-head .dashboard-title-block {
   align-content: start;
   gap: 14px;
-  order: 2;
-}
-
-.dashboard-head .dashboard-status-card--actions {
   order: 1;
 }
 
+.dashboard-head .dashboard-status-card--actions {
+  order: 2;
+}
+
 .dashboard-head .dashboard-status-card--agenda {
-  align-self: start;
+  align-self: stretch;
 }
 
 .overview-card.dashboard-market-strip {
@@ -1949,12 +1950,18 @@ img {
   }
 
   .dashboard-head {
+    align-items: start;
     padding: 24px;
     background:
       linear-gradient(102deg, rgba(17, 17, 17, 0.84) 0%, rgba(17, 17, 17, 0.68) 34%, rgba(17, 17, 17, 0.28) 64%, rgba(17, 17, 17, 0.08) 100%),
       linear-gradient(180deg, rgba(180, 1, 1, 0.18), rgba(180, 1, 1, 0.04)),
       url("images/portal-morning-ascent.jpg") 56% 54% / cover no-repeat;
     background-position: 58% 56%;
+  }
+
+  .dashboard-lead-column {
+    grid-template-rows: auto;
+    align-self: auto;
   }
 
   .dashboard-head .dashboard-title-block {
