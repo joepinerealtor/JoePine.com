@@ -222,6 +222,58 @@
                     }
                 ]
             }
+        ],
+        recentSales: [
+            {
+                title: "22 Edward Street",
+                city: "Coventry",
+                state: "RI",
+                soldPrice: 320000,
+                imageSrc: "https://images.homes.com/listings/102/5052681854-468362802/22-edward-st-coventry-ri-primaryphoto.jpg",
+                imageAlt: "22 Edward Street in Coventry, Rhode Island",
+                summary: "A recent closing in Coventry that shows Joe's reach across a range of home styles and price points.",
+                ctaLabel: "Ask Joe About Similar Homes"
+            },
+            {
+                title: "108 Homestead Avenue",
+                city: "Rehoboth",
+                state: "MA",
+                soldPrice: 772500,
+                imageSrc: "https://images.homes.com/listings/102/6334154954-048126802/108-homestead-ave-rehoboth-ma-primaryphoto.jpg",
+                imageAlt: "108 Homestead Avenue in Rehoboth, Massachusetts",
+                summary: "A standout closing in Rehoboth that reflects Joe's work on higher-value homes in Southeastern Massachusetts.",
+                ctaLabel: "Ask Joe About Similar Homes"
+            },
+            {
+                title: "53 Plain Street",
+                city: "Taunton",
+                state: "MA",
+                soldPrice: 400000,
+                imageSrc: "https://images.homes.com/listings/102/6438161923-296099651/53-plain-st-taunton-ma-primaryphoto.jpg",
+                imageAlt: "53 Plain Street in Taunton, Massachusetts",
+                summary: "A recent Taunton sale that adds another Massachusetts closing to Joe's track record.",
+                ctaLabel: "Ask Joe About Similar Homes"
+            },
+            {
+                title: "12 Dion Drive",
+                city: "Harrisville",
+                state: "RI",
+                soldPrice: 390000,
+                imageSrc: "https://images.homes.com/listings/102/8502557854-762035702/12-dion-dr-harrisville-ri-primaryphoto.jpg",
+                imageAlt: "12 Dion Drive in Harrisville, Rhode Island",
+                summary: "A Harrisville closing that helps show the mix of communities Joe serves across Rhode Island.",
+                ctaLabel: "Ask Joe About Similar Homes"
+            },
+            {
+                title: "18 North Street",
+                city: "Riverside",
+                state: "RI",
+                soldPrice: 293000,
+                imageSrc: "https://images.homes.com/listings/102/4936129004-882649351/18-north-st-riverside-ri-primaryphoto.jpg",
+                imageAlt: "18 North Street in Riverside, Rhode Island",
+                summary: "A recent Riverside closing that rounds out the recent-sales preview on the site.",
+                ctaLabel: "Ask Joe About Similar Homes"
+            }
         ]
     };
 })();

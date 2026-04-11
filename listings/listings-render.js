@@ -1,6 +1,7 @@
 (function () {
     const dataStore = window.JOE_PINE_LISTINGS;
     const listings = Array.isArray(dataStore?.listings) ? dataStore.listings.slice() : [];
+    const recentSales = Array.isArray(dataStore?.recentSales) ? dataStore.recentSales.slice() : [];
     const statusOrder = {
         active: 0,
         "coming-soon": 1,
@@ -604,6 +605,51 @@
         ].join("");
     }
 
+    function renderRecentSales() {
+        const root = document.querySelector("[data-listings-page-sales]");
+
+        if (!root || !recentSales.length) {
+            return;
+        }
+
+        const cards = recentSales
+            .map((sale) => {
+                return [
+                    '<article class="listing-card recent-sale-card">',
+                    '    <div class="listing-card-media">',
+                    `        <img src="${escapeHtml(sale.imageSrc)}" referrerpolicy="no-referrer" alt="${escapeHtml(sale.imageAlt)}">`,
+                    "    </div>",
+                    '    <div class="listing-card-body">',
+                    '        <div class="listing-card-status-row">',
+                    '            <span class="listing-card-status recent-sale-status">Closed Sale</span>',
+                    `            <span class="listing-card-status listing-card-status-muted">${escapeHtml(`${sale.city}, ${sale.state}`)}</span>`,
+                    "        </div>",
+                    `        <h3>${escapeHtml(sale.title)}</h3>`,
+                    `        <p class="listing-card-address">${escapeHtml(`${sale.city}, ${sale.state}`)}</p>`,
+                    `        <p class="listing-card-price recent-sale-price">Sold ${escapeHtml(formatPrice(sale.soldPrice))}</p>`,
+                    `        <p class="listing-card-text">${escapeHtml(sale.summary)}</p>`,
+                    '        <div class="listing-card-actions">',
+                    buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`Tell me about homes like ${sale.title}`)}`, sale.ctaLabel || "Ask Joe", "button-secondary"),
+                    buildButton("tel:4013270888", "Call Joe", "button-ghost"),
+                    "        </div>",
+                    "    </div>",
+                    "</article>"
+                ].join("");
+            })
+            .join("");
+
+        root.innerHTML = [
+            '<section class="listing-hub-section">',
+            '    <div class="listing-hub-header">',
+            '        <p class="section-kicker">Recent Sales</p>',
+            '        <h2>A few recent closings from Joe.</h2>',
+            '        <p>These previews help visitors see the kinds of homes Joe is helping clients buy and sell across Rhode Island and Massachusetts.</p>',
+            "    </div>",
+            `    <div class="listing-hub-grid">${cards}</div>`,
+            "</section>"
+        ].join("");
+    }
+
     function updateListingMeta(listing) {
         const primaryOpenHouse = getPrimaryOpenHouse(listing);
         const openHouseFragment = primaryOpenHouse ? `, next open house ${primaryOpenHouse.dateLabel}` : "";
@@ -810,11 +856,13 @@
     renderHomeFeatured();
     renderListingsFeatured();
     renderListingsGrid();
+    renderRecentSales();
     renderListingDetail();
     initializeFeaturedCarousels(document);
 
     window.JoePineListings = {
         listings,
+        recentSales,
         getFeaturedListing,
         getHubListings,
         initializeFeaturedCarousels
