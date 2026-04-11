@@ -2226,6 +2226,70 @@ img {
     line-height: 1.35;
 }
 
+.home-showcase-instagram-card {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.92fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding: 22px 24px;
+    border-radius: 26px;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    box-shadow: var(--shadow);
+}
+
+.home-showcase-instagram-copy h3 {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.1vw, 2rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+}
+
+.home-showcase-instagram-copy p:last-child {
+    margin: 12px 0 0;
+    color: rgba(30, 39, 34, 0.76);
+    line-height: 1.68;
+}
+
+.home-showcase-instagram-copy strong {
+    color: var(--ink);
+}
+
+.home-showcase-instagram-preview {
+    display: grid;
+    gap: 10px;
+}
+
+.home-showcase-instagram-chip {
+    padding: 12px 14px 13px;
+    border-radius: 18px;
+    border: 1px solid rgba(180, 1, 1, 0.12);
+    background: rgba(180, 1, 1, 0.04);
+}
+
+.home-showcase-instagram-chip span {
+    display: block;
+    color: var(--terracotta);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.home-showcase-instagram-chip strong {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
+.home-showcase-instagram-link {
+    min-width: 180px;
+    align-self: stretch;
+}
+
 .service-area-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
@@ -3000,6 +3064,18 @@ img {
         order: 3;
     }
 
+    .home-showcase-instagram-card {
+        grid-column: 1;
+        order: 4;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .home-showcase-instagram-link {
+        min-width: 0;
+        width: 100%;
+    }
+
     .review-actions {
         align-items: flex-start;
         justify-content: flex-start;
@@ -3167,6 +3243,16 @@ img {
     .about-panel {
         padding: 18px;
         gap: 10px;
+    }
+
+    .home-showcase-instagram-card {
+        padding: 18px;
+        gap: 14px;
+        border-radius: 24px;
+    }
+
+    .home-showcase-instagram-copy h3 {
+        font-size: 1.5rem;
     }
 
     .about-photo-card {
