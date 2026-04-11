@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing | Joe Pine Real Estate</title>
+    <meta
+        name="description"
+        content="Featured property listing from Joe Pine Real Estate."
+    >
+    <meta property="og:title" content="Listing | Joe Pine Real Estate">
+    <meta property="og:description" content="Featured property listing from Joe Pine Real Estate.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
+    <meta property="og:image:alt" content="Joe Pine Real Estate">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Listing | Joe Pine Real Estate">
+    <meta name="twitter:description" content="Featured property listing from Joe Pine Real Estate.">
+    <meta name="twitter:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
+    <link rel="canonical" href="https://joepine.com/listings/property/">
+    <link rel="stylesheet" href="../../site-frame.css">
+    <style>
+        :root {
+            --kw-red: #b40101;
+            --kw-red-deep: #8f0000;
+            --kw-ink: #000000;
+            --kw-slate: #4d4d4d;
+            --kw-muted: #7f7f7f;
+            --kw-line: #d9d9d9;
+            --kw-white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Roboto", Arial, sans-serif;
+            color: var(--kw-ink);
+            background:
+                radial-gradient(circle at top left, rgba(180, 1, 1, 0.1), transparent 24%),
+                radial-gradient(circle at top right, rgba(0, 0, 0, 0.04), transparent 18%),
+                linear-gradient(180deg, #ffffff 0%, #f5f5f5 52%, #fafafa 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 0 0 32px;
+        }
+
+        .listing-hero,
+        .detail-card,
+        .gallery-card,
+        .cta-band,
+        .listing-fallback-card {
+            border: 1px solid rgba(217, 217, 217, 0.92);
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 22px 44px -34px rgba(0, 0, 0, 0.2);
+        }
+
+        .listing-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr);
+            gap: 22px;
+            padding: 22px;
+            margin-bottom: 22px;
+            border-radius: 32px;
+        }
+
+        .listing-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .status-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 9px 12px;
+            border-radius: 999px;
+            background: rgba(180, 1, 1, 0.06);
+            border: 1px solid rgba(180, 1, 1, 0.14);
+            color: var(--kw-red);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--kw-red);
+        }
+
+        .listing-copy h1,
+        .detail-card h2,
+        .gallery-card h2,
+        .cta-band h2,
+        .listing-fallback-card h1 {
+            margin: 0;
+            font-size: clamp(30px, 4.8vw, 52px);
+            line-height: 0.94;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .detail-card h2,
+        .gallery-card h2,
+        .cta-band h2 {
+            font-size: clamp(24px, 3vw, 34px);
+        }
+
+        .listing-price {
+            margin: 0;
+            color: var(--kw-red);
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 0.92;
+            letter-spacing: -0.06em;
+            font-weight: 800;
+        }
+
+        .listing-copy p,
+        .detail-card p,
+        .cta-band p,
+        .gallery-card p,
+        .listing-fallback-card p {
+            margin: 0;
+            color: var(--kw-slate);
+            line-height: 1.65;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .listing-stat-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .listing-stat-pills span {
+            padding: 9px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--kw-line);
+            background: #f7f7f7;
+            color: var(--kw-slate);
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .listing-actions,
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+            cursor: pointer;
+            text-align: center;
+            flex: 1 1 180px;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-1px);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-red-deep) 100%);
+            color: var(--kw-white);
+            box-shadow: 0 20px 32px -24px rgba(143, 0, 0, 0.85);
+        }
+
+        .button-secondary {
+            border-color: var(--kw-line);
+            background: #ffffff;
+            color: var(--kw-ink);
+        }
+
+        .button-ghost {
+            border-color: transparent;
+            background: rgba(180, 1, 1, 0.06);
+            color: var(--kw-red);
+        }
+
+        .listing-hero-media {
+            overflow: hidden;
+            border-radius: 24px;
+            background: #f2f2f2;
+        }
+
+        .listing-hero-media img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+        }
+
+        .source-note {
+            font-size: 12px;
+            line-height: 1.55;
+            color: var(--kw-muted);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+
+        .detail-card,
+        .gallery-card,
+        .cta-band,
+        .listing-fallback-card {
+            padding: 22px;
+            border-radius: 30px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 16px 0 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
+        .feature-list li::before {
+            content: "";
+            position: absolute;
+            top: 0.55em;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--kw-red);
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .fact {
+            padding: 12px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--kw-line);
+            background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+        }
+
+        .fact span {
+            display: block;
+            font-size: 10px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--kw-muted);
+        }
+
+        .fact strong {
+            display: block;
+            margin-top: 6px;
+            font-size: 16px;
+            line-height: 1.4;
+            color: var(--kw-ink);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .gallery-grid figure {
+            margin: 0;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid var(--kw-line);
+            background: #ffffff;
+        }
+
+        .gallery-grid img {
+            display: block;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-grid figcaption {
+            padding: 12px 14px 14px;
+            color: var(--kw-slate);
+            font-size: 13px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
+        .cta-band {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: 22px;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .cta-band-copy {
+            display: grid;
+            gap: 12px;
+        }
+
+        .cta-band-detail {
+            padding: 16px 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(180, 1, 1, 0.14);
+            background: rgba(180, 1, 1, 0.05);
+        }
+
+        .listing-fallback-card {
+            margin-bottom: 22px;
+        }
+
+        .page-footer {
+            padding: 28px 0 8px;
+            text-align: center;
+            color: rgba(77, 77, 77, 0.82);
+        }
+
+        .page-footer-band {
+            display: grid;
+            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            align-items: center;
+            gap: 24px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .page-footer-compliance {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 620px;
+            margin: 14px auto 0;
+            padding-top: 14px;
+            border-top: 1px solid rgba(77, 77, 77, 0.12);
+        }
+
+        .page-footer-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .page-footer-copy {
+            text-align: center;
+        }
+
+        .page-footer p {
+            margin: 6px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .page-footer .page-footer-license {
+            font-size: 13px;
+            color: rgba(77, 77, 77, 0.96);
+        }
+
+        .page-footer-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-footer-logo-kw {
+            justify-content: flex-start;
+        }
+
+        .page-footer-logo-platinum {
+            justify-content: flex-end;
+        }
+
+        .page-footer-logo img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .page-footer-logo-kw img {
+            max-height: 56px;
+        }
+
+        .page-footer-logo-platinum img {
+            max-height: 74px;
+        }
+
+        .page-footer-badge {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .page-footer-badge-realtor {
+            max-width: 44px;
+        }
+
+        .page-footer-badge-housing {
+            max-width: 44px;
+        }
+
+        .page-footer-disclaimer {
+            text-align: center;
+        }
+
+        .page-footer-disclaimer p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.55;
+            font-weight: 700;
+        }
+
+        @media (max-width: 920px) {
+            .listing-hero,
+            .detail-grid,
+            .cta-band,
+            .page-footer-band {
+                grid-template-columns: 1fr;
+            }
+
+            .page-footer-compliance {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .page-footer-logo-kw,
+            .page-footer-logo-platinum {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                width: min(100% - 20px, 1180px);
+            }
+
+            .listing-hero,
+            .detail-card,
+            .gallery-card,
+            .cta-band,
+            .listing-fallback-card {
+                padding: 18px;
+            }
+
+            .listing-actions,
+            .cta-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .facts-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .listing-hero-media img {
+                min-height: 280px;
+            }
+
+            .gallery-grid img {
+                height: 220px;
+            }
+        }
+    </style>
+    <script type="application/ld+json" data-listing-schema></script>
+</head>
+<body>
+    <div class="site-frame-wrap">
+        <header class="site-frame-header">
+            <div class="site-frame-top">
+                <a class="site-frame-brand" href="../../index.html" aria-label="Joe Pine home">
+                    <span class="site-frame-photo">
+                        <img src="../../Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine">
+                    </span>
+                    <span class="site-frame-copy">
+                        <strong>Joe Pine</strong>
+                        <span>Realtor RI &amp; MA</span>
+                    </span>
+                </a>
+
+                <button
+                    class="site-frame-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="site-frame-nav-property"
+                    data-site-nav-toggle
+                >
+                    Menu
+                </button>
+
+                <div class="site-frame-right">
+                    <a href="tel:4013270888">401.327.0888</a>
+                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+                </div>
+            </div>
+
+            <nav class="site-frame-nav" id="site-frame-nav-property">
+                <a href="../../index.html">Home</a>
+                <a href="../">Listings</a>
+                <a href="../../buyer-start-here/">First Time Buyers</a>
+                <a href="../../buyers/">Buyer Resources</a>
+                <a href="../../sellers/">Seller Resources</a>
+                <a href="../../search/">Search Homes</a>
+                <a href="../../index.html#about">About Joe</a>
+                <a class="site-frame-cta" href="../../index.html#contact">Contact Joe</a>
+            </nav>
+        </header>
+    </div>
+
+    <main class="page-shell" data-listing-detail-root></main>
+
+    <footer class="page-footer">
+        <div class="page-footer-band">
+            <div class="page-footer-logo page-footer-logo-kw">
+                <img
+                    src="../../Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png"
+                    alt="Keller Williams Leading Edge"
+                >
+            </div>
+
+            <div class="page-footer-copy">
+                <p>Joe Pine, REALTOR&reg;</p>
+                <p>Platinum Real Estate Group at Keller Williams Leading Edge</p>
+                <p class="page-footer-license">Massachusetts Real Estate License #1001085-RE-RS</p>
+                <p class="page-footer-license">Rhode Island Real Estate License #RES.0044759</p>
+                <div class="page-footer-compliance" aria-label="REALTOR and Equal Housing Opportunity disclosure">
+                    <div class="page-footer-disclaimer">
+                        <p>Member of the National Association of REALTORS&reg;. Committed to Equal Housing Opportunity and in support of the Fair Housing Act. Each Office Is Independently Owned And Operated.</p>
+                    </div>
+                    <div class="page-footer-badge-row">
+                        <img
+                            class="page-footer-badge page-footer-badge-realtor"
+                            src="../../images/branding/realtor-mark-official.jpg"
+                            alt="REALTOR logo"
+                        >
+                        <img
+                            class="page-footer-badge page-footer-badge-housing"
+                            src="../../images/branding/equal-housing-mark-official.png"
+                            alt="Equal Housing Opportunity logo"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer-logo page-footer-logo-platinum">
+                <img
+                    src="../../Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png"
+                    alt="Platinum Real Estate Group"
+                >
+            </div>
+        </div>
+    </footer>
+
+    <script src="../listings-data.js"></script>
+    <script src="../listings-render.js"></script>
+    <script src="../../site-frame.js"></script>
+</body>
+</html>

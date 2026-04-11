@@ -42,58 +42,6 @@ if ("IntersectionObserver" in window) {
     revealNodes.forEach((node) => node.classList.add("is-visible"));
 }
 
-const featuredCarousels = document.querySelectorAll("[data-featured-carousel]");
-
-featuredCarousels.forEach((carousel) => {
-    const slides = Array.from(carousel.querySelectorAll("[data-featured-slide]"));
-    const dots = Array.from(carousel.querySelectorAll("[data-featured-dot]"));
-    const previousButton = carousel.querySelector("[data-featured-prev]");
-    const nextButton = carousel.querySelector("[data-featured-next]");
-
-    if (!slides.length) {
-        return;
-    }
-
-    let activeIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
-
-    if (activeIndex < 0) {
-        activeIndex = 0;
-    }
-
-    const syncCarousel = () => {
-        slides.forEach((slide, index) => {
-            slide.classList.toggle("is-active", index === activeIndex);
-        });
-
-        dots.forEach((dot, index) => {
-            const isActive = index === activeIndex;
-            dot.classList.toggle("is-active", isActive);
-            dot.setAttribute("aria-pressed", String(isActive));
-        });
-    };
-
-    const setSlide = (nextIndex) => {
-        activeIndex = (nextIndex + slides.length) % slides.length;
-        syncCarousel();
-    };
-
-    previousButton?.addEventListener("click", () => {
-        setSlide(activeIndex - 1);
-    });
-
-    nextButton?.addEventListener("click", () => {
-        setSlide(activeIndex + 1);
-    });
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-            setSlide(index);
-        });
-    });
-
-    syncCarousel();
-});
-
 const serviceAreaMapNode = document.getElementById("service-area-map");
 let serviceAreaMap = null;
 let resetServiceAreaMapView = null;

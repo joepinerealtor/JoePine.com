@@ -263,6 +263,165 @@
             color: var(--kw-muted);
         }
 
+        .listing-hub-section {
+            margin-bottom: 22px;
+        }
+
+        .listing-hub-header {
+            margin-bottom: 14px;
+        }
+
+        .listing-hub-header h2 {
+            margin: 0 0 10px;
+            font-size: clamp(24px, 2.8vw, 34px);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .listing-hub-header p:last-child {
+            margin: 0;
+            color: var(--kw-slate);
+            line-height: 1.6;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .listing-hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .listing-hub-empty {
+            padding: 18px 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(180, 1, 1, 0.14);
+            background: rgba(180, 1, 1, 0.05);
+            color: var(--kw-slate);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .listing-card {
+            display: grid;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(217, 217, 217, 0.92);
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 22px 44px -34px rgba(0, 0, 0, 0.2);
+        }
+
+        .listing-card-media {
+            background: #f2f2f2;
+        }
+
+        .listing-card-media img {
+            display: block;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .listing-card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 18px;
+        }
+
+        .listing-card-status-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .listing-card-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(180, 1, 1, 0.08);
+            border: 1px solid rgba(180, 1, 1, 0.14);
+            color: var(--kw-red);
+            font-size: 10px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .listing-card-status-muted {
+            background: #f7f7f7;
+            border-color: var(--kw-line);
+            color: var(--kw-slate);
+        }
+
+        .listing-card-body h3 {
+            margin: 0;
+            font-size: clamp(24px, 3vw, 30px);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .listing-card-address {
+            margin: 0;
+            color: var(--kw-muted);
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .listing-card-price {
+            margin: 0;
+            color: var(--kw-red);
+            font-size: clamp(28px, 3vw, 40px);
+            line-height: 0.92;
+            letter-spacing: -0.05em;
+            font-weight: 800;
+        }
+
+        .listing-card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .listing-card-meta span {
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: #f7f7f7;
+            border: 1px solid var(--kw-line);
+            color: var(--kw-slate);
+            font-size: 11px;
+            line-height: 1.3;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .listing-card-text {
+            margin: 0;
+            color: var(--kw-slate);
+            line-height: 1.6;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .listing-card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 4px;
+        }
+
         .controls-card {
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
@@ -724,53 +883,8 @@
             </div>
         </section>
 
-        <section class="featured-property" id="featured-listing">
-            <div class="featured-property-media">
-                <img
-                    src="https://images.homes.com/listings/102/4805662584-619672812/122-leigh-st-warwick-ri-primaryphoto.jpg"
-                    referrerpolicy="no-referrer"
-                    alt="Front exterior of 122 Leigh Street in Warwick, Rhode Island"
-                >
-            </div>
-
-            <div class="featured-property-copy">
-                <p class="section-kicker">Featured Listing</p>
-                <h2>122 Leigh Street, Warwick, RI 02889</h2>
-                <p class="featured-property-price">$344,900</p>
-
-                <div class="featured-property-chips" aria-label="122 Leigh Street home facts">
-                    <span>3 beds</span>
-                    <span>1.5 baths</span>
-                    <span>864 sq ft</span>
-                    <span>3,049 sq ft lot</span>
-                    <span>Open House: April 11, 2026</span>
-                </div>
-
-                <p>
-                    This Warwick Cape gives buyers a turn-key option with hardwood floors, a fenced backyard, patio, shed, and front porch, plus newer siding and strong mechanical updates.
-                </p>
-
-                <ul class="featured-property-highlights">
-                    <li>Vinyl siding installed in 2024 with a transferable warranty</li>
-                    <li>High-efficiency gas furnace, high-efficiency hot water heater, central air, and solar</li>
-                    <li>Seller plans to pay off the solar loan at closing</li>
-                    <li>Convenient to shopping, dining, I-95, T.F. Green, Warwick Mall, City Park, and Oakland Beach</li>
-                </ul>
-
-                <div class="featured-property-actions">
-                    <a class="button button-primary" href="./122-leigh-st-warwick-ri/">View Property Page</a>
-                    <a class="button button-secondary" href="https://tour.riliving.com/122-Leigh-Street-Warwick-RI-02889" target="_blank" rel="noreferrer">Open 3D Tour</a>
-                </div>
-
-                <div class="featured-property-actions">
-                    <a class="button button-secondary" href="mailto:JoePine@KW.com?subject=122%20Leigh%20Street%20Showing%20Request">Email Joe</a>
-                </div>
-
-                <p class="featured-property-note">
-                    Photos and listing facts on this feature were sourced from the Homes.com property page on April 10, 2026.
-                </p>
-            </div>
-        </section>
+        <section data-listings-page-featured></section>
+        <section data-listings-page-grid></section>
 
         <section class="controls-card">
             <div class="control-copy">
@@ -887,6 +1001,8 @@
         </footer>
     </main>
 
+    <script src="./listings-data.js"></script>
+    <script src="./listings-render.js"></script>
     <script src="../site-frame.js"></script>
     <script>
         const SEARCH_HOME_URL = "https://joepine.kw.com/search";

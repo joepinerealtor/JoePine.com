@@ -609,7 +609,7 @@ img {
 .featured-photo-controls {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 14px;
 }
 
@@ -636,10 +636,32 @@ img {
     font-size: 1rem;
 }
 
+.featured-photo-viewport .featured-photo-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    border: 1px solid rgba(180, 1, 1, 0.16);
+    background: rgba(255, 255, 255, 0.94);
+    transform: translateY(-50%);
+}
+
+.featured-photo-arrow-prev {
+    left: 14px;
+}
+
+.featured-photo-arrow-next {
+    right: 14px;
+}
+
 .featured-photo-arrow:hover,
 .featured-photo-arrow:focus-visible {
     transform: translateY(-1px);
     background: #fdf5f5;
+}
+
+.featured-photo-viewport .featured-photo-arrow:hover,
+.featured-photo-viewport .featured-photo-arrow:focus-visible {
+    transform: translateY(-50%) scale(1.03);
 }
 
 .featured-photo-dots {
