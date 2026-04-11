@@ -629,7 +629,7 @@
                     `        <p class="listing-card-price recent-sale-price">Sold ${escapeHtml(formatPrice(sale.soldPrice))}</p>`,
                     `        <p class="listing-card-text">${escapeHtml(sale.summary)}</p>`,
                     '        <div class="listing-card-actions">',
-                    buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`Tell me about homes like ${sale.title}`)}`, sale.ctaLabel || "Ask Joe", "button-secondary"),
+                    buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`Tell me about homes like ${sale.title}`)}`, sale.ctaLabel || "Ask About Similar Homes", "button-secondary"),
                     buildButton("tel:4013270888", "Call Joe", "button-ghost"),
                     "        </div>",
                     "    </div>",
@@ -643,7 +643,7 @@
             '    <div class="listing-hub-header">',
             '        <p class="section-kicker">Recent Sales</p>',
             '        <h2>A few recent closings from Joe.</h2>',
-            '        <p>These previews help visitors see the kinds of homes Joe is helping clients buy and sell across Rhode Island and Massachusetts.</p>',
+            '        <p>Recent sold homes across Rhode Island and Massachusetts.</p>',
             "    </div>",
             `    <div class="listing-hub-grid">${cards}</div>`,
             "</section>"
