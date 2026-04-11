@@ -57,7 +57,7 @@
                 ],
                 detailIntro: [
                     "If you have been looking for a move-in ready Warwick home without condo fees, this Cape is built for that sweet spot. The layout stays bright and approachable, the hardwood floors keep the living spaces feeling warm, and the home works well for a first-time buyer or someone making a simpler next move.",
-                    "Outside, the full front porch, fenced yard, patio, and shed give the home day-to-day flexibility without a lot of extra upkeep. The listing also highlights 2024 vinyl siding with a transferable warranty, plus a high-efficiency gas furnace, high-efficiency hot water heater, central air, and solar. The seller plans to pay off the solar loan at closing."
+                    "Outside, the full front porch, fenced yard, patio, and shed give the home day-to-day flexibility without a lot of extra upkeep. Updates include 2024 vinyl siding with a transferable warranty, a high-efficiency gas furnace, a high-efficiency hot water heater, central air, and solar. The seller will pay off the solar loan at closing."
                 ],
                 detailSections: [
                     {
@@ -68,7 +68,7 @@
                             "Front porch, fenced backyard, patio, and storage shed",
                             "Seller to pay off the solar loan in full at closing",
                             "Good fit for buyers who want easier maintenance than a larger single-family home",
-                            "Public 3D tour available through the RiLiving virtual tour page"
+                            "3D tour available online"
                         ]
                     },
                     {
@@ -77,7 +77,7 @@
                         items: [
                             "High-efficiency gas furnace",
                             "High-efficiency hot water heater",
-                            "Solar system called out in the listing",
+                            "Solar system already in place",
                             "100 amp electrical service",
                             "Vinyl siding installed in 2024 with a transferable warranty"
                         ]
@@ -86,8 +86,8 @@
                         eyebrow: "Location + Terms",
                         title: "Close to the everyday stops buyers actually use.",
                         paragraphs: [
-                            "The listing places this home near shopping, dining, I-95, T.F. Green International Airport, Warwick Mall, Warwick City Park, and Oakland Beach, which makes it an easy option for someone balancing commute convenience with local recreation.",
-                            "Sale is subject to the seller finding suitable housing. Open house details on this page are intended to reflect the current public schedule for the listing."
+                            "Close to shopping, dining, I-95, T.F. Green International Airport, Warwick Mall, Warwick City Park, and Oakland Beach, this home makes it easy to balance commute convenience with local recreation.",
+                            "Sale is subject to seller finding suitable housing. Open house details shown here update with the current schedule for the home."
                         ]
                     }
                 ],
@@ -102,10 +102,10 @@
                 cta: {
                     title: "Want to see this one in person?",
                     body:
-                        "If someone lands here and wants the full conversation, the cleanest path is still straight to Joe. Call, text, or email for a private showing, timing questions, or anything about the solar payoff note and current seller terms."
+                        "Call, text, or email Joe for a private showing, timing questions, or anything you want to know about the home, the solar payoff, or the current seller terms."
                 },
                 sourceNote:
-                    "Photos on this page are from the MLS photo set for the listing, and listing facts were sourced from the public Homes.com page on April 10, 2026.",
+                    "Seller will pay off the solar loan at closing. Sale is subject to seller finding suitable housing.",
                 schemaDescription:
                     "Move-in ready 3-bedroom, 1.5-bath Cape in Warwick's Hoxie neighborhood with a fenced yard, patio, porch, solar, central air, and updated mechanicals.",
                 featuredImageIndexes: [0, 1, 4, 7, 9, 20],

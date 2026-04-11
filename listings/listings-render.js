@@ -150,9 +150,9 @@
         if (!upcomingOpenHouses.length) {
             return [
                 '        <p class="eyebrow">Showing Info</p>',
-                '        <h2>No public open house is currently scheduled.</h2>',
+                '        <h2>No open house is currently scheduled.</h2>',
                 '        <p>Private showings and timing questions can still go straight to Joe.</p>',
-                '        <p style="margin-top: 10px;">Source listing states the sale is subject to seller finding suitable housing.</p>'
+                '        <p style="margin-top: 10px;">Sale is subject to seller finding suitable housing.</p>'
             ].join("");
         }
 
@@ -172,7 +172,7 @@
             `        <p class="eyebrow">${heading}</p>`,
             `        <h2>${escapeHtml(upcomingOpenHouses[0].dateLabel.replace(/^[A-Za-z]+, /, ""))}</h2>`,
             `        <div class="open-house-stack">${cards}</div>`,
-            '        <p style="margin-top: 10px;">Source listing states the sale is subject to seller finding suitable housing.</p>'
+            '        <p style="margin-top: 10px;">Sale is subject to seller finding suitable housing.</p>'
         ].join("");
     }
 
@@ -480,7 +480,7 @@
             '        <div class="featured-listing-actions">',
             buildButton(propertyHref, "Open Listing Page", "button-primary"),
             buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
-            buildButton(listing.links.homes, "View Source Listing", "button-secondary", ' target="_blank" rel="noreferrer"'),
+            buildButton(listing.links.homes, "View On Homes.com", "button-secondary", ' target="_blank" rel="noreferrer"'),
             "        </div>",
             primaryOpenHouse
                 ? `        <p class="featured-listing-note">Open house is scheduled for ${escapeHtml(primaryOpenHouse.dateLabel)} from ${escapeHtml(primaryOpenHouse.timeLabel)}. Seller plans to pay off the solar loan at closing.</p>`
@@ -582,7 +582,7 @@
                     '        <div class="listing-card-actions">',
                     buildButton(propertyHref, "Open Listing", "button-primary"),
                     buildButton(listing.links.tour3d, "3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
-                    buildButton(listing.links.homes, "Source", "button-secondary", ' target="_blank" rel="noreferrer"'),
+                    buildButton(listing.links.homes, "Homes.com", "button-secondary", ' target="_blank" rel="noreferrer"'),
                     "        </div>",
                     "    </div>",
                     "</article>"
@@ -692,7 +692,7 @@
                 '<section class="listing-fallback-card">',
                 '    <p class="eyebrow">Listing Not Found</p>',
                 "    <h1>That property is not in the site data yet.</h1>",
-                "    <p>If you were expecting a listing here, go back to the listings page and choose one of the active properties, or send over the new source link so it can be added.</p>",
+                "    <p>If you were expecting a listing here, go back to the listings page and choose one of the active properties, or send over the new listing link so it can be added.</p>",
                 '    <div class="listing-actions">',
                 buildButton("../", "Back to Listings", "button-primary"),
                 "    </div>",
@@ -762,7 +762,7 @@
             buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`${listing.title} Showing Request`)}`, "Book a Showing", "button-primary"),
             buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
             buildButton("tel:4013270888", "Call Joe", "button-secondary"),
-            buildButton(listing.links.homes, "View Homes.com Source", "button-ghost", ' target="_blank" rel="noreferrer"'),
+            buildButton(listing.links.homes, "View On Homes.com", "button-ghost", ' target="_blank" rel="noreferrer"'),
             "        </div>",
             `        <p class="source-note">${escapeHtml(listing.sourceNote)}</p>`,
             "    </div>",
