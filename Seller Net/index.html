@@ -153,7 +153,7 @@
                     </span>
                     <span class="site-frame-copy">
                         <strong>Joe Pine</strong>
-                        <span>Realtor RI &amp; MA</span>
+                        <span>REALTOR&reg; RI &amp; MA</span>
                     </span>
                 </a>
 
@@ -376,8 +376,9 @@
                         <!-- Signature Footer -->
                         <div class="pt-6 border-t border-slate-200 branding-footer">
                             <div id="branding-row-target" class="flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between mb-6 print:mb-2 branding-row">
-                                <div class="flex items-center justify-center md:justify-start w-full md:w-auto">
+                                <div class="flex flex-wrap items-center justify-center md:justify-start gap-5 w-full md:w-auto logo-stack">
                                     <img src="KellerWilliams_Realty_LeadingEdge_Logo_RGB (2).png" alt="Keller Williams Logo" class="h-10 w-auto max-w-[220px] print:h-8" onerror="this.style.display='none'">
+                                    <img src="Platinum Logo Black Transparent (1) (1).png" alt="Platinum Real Estate Group Logo" class="h-14 w-auto max-w-[140px] print:h-10" onerror="this.style.display='none'">
                                 </div>
 
                                 <div class="flex flex-row items-center gap-6 contact-side-wrapper">
@@ -391,7 +392,7 @@
                                     </div>
                                     <div class="text-left space-y-0.5 contact-block">
                                         <p class="font-black text-xl text-slate-900 uppercase tracking-tighter print:text-lg kw-red-text leading-tight">Joe Pine</p>
-                                        <p class="text-slate-700 font-black text-sm print:text-xs uppercase tracking-widest leading-tight text-nowrap">REALTORÃ‚Â® RI & MA</p>
+                                        <p class="text-slate-700 font-black text-sm print:text-xs uppercase tracking-widest leading-tight text-nowrap">REALTOR&reg; RI &amp; MA</p>
                                         <div class="text-slate-600 text-xs print:text-[10px] space-y-1 font-semibold leading-normal">
                                             <p>401.327.0888</p>
                                             <p>JoePine@KW.com</p>
@@ -405,9 +406,6 @@
                                     </div>
                                 </div>
                                 
-                                <div id="logo-stack-target" class="flex items-center justify-center md:justify-end w-full md:w-auto logo-stack">
-                                    <img src="Platinum Logo Black Transparent (1) (1).png" alt="Platinum Real Estate Group Logo" class="h-14 w-auto max-w-[140px] print:h-10" onerror="this.style.display='none'">
-                                </div>
                             </div>
 
                             <div class="mt-4 p-4 bg-slate-100/50 rounded-2xl border border-slate-200 print:p-2 print:mt-1 print:bg-transparent print:border-none">
@@ -917,7 +915,7 @@
             const label = document.getElementById('netLabel').innerText;
             const taxLabel = currentState === 'MA' ? 'MA Transfer Tax' : 'RI Transfer Tax';
             
-            const message = `Hi there,\n\nHere is your estimated net proceeds from the sale of your home:\n\nÃ¢â‚¬Â¢ Sales Price: ${salesPrice}\nÃ¢â‚¬Â¢ Seller Credits: ${sellerCredits}\nÃ¢â‚¬Â¢ Listing Broker Commission (${listingBasis}): ${listingComm}\nÃ¢â‚¬Â¢ Buyer Broker Commission (${buyerBasis}): ${buyerComm}\nÃ¢â‚¬Â¢ ${taxLabel}: ${transferTax}\nÃ¢â‚¬Â¢ Mortgage Payoff (Est.): ${mortgage}\nÃ¢â‚¬Â¢ Additional Payoff (Est.): ${addPayoffFormatted}\nÃ¢â‚¬Â¢ Closing Costs (Est.): ${misc}\n\n${label}: ${totalNet}\n\nLet me know if you have any questions! Joe Pine | 401.327.0888`;
+            const message = `Hi there,\n\nHere is your estimated net proceeds from the sale of your home:\n\n- Sales Price: ${salesPrice}\n- Seller Credits: ${sellerCredits}\n- Listing Broker Commission (${listingBasis}): ${listingComm}\n- Buyer Broker Commission (${buyerBasis}): ${buyerComm}\n- ${taxLabel}: ${transferTax}\n- Mortgage Payoff (Est.): ${mortgage}\n- Additional Payoff (Est.): ${addPayoffFormatted}\n- Closing Costs (Est.): ${misc}\n\n${label}: ${totalNet}\n\nLet me know if you have any questions! Joe Pine | 401.327.0888`;
 
             const body = encodeURIComponent(message);
             window.location.href = `sms:?body=${body}`;
@@ -942,18 +940,18 @@
             const body = encodeURIComponent(
                 "Hi there,\n\n" +
                 "Here is your estimated net proceeds from the sale of your home:\n\n" +
-                "Ã¢â‚¬Â¢ Sales Price: " + salesPrice + "\n" +
-                "Ã¢â‚¬Â¢ Seller Credits: " + sellerCredits + "\n" +
-                "Ã¢â‚¬Â¢ Listing Broker Commission (" + listingBasis + "): " + listingComm + "\n" +
-                "Ã¢â‚¬Â¢ Buyer Broker Commission (" + buyerBasis + "): " + buyerComm + "\n" +
-                "Ã¢â‚¬Â¢ " + taxLabel + ": " + transferTax + "\n" +
-                "Ã¢â‚¬Â¢ Mortgage Payoff (Est.): " + mortgage + "\n" +
-                "Ã¢â‚¬Â¢ Additional Payoff (Est.): " + addPayoffFormatted + "\n" +
-                "Ã¢â‚¬Â¢ Closing Costs (Est.): " + misc + "\n\n" +
+                "- Sales Price: " + salesPrice + "\n" +
+                "- Seller Credits: " + sellerCredits + "\n" +
+                "- Listing Broker Commission (" + listingBasis + "): " + listingComm + "\n" +
+                "- Buyer Broker Commission (" + buyerBasis + "): " + buyerComm + "\n" +
+                "- " + taxLabel + ": " + transferTax + "\n" +
+                "- Mortgage Payoff (Est.): " + mortgage + "\n" +
+                "- Additional Payoff (Est.): " + addPayoffFormatted + "\n" +
+                "- Closing Costs (Est.): " + misc + "\n\n" +
                 label + ": " + totalNet + "\n\n" +
                 "Please let me know if you have any questions. I am always happy to help!\n\n" +
                 "Joe Pine\n" +
-                "REALTORÃ‚Â® RI & MA\n" +
+                "REALTOR\u00AE RI & MA\n" +
                 "Keller Williams Leading Edge\n" +
                 "Platinum Real Estate Group\n" +
                 "401.327.0888\n" +
