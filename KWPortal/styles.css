@@ -534,7 +534,7 @@ img {
 .content-strip-row {
   display: flex;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px 18px;
 }
@@ -564,10 +564,35 @@ img {
     gap 180ms ease;
 }
 
+.content-strip-market--stacked {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  white-space: normal;
+}
+
+.content-strip-market-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.content-strip-market-line--ri {
+  padding-top: 10px;
+  border-top: 1px solid rgba(221, 212, 200, 0.92);
+}
+
 .content-strip-links,
 .content-strip-rates {
   gap: 8px;
   flex-wrap: nowrap;
+}
+
+.content-strip-market-line .content-strip-rates {
+  flex-wrap: wrap;
 }
 
 .content-strip-rates::before {
@@ -588,8 +613,15 @@ img {
   text-transform: uppercase;
 }
 
+.content-strip-heading.content-strip-heading--ri strong {
+  font-size: 0.84rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
 .content-strip-link,
 .content-rate-pill,
+.content-stat-pill,
 .content-strip-refresh {
   display: inline-flex;
   align-items: center;
@@ -609,6 +641,7 @@ img {
 
 .content-strip-link:hover,
 .content-rate-pill:hover,
+.content-stat-pill:hover,
 .content-strip-refresh:hover {
   transform: translateY(-2px);
 }
@@ -626,6 +659,7 @@ img {
 
 .content-strip-link:not(.content-strip-link-primary):hover,
 .content-rate-pill:hover,
+.content-stat-pill:hover,
 .content-strip-refresh:hover {
   background: var(--kw-black);
   border-color: var(--kw-black);
@@ -652,6 +686,53 @@ img {
 
 .content-rate-pill {
   gap: 8px;
+}
+
+.content-strip-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.content-stat-pill {
+  min-width: 116px;
+  display: grid;
+  justify-items: start;
+  align-content: center;
+  gap: 2px;
+  padding: 0.48rem 0.68rem;
+  text-transform: none;
+}
+
+.content-stat-label {
+  color: var(--kw-gray);
+  font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.content-stat-value {
+  font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+  font-size: 0.88rem;
+  line-height: 1;
+}
+
+.content-stat-trend {
+  color: var(--kw-gray);
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.2;
+}
+
+.content-stat-trend[data-tone="up"] {
+  color: #1f7a46;
+}
+
+.content-stat-trend[data-tone="down"] {
+  color: var(--kw-red);
 }
 
 .content-rate-value,
