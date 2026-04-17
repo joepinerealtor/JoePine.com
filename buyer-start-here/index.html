@@ -163,20 +163,16 @@
         .starter-micro-nav {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            justify-content: center;
+            gap: 8px;
             width: calc(100% - 32px);
-            min-height: 36px;
+            min-height: 42px;
             margin: 0 auto;
-            padding: 4px 8px;
+            padding: 4px;
             border: 1px solid rgba(143, 0, 0, 0.18);
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.96);
             box-shadow: 0 14px 24px -24px rgba(15, 23, 42, 0.24);
-            overflow-x: auto;
-            overflow-y: hidden;
-            white-space: nowrap;
-            scrollbar-width: none;
         }
 
         .starter-micro-nav::-webkit-scrollbar {
@@ -187,31 +183,39 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            min-width: 0;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scrollbar-width: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
         }
 
         .starter-micro-nav-links::-webkit-scrollbar {
             display: none;
         }
 
-        .starter-micro-nav a {
+        .starter-micro-nav a,
+        .starter-micro-nav button {
             display: inline-flex;
             align-items: center;
-            min-height: 26px;
-            padding: 0 9px;
+            justify-content: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border: 0;
             border-radius: 999px;
             color: rgba(30, 39, 34, 0.74);
+            background: transparent;
+            font: inherit;
             font-size: 12px;
             font-weight: 800;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .starter-micro-nav a:hover,
-        .starter-micro-nav a:focus-visible {
+        .starter-micro-nav a:focus-visible,
+        .starter-micro-nav button:hover,
+        .starter-micro-nav button:focus-visible {
             color: #1e2722;
             background: rgba(180, 1, 1, 0.08);
         }
@@ -221,17 +225,11 @@
             background: rgba(180, 1, 1, 0.12);
         }
 
-        .starter-micro-nav-meta {
-            flex: 0 1 440px;
-            min-width: 0;
-            color: rgba(30, 39, 34, 0.7);
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.02em;
-            text-align: right;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .starter-step-sheet-backdrop,
+        .starter-step-sheet-head,
+        .starter-mobile-story-bar,
+        .starter-mobile-story-dots {
+            display: none;
         }
 
         body.page-buyer-start .site-frame-wrap {
@@ -1426,6 +1424,527 @@
             font-weight: 700;
         }
 
+        .starter-mobile-story {
+            display: none;
+        }
+
+        body.page-buyer-start.is-mobile-story,
+        body.page-buyer-start.is-step-sheet-open {
+            overflow: hidden;
+        }
+
+        body.page-buyer-start.is-mobile-story .buyer-start-page {
+            grid-template-rows: auto minmax(0, 1fr);
+            gap: 6px;
+            padding: max(6px, env(safe-area-inset-top)) 0 max(10px, env(safe-area-inset-bottom));
+        }
+
+        body.page-buyer-start.is-mobile-story .page-shell {
+            width: 100vw;
+            max-width: 100vw;
+            padding: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-section,
+        body.page-buyer-start.is-mobile-story .starter-app-section,
+        body.page-buyer-start.is-mobile-story .starter-panel,
+        body.page-buyer-start.is-mobile-story .starter-body,
+        body.page-buyer-start.is-mobile-story .starter-workspace,
+        body.page-buyer-start.is-mobile-story .starter-layout,
+        body.page-buyer-start.is-mobile-story .starter-content,
+        body.page-buyer-start.is-mobile-story .buyer-start-page {
+            min-height: 0;
+            height: 100%;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-micro-nav {
+            width: calc(100% - 16px);
+            min-height: 48px;
+            padding: 5px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-micro-nav-links {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 4px;
+            flex-wrap: nowrap;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-micro-nav a,
+        body.page-buyer-start.is-mobile-story .starter-micro-nav button {
+            flex: 1 1 0;
+            min-width: 0;
+            min-height: 36px;
+            padding: 0 6px;
+            font-size: 10px;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-sheet-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 54;
+            display: block;
+            opacity: 0;
+            pointer-events: none;
+            background: rgba(15, 23, 42, 0.5);
+            transition: opacity 180ms ease;
+        }
+
+        body.page-buyer-start.is-mobile-story.is-step-sheet-open .starter-step-sheet-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-panel {
+            border-radius: 28px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-body {
+            grid-template-rows: minmax(0, 1fr);
+            gap: 0;
+            padding: 10px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-workspace {
+            padding: 8px;
+            border-radius: 24px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-layout {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-rail {
+            position: fixed;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            z-index: 60;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            max-height: min(76dvh, 720px);
+            padding: 14px;
+            border-radius: 26px;
+            background: linear-gradient(180deg, rgba(92, 0, 0, 0.94) 0%, rgba(125, 6, 6, 0.98) 100%);
+            box-shadow: 0 28px 44px -26px rgba(15, 23, 42, 0.46);
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: translateY(calc(100% + 24px));
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 220ms ease, opacity 180ms ease;
+        }
+
+        body.page-buyer-start.is-mobile-story.is-step-sheet-open .starter-rail {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-sheet-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 6px;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: linear-gradient(180deg, rgba(143, 0, 0, 0.96) 0%, rgba(143, 0, 0, 0.92) 100%);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-sheet-head strong {
+            color: #ffffff;
+            font-size: 14px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-sheet-head button {
+            min-height: 34px;
+            padding: 0 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-content {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr) 44px;
+            grid-template-rows: auto minmax(0, 1fr) auto;
+            gap: 8px;
+            padding: 0;
+            align-items: stretch;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-bar {
+            display: grid;
+            grid-column: 1 / -1;
+            grid-row: 1;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-progress {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(0, 1fr);
+            gap: 4px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-progress span {
+            display: block;
+            height: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-progress span.is-active {
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-progress span.is-complete {
+            background: rgba(255, 255, 255, 0.64);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-copy {
+            display: grid;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-copy p,
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-copy span {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-copy p {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-copy span {
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-tools {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 0 0 auto;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-tools button {
+            min-height: 34px;
+            padding: 0 12px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-slide-arrow {
+            position: static;
+            top: auto;
+            bottom: auto;
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            font-size: 22px;
+            transform: none;
+            align-self: center;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-slide-arrow:hover,
+        body.page-buyer-start.is-mobile-story .starter-slide-arrow:focus-visible,
+        body.page-buyer-start.is-mobile-story .starter-slide-arrow:disabled {
+            transform: none;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-slide-arrow-prev {
+            grid-column: 1;
+            grid-row: 3;
+            left: auto;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-slide-arrow-next {
+            grid-column: 3;
+            grid-row: 3;
+            right: auto;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            grid-column: 2;
+            grid-row: 3;
+            min-width: 0;
+            min-height: 48px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story-dots span.is-active {
+            width: 20px;
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-scroll-controls {
+            display: none;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-panel {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            display: none;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-panel.is-active {
+            display: grid;
+            grid-template-rows: minmax(0, 1fr);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-panel.starter-step-panel-intro {
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-step-panel > :not(.starter-mobile-story) {
+            display: none !important;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-story {
+            display: grid;
+            height: 100%;
+            min-height: 0;
+            grid-template-rows: minmax(0, 1fr);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-pages {
+            display: grid;
+            position: relative;
+            height: 100%;
+            min-height: 0;
+            grid-template-rows: minmax(0, 1fr);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page {
+            display: none;
+            align-content: start;
+            gap: 12px;
+            height: 100%;
+            min-height: clamp(360px, calc(100dvh - 214px), 760px);
+            padding: 18px 16px;
+            border: 1px solid rgba(229, 231, 235, 0.96);
+            border-radius: 28px;
+            background: #ffffff;
+            box-shadow: 0 18px 34px -28px rgba(15, 23, 42, 0.22);
+            overflow: hidden;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page.is-active {
+            display: grid;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-hero {
+            border-color: rgba(143, 0, 0, 0.5);
+            background:
+                radial-gradient(circle at top right, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 30%),
+                linear-gradient(135deg, #c21a1a 0%, #920000 100%);
+            box-shadow: 0 22px 36px -28px rgba(0, 0, 0, 0.24);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-hero .starter-intro-copy,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-hero .starter-intro-copy p,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-hero .starter-intro-copy h2,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-hero .starter-intro-copy li {
+            color: #ffffff;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page > * {
+            min-width: 0;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .eyebrow {
+            margin: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page h2 {
+            margin: 0;
+            max-width: 12ch;
+            font-size: clamp(1.55rem, 7.2vw, 2.15rem);
+            overflow-wrap: anywhere;
+            text-wrap: balance;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-hero h2 {
+            max-width: 8ch;
+            font-size: clamp(1.9rem, 9.4vw, 2.8rem);
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-step-lead,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page p,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page li {
+            font-size: 14px;
+            line-height: 1.52;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-step-lead {
+            max-width: none;
+            margin: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--heading,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--note,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--actions {
+            align-content: center;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-intro-grid,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-focus,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-two-col,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-intro-preview,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-equity-points,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-program-meta,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-sources-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-heading-points {
+            flex-wrap: wrap;
+            overflow: visible;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--focus .starter-focus,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-preview .starter-intro-preview {
+            height: 100%;
+            align-content: stretch;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-focus-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-program-panel,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-source-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-doc-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-help-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .wealth-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .wealth-chart-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-intro-preview-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-hero-card {
+            padding: 16px;
+            border-radius: 24px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-next-card {
+            margin: 0;
+            padding: 16px;
+            border-radius: 24px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--focus .starter-focus-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--detail .starter-help-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--detail .starter-doc-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--compare .wealth-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--program .starter-program-panel,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--summary .starter-next-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-support .starter-hero-card,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page--overview-preview .starter-intro-preview-card {
+            height: 100%;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-tip {
+            margin: 0;
+            padding: 12px 14px;
+            border-radius: 18px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-program-switch {
+            display: none;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-actions,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-hero-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 0;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-actions .button,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-hero-actions .button {
+            width: 100%;
+            justify-content: center;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .starter-program-meta strong,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .wealth-stat-row strong {
+            font-size: 15px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .wealth-chart-header,
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .wealth-chart-readout {
+            gap: 8px;
+        }
+
+        body.page-buyer-start.is-mobile-story .starter-mobile-page .wealth-chart-shell {
+            padding: 4px;
+        }
+
         @media (min-width: 981px) {
             .starter-header {
                 min-height: 320px;
@@ -1841,18 +2360,15 @@
                 </div>
             </section>
 
-            <nav class="starter-micro-nav" aria-label="Workbook site links">
+            <nav class="starter-micro-nav" aria-label="Workbook quick actions">
                 <div class="starter-micro-nav-links">
                     <a href="../index.html">Home</a>
-                    <a href="../buyer-start-here/" aria-current="page">First Time Buyers</a>
-                    <a href="../buyers/">Buyer Resources</a>
-                    <a href="../sellers/">Seller Resources</a>
-                    <a href="../search/">Search Homes</a>
-                    <a href="../index.html#about">About Joe</a>
-                    <a href="../index.html#contact">Contact</a>
+                    <button type="button" data-deck-share>Share</button>
+                    <button type="button" data-toggle-sources>Links</button>
+                    <a href="tel:4013270888" aria-label="Call Joe">Call</a>
                 </div>
-                <div class="starter-micro-nav-meta">Joe Pine REALTOR | Platinum Real Estate Group - Keller Williams Leading Edge</div>
             </nav>
+            <div class="starter-step-sheet-backdrop" data-close-step-sheet></div>
 
             <section class="starter-section starter-app-section" id="buyer-start" aria-label="First-time buyer workbook app">
                 <div class="starter-panel">
@@ -1898,6 +2414,10 @@
                         <div class="starter-workspace">
                             <div class="starter-layout">
                                 <aside class="starter-rail" role="tablist" aria-label="Buyer start steps">
+                                <div class="starter-step-sheet-head">
+                                    <strong>All Steps</strong>
+                                    <button type="button" data-close-step-sheet aria-label="Close step list">Close</button>
+                                </div>
                                 <button class="starter-pill is-active" type="button" role="tab" aria-selected="true" data-starter-step-tab="overview">
                                     <span class="starter-pill-number">00</span>
                                     <span class="starter-pill-label">Workbook Intro</span>
@@ -1957,6 +2477,19 @@
                                 </aside>
 
                                 <div class="starter-content">
+                                    <div class="starter-mobile-story-bar" aria-live="polite">
+                                        <div class="starter-mobile-story-progress" data-mobile-story-progress aria-hidden="true"></div>
+                                        <div class="starter-mobile-story-meta">
+                                            <div class="starter-mobile-story-copy">
+                                                <p data-mobile-story-step>00 Workbook Intro</p>
+                                                <span data-mobile-story-page>Page 1 of 1</span>
+                                            </div>
+                                            <div class="starter-mobile-story-tools">
+                                                <button type="button" data-open-step-sheet>Steps</button>
+                                                <button type="button" data-toggle-sources>Links</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button class="starter-slide-arrow starter-slide-arrow-prev" type="button" data-deck-prev aria-label="Previous step">&#8592;</button>
                                     <button class="starter-slide-arrow starter-slide-arrow-next" type="button" data-deck-next aria-label="Next step">&#8594;</button>
 
@@ -2882,6 +3415,7 @@
                                         <button class="starter-scroll-button" type="button" data-step-scroll-down aria-label="Scroll down">↓</button>
                                     </div>
 
+                                    <div class="starter-mobile-story-dots" data-mobile-story-dots aria-hidden="true"></div>
                                 </div>
                             </div>
                         </div>
@@ -3002,15 +3536,25 @@
             const deckShareButton = document.querySelector("[data-deck-share]");
             const deckStepTitle = document.querySelector("[data-deck-step-title]");
             const deckStepCopy = document.querySelector("[data-deck-step-copy]");
+            const mobileStoryBar = document.querySelector(".starter-mobile-story-bar");
+            const mobileStoryProgress = document.querySelector("[data-mobile-story-progress]");
+            const mobileStoryStep = document.querySelector("[data-mobile-story-step]");
+            const mobileStoryPage = document.querySelector("[data-mobile-story-page]");
+            const mobileStoryDots = document.querySelector("[data-mobile-story-dots]");
+            const stepSheetBackdrop = document.querySelector(".starter-step-sheet-backdrop");
+            const openStepSheetButtons = Array.from(document.querySelectorAll("[data-open-step-sheet]"));
+            const closeStepSheetButtons = Array.from(document.querySelectorAll("[data-close-step-sheet]"));
             const STARTER_STEP_KEY = "joeFirstTimeBuyerStep";
             const STARTER_TOPIC_KEY = "joeFirstTimeBuyerCreditTopic";
             const STARTER_SHARE_URL = "https://joepine.com/buyer-start-here/";
             const STARTER_SIDEBAR_ENTER = 200;
             const STARTER_SIDEBAR_EXIT = 260;
+            const MOBILE_STORY_MEDIA = window.matchMedia("(max-width: 860px)");
             let shareResetTimer = 0;
             let touchStartPoint = null;
             let workbookSidebarActive = false;
             let workbookSidebarTicking = false;
+            const mobileStoryState = new Map();
 
             document.body.classList.add("has-deck-nav");
 
@@ -3036,12 +3580,22 @@
                     : "";
             }
 
+            function getStepNumberText(stepTab, fallbackIndex = 0) {
+                return stepTab?.querySelector(".starter-pill-number")?.textContent.trim()
+                    || String(fallbackIndex + 1).padStart(2, "0");
+            }
+
             function getStepNameFromUrl() {
                 const stepName = new URLSearchParams(window.location.search).get("step");
                 return stepTabs.some((tab) => tab.dataset.starterStepTab === stepName) ? stepName : "";
             }
 
-            function syncStepUrl(stepName) {
+            function getPageFromUrl() {
+                const pageValue = Number(new URLSearchParams(window.location.search).get("page"));
+                return Number.isFinite(pageValue) && pageValue > 0 ? pageValue - 1 : 0;
+            }
+
+            function syncStepUrl(stepName, pageIndex = 0) {
                 if (!window.history || typeof window.history.replaceState !== "function") {
                     return;
                 }
@@ -3054,14 +3608,24 @@
                     url.searchParams.delete("step");
                 }
 
+                if (isMobileStoryMode() && pageIndex > 0) {
+                    url.searchParams.set("page", String(pageIndex + 1));
+                } else {
+                    url.searchParams.delete("page");
+                }
+
                 window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
             }
 
-            function buildShareUrl(stepName) {
+            function buildShareUrl(stepName, pageIndex = 0) {
                 const shareUrl = new URL(STARTER_SHARE_URL);
 
                 if (stepName) {
                     shareUrl.searchParams.set("step", stepName);
+                }
+
+                if (pageIndex > 0) {
+                    shareUrl.searchParams.set("page", String(pageIndex + 1));
                 }
 
                 return shareUrl.toString();
@@ -3077,6 +3641,338 @@
                 shareResetTimer = window.setTimeout(() => {
                     deckShareButton.textContent = "Share";
                 }, 1800);
+            }
+
+            function syncActiveUrl() {
+                const activeIndex = stepTabs.findIndex((tab) => tab.classList.contains("is-active"));
+                const activeTab = stepTabs[activeIndex];
+                const activePanel = stepPanels[activeIndex];
+                const stepName = activeTab?.dataset.starterStepTab || "";
+                const pageIndex = isMobileStoryMode() ? getMobilePageIndex(activePanel) : 0;
+                syncStepUrl(stepName, pageIndex);
+            }
+
+            function isMobileStoryMode() {
+                return !embedMode && MOBILE_STORY_MEDIA.matches;
+            }
+
+            function setStepSheetOpen(open) {
+                if (!isMobileStoryMode()) {
+                    document.body.classList.remove("is-step-sheet-open");
+                    return;
+                }
+
+                document.body.classList.toggle("is-step-sheet-open", open);
+            }
+
+            function sanitizeMobileClone(node) {
+                const clone = node.cloneNode(true);
+
+                if (clone.nodeType === Node.ELEMENT_NODE) {
+                    clone.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
+                    clone.querySelectorAll("[aria-labelledby]").forEach((element) => element.removeAttribute("aria-labelledby"));
+                }
+
+                return clone;
+            }
+
+            function chunkArray(items, chunkSize) {
+                const chunks = [];
+
+                for (let index = 0; index < items.length; index += chunkSize) {
+                    chunks.push(items.slice(index, index + chunkSize));
+                }
+
+                return chunks;
+            }
+
+            function createMobilePage(nodes, className = "") {
+                const page = document.createElement("article");
+                page.className = `starter-mobile-page ${className}`.trim();
+
+                nodes.forEach((node) => {
+                    if (node) {
+                        page.appendChild(node);
+                    }
+                });
+
+                return page;
+            }
+
+            function createChunkedCardPages(card, options = {}) {
+                const {
+                    listSelector = ".starter-mini-list, ul",
+                    maxItems = 4,
+                    pageClass = ""
+                } = options;
+                const list = card.querySelector(listSelector);
+
+                if (!list || list.children.length <= maxItems) {
+                    return [createMobilePage([sanitizeMobileClone(card)], pageClass)];
+                }
+
+                return chunkArray(Array.from(list.children), maxItems).map((items) => {
+                    const cardClone = sanitizeMobileClone(card);
+                    const cloneList = cardClone.querySelector(listSelector);
+
+                    if (cloneList) {
+                        cloneList.replaceChildren(...items.map((item) => item.cloneNode(true)));
+                    }
+
+                    return createMobilePage([cardClone], pageClass);
+                });
+            }
+
+            function createContainerPages(container, options = {}) {
+                const {
+                    chunkSize = 1,
+                    pageClass = "",
+                    cardMaxItems = 4
+                } = options;
+                const items = Array.from(container.children);
+
+                if (chunkSize > 1) {
+                    return chunkArray(items, chunkSize).map((group) => {
+                        const wrapper = document.createElement("div");
+                        wrapper.className = container.className;
+                        group.forEach((item) => wrapper.appendChild(sanitizeMobileClone(item)));
+                        return createMobilePage([wrapper], pageClass);
+                    });
+                }
+
+                return items.flatMap((item) => createChunkedCardPages(item, {
+                    maxItems: cardMaxItems,
+                    pageClass
+                }));
+            }
+
+            function buildIntroStoryPages(panel) {
+                const introGrid = panel.querySelector(".starter-intro-grid");
+                const introCopy = introGrid?.querySelector(".starter-intro-copy");
+                const introHero = introGrid?.querySelector(".starter-hero-card");
+                const introPreview = introGrid?.querySelector(".starter-intro-preview");
+                const pages = [];
+
+                if (introCopy) {
+                    pages.push(createMobilePage([sanitizeMobileClone(introCopy)], "starter-mobile-page--overview-hero"));
+                }
+
+                if (introHero) {
+                    pages.push(createMobilePage([sanitizeMobileClone(introHero)], "starter-mobile-page--overview-support"));
+                }
+
+                if (introPreview) {
+                    pages.push(createMobilePage([sanitizeMobileClone(introPreview)], "starter-mobile-page--overview-preview"));
+                }
+
+                return pages;
+            }
+
+            function buildLoanPathStoryPages(panel) {
+                const topicButtonsByName = new Map(
+                    Array.from(panel.querySelectorAll("[data-credit-topic]")).map((button) => [button.dataset.creditTopic, button.textContent.trim()])
+                );
+                const pages = [];
+                const headingNodes = [];
+                const eyebrow = panel.querySelector(":scope > .eyebrow");
+                const title = panel.querySelector(":scope > h2");
+                const lead = panel.querySelector(":scope > .starter-step-lead");
+                const nextCard = panel.querySelector(":scope > .starter-next-card");
+
+                [eyebrow, title, lead].forEach((node) => {
+                    if (node) {
+                        headingNodes.push(sanitizeMobileClone(node));
+                    }
+                });
+
+                if (headingNodes.length) {
+                    pages.push(createMobilePage(headingNodes, "starter-mobile-page--heading"));
+                }
+
+                panel.querySelectorAll(":scope > [data-credit-panel]").forEach((programPanel) => {
+                    const topicName = programPanel.dataset.creditPanel;
+                    const topicLabel = topicButtonsByName.get(topicName) || topicName || "Loan path";
+                    const eyebrowClone = document.createElement("p");
+                    eyebrowClone.className = "eyebrow";
+                    eyebrowClone.textContent = topicLabel;
+                    pages.push(createMobilePage([eyebrowClone, sanitizeMobileClone(programPanel)], "starter-mobile-page--program"));
+                });
+
+                if (nextCard) {
+                    pages.push(...createChunkedCardPages(nextCard, { maxItems: 4, pageClass: "starter-mobile-page--summary" }));
+                }
+
+                return pages;
+            }
+
+            function buildGenericStoryPages(panel) {
+                const blocks = Array.from(panel.children).filter((child) => {
+                    return !child.classList.contains("starter-nav") && !child.classList.contains("starter-mobile-story");
+                });
+                const pages = [];
+                const introBlocks = blocks.slice(0, 3).filter(Boolean);
+
+                if (introBlocks.length) {
+                    pages.push(createMobilePage(introBlocks.map((node) => sanitizeMobileClone(node)), "starter-mobile-page--heading"));
+                }
+
+                for (let index = 3; index < blocks.length; index += 1) {
+                    const block = blocks[index];
+
+                    if (block.classList.contains("starter-focus")) {
+                        pages.push(...createContainerPages(block, { chunkSize: 2, pageClass: "starter-mobile-page--focus" }));
+                        continue;
+                    }
+
+                    if (block.classList.contains("starter-two-col")) {
+                        pages.push(...createContainerPages(block, { chunkSize: 1, pageClass: "starter-mobile-page--detail", cardMaxItems: 4 }));
+                        continue;
+                    }
+
+                    if (block.classList.contains("wealth-comparison-grid")) {
+                        pages.push(...createContainerPages(block, { chunkSize: 1, pageClass: "starter-mobile-page--compare" }));
+                        continue;
+                    }
+
+                    if (block.classList.contains("starter-next-card")) {
+                        pages.push(...createChunkedCardPages(block, { maxItems: 4, pageClass: "starter-mobile-page--summary" }));
+                        continue;
+                    }
+
+                    if (block.classList.contains("starter-actions")) {
+                        pages.push(createMobilePage([sanitizeMobileClone(block)], "starter-mobile-page--actions"));
+                        continue;
+                    }
+
+                    if (block.classList.contains("starter-tip")) {
+                        pages.push(createMobilePage([sanitizeMobileClone(block)], "starter-mobile-page--tip"));
+                        continue;
+                    }
+
+                    if (block.classList.contains("starter-step-note")) {
+                        pages.push(createMobilePage([sanitizeMobileClone(block)], "starter-mobile-page--note"));
+                        continue;
+                    }
+
+                    pages.push(createMobilePage([sanitizeMobileClone(block)], "starter-mobile-page--detail"));
+                }
+
+                return pages;
+            }
+
+            function ensureMobileStoryBuilt(panel) {
+                const existingStory = panel.querySelector(".starter-mobile-story");
+                if (existingStory) {
+                    return existingStory;
+                }
+
+                const story = document.createElement("div");
+                story.className = "starter-mobile-story";
+                const pagesWrap = document.createElement("div");
+                pagesWrap.className = "starter-mobile-pages";
+                const stepName = panel.dataset.starterStepPanel || "";
+                const pages = stepName === "overview"
+                    ? buildIntroStoryPages(panel)
+                    : stepName === "score"
+                        ? buildLoanPathStoryPages(panel)
+                        : buildGenericStoryPages(panel);
+
+                pages.forEach((page, index) => {
+                    page.dataset.mobilePageIndex = String(index);
+                    pagesWrap.appendChild(page);
+                });
+
+                story.appendChild(pagesWrap);
+                panel.appendChild(story);
+                panel.dataset.mobilePageCount = String(Math.max(1, pages.length));
+                panel.dataset.mobilePageIndex = panel.dataset.mobilePageIndex || "0";
+                mobileStoryState.set(stepName, Number(panel.dataset.mobilePageIndex || "0"));
+
+                return story;
+            }
+
+            function getMobilePageCount(panel) {
+                return Number(panel?.dataset.mobilePageCount || "1") || 1;
+            }
+
+            function getMobilePageIndex(panel) {
+                return Number(panel?.dataset.mobilePageIndex || "0") || 0;
+            }
+
+            function setMobilePage(panel, pageIndex = 0) {
+                if (!panel) {
+                    return;
+                }
+
+                ensureMobileStoryBuilt(panel);
+
+                const pages = Array.from(panel.querySelectorAll(".starter-mobile-page"));
+                const safeIndex = Math.max(0, Math.min(pageIndex, pages.length - 1));
+
+                pages.forEach((page, index) => {
+                    page.classList.toggle("is-active", index === safeIndex);
+                });
+
+                panel.dataset.mobilePageIndex = String(safeIndex);
+                mobileStoryState.set(panel.dataset.starterStepPanel || "", safeIndex);
+            }
+
+            function updateMobileStoryChrome(activeIndex) {
+                if (!isMobileStoryMode() || !mobileStoryBar || !mobileStoryProgress || !mobileStoryStep || !mobileStoryPage || !mobileStoryDots) {
+                    return;
+                }
+
+                if (activeIndex < 0 || !stepTabs[activeIndex]) {
+                    return;
+                }
+
+                const activePanel = getActiveStepPanel();
+                const activeTab = stepTabs[activeIndex];
+                const pageCount = getMobilePageCount(activePanel);
+                const pageIndex = getMobilePageIndex(activePanel);
+                const stepLabel = getStepLabel(activeTab);
+                const stepNumber = getStepNumberText(activeTab, activeIndex);
+
+                mobileStoryStep.textContent = stepLabel ? `${stepNumber} ${stepLabel}` : `Step ${activeIndex + 1}`;
+                mobileStoryPage.textContent = `Page ${pageIndex + 1} of ${pageCount}`;
+                mobileStoryProgress.replaceChildren();
+                mobileStoryDots.replaceChildren();
+
+                for (let index = 0; index < pageCount; index += 1) {
+                    const progressSegment = document.createElement("span");
+                    progressSegment.classList.toggle("is-active", index === pageIndex);
+                    progressSegment.classList.toggle("is-complete", index < pageIndex);
+                    mobileStoryProgress.appendChild(progressSegment);
+
+                    const dot = document.createElement("span");
+                    dot.classList.toggle("is-active", index === pageIndex);
+                    mobileStoryDots.appendChild(dot);
+                }
+            }
+
+            function syncMobileStoryMode() {
+                const activePanel = getActiveStepPanel();
+                const activeStep = stepTabs.find((tab) => tab.classList.contains("is-active"))?.dataset.starterStepTab || stepTabs[0]?.dataset.starterStepTab || "";
+                document.body.classList.toggle("is-mobile-story", isMobileStoryMode());
+
+                if (!isMobileStoryMode()) {
+                    setStepSheetOpen(false);
+                    syncActiveUrl();
+                    return;
+                }
+
+                stepPanels.forEach((panel) => {
+                    ensureMobileStoryBuilt(panel);
+                    const storedIndex = mobileStoryState.get(panel.dataset.starterStepPanel || "") || 0;
+                    setMobilePage(panel, storedIndex);
+                });
+
+                if (activePanel) {
+                    setMobilePage(activePanel, mobileStoryState.get(activeStep) || 0);
+                    updateMobileStoryChrome(stepTabs.findIndex((tab) => tab.dataset.starterStepTab === activeStep));
+                }
+
+                syncActiveUrl();
             }
 
             function postHeight() {
@@ -3171,6 +4067,20 @@
             }
 
             function updateStepScrollControls() {
+                if (isMobileStoryMode()) {
+                    if (stepScrollUpButton) {
+                        stepScrollUpButton.classList.remove("is-visible");
+                        stepScrollUpButton.disabled = true;
+                    }
+
+                    if (stepScrollDownButton) {
+                        stepScrollDownButton.classList.remove("is-visible");
+                        stepScrollDownButton.disabled = true;
+                    }
+
+                    return;
+                }
+
                 const activePanel = getActiveStepPanel();
                 const hasOverflow = Boolean(activePanel) && activePanel.scrollHeight > activePanel.clientHeight + 12;
                 const canScrollUp = hasOverflow && activePanel.scrollTop > 8;
@@ -3252,10 +4162,20 @@
                     panel.classList.toggle("is-active", isActive);
                     if (isActive) {
                         panel.scrollTop = 0;
+                        if (isMobileStoryMode()) {
+                            ensureMobileStoryBuilt(panel);
+                            const requestedPage = options.mobilePage === "last"
+                                ? getMobilePageCount(panel) - 1
+                                : Number.isFinite(options.mobilePage)
+                                    ? options.mobilePage
+                                    : 0;
+                            setMobilePage(panel, requestedPage);
+                        }
                     }
                 });
 
                 updateProgress(resolvedIndex);
+                setStepSheetOpen(false);
 
                 const activeTab = stepTabs[resolvedIndex];
                 if (activeTab) {
@@ -3278,7 +4198,7 @@
                 if (resolvedStepName) {
                     writeStoredValue(STARTER_STEP_KEY, resolvedStepName);
                     if (options.syncUrl !== false) {
-                        syncStepUrl(resolvedStepName);
+                        syncActiveUrl();
                     }
                 }
 
@@ -3286,11 +4206,11 @@
             }
 
             function setCreditTopic(topicName) {
-                topicButtons.forEach((button) => {
+                document.querySelectorAll("[data-credit-topic]").forEach((button) => {
                     button.classList.toggle("is-active", button.dataset.creditTopic === topicName);
                 });
 
-                topicPanels.forEach((panel) => {
+                document.querySelectorAll("[data-credit-panel]").forEach((panel) => {
                     panel.classList.toggle("is-active", panel.dataset.creditPanel === topicName);
                 });
 
@@ -3303,12 +4223,18 @@
                 const currentStep = activeIndex + 1;
                 const totalSteps = stepTabs.length;
                 const activeTab = stepTabs[activeIndex];
+                const activePanel = stepPanels[activeIndex];
                 const stepLabel = getStepLabel(activeTab);
-                const stepNumber = String(currentStep).padStart(2, "0");
+                const stepNumber = getStepNumberText(activeTab, activeIndex);
                 const percent = totalSteps ? Math.round((currentStep / totalSteps) * 100) : 0;
                 const isDesktop = window.matchMedia("(min-width: 981px)").matches;
+                const isMobileStory = isMobileStoryMode();
+                const pageCount = isMobileStory ? getMobilePageCount(activePanel) : 1;
+                const pageIndex = isMobileStory ? getMobilePageIndex(activePanel) : 0;
                 const previousTab = stepTabs[activeIndex - 1];
                 const nextTab = stepTabs[activeIndex + 1];
+                const hasPrevious = isMobileStory ? (pageIndex > 0 || Boolean(previousTab)) : Boolean(previousTab);
+                const hasNext = isMobileStory ? (pageIndex < pageCount - 1 || Boolean(nextTab)) : Boolean(nextTab);
 
                 if (progressTitle) {
                     progressTitle.textContent = `Step ${currentStep} of ${totalSteps}`;
@@ -3316,7 +4242,7 @@
 
                 if (progressCopy) {
                     progressCopy.textContent = stepLabel
-                        ? `On ${stepNumber} ${stepLabel}. ${isDesktop ? "Use the left rail or arrows to move." : "Swipe, tap a step, or use the arrows to move."}`
+                        ? `On ${stepNumber} ${stepLabel}. ${isMobileStory ? `Story ${pageIndex + 1} of ${pageCount}. Swipe or use the arrows to move.` : (isDesktop ? "Use the left rail or arrows to move." : "Swipe, tap a step, or use the arrows to move.")}`
                         : (isDesktop ? "Use the left rail or arrows to move." : "Swipe, tap a step, or use the arrows to move.");
                 }
 
@@ -3335,24 +4261,49 @@
                 }
 
                 if (deckPrevButton) {
-                    deckPrevButton.disabled = !previousTab;
+                    deckPrevButton.disabled = !hasPrevious;
                     deckPrevButton.dataset.deckStep = previousTab?.dataset.starterStepTab || "";
-                    deckPrevButton.setAttribute("aria-label", previousTab ? "Previous step" : "Previous step unavailable");
+                    deckPrevButton.setAttribute("aria-label", hasPrevious ? "Previous slide" : "Previous slide unavailable");
                 }
 
                 if (deckNextButton) {
-                    deckNextButton.disabled = !nextTab;
+                    deckNextButton.disabled = !hasNext;
                     deckNextButton.dataset.deckStep = nextTab?.dataset.starterStepTab || "";
-                    deckNextButton.setAttribute("aria-label", nextTab ? "Next step" : "Finish workbook");
+                    deckNextButton.setAttribute("aria-label", hasNext ? "Next slide" : "Finish workbook");
                 }
+
+                updateMobileStoryChrome(activeIndex);
             }
 
             function goToRelativeStep(direction) {
                 const activeIndex = stepTabs.findIndex((tab) => tab.classList.contains("is-active"));
+                const activePanel = stepPanels[activeIndex];
+
+                if (isMobileStoryMode() && activePanel) {
+                    const pageIndex = getMobilePageIndex(activePanel);
+                    const pageCount = getMobilePageCount(activePanel);
+
+                    if (direction > 0 && pageIndex < pageCount - 1) {
+                        setMobilePage(activePanel, pageIndex + 1);
+                        syncActiveUrl();
+                        updateProgress(activeIndex);
+                        return;
+                    }
+
+                    if (direction < 0 && pageIndex > 0) {
+                        setMobilePage(activePanel, pageIndex - 1);
+                        syncActiveUrl();
+                        updateProgress(activeIndex);
+                        return;
+                    }
+                }
+
                 const targetTab = stepTabs[activeIndex + direction];
 
                 if (targetTab) {
-                    setActiveStep(targetTab.dataset.starterStepTab);
+                    setActiveStep(targetTab.dataset.starterStepTab, {
+                        mobilePage: direction < 0 && isMobileStoryMode() ? "last" : 0
+                    });
                 }
             }
 
@@ -3360,9 +4311,11 @@
                 const activeIndex = stepTabs.findIndex((tab) => tab.classList.contains("is-active"));
                 const safeIndex = activeIndex === -1 ? 0 : activeIndex;
                 const activeTab = stepTabs[safeIndex];
+                const activePanel = stepPanels[safeIndex];
                 const stepName = activeTab?.dataset.starterStepTab || "";
                 const stepLabel = getStepLabel(activeTab) || "First-Time Buyer Workbook";
-                const shareUrl = buildShareUrl(stepName);
+                const pageIndex = isMobileStoryMode() ? getMobilePageIndex(activePanel) : 0;
+                const shareUrl = buildShareUrl(stepName, pageIndex);
                 const shareData = {
                     title: `First-Time Buyer Workbook | ${stepLabel}`,
                     text: `Joe Pine's first-time buyer workbook: ${stepLabel}`,
@@ -3395,47 +4348,63 @@
                 });
             });
 
-            document.querySelectorAll("[data-starter-target]").forEach((button) => {
-                button.addEventListener("click", () => {
-                    setActiveStep(button.dataset.starterTarget);
-                });
-            });
-
             topicButtons.forEach((button) => {
                 button.addEventListener("click", () => {
                     setCreditTopic(button.dataset.creditTopic);
                 });
             });
 
-            document.querySelectorAll("[data-open-resource]").forEach((link) => {
-                link.addEventListener("click", (event) => {
+            document.addEventListener("click", (event) => {
+                const targetButton = event.target.closest("[data-starter-target]");
+                if (targetButton) {
+                    setActiveStep(targetButton.dataset.starterTarget);
+                    return;
+                }
+
+                const openStepSheetTrigger = event.target.closest("[data-open-step-sheet]");
+                if (openStepSheetTrigger) {
+                    setStepSheetOpen(true);
+                    return;
+                }
+
+                const closeStepSheetTrigger = event.target.closest("[data-close-step-sheet]");
+                if (closeStepSheetTrigger) {
+                    setStepSheetOpen(false);
+                    return;
+                }
+
+                const resourceLink = event.target.closest("[data-open-resource]");
+                if (resourceLink) {
                     if (!embedMode || window.parent === window) {
                         return;
                     }
 
                     event.preventDefault();
                     window.parent.postMessage(
-                        { type: "joe-open-resource", target: link.dataset.openResource },
+                        { type: "joe-open-resource", target: resourceLink.dataset.openResource },
                         "*"
                     );
-                });
-            });
+                    return;
+                }
 
-            document.querySelectorAll("[data-toggle-sources]").forEach((button) => {
-                button.addEventListener("click", () => {
+                const sourcesToggle = event.target.closest("[data-toggle-sources]");
+                if (sourcesToggle) {
                     if (!sourcesPanel) {
                         return;
                     }
 
                     sourcesPanel.open = !sourcesPanel.open;
-
+                    setStepSheetOpen(false);
                     requestAnimationFrame(postHeight);
-                });
+                }
             });
 
             if (sourcesPanel) {
                 sourcesPanel.addEventListener("toggle", () => {
                     document.body.classList.toggle("is-sources-open", sourcesPanel.open);
+                    if (sourcesPanel.open) {
+                        setStepSheetOpen(false);
+                    }
                     requestAnimationFrame(postHeight);
                 });
 
@@ -3448,21 +4417,13 @@
 
             if (deckPrevButton) {
                 deckPrevButton.addEventListener("click", () => {
-                    const targetStep = deckPrevButton.dataset.deckStep;
-
-                    if (targetStep) {
-                        setActiveStep(targetStep);
-                    }
+                    goToRelativeStep(-1);
                 });
             }
 
             if (deckNextButton) {
                 deckNextButton.addEventListener("click", () => {
-                    const targetStep = deckNextButton.dataset.deckStep;
-
-                    if (targetStep) {
-                        setActiveStep(targetStep);
-                    }
+                    goToRelativeStep(1);
                 });
             }
 
@@ -3535,6 +4496,11 @@
                     return;
                 }
 
+                if (event.key === "Escape" && document.body.classList.contains("is-step-sheet-open")) {
+                    setStepSheetOpen(false);
+                    return;
+                }
+
                 if (event.altKey || event.ctrlKey || event.metaKey) {
                     return;
                 }
@@ -3561,6 +4527,7 @@
             const initialTopic = topicButtons.some((button) => button.dataset.creditTopic === storedTopic) ? storedTopic : defaultTopic;
             const storedStep = readStoredValue(STARTER_STEP_KEY);
             const urlStep = getStepNameFromUrl();
+            const urlPage = getPageFromUrl();
             const shouldAutoOpenWorkbook = Boolean(urlStep) || window.location.hash === "#buyer-start";
             const initialStep = stepTabs.some((tab) => tab.dataset.starterStepTab === urlStep)
                 ? urlStep
@@ -3572,13 +4539,17 @@
                 setCreditTopic(initialTopic);
             }
 
+            syncMobileStoryMode();
+
             setActiveStep(initialStep, {
                 animateRail: false,
                 scrollViewport: shouldAutoOpenWorkbook,
-                animateViewport: false
+                animateViewport: false,
+                mobilePage: initialStep === urlStep ? urlPage : 0
             });
 
             window.addEventListener("load", () => {
+                syncMobileStoryMode();
                 if (shouldAutoOpenWorkbook) {
                     scrollWorkbookIntoView("auto");
                     requestAnimationFrame(() => scrollWorkbookIntoView("auto"));
@@ -3600,11 +4571,16 @@
             window.addEventListener("scroll", queueWorkbookSidebarSync, { passive: true });
             window.addEventListener("resize", () => {
                 const activeIndex = stepTabs.findIndex((tab) => tab.classList.contains("is-active"));
+                syncMobileStoryMode();
                 updateProgress(activeIndex === -1 ? 0 : activeIndex);
                 queueWorkbookSidebarSync();
                 updateStepScrollControls();
                 postHeight();
             });
+
+            if (typeof MOBILE_STORY_MEDIA.addEventListener === "function") {
+                MOBILE_STORY_MEDIA.addEventListener("change", syncMobileStoryMode);
+            }
 
             if (typeof ResizeObserver !== "undefined") {
                 const observer = new ResizeObserver(postHeight);
