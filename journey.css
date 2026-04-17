@@ -35,7 +35,8 @@ img {
 }
 
 .page-shell {
-    width: min(1180px, calc(100% - 32px));
+    width: calc(100% - 32px);
+    max-width: none;
     margin: 0 auto;
     padding: 0 0 36px;
 }
@@ -83,14 +84,14 @@ img {
 }
 
 .journey-hero-top h1 {
-    max-width: 12ch;
-    font-size: clamp(2.15rem, 4vw, 3.6rem);
+    max-width: 13ch;
+    font-size: clamp(2.3rem, 4vw, 3.85rem);
     line-height: 0.96;
 }
 
 .journey-hero-bottom {
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+    grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
     gap: 16px;
     padding: 18px 24px 22px;
 }
@@ -152,7 +153,7 @@ img {
 
 .tracker-header {
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+    grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
     gap: 16px;
     align-items: start;
 }
@@ -172,7 +173,7 @@ img {
 
 .tracker-heading p {
     margin: 10px 0 0;
-    max-width: 62ch;
+    max-width: 70ch;
     color: rgba(255, 255, 255, 0.88);
     line-height: 1.58;
     font-size: 0.95rem;
@@ -420,7 +421,7 @@ img {
 .tracker-copy-card {
     padding: 18px;
     border-top: 5px solid var(--journey-red);
-    max-width: 1040px;
+    max-width: 1240px;
     margin: 0 auto;
     max-height: calc(100vh - var(--site-frame-offset, 132px) - 28px);
     overflow-y: auto;
@@ -664,9 +665,9 @@ img {
     padding-top: 20px;
     border-top: 4px solid var(--journey-red);
     display: grid;
-    grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+    grid-template-columns: minmax(190px, 0.92fr) minmax(0, 1.4fr) minmax(160px, 0.88fr);
     align-items: center;
-    gap: 24px;
+    gap: 28px;
 }
 
 .journey-footer-compliance {
@@ -674,7 +675,7 @@ img {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    max-width: 620px;
+    max-width: 760px;
     margin: 14px auto 0;
     padding-top: 14px;
     border-top: 1px solid rgba(45, 45, 45, 0.1);
@@ -829,7 +830,7 @@ img {
 
 @media (max-width: 760px) {
     .page-shell {
-        width: min(100% - 20px, 1180px);
+        width: calc(100% - 20px);
     }
 
     .journey-hero-top,

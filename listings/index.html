@@ -41,7 +41,8 @@
         }
 
         .page-shell {
-            width: min(1180px, calc(100% - 32px));
+            width: calc(100% - 32px);
+            max-width: none;
             margin: 0 auto;
             padding: 0 0 32px;
         }
@@ -79,8 +80,8 @@
 
         .hero h1 {
             margin: 0;
-            max-width: 12ch;
-            font-size: clamp(30px, 4.8vw, 48px);
+            max-width: 14ch;
+            font-size: clamp(32px, 4.6vw, 54px);
             line-height: 0.96;
             letter-spacing: -0.05em;
             text-transform: uppercase;
@@ -89,8 +90,8 @@
 
         .hero-bottom {
             display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-            gap: 16px;
+            grid-template-columns: minmax(0, 1.32fr) minmax(320px, 0.68fr);
+            gap: 20px;
             padding: 18px 22px 20px;
         }
 
@@ -146,8 +147,8 @@
 
         .featured-property {
             display: grid;
-            grid-template-columns: minmax(320px, 0.96fr) minmax(0, 1.04fr);
-            gap: 18px;
+            grid-template-columns: minmax(360px, 1fr) minmax(0, 1fr);
+            gap: 24px;
             margin-bottom: 22px;
             border-radius: 30px;
             overflow: hidden;
@@ -353,6 +354,30 @@
             text-transform: uppercase;
         }
 
+        .listing-card-status--active {
+            background: rgba(180, 1, 1, 0.08);
+            border-color: rgba(180, 1, 1, 0.14);
+            color: var(--kw-red);
+        }
+
+        .listing-card-status--coming-soon {
+            background: rgba(28, 91, 168, 0.09);
+            border-color: rgba(28, 91, 168, 0.16);
+            color: #1c5ba8;
+        }
+
+        .listing-card-status--pending {
+            background: rgba(184, 108, 0, 0.1);
+            border-color: rgba(184, 108, 0, 0.2);
+            color: #8e5600;
+        }
+
+        .listing-card-status--sold {
+            background: rgba(32, 32, 32, 0.08);
+            border-color: rgba(32, 32, 32, 0.16);
+            color: #202020;
+        }
+
         .listing-card-status-muted {
             background: #f7f7f7;
             border-color: var(--kw-line);
@@ -438,8 +463,8 @@
 
         .controls-card {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
-            gap: 18px;
+            grid-template-columns: minmax(0, 1.16fr) minmax(360px, 0.84fr);
+            gap: 22px;
             align-items: end;
         }
 
@@ -656,10 +681,10 @@
 
         .page-footer-band {
             display: grid;
-            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            grid-template-columns: minmax(190px, 0.92fr) minmax(0, 1.4fr) minmax(160px, 0.88fr);
             align-items: center;
-            gap: 24px;
-            max-width: 980px;
+            gap: 28px;
+            max-width: 1320px;
             margin: 0 auto;
         }
 
@@ -668,7 +693,7 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            max-width: 620px;
+            max-width: 760px;
             margin: 14px auto 0;
             padding-top: 14px;
             border-top: 1px solid rgba(77, 77, 77, 0.12);
@@ -787,7 +812,7 @@
 
         @media (max-width: 760px) {
             .page-shell {
-                width: min(100% - 20px, 1180px);
+                width: calc(100% - 20px);
             }
 
             .featured-property-copy,
@@ -846,11 +871,12 @@
                     Menu
                 </button>
 
-                <div class="site-frame-right">
-                    <a href="tel:4013270888">401.327.0888</a>
-                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
-                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
-                </div>
+<div class="site-frame-right">
+<a href="tel:4013270888">401.327.0888</a>
+<a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+<span class="site-frame-brokerage">Platinum Real Estate Group-Keller Williams Leading Edge</span>
+<a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+</div>
             </div>
 
             <nav class="site-frame-nav" id="site-frame-nav-listings">

@@ -1,5 +1,10 @@
 const siteFrameRoot = document.documentElement;
 const siteFrameWrap = document.querySelector(".site-frame-wrap");
+const siteFrameScript = document.currentScript;
+const siteFrameAssetBase = siteFrameScript
+    ? new URL(".", siteFrameScript.src)
+    : new URL(".", window.location.href);
+const SITE_FRAME_SIDEBAR_OFFSET = 28;
 const SITE_FRAME_SCROLL_THRESHOLD_ENTER = 120;
 const SITE_FRAME_SCROLL_THRESHOLD_EXIT = 56;
 let siteFrameIsCondensed = false;
@@ -51,6 +56,14 @@ function getSiteFrameOffset() {
         return 170;
     }
 
+    if (siteFrameWrap.classList.contains("is-workbook-hidden")) {
+        return 0;
+    }
+
+    if (siteFrameWrap.classList.contains("is-workbook-sidebar")) {
+        return SITE_FRAME_SIDEBAR_OFFSET;
+    }
+
     const computedStyle = window.getComputedStyle(siteFrameWrap);
     const marginBottom = Number.parseFloat(computedStyle.marginBottom || "0") || 0;
 
@@ -59,6 +72,70 @@ function getSiteFrameOffset() {
 
 function updateSiteFrameOffset() {
     siteFrameRoot.style.setProperty("--site-frame-offset", `${getSiteFrameOffset()}px`);
+}
+
+window.getSiteFrameOffset = getSiteFrameOffset;
+window.updateSiteFrameOffset = updateSiteFrameOffset;
+
+function ensureSiteFrameShellLayout() {
+    document.querySelectorAll(".site-frame-wrap").forEach((wrap) => {
+        const top = wrap.querySelector(".site-frame-top");
+        const nav = wrap.querySelector(".site-frame-nav");
+
+        if (!nav) {
+            return;
+        }
+
+        let linkList = nav.querySelector(".site-frame-link-list");
+        const cta = nav.querySelector(".site-frame-cta");
+
+        if (!linkList) {
+            linkList = document.createElement("div");
+            linkList.className = "site-frame-link-list";
+
+            Array.from(nav.children).forEach((child) => {
+                if (child !== cta) {
+                    linkList.appendChild(child);
+                }
+            });
+
+            nav.insertBefore(linkList, cta || null);
+        }
+
+        nav.querySelectorAll(".site-frame-broker-strip").forEach((strip) => strip.remove());
+
+        if (!top || top.querySelector(".site-frame-broker-strip")) {
+            return;
+        }
+
+        const brokerStrip = document.createElement("div");
+        brokerStrip.className = "site-frame-broker-strip";
+        brokerStrip.setAttribute("aria-label", "Brokerage logos");
+
+        const platinumLogo = document.createElement("img");
+        platinumLogo.className = "site-frame-broker-logo site-frame-broker-logo-platinum";
+        platinumLogo.src = new URL(
+            "Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png",
+            siteFrameAssetBase
+        ).href;
+        platinumLogo.alt = "Platinum Real Estate Group";
+
+        const separator = document.createElement("span");
+        separator.className = "site-frame-broker-separator";
+        separator.setAttribute("aria-hidden", "true");
+
+        const kwLogo = document.createElement("img");
+        kwLogo.className = "site-frame-broker-logo site-frame-broker-logo-kw";
+        kwLogo.src = new URL(
+            "Monthly%20Payment/KellerWilliams_Realty_LeadingEdge_Logo_RGB.png",
+            siteFrameAssetBase
+        ).href;
+        kwLogo.alt = "Keller Williams Leading Edge";
+
+        brokerStrip.append(platinumLogo, separator, kwLogo);
+        const rightBlock = top.querySelector(".site-frame-right");
+        top.insertBefore(brokerStrip, rightBlock || null);
+    });
 }
 
 function setSiteFrameCondensed(condensed) {
@@ -120,6 +197,7 @@ function scrollToSiteFrameHash(hash, behavior = "smooth", updateHistory = false)
 syncSiteFrameCondensed();
 updateSiteFrameOffset();
 syncLocalFilePreviewUrls();
+ensureSiteFrameShellLayout();
 
 window.addEventListener("resize", () => {
     syncSiteFrameCondensed();

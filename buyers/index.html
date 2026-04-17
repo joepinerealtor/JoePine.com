@@ -64,9 +64,10 @@
         }
 
         .page-shell {
-            max-width: 1180px;
+            width: calc(100% - 32px);
+            max-width: none;
             margin: 0 auto;
-            padding: 0 18px 34px;
+            padding: 0 0 34px;
         }
 
         .hero-panel,
@@ -110,7 +111,7 @@
 
         .hero-banner h1 {
             margin: 0;
-            max-width: 760px;
+            max-width: 920px;
             font-size: clamp(30px, 4.6vw, 48px);
             line-height: 0.96;
             letter-spacing: -0.05em;
@@ -179,7 +180,7 @@
         }
 
         .section-heading p {
-            max-width: 760px;
+            max-width: 880px;
         }
 
         .resource-panel {
@@ -191,7 +192,7 @@
 
         .resource-tab-list {
             display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-template-columns: repeat(5, minmax(160px, 1fr));
             gap: 12px;
             margin: 0 0 14px;
         }
@@ -342,18 +343,18 @@
         .cta-panel {
             border-radius: 28px;
             display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-            gap: 18px;
+            grid-template-columns: minmax(0, 1.24fr) minmax(300px, 0.76fr);
+            gap: 22px;
             align-items: center;
             padding: 22px;
         }
 
         .brand-footer {
             display: grid;
-            grid-template-columns: minmax(150px, 0.95fr) minmax(0, 1.2fr) minmax(140px, 0.85fr);
+            grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.45fr) minmax(160px, 0.82fr);
             align-items: center;
-            gap: 24px;
-            padding: 20px 4px 0;
+            gap: 28px;
+            padding: 20px 0 0;
         }
 
         .footer-logo-slot {
@@ -396,7 +397,7 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            max-width: 620px;
+            max-width: 760px;
             margin: 8px auto 0;
             padding-top: 16px;
             border-top: 1px solid rgba(15, 23, 42, 0.08);
@@ -466,7 +467,8 @@
 
         @media (max-width: 760px) {
             .page-shell {
-                padding: 0 10px 28px;
+                width: calc(100% - 20px);
+                padding: 0 0 28px;
             }
 
             .hero-panel,
@@ -521,11 +523,12 @@
                     Menu
                 </button>
 
-                <div class="site-frame-right">
-                    <a href="tel:4013270888">401.327.0888</a>
-                    <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
-                    <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
-                </div>
+<div class="site-frame-right">
+<a href="tel:4013270888">401.327.0888</a>
+<a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
+<span class="site-frame-brokerage">Platinum Real Estate Group-Keller Williams Leading Edge</span>
+<a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
+</div>
             </div>
 
             <nav class="site-frame-nav" id="site-frame-nav-buyers">

@@ -168,13 +168,18 @@ const homeGuide = document.querySelector("[data-home-guide]");
 
 if (homeGuide) {
     const guideTabs = Array.from(homeGuide.querySelectorAll("[data-home-tab]"));
-    const guidePanels = Array.from(homeGuide.querySelectorAll("[data-home-panel]"));
-    const homeTabByHash = new Map(guideTabs.map((tab) => [tab.dataset.homeHash, tab.dataset.homeTab]));
+    const guidePanels = Array.from(homeGuide.querySelectorAll(".home-showcase-panel[role='tabpanel']"));
+    const homeTabByHash = new Map(guideTabs.map((tab) => [tab.dataset.homeHash, tab]));
+    const homePanelById = new Map(guidePanels.map((panel) => [panel.id, panel]));
 
-    const activateHomePanel = (panelName, options = {}) => {
+    const activateHomePanel = (tabOrPanelName, options = {}) => {
         const { updateHash = false } = options;
-        const activeTab = guideTabs.find((tab) => tab.dataset.homeTab === panelName) || guideTabs[0];
-        const activePanel = guidePanels.find((panel) => panel.dataset.homePanel === panelName) || guidePanels[0];
+        const activeTab =
+            typeof tabOrPanelName === "string"
+                ? guideTabs.find((tab) => tab.dataset.homeTab === tabOrPanelName) || guideTabs[0]
+                : tabOrPanelName || guideTabs[0];
+        const activePanelId = activeTab?.getAttribute("aria-controls");
+        const activePanel = homePanelById.get(activePanelId) || guidePanels[0];
 
         guideTabs.forEach((tab) => {
             const isActive = tab === activeTab;
@@ -187,24 +192,25 @@ if (homeGuide) {
             const isActive = panel === activePanel;
             panel.classList.toggle("is-active", isActive);
             panel.hidden = !isActive;
+            panel.style.display = isActive ? "" : "none";
 
             if (isActive) {
                 panel.scrollTop = 0;
             }
         });
 
-        if (panelName === "service") {
+        if (activeTab?.dataset.homeTab === "service") {
             ensureServiceAreaMapVisible();
         }
 
-        if (updateHash && activeTab.dataset.homeHash) {
+        if (updateHash && activeTab?.dataset.homeHash) {
             history.replaceState(null, "", `#${activeTab.dataset.homeHash}`);
         }
     };
 
     guideTabs.forEach((tab) => {
         tab.addEventListener("click", () => {
-            activateHomePanel(tab.dataset.homeTab, { updateHash: true });
+            activateHomePanel(tab, { updateHash: true });
         });
     });
 
@@ -216,9 +222,9 @@ if (homeGuide) {
             return;
         }
 
-        const matchedPanel = homeTabByHash.get(currentHash);
-        if (matchedPanel) {
-            activateHomePanel(matchedPanel);
+        const matchedTab = homeTabByHash.get(currentHash);
+        if (matchedTab) {
+            activateHomePanel(matchedTab);
         }
     };
 

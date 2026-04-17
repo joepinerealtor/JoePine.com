@@ -37,12 +37,14 @@ h6 {
 }
 
 .site-frame-wrap {
-    width: min(1180px, calc(100% - 32px));
+    width: calc(100% - 32px);
+    max-width: none;
     margin: 0 auto 16px;
     padding-top: 14px;
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: width 320ms cubic-bezier(0.2, 0.75, 0.2, 1), margin 320ms cubic-bezier(0.2, 0.75, 0.2, 1), padding 320ms cubic-bezier(0.2, 0.75, 0.2, 1), transform 320ms cubic-bezier(0.2, 0.75, 0.2, 1), opacity 220ms ease;
 }
 
 .site-frame-header {
@@ -54,6 +56,7 @@ h6 {
     border: 1px solid var(--frame-line);
     background: var(--frame-surface);
     box-shadow: 0 14px 28px -24px rgba(0, 0, 0, 0.18);
+    transition: border-radius 280ms cubic-bezier(0.2, 0.75, 0.2, 1), box-shadow 280ms cubic-bezier(0.2, 0.75, 0.2, 1), border-color 220ms ease;
 }
 
 .site-frame-header::before {
@@ -61,16 +64,18 @@ h6 {
     display: block;
     height: 6px;
     background: var(--frame-red);
+    transition: height 280ms cubic-bezier(0.2, 0.75, 0.2, 1), opacity 220ms ease;
 }
 
 .site-frame-top {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto auto;
     gap: 14px;
     align-items: center;
     padding: 14px 16px 12px;
     position: relative;
     z-index: 1;
+    transition: gap 280ms cubic-bezier(0.2, 0.75, 0.2, 1), padding 280ms cubic-bezier(0.2, 0.75, 0.2, 1), grid-template-columns 280ms cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
 .site-frame-brand {
@@ -81,6 +86,9 @@ h6 {
     text-decoration: none;
     min-width: 0;
     max-width: 100%;
+    position: relative;
+    z-index: 2;
+    transition: gap 280ms cubic-bezier(0.2, 0.75, 0.2, 1), transform 280ms cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
 .site-frame-photo {
@@ -91,6 +99,7 @@ h6 {
     flex: 0 0 auto;
     border: 2px solid var(--frame-red);
     box-shadow: 0 10px 18px -18px rgba(0, 0, 0, 0.18);
+    transition: width 280ms cubic-bezier(0.2, 0.75, 0.2, 1), height 280ms cubic-bezier(0.2, 0.75, 0.2, 1), border-width 220ms ease, box-shadow 220ms ease, transform 280ms cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
 .site-frame-photo img {
@@ -106,6 +115,7 @@ h6 {
     gap: 4px;
     line-height: 1;
     min-width: 0;
+    transition: gap 240ms ease, opacity 220ms ease, transform 280ms cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
 .site-frame-copy strong {
@@ -114,6 +124,7 @@ h6 {
     font-weight: 900;
     letter-spacing: -0.04em;
     text-transform: uppercase;
+    transition: font-size 240ms ease, line-height 240ms ease, opacity 220ms ease;
 }
 
 .site-frame-copy span {
@@ -122,6 +133,7 @@ h6 {
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    transition: font-size 240ms ease, letter-spacing 240ms ease, opacity 220ms ease, transform 240ms ease;
 }
 
 .site-frame-right {
@@ -130,6 +142,10 @@ h6 {
     align-items: flex-end;
     gap: 2px;
     text-align: right;
+    min-width: 0;
+    position: relative;
+    z-index: 2;
+    transition: opacity 220ms ease, transform 280ms cubic-bezier(0.2, 0.75, 0.2, 1), gap 240ms ease, max-height 280ms ease;
 }
 
 .site-frame-right a,
@@ -139,12 +155,17 @@ h6 {
     font-size: clamp(0.82rem, 1.3vw, 0.96rem);
     font-weight: 800;
     line-height: 1.25;
+    transition: font-size 220ms ease, line-height 220ms ease, opacity 220ms ease;
 }
 
 .site-frame-right .site-frame-website {
     color: var(--frame-red);
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+.site-frame-right .site-frame-brokerage {
+    display: none;
 }
 
 .site-frame-toggle {
@@ -157,13 +178,15 @@ h6 {
     font: inherit;
     font-weight: 700;
     cursor: pointer;
+    transition: opacity 220ms ease, transform 280ms cubic-bezier(0.2, 0.75, 0.2, 1), max-height 280ms ease;
 }
 
 .site-frame-nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    column-gap: 12px;
+    row-gap: 8px;
     width: 100%;
     margin-top: 0;
     padding: 12px 16px 14px;
@@ -171,6 +194,57 @@ h6 {
     background: var(--frame-surface-alt);
     position: relative;
     z-index: 1;
+    transition: gap 280ms cubic-bezier(0.2, 0.75, 0.2, 1), padding 280ms cubic-bezier(0.2, 0.75, 0.2, 1), background-color 220ms ease;
+}
+
+.site-frame-link-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.site-frame-broker-strip {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    justify-self: unset;
+    align-self: unset;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.site-frame-broker-logo {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.site-frame-broker-logo-platinum {
+    height: clamp(30px, 2.4vw, 36px);
+}
+
+.site-frame-broker-logo-kw {
+    height: clamp(32px, 2.6vw, 38px);
+}
+
+.site-frame-broker-separator {
+    width: 1px;
+    height: clamp(28px, 2.2vw, 34px);
+    border-radius: 999px;
+    background: rgba(102, 102, 102, 0.28);
 }
 
 .site-frame-nav a {
@@ -181,7 +255,7 @@ h6 {
     font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 0.01em;
-    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, padding 240ms ease, font-size 240ms ease, opacity 220ms ease;
 }
 
 .site-frame-wrap.is-condensed .site-frame-header {
@@ -227,18 +301,59 @@ h6 {
 
 .site-frame-wrap.is-condensed .site-frame-right a,
 .site-frame-wrap.is-condensed .site-frame-right span {
-    font-size: clamp(0.64rem, 0.82vw, 0.74rem);
-    line-height: 1.05;
+    font-size: clamp(0.68rem, 0.88vw, 0.8rem);
+    line-height: 1.08;
+}
+
+.site-frame-wrap.is-condensed .site-frame-right .site-frame-brokerage {
+    display: none;
+}
+
+.site-frame-wrap.is-condensed .site-frame-right .site-frame-website {
+    display: none;
 }
 
 .site-frame-wrap.is-condensed .site-frame-nav {
-    gap: 4px;
-    padding: 5px 12px 6px;
+    column-gap: 10px;
+    row-gap: 8px;
+    padding: 7px 12px 8px;
+}
+
+.site-frame-wrap.is-condensed .site-frame-link-list {
+    gap: 6px;
 }
 
 .site-frame-wrap.is-condensed .site-frame-nav a {
-    padding: 5px 8px;
-    font-size: 0.72rem;
+    color: var(--frame-charcoal);
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta {
+    color: var(--frame-white);
+}
+
+.site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta:hover,
+.site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta:focus-visible {
+    color: var(--frame-white);
+}
+
+.site-frame-wrap.is-condensed .site-frame-broker-strip {
+    gap: 14px;
+    padding: 0;
+}
+
+.site-frame-wrap.is-condensed .site-frame-broker-logo-platinum {
+    height: clamp(22px, 1.55vw, 26px);
+}
+
+.site-frame-wrap.is-condensed .site-frame-broker-logo-kw {
+    height: clamp(23px, 1.7vw, 28px);
+}
+
+.site-frame-wrap.is-condensed .site-frame-broker-separator {
+    height: clamp(20px, 1.45vw, 24px);
 }
 
 .site-frame-nav a:hover,
@@ -254,10 +369,12 @@ h6 {
 }
 
 .site-frame-nav .site-frame-cta {
-    margin-left: auto;
+    margin-left: 0;
+    justify-self: end;
     background: var(--frame-red);
     color: var(--frame-white);
     box-shadow: 0 18px 30px -24px rgba(143, 0, 0, 0.7);
+    white-space: nowrap;
 }
 
 .site-frame-nav .site-frame-cta:hover,
@@ -268,7 +385,7 @@ h6 {
 
 @media (max-width: 760px) {
     .site-frame-wrap {
-        width: min(100% - 20px, 1180px);
+        width: calc(100% - 20px);
         padding-top: 14px;
     }
 
@@ -293,6 +410,24 @@ h6 {
         gap: 12px;
     }
 
+    .site-frame-broker-strip {
+        position: static;
+        left: auto;
+        top: auto;
+        transform: none;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+        margin-top: 2px;
+        gap: 12px;
+        padding: 6px 10px;
+        border: 1px solid rgba(204, 204, 204, 0.9);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 10px 18px -22px rgba(0, 0, 0, 0.18);
+        pointer-events: auto;
+    }
+
     .site-frame-photo {
         width: 50px;
         height: 50px;
@@ -313,6 +448,11 @@ h6 {
 
     .site-frame-wrap.is-condensed .site-frame-right {
         padding-top: 0;
+    }
+
+    .site-frame-wrap.is-condensed .site-frame-broker-strip {
+        margin-top: 0;
+        padding: 5px 8px;
     }
 
     .site-frame-copy strong {
@@ -362,6 +502,20 @@ h6 {
         display: flex;
     }
 
+    .site-frame-link-list {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .site-frame-broker-strip {
+        align-self: center;
+        justify-self: center;
+        padding: 6px 10px;
+    }
+
     .site-frame-nav a,
     .site-frame-nav .site-frame-cta {
         width: 100%;
@@ -372,7 +526,7 @@ h6 {
 
 @media (max-width: 520px) {
     .site-frame-wrap {
-        width: min(100% - 12px, 1180px);
+        width: calc(100% - 12px);
         padding-top: 10px;
     }
 
@@ -404,6 +558,19 @@ h6 {
 
     .site-frame-copy span {
         display: none;
+    }
+
+    .site-frame-broker-strip {
+        gap: 9px;
+        padding: 5px 8px;
+    }
+
+    .site-frame-broker-logo-platinum {
+        height: 16px;
+    }
+
+    .site-frame-broker-logo-kw {
+        height: 17px;
     }
 
     .site-frame-toggle {

@@ -5,6 +5,7 @@
     const statusOrder = {
         active: 0,
         "coming-soon": 1,
+        pending: 2,
         "under-contract": 2,
         sold: 3
     };
@@ -36,6 +37,66 @@
 
     function buildPropertyHref(prefix, slug) {
         return `${prefix}${encodeURIComponent(slug)}`;
+    }
+
+    function getStatusTone(status) {
+        switch (status) {
+            case "coming-soon":
+                return "coming-soon";
+            case "pending":
+            case "under-contract":
+                return "pending";
+            case "sold":
+                return "sold";
+            default:
+                return "active";
+        }
+    }
+
+    function buildStatusClass(baseClass, status, extraClass) {
+        return [baseClass, `${baseClass}--${getStatusTone(status)}`, extraClass].filter(Boolean).join(" ");
+    }
+
+    function buildStatusUpdatedLabel(listing) {
+        return listing?.sourceSnapshotLabel ? `Status updated ${listing.sourceSnapshotLabel}` : "";
+    }
+
+    function buildFeaturedStatusNote(listing, primaryOpenHouse) {
+        const updatedLabel = buildStatusUpdatedLabel(listing);
+        const updatePrefix = updatedLabel ? `${updatedLabel}. ` : "";
+
+        if (listing.status === "pending" || listing.status === "under-contract") {
+            return `${updatePrefix}This home is currently pending. Reach out to Joe if you want updates on backup interest or similar homes nearby.`;
+        }
+
+        if (listing.status === "sold") {
+            return `${updatePrefix}This home has sold. Reach out to Joe if you want help finding something similar nearby.`;
+        }
+
+        if (primaryOpenHouse) {
+            return `${updatePrefix}Open house is scheduled for ${primaryOpenHouse.dateLabel} from ${primaryOpenHouse.timeLabel}. Seller plans to pay off the solar loan at closing.`;
+        }
+
+        return `${updatePrefix}Seller plans to pay off the solar loan at closing. Reach out to Joe for the latest showing availability.`;
+    }
+
+    function buildListingsFeatureNote(listing, primaryOpenHouse) {
+        const updatedLabel = buildStatusUpdatedLabel(listing);
+        const updatePrefix = updatedLabel ? `${updatedLabel}. ` : "";
+
+        if (listing.status === "pending" || listing.status === "under-contract") {
+            return `${updatePrefix}This home is currently pending. Reach out to Joe if you want backup guidance or help finding something similar.`;
+        }
+
+        if (listing.status === "sold") {
+            return `${updatePrefix}This home has sold. Reach out to Joe if you want help finding something similar.`;
+        }
+
+        if (primaryOpenHouse) {
+            return `${updatePrefix}${primaryOpenHouse.dateLabel} from ${primaryOpenHouse.timeLabel}. ${listing.sourceNote}`;
+        }
+
+        return `${updatePrefix}${listing.sourceNote}`;
     }
 
     function sortListings(collection) {
@@ -469,6 +530,12 @@
             '<div class="featured-listing-shell">',
             '    <div class="featured-listing-copy">',
             '        <p class="eyebrow">Featured Listing</p>',
+            '        <div class="featured-listing-status-row">',
+            `            <span class="${buildStatusClass("featured-listing-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
+            buildStatusUpdatedLabel(listing)
+                ? `            <span class="featured-listing-status featured-listing-status-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
+                : "",
+            "        </div>",
             `        <h2>${escapeHtml(listing.headline)}</h2>`,
             `        <p class="featured-listing-price">${escapeHtml(formatPrice(listing.price))}</p>`,
             `        <div class="featured-listing-stats" aria-label="${escapeHtml(listing.title)} home facts">`,
@@ -483,9 +550,7 @@
             buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
             buildButton(listing.links.homes, "View On Homes.com", "button-secondary", ' target="_blank" rel="noreferrer"'),
             "        </div>",
-            primaryOpenHouse
-                ? `        <p class="featured-listing-note">Open house is scheduled for ${escapeHtml(primaryOpenHouse.dateLabel)} from ${escapeHtml(primaryOpenHouse.timeLabel)}. Seller plans to pay off the solar loan at closing.</p>`
-                : '        <p class="featured-listing-note">Seller plans to pay off the solar loan at closing. Reach out to Joe for the latest showing availability.</p>',
+            `        <p class="featured-listing-note">${escapeHtml(buildFeaturedStatusNote(listing, primaryOpenHouse))}</p>`,
             "    </div>",
             '    <div class="featured-media-card">',
             '        <div class="featured-media-heading">',
@@ -522,6 +587,12 @@
             "    </div>",
             '    <div class="featured-property-copy">',
             '        <p class="section-kicker">Featured Listing</p>',
+            '        <div class="listing-card-status-row" style="margin-bottom: 14px;">',
+            `            <span class="${buildStatusClass("listing-card-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
+            buildStatusUpdatedLabel(listing)
+                ? `            <span class="listing-card-status listing-card-status-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
+                : "",
+            "        </div>",
             `        <h2>${escapeHtml(`${listing.title}, ${listing.city}, ${listing.state} ${listing.zip}`)}</h2>`,
             `        <p class="featured-property-price">${escapeHtml(formatPrice(listing.price))}</p>`,
             `        <div class="featured-property-chips" aria-label="${escapeHtml(listing.title)} home facts">`,
@@ -536,9 +607,7 @@
             buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
             buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`${listing.title} Showing Request`)}`, "Email Joe", "button-secondary"),
             "        </div>",
-            primaryOpenHouse
-                ? `        <p class="featured-property-note">${escapeHtml(`${primaryOpenHouse.dateLabel} from ${primaryOpenHouse.timeLabel}. ${listing.sourceNote}`)}</p>`
-                : `        <p class="featured-property-note">${escapeHtml(listing.sourceNote)}</p>`,
+            `        <p class="featured-property-note">${escapeHtml(buildListingsFeatureNote(listing, primaryOpenHouse))}</p>`,
             "    </div>",
             "</div>"
         ].join("");
@@ -565,7 +634,7 @@
                     "    </div>",
                     '    <div class="listing-card-body">',
                     '        <div class="listing-card-status-row">',
-                    `            <span class="listing-card-status">${escapeHtml(listing.statusLabel)}</span>`,
+                    `            <span class="${buildStatusClass("listing-card-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
                     listing.neighborhood
                         ? `            <span class="listing-card-status listing-card-status-muted">${escapeHtml(listing.neighborhood)}</span>`
                         : "",
@@ -652,12 +721,24 @@
 
     function updateListingMeta(listing) {
         const primaryOpenHouse = getPrimaryOpenHouse(listing);
-        const openHouseFragment = primaryOpenHouse ? `, next open house ${primaryOpenHouse.dateLabel}` : "";
+        const openHouseFragment = primaryOpenHouse ? ` Next open house ${primaryOpenHouse.dateLabel}.` : "";
         const title = `${listing.title}, ${listing.city} ${listing.state} ${listing.zip} | Joe Pine Real Estate`;
-        const description = `Featured listing at ${listing.title} in ${listing.city}, ${listing.state}. ${formatPrice(listing.price)}, ${listing.beds} bedrooms, ${formatBaths(listing.baths)} baths, ${formatNumber(listing.sqft)} square feet, fenced yard, porch, patio, and solar${openHouseFragment}.`;
+        const statusFragment =
+            listing.status === "pending" || listing.status === "under-contract"
+                ? " Currently pending."
+                : listing.status === "sold"
+                  ? " Recently sold."
+                  : "";
+        const description = `Featured listing at ${listing.title} in ${listing.city}, ${listing.state}. ${formatPrice(listing.price)}, ${listing.beds} bedrooms, ${formatBaths(listing.baths)} baths, ${formatNumber(listing.sqft)} square feet, fenced yard, porch, patio, and solar.${statusFragment}${openHouseFragment}`;
         const image = listing.images[0];
         const canonicalHref = `https://joepine.com/listings/property/?slug=${encodeURIComponent(listing.slug)}`;
         const schemaNode = document.querySelector("[data-listing-schema]");
+        const schemaAvailability =
+            listing.status === "pending" || listing.status === "under-contract"
+                ? "https://schema.org/LimitedAvailability"
+                : listing.status === "sold"
+                  ? "https://schema.org/SoldOut"
+                  : "https://schema.org/InStock";
 
         document.title = title;
 
@@ -713,7 +794,7 @@
                         "@type": "Offer",
                         priceCurrency: "USD",
                         price: listing.price,
-                        availability: "https://schema.org/InStock",
+                        availability: schemaAvailability,
                         url: canonicalHref
                     }
                 },
@@ -786,7 +867,11 @@
             '    <div class="listing-copy">',
             '        <div class="status-row">',
             '            <span class="status-pill">Featured Listing</span>',
-            primaryOpenHouse ? `            <span class="status-pill">Open House: ${escapeHtml(primaryOpenHouse.fullLabel)}</span>` : "",
+            `            <span class="${buildStatusClass("status-pill", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
+            buildStatusUpdatedLabel(listing)
+                ? `            <span class="status-pill status-pill-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
+                : "",
+            primaryOpenHouse && listing.status === "active" ? `            <span class="status-pill">Open House: ${escapeHtml(primaryOpenHouse.fullLabel)}</span>` : "",
             "        </div>",
             `        <p class="eyebrow">${escapeHtml(listing.areaLabel)}</p>`,
             `        <h1>${escapeHtml(listing.title)}</h1>`,
