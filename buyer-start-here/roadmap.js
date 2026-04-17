@@ -12,11 +12,14 @@ const openSlidesButtons = Array.from(document.querySelectorAll("[data-open-slide
 const closeSlidesButtons = Array.from(document.querySelectorAll("[data-close-slides]"));
 const openSourcesButtons = Array.from(document.querySelectorAll("[data-open-sources]"));
 const closeSourcesButtons = Array.from(document.querySelectorAll("[data-close-sources]"));
+const openContactButtons = Array.from(document.querySelectorAll("[data-open-contact]"));
+const closeContactButtons = Array.from(document.querySelectorAll("[data-close-contact]"));
 const shareButtons = Array.from(document.querySelectorAll("[data-share-workbook]"));
 const overlayBackdrop = document.querySelector("[data-close-overlays]");
 const mobileDrawer = document.getElementById("roadmap-mobile-menu");
 const slideSheet = document.getElementById("roadmap-slide-sheet");
 const sourcesPanel = document.querySelector(".page-notes");
+const contactModal = document.querySelector(".contact-modal");
 const desktopStage = document.querySelector(".roadmap-main");
 const mobileStoryViewport = document.querySelector("[data-mobile-story-stage]");
 const mobileStoryProgress = document.querySelector("[data-mobile-story-progress]");
@@ -1116,6 +1119,7 @@ function setBodyOverlayState() {
     document.body.classList.toggle("is-menu-open", mobileDrawer?.getAttribute("aria-hidden") === "false");
     document.body.classList.toggle("is-slides-open", slideSheet?.getAttribute("aria-hidden") === "false");
     document.body.classList.toggle("is-sources-open", sourcesPanel?.getAttribute("aria-hidden") === "false");
+    document.body.classList.toggle("is-contact-open", contactModal?.getAttribute("aria-hidden") === "false");
 }
 
 function closeMenu() {
@@ -1135,6 +1139,7 @@ function openMenu() {
 
     closeSlides();
     closeSources();
+    closeContact();
     mobileDrawer.setAttribute("aria-hidden", "false");
     openMenuButtons.forEach((button) => button.setAttribute("aria-expanded", "true"));
     setBodyOverlayState();
@@ -1157,6 +1162,7 @@ function openSlides() {
 
     closeMenu();
     closeSources();
+    closeContact();
     slideSheet.setAttribute("aria-hidden", "false");
     openSlidesButtons.forEach((button) => button.setAttribute("aria-expanded", "true"));
     setBodyOverlayState();
@@ -1178,7 +1184,29 @@ function openSources() {
 
     closeMenu();
     closeSlides();
+    closeContact();
     sourcesPanel.setAttribute("aria-hidden", "false");
+    setBodyOverlayState();
+}
+
+function closeContact() {
+    if (!contactModal) {
+        return;
+    }
+
+    contactModal.setAttribute("aria-hidden", "true");
+    setBodyOverlayState();
+}
+
+function openContact() {
+    if (!contactModal) {
+        return;
+    }
+
+    closeMenu();
+    closeSlides();
+    closeSources();
+    contactModal.setAttribute("aria-hidden", "false");
     setBodyOverlayState();
 }
 
@@ -1299,6 +1327,18 @@ closeSourcesButtons.forEach((button) => {
     });
 });
 
+openContactButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        openContact();
+    });
+});
+
+closeContactButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        closeContact();
+    });
+});
+
 shareButtons.forEach((button) => {
     button.addEventListener("click", () => {
         closeMenu();
@@ -1355,11 +1395,18 @@ overlayBackdrop?.addEventListener("click", () => {
     closeMenu();
     closeSlides();
     closeSources();
+    closeContact();
 });
 
 sourcesPanel?.addEventListener("click", (event) => {
     if (event.target === sourcesPanel) {
         closeSources();
+    }
+});
+
+contactModal?.addEventListener("click", (event) => {
+    if (event.target === contactModal) {
+        closeContact();
     }
 });
 
@@ -1370,6 +1417,7 @@ swipeSurface?.addEventListener("touchstart", (event) => {
         document.body.classList.contains("is-menu-open")
         || document.body.classList.contains("is-slides-open")
         || document.body.classList.contains("is-sources-open")
+        || document.body.classList.contains("is-contact-open")
     ) {
         touchStartPoint = null;
         return;
@@ -1418,6 +1466,7 @@ document.addEventListener("keydown", (event) => {
         closeMenu();
         closeSlides();
         closeSources();
+        closeContact();
         return;
     }
 

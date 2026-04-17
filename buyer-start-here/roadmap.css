@@ -2093,13 +2093,33 @@ select {
     transition: opacity 0.2s ease;
 }
 
+.contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 125;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(16, 22, 27, 0.58);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
 body.is-menu-open,
 body.is-slides-open,
-body.is-sources-open {
+body.is-sources-open,
+body.is-contact-open {
     overflow: hidden;
 }
 
 .page-notes[aria-hidden="false"] {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.contact-modal[aria-hidden="false"] {
     opacity: 1;
     pointer-events: auto;
 }
@@ -2112,6 +2132,65 @@ body.is-sources-open {
     border-radius: 30px;
     background: rgb(255, 253, 249);
     box-shadow: 0 28px 80px rgba(18, 24, 28, 0.32);
+}
+
+.contact-modal__card {
+    width: min(920px, 100%);
+    display: grid;
+    grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1.12fr);
+    overflow: hidden;
+    margin: 0;
+    border-radius: 32px;
+    background: rgb(255, 253, 249);
+    box-shadow: 0 28px 80px rgba(18, 24, 28, 0.32);
+}
+
+.contact-modal__media {
+    min-height: 100%;
+    background: linear-gradient(180deg, #f1e2d8 0%, #e8d2c3 100%);
+}
+
+.contact-modal__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.contact-modal__body {
+    display: grid;
+    gap: 18px;
+    padding: 30px;
+}
+
+.contact-modal__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.contact-modal__head h2 {
+    margin: 0;
+}
+
+.contact-modal__logo {
+    width: min(100%, 360px);
+    height: auto;
+    display: block;
+}
+
+.contact-modal__lede {
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.contact-modal__copy {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--muted-strong);
 }
 
 .page-notes__head {
@@ -2165,7 +2244,8 @@ body.is-sources-open {
 }
 
 body.is-menu-open .overlay-backdrop,
-body.is-slides-open .overlay-backdrop {
+body.is-slides-open .overlay-backdrop,
+body.is-contact-open .overlay-backdrop {
     display: block;
     opacity: 1;
     pointer-events: auto;
@@ -2340,6 +2420,17 @@ body.is-slides-open .mobile-sheet {
 
     .deck-controls__actions {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-modal__card {
+        grid-template-columns: 1fr;
+        max-height: min(86vh, 920px);
+        overflow: auto;
+    }
+
+    .contact-modal__media {
+        min-height: 260px;
+        max-height: 320px;
     }
 }
 
@@ -2649,9 +2740,31 @@ body.is-slides-open .mobile-sheet {
         padding: 14px;
     }
 
+    .contact-modal {
+        align-items: flex-end;
+        padding: 14px;
+    }
+
     .page-notes .notes-card {
         max-height: 84svh;
         border-radius: 28px 28px 22px 22px;
+    }
+
+    .contact-modal__card {
+        border-radius: 28px 28px 22px 22px;
+    }
+
+    .contact-modal__body {
+        padding: 22px 18px 20px;
+    }
+
+    .contact-modal__head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .contact-modal__head .page-notes__close {
+        width: 100%;
     }
 
     .page-notes__head {
@@ -3864,7 +3977,8 @@ body.is-slides-open .mobile-sheet {
     .mobile-scroll-indicator,
     .mobile-drawer,
     .overlay-backdrop,
-    .page-notes {
+    .page-notes,
+    .contact-modal {
         transition: none;
         animation: none;
     }
