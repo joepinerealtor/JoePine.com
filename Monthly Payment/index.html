@@ -699,6 +699,24 @@
                 mfh: { label: "Multi Family" },
                 mobile: { label: "Manufactured Home" }
             };
+            const getNormalizedPropertyType = (propertyTypeValue) => PROPERTY_TYPES[propertyTypeValue] ? propertyTypeValue : "sfh";
+            const getNormalizedLoanProgram = (loanProgramValue) => RATE_PROGRAMS[loanProgramValue] ? loanProgramValue : "conventional";
+            const getLoanProgramForPropertyType = (propertyTypeValue, loanProgramValue) => {
+                const normalizedPropertyType = getNormalizedPropertyType(propertyTypeValue);
+                const normalizedLoanProgram = getNormalizedLoanProgram(loanProgramValue);
+                return normalizedPropertyType === "mobile" ? "conventional" : normalizedLoanProgram;
+            };
+            const getMinimumDownPaymentPercent = (loanProgramValue, propertyTypeValue) => {
+                const normalizedPropertyType = getNormalizedPropertyType(propertyTypeValue);
+                const resolvedLoanProgram = getLoanProgramForPropertyType(normalizedPropertyType, loanProgramValue);
+                const program = RATE_PROGRAMS[resolvedLoanProgram] || RATE_PROGRAMS.conventional;
+                return Math.max(program.minimumDownPaymentPercent, normalizedPropertyType === "mobile" ? 10 : 0);
+            };
+            const getDefaultDownPaymentPercent = (loanProgramValue, propertyTypeValue) => {
+                const resolvedLoanProgram = getLoanProgramForPropertyType(propertyTypeValue, loanProgramValue);
+                const program = RATE_PROGRAMS[resolvedLoanProgram] || RATE_PROGRAMS.conventional;
+                return Math.max(program.defaultDownPaymentPercent, getMinimumDownPaymentPercent(resolvedLoanProgram, propertyTypeValue));
+            };
             const PROPERTY_TYPE_SEARCH_SUFFIXES = {
                 sfh: "&property_subtype=HOUSE",
                 condo: "&property_subtype=CONDO%2CTOWNHOUSE%2CCOOP",
@@ -707,15 +725,16 @@
             };
             const persistedPrefsRef = useRef(readPersistedCalculatorPrefs());
             const persistedPrefs = persistedPrefsRef.current;
-            const initialLoanProgram = RATE_PROGRAMS[persistedPrefs.loanProgram] ? persistedPrefs.loanProgram : "conventional";
+            const initialPropertyType = getNormalizedPropertyType(persistedPrefs.propertyType);
+            const initialLoanProgram = getLoanProgramForPropertyType(initialPropertyType, persistedPrefs.loanProgram);
             const initialDownPaymentMode = persistedPrefs.downPaymentMode === "custom" ? "custom" : "percentage";
-            const initialPropertyType = PROPERTY_TYPES[persistedPrefs.propertyType] ? persistedPrefs.propertyType : "sfh";
-            const normalizePresetDownPaymentPercent = (loanProgramValue, rawPercent) => {
-                const program = RATE_PROGRAMS[loanProgramValue] || RATE_PROGRAMS.conventional;
+            const normalizePresetDownPaymentPercent = (loanProgramValue, propertyTypeValue, rawPercent) => {
+                const resolvedLoanProgram = getLoanProgramForPropertyType(propertyTypeValue, loanProgramValue);
+                const minimumDownPaymentPercent = getMinimumDownPaymentPercent(resolvedLoanProgram, propertyTypeValue);
                 const parsedPercent = Number(rawPercent);
                 const matchingPreset = PRESET_PERCENTAGES.find((pct) => Math.abs(pct - parsedPercent) < 0.001);
-                if (matchingPreset == null || matchingPreset < program.minimumDownPaymentPercent) {
-                    return program.defaultDownPaymentPercent;
+                if (matchingPreset == null || matchingPreset < minimumDownPaymentPercent) {
+                    return getDefaultDownPaymentPercent(resolvedLoanProgram, propertyTypeValue);
                 }
                 return matchingPreset;
             };
@@ -738,7 +757,7 @@
             const [propertyType, setPropertyType] = useState(initialPropertyType);
             const [loanProgram, setLoanProgram] = useState(initialLoanProgram);
             const [downPaymentMode, setDownPaymentMode] = useState(initialDownPaymentMode); 
-            const [downPaymentPercent, setDownPaymentPercent] = useState(() => normalizePresetDownPaymentPercent(initialLoanProgram, persistedPrefs.downPaymentPercent));
+            const [downPaymentPercent, setDownPaymentPercent] = useState(() => normalizePresetDownPaymentPercent(initialLoanProgram, initialPropertyType, persistedPrefs.downPaymentPercent));
             const [downPaymentFixed, setDownPaymentFixed] = useState(() => Number.isFinite(Number(persistedPrefs.downPaymentFixed)) ? Number(persistedPrefs.downPaymentFixed) : 60000);
             const [interestRate, setInterestRate] = useState(initialInterestRate || "6.25");
             const [rateBuydownEnabled, setRateBuydownEnabled] = useState(persistedPrefs.rateBuydownEnabled === true);
@@ -775,18 +794,21 @@
 
             const [results, setResults] = useState(zeroResults);
 
-            const currentRateProgram = RATE_PROGRAMS[loanProgram] || RATE_PROGRAMS.conventional;
+            const resolvedLoanProgram = getLoanProgramForPropertyType(propertyType, loanProgram);
+            const currentRateProgram = RATE_PROGRAMS[resolvedLoanProgram] || RATE_PROGRAMS.conventional;
             const currentPropertyType = PROPERTY_TYPES[propertyType] || PROPERTY_TYPES.sfh;
             const MND_RATE_SOURCE_URL = currentRateProgram.sourceUrl;
             const MND_RATE_PROXY_URL = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(MND_RATE_SOURCE_URL)}`;
-            const activeDownPaymentPercent = normalizePresetDownPaymentPercent(loanProgram, downPaymentPercent);
-            const isPresetDisabled = (pct) => pct < currentRateProgram.minimumDownPaymentPercent;
+            const minimumDownPaymentPercent = getMinimumDownPaymentPercent(resolvedLoanProgram, propertyType);
+            const activeDownPaymentPercent = normalizePresetDownPaymentPercent(resolvedLoanProgram, propertyType, downPaymentPercent);
+            const isPresetDisabled = (pct) => pct < minimumDownPaymentPercent;
             const DISCLAIMER_TEXT = "This calculator is a planning tool based on your target monthly payment and estimated taxes, homeowners insurance, mortgage insurance when applicable, optional HOA dues, optional rate-buydown assumptions, and a simplified multi-family rent-offset example when Multi Family is selected. Final preapproval, rental-income treatment, discount-point pricing, closing costs, HOA dues, and monthly payment can change after a lender reviews income, debts, assets, credit, loan terms, lock period, leases, appraised market rent, reserves, and actual property costs; only a licensed mortgage professional can issue a preapproval, and each office is independently owned and operated in support of equal housing opportunity.";
             const DOWN_PAYMENT_TIP_TEXT = "RI and MA offer down payment and closing cost help for some buyers. Ask your lender what you may qualify for during preapproval.";
             const ESCROW_HELP_TEXT = "Your principal and interest stay more predictable, but taxes and homeowners insurance can change from one property to the next. Lenders collect those yearly costs monthly through escrow, so two homes at the same price can still have different total payments.";
             const INSURANCE_TIP_TEXT = "Homeowners insurance is one cost you can shop before closing. The premium you choose can raise or lower your final monthly mortgage payment.";
             const BUYDOWN_TIP_TEXT = "This planner treats a permanent rate buydown as discount points paid at closing, not as part of the down payment. Program rules, lender overlays, and pricing can all vary by loan type, lender, lock period, and market. Please consult a lender for mortgage advice. This is only an example of how a buydown may work if allowed.";
             const showsTopPropertyFeeInput = propertyType === "condo" || propertyType === "mobile";
+            const isManufacturedHome = propertyType === "mobile";
             const suggestedCondoFee = Number(stateTaxRate) === 1.15 ? CONDO_FEE_DEFAULTS.MA : CONDO_FEE_DEFAULTS.RI;
             const suggestedMobileFee = Number(stateTaxRate) === 1.15 ? MOBILE_FEE_DEFAULTS.MA : MOBILE_FEE_DEFAULTS.RI;
             const suggestedTopPropertyFee = propertyType === "mobile" ? suggestedMobileFee : suggestedCondoFee;
@@ -810,10 +832,10 @@
             };
 
             const handleLoanProgramChange = (programKey) => {
-                const nextProgram = RATE_PROGRAMS[programKey] || RATE_PROGRAMS.conventional;
-                setLoanProgram(programKey);
+                const nextProgram = getLoanProgramForPropertyType(propertyType, programKey);
+                setLoanProgram(nextProgram);
                 setDownPaymentMode("percentage");
-                setDownPaymentPercent(nextProgram.defaultDownPaymentPercent);
+                setDownPaymentPercent(getDefaultDownPaymentPercent(nextProgram, propertyType));
             };
 
             const calculateResultsForPrice = ({
@@ -836,26 +858,43 @@
                 }
 
                 const normalizedInterestRate = toNonNegativeNumber(interestRateValue);
-                const activeProgram = RATE_PROGRAMS[loanProgramValue] || RATE_PROGRAMS.conventional;
-                const normalizedPropertyType = PROPERTY_TYPES[propertyTypeValue] ? propertyTypeValue : "sfh";
+                const normalizedPropertyType = getNormalizedPropertyType(propertyTypeValue);
+                const normalizedLoanProgram = getLoanProgramForPropertyType(normalizedPropertyType, loanProgramValue);
+                const activeProgram = RATE_PROGRAMS[normalizedLoanProgram] || RATE_PROGRAMS.conventional;
+                const minimumRequiredDownPaymentPercent = getMinimumDownPaymentPercent(normalizedLoanProgram, normalizedPropertyType);
                 const cappedRateBuydownReduction = rateBuydownEnabledValue
                     ? Math.min(toNonNegativeNumber(rateBuydownReductionValue), normalizedInterestRate)
                     : 0;
                 const adjustedInterestRate = Math.max(normalizedInterestRate - cappedRateBuydownReduction, 0);
                 const normalizedTaxRate = toNonNegativeNumber(taxRateValue);
                 const normalizedHoaMonthly = toNonNegativeNumber(hoaMonthlyValue);
-                const normalizedDownPaymentPercent = Math.min(toNonNegativeNumber(downPaymentPercentValue), 100);
+                const normalizedDownPaymentPercent = Math.max(Math.min(toNonNegativeNumber(downPaymentPercentValue), 100), minimumRequiredDownPaymentPercent);
                 const normalizedDownPaymentFixed = toNonNegativeNumber(downPaymentFixedValue);
+                const availableCustomDownPayment = Math.min(normalizedDownPaymentFixed, normalizedPrice);
+                const minimumRequiredDownPaymentAmount = normalizedPrice * (minimumRequiredDownPaymentPercent / 100);
                 const normalizedLoanTerm = Math.max(Number(loanTermValue) || 0, 1) * 12;
                 const r = (adjustedInterestRate / 100) / 12;
                 const t = (normalizedTaxRate / 100) / 12;
                 const mc = r > 0 ? (r * Math.pow(1 + r, normalizedLoanTerm)) / (Math.pow(1 + r, normalizedLoanTerm) - 1) : 1 / normalizedLoanTerm;
+
+                if (downPaymentModeValue === 'custom' && availableCustomDownPayment + 0.01 < minimumRequiredDownPaymentAmount) {
+                    return {
+                        ...zeroResults,
+                        homePrice: normalizedPrice,
+                        loanAmount: Math.max(normalizedPrice - availableCustomDownPayment, 0),
+                        downPaymentAmount: availableCustomDownPayment,
+                        affordabilityPayment: Number.POSITIVE_INFINITY,
+                        grossPayment: Number.POSITIVE_INFINITY,
+                        totalPayment: Number.POSITIVE_INFINITY
+                    };
+                }
+
                 const downPaymentAmount = downPaymentModeValue === 'percentage'
                     ? normalizedPrice * (normalizedDownPaymentPercent / 100)
-                    : Math.min(normalizedDownPaymentFixed, normalizedPrice);
+                    : availableCustomDownPayment;
                 const loanAmount = Math.max(normalizedPrice - downPaymentAmount, 0);
                 const ltv = loanAmount > 0 ? (loanAmount / normalizedPrice) * 100 : 0;
-                const pmiRate = loanAmount > 0 ? getMortgageInsuranceRate(loanProgramValue, ltv) : 0;
+                const pmiRate = loanAmount > 0 ? getMortgageInsuranceRate(normalizedLoanProgram, ltv) : 0;
                 const buydownPointsPercent = cappedRateBuydownReduction > 0
                     ? (cappedRateBuydownReduction / RATE_BUYDOWN_INCREMENT) * activeProgram.estimatedPointsPerQuarterReduction
                     : 0;
@@ -924,7 +963,7 @@
                 persistCalculatorPrefs({
                     monthlyGoal: monthlyGoal === "" ? 0 : Number(monthlyGoal) || 0,
                     propertyType,
-                    loanProgram,
+                    loanProgram: resolvedLoanProgram,
                     downPaymentMode,
                     downPaymentPercent: activeDownPaymentPercent === "" ? 0 : Number(activeDownPaymentPercent) || 0,
                     downPaymentFixed: downPaymentFixed === "" ? 0 : Number(downPaymentFixed) || 0,
@@ -935,15 +974,20 @@
                     stateTaxRate: Number(stateTaxRate) || 1.25,
                     hoaMonthly: hoaMonthly === "" ? 0 : Number(hoaMonthly) || 0
                 });
-            }, [monthlyGoal, propertyType, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, rateBuydownEnabled, rateBuydownReduction, loanTerm, stateTaxRate, hoaMonthly]);
+            }, [monthlyGoal, propertyType, resolvedLoanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, rateBuydownEnabled, rateBuydownReduction, loanTerm, stateTaxRate, hoaMonthly]);
 
             useEffect(() => {
+                if (loanProgram !== resolvedLoanProgram) {
+                    setLoanProgram(resolvedLoanProgram);
+                    return;
+                }
+
                 if (downPaymentMode !== "percentage") return;
 
                 if (activeDownPaymentPercent !== downPaymentPercent) {
                     setDownPaymentPercent(activeDownPaymentPercent);
                 }
-            }, [loanProgram, downPaymentMode, downPaymentPercent, activeDownPaymentPercent]);
+            }, [loanProgram, resolvedLoanProgram, downPaymentMode, downPaymentPercent, activeDownPaymentPercent]);
 
             useEffect(() => {
                 const handleAfterPrint = () => document.body.classList.remove('printing-export');
@@ -1033,7 +1077,7 @@
                 setRateError("");
                 shouldAutoApplyLiveRateRef.current = true;
                 fetchLiveRate(true);
-            }, [loanProgram]);
+            }, [resolvedLoanProgram]);
 
             useEffect(() => {
                 const normalizedMonthlyGoal = toNonNegativeNumber(monthlyGoal);
@@ -1048,7 +1092,7 @@
                 let highResults = calculateResultsForPrice({
                     price: high,
                     propertyTypeValue: propertyType,
-                    loanProgramValue: loanProgram,
+                    loanProgramValue: resolvedLoanProgram,
                     interestRateValue: interestRate,
                     rateBuydownEnabledValue: rateBuydownEnabled,
                     rateBuydownReductionValue: rateBuydownReduction,
@@ -1066,7 +1110,7 @@
                     highResults = calculateResultsForPrice({
                         price: high,
                         propertyTypeValue: propertyType,
-                        loanProgramValue: loanProgram,
+                        loanProgramValue: resolvedLoanProgram,
                         interestRateValue: interestRate,
                         rateBuydownEnabledValue: rateBuydownEnabled,
                         rateBuydownReductionValue: rateBuydownReduction,
@@ -1085,7 +1129,7 @@
                     const midResults = calculateResultsForPrice({
                         price: mid,
                         propertyTypeValue: propertyType,
-                        loanProgramValue: loanProgram,
+                        loanProgramValue: resolvedLoanProgram,
                         interestRateValue: interestRate,
                         rateBuydownEnabledValue: rateBuydownEnabled,
                         rateBuydownReductionValue: rateBuydownReduction,
@@ -1106,7 +1150,7 @@
                 const finalResults = calculateResultsForPrice({
                     price: low,
                     propertyTypeValue: propertyType,
-                    loanProgramValue: loanProgram,
+                    loanProgramValue: resolvedLoanProgram,
                     interestRateValue: interestRate,
                     rateBuydownEnabledValue: rateBuydownEnabled,
                     rateBuydownReductionValue: rateBuydownReduction,
@@ -1149,7 +1193,7 @@
                     affordabilityPayment: Math.round(finalResults.affordabilityPayment),
                     grossPayment: Math.round(finalResults.grossPayment)
                 });
-            }, [monthlyGoal, propertyType, loanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, rateBuydownEnabled, rateBuydownReduction, loanTerm, stateTaxRate, hoaMonthly]);
+            }, [monthlyGoal, propertyType, resolvedLoanProgram, downPaymentMode, activeDownPaymentPercent, downPaymentFixed, interestRate, rateBuydownEnabled, rateBuydownReduction, loanTerm, stateTaxRate, hoaMonthly]);
 
             const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
             const formatRatePercent = (val) => {
@@ -1554,6 +1598,7 @@
                                                     value={propertyType}
                                                     onChange={(e) => {
                                                         const nextPropertyType = e.target.value;
+                                                        const nextLoanProgram = getLoanProgramForPropertyType(nextPropertyType, loanProgram);
                                                         const nextSuggestedFee = nextPropertyType === "condo"
                                                             ? suggestedCondoFee
                                                             : nextPropertyType === "mobile"
@@ -1563,6 +1608,12 @@
                                                             setHoaMonthly(nextSuggestedFee);
                                                         } else {
                                                             setHoaMonthly(0);
+                                                        }
+                                                        if (nextLoanProgram !== loanProgram) {
+                                                            setLoanProgram(nextLoanProgram);
+                                                        }
+                                                        if (downPaymentMode === "percentage") {
+                                                            setDownPaymentPercent((currentPercent) => normalizePresetDownPaymentPercent(nextLoanProgram, nextPropertyType, currentPercent));
                                                         }
                                                         setPropertyType(nextPropertyType);
                                                     }}
@@ -1624,24 +1675,39 @@
                                             <div>
                                                 <div className="flex justify-between items-center mb-2 leading-none font-black">
                                                     <label className="text-xs uppercase tracking-[0.15em] text-gray-400 font-black">Loan Type</label>
-                                                    <span className="text-[10px] uppercase tracking-widest text-gray-300 font-black">Select Program</span>
+                                                    <span className="text-[10px] uppercase tracking-widest text-gray-300 font-black">{isManufacturedHome ? "Conventional Only" : "Select Program"}</span>
                                                 </div>
                                                 <div className="grid grid-cols-3 gap-1 no-print font-black">
-                                                    {Object.entries(RATE_PROGRAMS).map(([programKey, programConfig]) => (
-                                                        <button
-                                                            key={programKey}
-                                                            type="button"
-                                                            onClick={() => handleLoanProgramChange(programKey)}
-                                                            className={`py-2.5 text-xs font-black rounded-md border transition-all ${
-                                                                loanProgram === programKey
-                                                                    ? 'border-[#b40101] bg-red-50 text-[#b40101]'
-                                                                    : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'
-                                                            }`}
-                                                        >
-                                                            {programConfig.label}
-                                                        </button>
-                                                    ))}
+                                                    {Object.entries(RATE_PROGRAMS).map(([programKey, programConfig]) => {
+                                                        const isLoanProgramDisabled = isManufacturedHome && programKey !== "conventional";
+                                                        return (
+                                                            <button
+                                                                key={programKey}
+                                                                type="button"
+                                                                disabled={isLoanProgramDisabled}
+                                                                onClick={() => {
+                                                                    if (isLoanProgramDisabled) return;
+                                                                    handleLoanProgramChange(programKey);
+                                                                }}
+                                                                title={isLoanProgramDisabled ? "Manufactured home examples use conventional financing." : `${programConfig.label} loan example`}
+                                                                className={`py-2.5 text-xs font-black rounded-md border transition-all ${
+                                                                    isLoanProgramDisabled
+                                                                        ? 'cursor-not-allowed border-gray-100 bg-gray-50 text-gray-300'
+                                                                        : resolvedLoanProgram === programKey
+                                                                            ? 'border-[#b40101] bg-red-50 text-[#b40101]'
+                                                                            : 'border-gray-100 text-gray-400 hover:border-red-100 hover:text-[#b40101]'
+                                                                }`}
+                                                            >
+                                                                {programConfig.label}
+                                                            </button>
+                                                        );
+                                                    })}
                                                 </div>
+                                                {isManufacturedHome && (
+                                                    <p className="mt-3 text-[11px] leading-relaxed text-gray-500 font-black">
+                                                        Manufactured home examples are modeled with conventional financing and a minimum 10% down payment.
+                                                    </p>
+                                                )}
                                             </div>
 
                                             <div className="font-black">
@@ -1769,7 +1835,7 @@
                                                                     setDownPaymentMode('percentage');
                                                                     setDownPaymentPercent(pct);
                                                                 }}
-                                                                title={disabled ? `${currentRateProgram.label} examples start at ${currentRateProgram.minimumDownPaymentPercent}% down` : `${pct}% down payment`}
+                                                                title={disabled ? `${currentPropertyType.label} examples start at ${minimumDownPaymentPercent}% down` : `${pct}% down payment`}
                                                                 className={`py-2 text-xs font-black rounded-md border transition-all ${
                                                                     disabled
                                                                         ? 'cursor-not-allowed border-gray-100 bg-gray-50 text-gray-300'
@@ -1808,6 +1874,14 @@
                                                         {DOWN_PAYMENT_TIP_TEXT}
                                                     </p>
                                                 </div>
+                                                {isManufacturedHome && (
+                                                    <div className="rounded-lg border border-amber-100 bg-amber-50/70 p-3 text-left font-black">
+                                                        <p className="text-[10px] uppercase tracking-[0.18em] text-amber-700 mb-1.5 font-black">Manufactured Home Rule</p>
+                                                        <p className="text-[11px] leading-relaxed text-gray-500 font-black">
+                                                            Manufactured home examples here use conventional financing with at least 10% down. If you use a custom cash amount, the estimated price stays within that 10% minimum.
+                                                        </p>
+                                                    </div>
+                                                )}
                                                 {propertyType === "mfh" && (
                                                     <div className="rounded-lg border border-emerald-100 bg-emerald-50/70 p-3 text-left font-black">
                                                         <p className="text-[10px] uppercase tracking-[0.18em] text-emerald-700 mb-1.5 font-black">Multi Family Rent Offset</p>

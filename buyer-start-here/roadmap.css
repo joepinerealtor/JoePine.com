@@ -309,7 +309,7 @@ select {
 
 .rail-card--outline {
     display: grid;
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
     min-height: 0;
     height: 100%;
     overflow: hidden;
@@ -336,6 +336,16 @@ select {
     background: linear-gradient(180deg, rgba(205, 34, 34, 0.72) 0%, rgba(151, 0, 0, 0.62) 100%);
     border-radius: 999px;
     border: 2px solid rgba(255, 255, 255, 0.72);
+}
+
+.rail-card__footer {
+    padding-top: 14px;
+    margin-top: 14px;
+    border-top: 1px solid rgba(30, 38, 44, 0.08);
+}
+
+.rail-card__footer-button {
+    width: 100%;
 }
 
 .outline-list {
@@ -405,6 +415,10 @@ select {
     margin: 0 20px 20px;
     padding: 0;
     border: 0;
+}
+
+.mobile-only-action {
+    display: none;
 }
 
 .mobile-outline__card {
@@ -596,6 +610,21 @@ select {
     font-size: 0.88rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+.slide__takeaway p {
+    margin: 0;
+}
+
+.loan-abbrev-copy {
+    margin-top: 10px !important;
+    color: var(--muted-strong);
+    line-height: 1.55;
+}
+
+.loan-abbrev-term {
+    font-weight: 800;
+    color: var(--ink);
 }
 
 .slide__surface--image .slide__takeaway {
@@ -806,6 +835,14 @@ select {
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.loan-columns--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.loan-columns--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .payment-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
 }
@@ -885,10 +922,8 @@ select {
 .stack-list li,
 .stock-list li,
 .source-list li {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 12px;
-    align-items: start;
+    position: relative;
+    padding-left: 22px;
     line-height: 1.55;
 }
 
@@ -897,11 +932,14 @@ select {
 .stock-list li::before,
 .source-list li::before {
     content: "";
-    margin-top: 0.45em;
+    position: absolute;
+    top: 0.62em;
+    left: 0;
     width: 10px;
     height: 10px;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--accent) 0%, #d93838 100%);
+    transform: translateY(-50%);
 }
 
 .metric {
@@ -1129,6 +1167,43 @@ select {
     text-transform: uppercase;
 }
 
+.slide--assistance .state-grid {
+    align-items: start;
+}
+
+.slide--assistance .state-card {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+    min-width: 0;
+}
+
+.slide--assistance .state-card h3 {
+    margin-bottom: 0;
+}
+
+.slide--assistance .state-card .stack-list {
+    gap: 14px;
+    min-width: 0;
+}
+
+.slide--assistance .state-card .stack-list li {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.slide--assistance .state-card .stack-list li strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.98rem;
+    line-height: 1.28;
+    color: var(--ink);
+}
+
+.slide--assistance .comparison-summary > * {
+    min-width: 0;
+}
+
 .photo-card {
     position: relative;
     overflow: hidden;
@@ -1290,29 +1365,45 @@ select {
 
 .contact-links {
     display: grid;
-    gap: 12px;
+    gap: 14px;
     margin-top: 18px;
 }
 
 .contact-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 14px 16px;
+    display: grid;
+    gap: 6px;
+    align-items: start;
+    justify-items: start;
+    padding: 16px 18px;
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid rgba(30, 38, 44, 0.08);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(30, 38, 44, 0.1);
+    box-shadow: 0 10px 22px rgba(18, 24, 28, 0.08);
     text-decoration: none;
 }
 
 .contact-link strong {
-    font-size: 0.92rem;
+    font-size: 0.98rem;
+    line-height: 1.3;
+    color: var(--ink);
 }
 
 .contact-link span {
-    color: var(--muted);
-    font-size: 0.88rem;
+    color: var(--muted-strong);
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(180, 1, 1, 0.16);
+    box-shadow: 0 14px 26px rgba(18, 24, 28, 0.1);
+}
+
+.slide__surface--image .contact-link strong,
+.slide__surface--image .contact-link span {
+    color: var(--ink);
 }
 
 .cover-brandbar {
@@ -1475,9 +1566,17 @@ select {
     .slide__surface {
         min-height: auto;
     }
+
+    .slide--assistance .state-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 980px) {
+    .mobile-only-action {
+        display: inline-flex;
+    }
+
     .topbar__inner,
     .topbar__actions,
     .brand-lockup,

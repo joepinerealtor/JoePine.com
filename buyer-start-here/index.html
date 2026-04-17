@@ -128,7 +128,7 @@
                 <div class="mobile-drawer__actions">
                     <a class="button button--ghost" href="mailto:JoePine@KW.com?subject=First-Time%20Homebuyer%20Workbook">Email Joe</a>
                     <a class="button button--primary" href="tel:4013270888">Call Joe</a>
-                    <button class="button button--ghost" type="button" data-open-sources>Official Links</button>
+                    <button class="button button--ghost mobile-only-action" type="button" data-open-sources>Official Links</button>
                 </div>
                 <nav class="mobile-drawer__nav">
                     <a href="../index.html">Home</a>
@@ -217,6 +217,9 @@
                         <li><a class="outline-link" href="#slide-27"><span class="outline-link__number">27</span><span class="outline-link__title">Your First 30-Day Action Plan</span></a></li>
                         <li><a class="outline-link" href="#slide-28"><span class="outline-link__number">28</span><span class="outline-link__title">Let's Build Your Plan Together</span></a></li>
                     </ol>
+                    <div class="rail-card__footer">
+                        <button class="button button--ghost rail-card__footer-button" type="button" data-open-sources>Official Links</button>
+                    </div>
                 </nav>
             </aside>
             <section class="roadmap-deck" aria-label="First-time buyer slide deck">
@@ -664,8 +667,6 @@
                                         <ul class="stack-list">
                                             <li>FHA can sometimes feel more flexible in certain files.</li>
                                             <li>Conventional often fits best when credit and monthly debt are cleaner overall.</li>
-                                            <li>VA also considers residual income, not just DTI alone.</li>
-                                            <li>USDA uses ratio standards, eligibility rules, and deeper review in some files.</li>
                                         </ul>
                                     </article>
                                     <figure class="photo-card photo-card--short">
@@ -926,45 +927,39 @@
                                 <p class="slide__lede">These are common starting points and buyer-friendly planning markers, not guarantees. Lender overlays, debt-to-income ratio, income, assets, automated underwriting, property eligibility, and overall file strength still matter.</p>
                             </div>
 
-                            <div class="loan-columns">
+                            <div class="loan-columns loan-columns--three">
                                 <article class="loan-card">
                                     <h3>Conventional</h3>
                                     <span class="score-band">Often discussed around 620+</span>
-                                    <p>Frequently a strong fit for buyers with stronger credit and a cleaner overall debt picture. Some low-down-payment options exist.</p>
+                                    <p>Usually means a mortgage that is not insured by the federal government. It is often a strong fit for buyers with stronger credit and a cleaner overall debt picture.</p>
                                     <p class="loan-card__note">Official example: Fannie Mae HomeReady lists a 620 minimum score, but that does not make every conventional path identical.</p>
                                 </article>
 
                                 <article class="loan-card">
                                     <h3>FHA</h3>
                                     <span class="score-band">580+ may allow 3.5% down</span>
-                                    <p>Often used when a buyer needs more flexibility in the credit profile.</p>
+                                    <p>FHA stands for Federal Housing Administration. It is a government-insured loan option often used when a buyer needs more flexibility in the credit profile.</p>
                                     <p class="loan-card__note">HUD guidance supports 500-579 with a 10% down requirement and less than 500 ineligible for FHA-insured financing.</p>
                                 </article>
 
                                 <article class="loan-card">
                                     <h3>VA</h3>
                                     <span class="score-band">No single VA-set score floor</span>
-                                    <p>Eligible veterans and service members may benefit from no monthly mortgage insurance and no down payment in many cases.</p>
+                                    <p>VA stands for Department of Veterans Affairs. It may be a strong path for eligible veterans, service members, and some surviving spouses.</p>
                                     <p class="loan-card__note">VA says lenders still apply credit and income standards, and underwriting also considers residual income.</p>
-                                </article>
-
-                                <article class="loan-card">
-                                    <h3>USDA</h3>
-                                    <span class="score-band">No single universal published minimum</span>
-                                    <p>Can be a strong option for eligible rural areas and qualifying income levels.</p>
-                                    <p class="loan-card__note">USDA uses ratio standards, program eligibility, and deeper review for some lower-score or manually underwritten files.</p>
                                 </article>
                             </div>
 
                             <div class="slide__takeaway">
                                 <strong>What this means for you</strong>
-                                A score that feels too low to you may still be workable under the right loan path. The goal is not to guess. The goal is to match your full financial picture to the right program.
+                                <p>A score that feels too low to you may still be workable under the right loan path. The goal is not to guess. The goal is to match your full financial picture to the right program.</p>
+                                <p class="loan-abbrev-copy"><span class="loan-abbrev-term">Conventional</span> usually means not government-insured. <span class="loan-abbrev-term">FHA</span> stands for Federal Housing Administration. <span class="loan-abbrev-term">VA</span> stands for Department of Veterans Affairs and may fit eligible military-connected buyers.</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section class="slide" id="slide-16" data-nav="RIHousing and MassHousing Assistance Options">
+                <section class="slide slide--assistance" id="slide-16" data-nav="RIHousing and MassHousing Assistance Options">
                     <div class="slide__surface">
                         <div class="slide__inner">
                             <div class="slide__meta">
@@ -1497,7 +1492,6 @@
                             <li><a href="https://yourhome.fanniemae.com/buy/homeready">Fannie Mae HomeReady</a></li>
                             <li><a href="https://www.va.gov/housing-assistance/home-loans/eligibility">VA home loan eligibility overview</a></li>
                             <li><a href="https://benefits.va.gov/HOMELOANS/documents/docs/VA_Buyers_Guide.pdf">VA Buyer&rsquo;s Guide</a></li>
-                            <li><a href="https://www.rd.usda.gov/sites/default/files/3555-1chapter11.pdf">USDA HB-1-3555 Chapter 11 ratio analysis guidance</a></li>
                         </ul>
                     </div>
                 </details>
