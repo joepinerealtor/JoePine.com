@@ -10,6 +10,51 @@ const SITE_FRAME_SCROLL_THRESHOLD_EXIT = 56;
 let siteFrameIsCondensed = false;
 let siteFrameScrollTicking = false;
 
+function setSiteHeadLink(rel, href, options = {}) {
+    let selector = `link[rel="${rel}"]`;
+
+    if (options.sizes) {
+        selector += `[sizes="${options.sizes}"]`;
+    }
+
+    let link = document.head.querySelector(selector);
+
+    if (!link) {
+        link = document.createElement("link");
+        link.rel = rel;
+        document.head.appendChild(link);
+    }
+
+    link.href = href;
+
+    if (options.type) {
+        link.type = options.type;
+    } else {
+        link.removeAttribute("type");
+    }
+
+    if (options.sizes) {
+        link.sizes = options.sizes;
+    } else {
+        link.removeAttribute("sizes");
+    }
+}
+
+function ensureSiteFrameFavicon() {
+    document.head
+        .querySelectorAll('link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]')
+        .forEach((link) => link.remove());
+
+    setSiteHeadLink("icon", new URL("favicon-32.png", siteFrameAssetBase).href, {
+        type: "image/png",
+        sizes: "32x32"
+    });
+    setSiteHeadLink("shortcut icon", new URL("favicon.ico", siteFrameAssetBase).href, {
+        type: "image/x-icon"
+    });
+    setSiteHeadLink("apple-touch-icon", new URL("apple-touch-icon.png", siteFrameAssetBase).href);
+}
+
 function normalizeSiteFramePath(pathname) {
     return pathname.replace(/\/+$/, "");
 }
@@ -115,7 +160,7 @@ function ensureSiteFrameShellLayout() {
         const platinumLogo = document.createElement("img");
         platinumLogo.className = "site-frame-broker-logo site-frame-broker-logo-platinum";
         platinumLogo.src = new URL(
-            "Monthly%20Payment/Platinum%20Logo%20Black%20Transparent%20%281%29.png",
+            "images/branding/platinum-logo-black.png",
             siteFrameAssetBase
         ).href;
         platinumLogo.alt = "Platinum Real Estate Group";
@@ -197,6 +242,7 @@ function scrollToSiteFrameHash(hash, behavior = "smooth", updateHistory = false)
 syncSiteFrameCondensed();
 updateSiteFrameOffset();
 syncLocalFilePreviewUrls();
+ensureSiteFrameFavicon();
 ensureSiteFrameShellLayout();
 
 window.addEventListener("resize", () => {
