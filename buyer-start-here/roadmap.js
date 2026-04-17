@@ -24,7 +24,11 @@ const mobileStoryStep = document.querySelector("[data-mobile-story-step]");
 const mobileStoryPage = document.querySelector("[data-mobile-story-page]");
 const scrollUpButton = document.querySelector("[data-scroll-up]");
 const scrollDownButton = document.querySelector("[data-scroll-down]");
+const desktopScrollUpButton = document.querySelector("[data-desktop-scroll-up]");
+const desktopScrollDownButton = document.querySelector("[data-desktop-scroll-down]");
+const desktopOutlineList = document.querySelector(".roadmap-rail .outline-list");
 const mobileAppMedia = window.matchMedia("(max-width: 980px)");
+const tabletDeckMedia = window.matchMedia("(min-width: 981px) and (max-width: 1180px)");
 
 const outlineLinkMap = new Map();
 const slideIndexById = new Map();
@@ -34,6 +38,10 @@ let activeIndex = 0;
 let activeMobilePageIndex = 0;
 let mobileStoriesBuilt = false;
 let touchStartPoint = null;
+
+const MOBILE_SCROLL_TOLERANCE = 6;
+const DESKTOP_OVERFLOW_TOLERANCE = 6;
+const DESKTOP_SCROLL_CUE_TOLERANCE = 24;
 
 slides.forEach((slide, index) => {
     slideIndexById.set(slide.id, index);
@@ -54,6 +62,10 @@ outlineLinks.forEach((link) => {
 
 function isMobileStoryMode() {
     return mobileAppMedia.matches;
+}
+
+function isTabletDeckMode() {
+    return tabletDeckMedia.matches;
 }
 
 function normalizeText(value) {
@@ -738,6 +750,18 @@ function getActiveMobileSurface() {
     return getMobilePageSurface(activePage);
 }
 
+function getActiveDesktopSurface() {
+    return slides[activeIndex]?.querySelector(".slide__surface") || null;
+}
+
+function getSurfaceMaxScroll(surface) {
+    if (!surface) {
+        return 0;
+    }
+
+    return Math.max(0, Math.ceil(surface.scrollHeight - surface.clientHeight));
+}
+
 function resetActiveMobileSurfaceScroll() {
     const surface = getActiveMobileSurface();
 
@@ -748,7 +772,7 @@ function resetActiveMobileSurfaceScroll() {
 
 function updateMobileScrollIndicators() {
     const surface = getActiveMobileSurface();
-    const tolerance = 6;
+    const tolerance = MOBILE_SCROLL_TOLERANCE;
 
     if (!surface || !isMobileStoryMode()) {
         scrollUpButton?.classList.remove("is-visible");
@@ -756,13 +780,69 @@ function updateMobileScrollIndicators() {
         return;
     }
 
-    const maxScroll = surface.scrollHeight - surface.clientHeight;
+    const maxScroll = getSurfaceMaxScroll(surface);
     const canScroll = maxScroll > tolerance;
     const isAtTop = surface.scrollTop <= tolerance;
     const isAtBottom = surface.scrollTop >= maxScroll - tolerance;
 
     scrollUpButton?.classList.toggle("is-visible", canScroll && !isAtTop);
     scrollDownButton?.classList.toggle("is-visible", canScroll && !isAtBottom);
+}
+
+function updateDesktopSlideDensity() {
+    if (isMobileStoryMode()) {
+        slides.forEach((slide) => {
+            slide.classList.remove("is-dense", "is-compact", "is-tight");
+        });
+        return;
+    }
+
+    const tolerance = DESKTOP_OVERFLOW_TOLERANCE;
+    const hasOverflow = (surface) => (
+        getSurfaceMaxScroll(surface) > tolerance
+        || surface.scrollWidth - surface.clientWidth > tolerance
+    );
+
+    slides.forEach((slide) => {
+        const surface = slide.querySelector(".slide__surface");
+
+        slide.classList.remove("is-dense", "is-compact", "is-tight");
+
+        if (!surface) {
+            return;
+        }
+
+        if (hasOverflow(surface)) {
+            slide.classList.add("is-dense");
+        }
+
+        if (hasOverflow(surface)) {
+            slide.classList.add("is-compact");
+        }
+
+        if (hasOverflow(surface)) {
+            slide.classList.add("is-tight");
+        }
+    });
+}
+
+function updateDesktopScrollIndicators() {
+    const surface = getActiveDesktopSurface();
+    const edgeTolerance = DESKTOP_OVERFLOW_TOLERANCE;
+
+    if (!surface || isMobileStoryMode()) {
+        desktopScrollUpButton?.classList.remove("is-visible");
+        desktopScrollDownButton?.classList.remove("is-visible");
+        return;
+    }
+
+    const maxScroll = getSurfaceMaxScroll(surface);
+    const canScroll = maxScroll > DESKTOP_SCROLL_CUE_TOLERANCE;
+    const isAtTop = surface.scrollTop <= edgeTolerance;
+    const isAtBottom = surface.scrollTop >= maxScroll - edgeTolerance;
+
+    desktopScrollUpButton?.classList.toggle("is-visible", canScroll && !isAtTop);
+    desktopScrollDownButton?.classList.toggle("is-visible", canScroll && !isAtBottom);
 }
 
 function buildMobilePagesForSlide(slide, slideIndex) {
@@ -865,6 +945,9 @@ function syncDesktopSlides(options = {}) {
             surface.scrollTop = 0;
         }
     });
+
+    updateDesktopSlideDensity();
+    updateDesktopScrollIndicators();
 }
 
 function syncMobilePages() {
@@ -889,6 +972,15 @@ function syncMobilePages() {
 function updateOutlineState() {
     outlineLinks.forEach((link) => link.classList.remove("is-active"));
     (outlineLinkMap.get(`#${slides[activeIndex]?.id}`) || []).forEach((link) => link.classList.add("is-active"));
+
+    const desktopActiveLink = (outlineLinkMap.get(`#${slides[activeIndex]?.id}`) || []).find((link) => link.closest(".roadmap-rail"));
+
+    if (desktopActiveLink && desktopOutlineList) {
+        desktopActiveLink.scrollIntoView({
+            block: "nearest",
+            inline: "nearest"
+        });
+    }
 }
 
 function updateMobileStoryChrome() {
@@ -898,6 +990,9 @@ function updateMobileStoryChrome() {
 
     const pageCount = mobilePagesBySlide[activeIndex]?.length || 1;
     const label = getSlideLabel(slides[activeIndex]);
+    const isTabletMode = isTabletDeckMode();
+    const totalSegments = isTabletMode ? slides.length : pageCount;
+    const activeSegmentIndex = isTabletMode ? activeIndex : activeMobilePageIndex;
 
     mobileStoryStep.textContent = `${getSlideNumber(activeIndex)} ${label}`;
     mobileStoryPage.textContent = isMobileStoryMode()
@@ -906,14 +1001,16 @@ function updateMobileStoryChrome() {
 
     if (isMobileStoryMode()) {
         mobileStoryPage.textContent = `Slide ${getSlideNumber(activeIndex)} of ${String(slides.length).padStart(2, "0")}`;
+    } else if (isTabletMode) {
+        mobileStoryPage.textContent = `Slide ${getSlideNumber(activeIndex)} of ${String(slides.length).padStart(2, "0")} \u2022 Tap to browse all chapters`;
     }
 
     mobileStoryProgress.replaceChildren();
 
-    for (let index = 0; index < pageCount; index += 1) {
+    for (let index = 0; index < totalSegments; index += 1) {
         const segment = createElement("span", "");
-        segment.classList.toggle("is-complete", index < activeMobilePageIndex);
-        segment.classList.toggle("is-active", index === activeMobilePageIndex);
+        segment.classList.toggle("is-complete", index < activeSegmentIndex);
+        segment.classList.toggle("is-active", index === activeSegmentIndex);
         mobileStoryProgress.appendChild(segment);
     }
 }
@@ -956,6 +1053,14 @@ function syncHash(slideId) {
     const url = new URL(window.location.href);
     url.hash = slideId;
     window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
+function resetDeckViewportPosition() {
+    if (isMobileStoryMode()) {
+        return;
+    }
+
+    window.scrollTo(0, 0);
 }
 
 function setActiveSlide(index, options = {}) {
@@ -1216,12 +1321,34 @@ function scrollActiveMobileSurface(direction) {
     });
 }
 
+function scrollActiveDesktopSurface(direction) {
+    const surface = getActiveDesktopSurface();
+
+    if (!surface) {
+        return;
+    }
+
+    const distance = Math.max(220, Math.round(surface.clientHeight * 0.72));
+    surface.scrollBy({
+        top: direction > 0 ? distance : -distance,
+        behavior: "smooth"
+    });
+}
+
 scrollUpButton?.addEventListener("click", () => {
     scrollActiveMobileSurface(-1);
 });
 
 scrollDownButton?.addEventListener("click", () => {
     scrollActiveMobileSurface(1);
+});
+
+desktopScrollUpButton?.addEventListener("click", () => {
+    scrollActiveDesktopSurface(-1);
+});
+
+desktopScrollDownButton?.addEventListener("click", () => {
+    scrollActiveDesktopSurface(1);
 });
 
 overlayBackdrop?.addEventListener("click", () => {
@@ -1341,6 +1468,7 @@ window.addEventListener("hashchange", () => {
     const targetIndex = slideIndexById.get(window.location.hash.replace(/^#/, ""));
     if (typeof targetIndex === "number" && targetIndex !== activeIndex) {
         setActiveSlide(targetIndex, { updateHash: false, mobilePage: 0 });
+        resetDeckViewportPosition();
     }
 });
 
@@ -1353,18 +1481,32 @@ window.addEventListener("resize", () => {
     scheduleMobileStoryLayout({ preserveScroll: true });
 });
 
+function handleViewportModeChange() {
+    closeMenu();
+    closeSlides();
+    closeSources();
+
+    if (isMobileStoryMode()) {
+        rebuildMobileStories({ preserveScroll: false });
+    }
+
+    setActiveSlide(activeIndex, { updateHash: false, mobilePage: 0, resetScroll: false });
+}
+
 if (typeof mobileAppMedia.addEventListener === "function") {
-    mobileAppMedia.addEventListener("change", () => {
-        closeMenu();
-        closeSlides();
-        closeSources();
+    mobileAppMedia.addEventListener("change", handleViewportModeChange);
+}
 
-        if (isMobileStoryMode()) {
-            rebuildMobileStories({ preserveScroll: false });
-        }
+if (typeof tabletDeckMedia.addEventListener === "function") {
+    tabletDeckMedia.addEventListener("change", handleViewportModeChange);
+}
 
-        setActiveSlide(activeIndex, { updateHash: false, mobilePage: 0, resetScroll: false });
-    });
+if (typeof mobileAppMedia.addEventListener !== "function" && typeof mobileAppMedia.addListener === "function") {
+    mobileAppMedia.addListener(handleViewportModeChange);
+}
+
+if (typeof tabletDeckMedia.addEventListener !== "function" && typeof tabletDeckMedia.addListener === "function") {
+    tabletDeckMedia.addListener(handleViewportModeChange);
 }
 
 currentYearNodes.forEach((node) => {
@@ -1386,7 +1528,36 @@ mobileStoryViewport?.addEventListener("scroll", (event) => {
     updateMobileScrollIndicators();
 }, { passive: true, capture: true });
 
+desktopStage?.addEventListener("scroll", (event) => {
+    if (!(event.target instanceof HTMLElement) || !event.target.classList.contains("slide__surface")) {
+        return;
+    }
+
+    if (event.target !== getActiveDesktopSurface()) {
+        return;
+    }
+
+    updateDesktopScrollIndicators();
+}, { passive: true, capture: true });
+
+window.addEventListener("load", () => {
+    resetDeckViewportPosition();
+
+    if (!isMobileStoryMode()) {
+        syncDesktopSlides({ resetScroll: false });
+    }
+});
+
+document.fonts?.ready?.then(() => {
+    resetDeckViewportPosition();
+
+    if (!isMobileStoryMode()) {
+        syncDesktopSlides({ resetScroll: false });
+    }
+});
+
 if (slides.length) {
     const initialIndex = slideIndexById.get(window.location.hash.replace(/^#/, "")) ?? 0;
     setActiveSlide(initialIndex, { updateHash: false, mobilePage: 0 });
+    resetDeckViewportPosition();
 }

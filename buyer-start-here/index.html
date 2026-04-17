@@ -91,14 +91,14 @@
                         <img src="./assets/brand/kw-leading-edge-rgb.png" alt="Keller Williams Leading Edge">
                     </div>
                     <div class="brand-lockup__text">
-                        <p class="brand-lockup__eyebrow">First-Time Buyer Roadmap</p>
-                        <p class="brand-lockup__title">A calm, client-facing guide for Rhode Island and Massachusetts buyers</p>
-                        <p class="brand-lockup__sub">Joe Pine | Platinum Real Estate Group at Keller Williams Leading Edge</p>
+                        <p class="brand-lockup__eyebrow">Joe Pine Realtors First-Time Homebuyer Roadmap</p>
+                        <p class="brand-lockup__title">A clear, client-facing roadmap built specifically for Rhode Island and Massachusetts first-time homebuyers</p>
+                        <p class="brand-lockup__sub">Joe Pine Realtors | Platinum Real Estate Group at Keller Williams Leading Edge</p>
                     </div>
                 </div>
 
                 <div class="topbar__actions">
-                    <a class="button button--ghost" href="mailto:JoePine@KW.com?subject=First-Time%20Buyer%20Roadmap">Email Joe</a>
+                    <button class="button button--ghost" type="button" data-open-menu aria-expanded="false" aria-controls="roadmap-mobile-menu">Menu</button>
                     <a class="button button--primary" href="tel:4013270888">Call 401.327.0888</a>
                 </div>
             </div>
@@ -122,7 +122,7 @@
             </div>
             <div class="mobile-drawer__body">
                 <div class="mobile-drawer__actions">
-                    <a class="button button--ghost" href="mailto:JoePine@KW.com?subject=First-Time%20Buyer%20Roadmap">Email Joe</a>
+                    <a class="button button--ghost" href="mailto:JoePine@KW.com?subject=First-Time%20Homebuyer%20Roadmap">Email Joe</a>
                     <a class="button button--primary" href="tel:4013270888">Call Joe</a>
                     <button class="button button--ghost" type="button" data-share-workbook>Share Workbook</button>
                     <button class="button button--ghost" type="button" data-open-sources>Official Links</button>
@@ -182,13 +182,7 @@
 
         <main class="roadmap-shell">
             <aside class="roadmap-rail">
-                <section class="rail-card rail-progress">
-                    <p class="rail-card__label">Current Slide</p>
-                    <p class="rail-progress__count" data-progress-current>01 / 28</p>
-                    <p class="rail-progress__title" data-progress-title>Cover</p>
-                </section>
-
-                <nav class="rail-card" aria-label="Slide outline">
+                <nav class="rail-card rail-card--outline" aria-label="Slide outline">
                     <p class="rail-card__label">Roadmap Outline</p>
                     <ol class="outline-list">
                         <li><a class="outline-link" href="#slide-01"><span class="outline-link__number">01</span><span class="outline-link__title">Cover</span></a></li>
@@ -252,6 +246,14 @@
 
                 <div class="roadmap-main" aria-live="polite">
                     <button class="deck-arrow deck-arrow--prev" type="button" data-deck-prev aria-label="Previous slide">&#8592;</button>
+                    <button class="desktop-scroll-indicator desktop-scroll-indicator--up" type="button" data-desktop-scroll-up aria-label="Scroll up">
+                        <span class="mobile-scroll-indicator__arrow">&#8593;</span>
+                        <span class="mobile-scroll-indicator__label">Scroll up</span>
+                    </button>
+                    <button class="desktop-scroll-indicator desktop-scroll-indicator--down" type="button" data-desktop-scroll-down aria-label="Scroll down">
+                        <span class="mobile-scroll-indicator__arrow">&#8595;</span>
+                        <span class="mobile-scroll-indicator__label">Scroll down</span>
+                    </button>
                 <!-- SLIDES_START -->
                 <section class="slide" id="slide-01" data-nav="Cover">
                     <div class="slide__surface slide__surface--image" style="--slide-image:url('./assets/stock/financial-planning.jpg')">
@@ -261,11 +263,11 @@
                                     <img src="../images/branding/platinum-logo-white.png" alt="Platinum Real Estate Group">
                                     <img src="./assets/brand/kw-leading-edge-rgb-rev.png" alt="Keller Williams Leading Edge">
                                 </div>
-                                <p class="cover-brandbar__text">Premium first-time homebuyer roadmap | Rhode Island &amp; Massachusetts</p>
+                                <p class="cover-brandbar__text">Joe Pine Realtors first-time homebuyer roadmap | Rhode Island &amp; Massachusetts</p>
                             </div>
 
                             <div class="layout-cover">
-                                <div class="layout-stack">
+                                <div class="layout-stack layout-stack--tight">
                                     <div class="slide__meta">
                                         <p class="slide__index">Slide 01</p>
                                         <span class="slide__eyebrow">First-Time Homebuyer Roadmap</span>
@@ -356,7 +358,7 @@
                                 <p class="slide__lede">For the right buyer, ownership can create more control, more stability, and a longer-term financial benefit. It can also come with real responsibility, which is why fit matters.</p>
                             </div>
 
-                            <div class="layout-sidebar">
+                            <div class="layout-sidebar layout-sidebar--top">
                                 <div class="card-grid-2">
                                     <article class="info-card">
                                         <div class="icon-title">
@@ -590,10 +592,19 @@
                                     </article>
                                 </div>
 
-                                <article class="info-card info-card--dark">
-                                    <h3>Reassurance that matters</h3>
-                                    <p>&ldquo;Not perfect&rdquo; does not always mean &ldquo;not possible.&rdquo; Some buyers need cleanup. Some need the right loan path. Some simply need to see their full picture before deciding what to do next.</p>
-                                </article>
+                                <div class="layout-stack layout-stack--tight">
+                                    <article class="info-card info-card--dark">
+                                        <h3>Reassurance that matters</h3>
+                                        <p>&ldquo;Not perfect&rdquo; does not always mean &ldquo;not possible.&rdquo; Some buyers need cleanup. Some need the right loan path. Some simply need to see their full picture before deciding what to do next.</p>
+                                    </article>
+                                    <figure class="photo-card photo-card--short">
+                                        <img src="./assets/stock/credit-review.jpg" alt="Couple reviewing bills and financial paperwork at a kitchen table" loading="lazy">
+                                        <figcaption class="photo-card__overlay">
+                                            <h3>Your report is information, not identity</h3>
+                                            <p>When you can see the details clearly, you can decide what actually needs attention and what may already be workable.</p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
                             </div>
 
                             <div class="slide__takeaway">
@@ -613,28 +624,35 @@
                                 <p class="slide__lede">Debt-to-income ratio, or DTI, is the percentage of your gross monthly income that goes toward required monthly debt payments, including the proposed housing payment.</p>
                             </div>
 
-                            <div class="layout-split">
-                                <div class="formula-card">
-                                    <span class="muted-label">Plain-English formula</span>
-                                    <div class="formula-band">
-                                        <span class="formula-token">car payment</span>
-                                        <span class="formula-operator">+</span>
-                                        <span class="formula-token">student loans</span>
-                                        <span class="formula-operator">+</span>
-                                        <span class="formula-token">credit card minimums</span>
-                                        <span class="formula-operator">+</span>
-                                        <span class="formula-token">personal loans</span>
-                                        <span class="formula-operator">+</span>
-                                        <span class="formula-token">proposed housing payment</span>
+                            <div class="layout-split layout-split--top">
+                                <div class="layout-stack">
+                                    <div class="formula-card">
+                                        <span class="muted-label">Plain-English formula</span>
+                                        <div class="formula-band">
+                                            <span class="formula-token">car payment</span>
+                                            <span class="formula-operator">+</span>
+                                            <span class="formula-token">student loans</span>
+                                            <span class="formula-operator">+</span>
+                                            <span class="formula-token">credit card minimums</span>
+                                            <span class="formula-operator">+</span>
+                                            <span class="formula-token">personal loans</span>
+                                            <span class="formula-operator">+</span>
+                                            <span class="formula-token">proposed housing payment</span>
+                                        </div>
+                                        <p class="slide__note">That total is compared to your gross monthly income. One buyer can have a strong score and still struggle if debt is too high. Another buyer can have a more modest score and still be workable if the debt picture is manageable.</p>
+                                        <div class="example-line">
+                                            <span class="example-chip">$550 car</span>
+                                            <span class="example-chip">$120 cards</span>
+                                            <span class="example-chip">$1,950 housing</span>
+                                            <span class="example-chip">$6,500 gross income</span>
+                                            <span class="example-chip">DTI example: 40%</span>
+                                        </div>
                                     </div>
-                                    <p class="slide__note">That total is compared to your gross monthly income. One buyer can have a strong score and still struggle if debt is too high. Another buyer can have a more modest score and still be workable if the debt picture is manageable.</p>
-                                    <div class="example-line">
-                                        <span class="example-chip">$550 car</span>
-                                        <span class="example-chip">$120 cards</span>
-                                        <span class="example-chip">$1,950 housing</span>
-                                        <span class="example-chip">$6,500 gross income</span>
-                                        <span class="example-chip">DTI example: 40%</span>
-                                    </div>
+
+                                    <article class="info-card info-card--soft">
+                                        <h3>No single universal cutoff</h3>
+                                        <p>DTI can vary by loan type, lender, underwriting findings, reserves, score, compensating factors, and the strength of the full file. That is why preapproval looks at the full picture, not just one number.</p>
+                                    </article>
                                 </div>
 
                                 <div class="layout-stack">
@@ -647,10 +665,13 @@
                                             <li>USDA uses ratio standards, eligibility rules, and deeper review in some files.</li>
                                         </ul>
                                     </article>
-                                    <article class="info-card info-card--soft">
-                                        <h3>No single universal cutoff</h3>
-                                        <p>DTI can vary by loan type, lender, underwriting findings, reserves, score, compensating factors, and the strength of the full file. That is why preapproval looks at the full picture, not just one number.</p>
-                                    </article>
+                                    <figure class="photo-card photo-card--short">
+                                        <img src="./assets/stock/dti-budgeting.jpg" alt="Woman reviewing receipts and budgeting paperwork at a desk with a calculator" loading="lazy">
+                                        <figcaption class="photo-card__overlay">
+                                            <h3>Monthly obligations tell the story</h3>
+                                            <p>DTI is really a budgeting snapshot: what must go out each month compared with what comes in.</p>
+                                        </figcaption>
+                                    </figure>
                                 </div>
                             </div>
                         </div>
@@ -667,27 +688,38 @@
                                 <p class="slide__lede">Reducing unnecessary monthly obligations can improve both affordability and approval room. Small changes often matter more than buyers realize.</p>
                             </div>
 
-                            <div class="layout-balanced">
-                                <article class="info-card">
-                                    <h3>Helpful moves before you apply</h3>
-                                    <ul class="checklist">
-                                        <li>Pay revolving balances down when possible.</li>
-                                        <li>Avoid opening new debt unless there is a strong reason.</li>
-                                        <li>Look closely at recurring subscriptions and financed purchases.</li>
-                                        <li>Be careful with large new payments for furniture, cars, or personal loans.</li>
-                                        <li>Ask before closing accounts or moving balances around.</li>
-                                    </ul>
-                                </article>
+                            <div class="layout-sidebar layout-sidebar--top">
+                                <div class="layout-stack">
+                                    <article class="info-card">
+                                        <h3>Helpful moves before you apply</h3>
+                                        <ul class="checklist">
+                                            <li>Pay revolving balances down when possible.</li>
+                                            <li>Avoid opening new debt unless there is a strong reason.</li>
+                                            <li>Look closely at recurring subscriptions and financed purchases.</li>
+                                            <li>Be careful with large new payments for furniture, cars, or personal loans.</li>
+                                            <li>Ask before closing accounts or moving balances around.</li>
+                                        </ul>
+                                    </article>
 
-                                <article class="info-card info-card--dark">
-                                    <h3>The real benefit</h3>
-                                    <p>Every required payment you remove can help in two ways: it may strengthen how your file looks to a lender, and it may also make your future monthly budget feel better after you buy.</p>
-                                </article>
-                            </div>
+                                    <div class="slide__takeaway">
+                                        <strong>What this means for you</strong>
+                                        Preparing to buy is not only about saving money. It is also about making your monthly obligations lighter and cleaner.
+                                    </div>
+                                </div>
 
-                            <div class="slide__takeaway">
-                                <strong>What this means for you</strong>
-                                Preparing to buy is not only about saving money. It is also about making your monthly obligations lighter and cleaner.
+                                <div class="layout-stack">
+                                    <article class="info-card info-card--dark">
+                                        <h3>The real benefit</h3>
+                                        <p>Every required payment you remove can help in two ways: it may strengthen how your file looks to a lender, and it may also make your future monthly budget feel better after you buy.</p>
+                                    </article>
+                                    <figure class="photo-card photo-card--short">
+                                        <img src="./assets/stock/payment-planning.jpg" alt="Person using a calculator beside a laptop while reviewing handwritten monthly figures" loading="lazy">
+                                        <figcaption class="photo-card__overlay">
+                                            <h3>Less clutter creates more room</h3>
+                                            <p>Cleaning up avoidable payments can make the numbers look better on paper and feel better in real life.</p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -703,25 +735,37 @@
                                 <p class="slide__lede">A lender may approve you for more than you actually want to spend. Your best payment is one that still allows you to live your life without feeling squeezed every month.</p>
                             </div>
 
-                            <div class="card-grid-3">
-                                <article class="info-card">
-                                    <h3>Look beyond the max</h3>
-                                    <p>A maximum approval number is not a recommendation. It is just a ceiling.</p>
-                                </article>
-                                <article class="info-card">
-                                    <h3>Protect your normal life</h3>
-                                    <p>Your payment should still leave room for groceries, gas, savings, travel, gifts, and real life expenses.</p>
-                                </article>
-                                <article class="info-card">
-                                    <h3>Stress-test the payment</h3>
-                                    <p>Ask yourself how the number would feel if one surprise bill landed next month.</p>
-                                </article>
-                            </div>
+                            <div class="layout-sidebar">
+                                <div class="layout-stack">
+                                    <div class="card-grid-3">
+                                        <article class="info-card">
+                                            <h3>Look beyond the max</h3>
+                                            <p>A maximum approval number is not a recommendation. It is just a ceiling.</p>
+                                        </article>
+                                        <article class="info-card">
+                                            <h3>Protect your normal life</h3>
+                                            <p>Your payment should still leave room for groceries, gas, savings, travel, gifts, and real life expenses.</p>
+                                        </article>
+                                        <article class="info-card">
+                                            <h3>Stress-test the payment</h3>
+                                            <p>Ask yourself how the number would feel if one surprise bill landed next month.</p>
+                                        </article>
+                                    </div>
 
-                            <article class="info-card info-card--soft">
-                                <h3>A smart question to ask</h3>
-                                <p>&ldquo;Would this still feel okay on a normal Tuesday night?&rdquo; That answer usually matters more than what looks possible on paper.</p>
-                            </article>
+                                    <article class="info-card info-card--soft">
+                                        <h3>A smart question to ask</h3>
+                                        <p>&ldquo;Would this still feel okay on a normal Tuesday night?&rdquo; That answer usually matters more than what looks possible on paper.</p>
+                                    </article>
+                                </div>
+
+                                <figure class="photo-card">
+                                    <img src="./assets/stock/financial-planning.jpg" alt="Couple reviewing bills together at a table with a laptop and calculator" loading="lazy">
+                                    <figcaption class="photo-card__overlay">
+                                        <h3>Comfort should feel sustainable</h3>
+                                        <p>The right payment should support your life after closing, not just help you get to the closing table.</p>
+                                    </figcaption>
+                                </figure>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -1408,6 +1452,10 @@
                                             <strong>Email</strong>
                                             <span>JoePine@KW.com</span>
                                         </a>
+                                        <a class="contact-link" href="../Monthly%20Payment/lenders.html">
+                                            <strong>Browse mortgage lenders</strong>
+                                            <span>Compare lender options on JoePine.com</span>
+                                        </a>
                                     </div>
                                 </article>
                             </div>
@@ -1421,20 +1469,6 @@
                 </section>
                 <!-- SLIDES_END -->
                     <button class="deck-arrow deck-arrow--next" type="button" data-deck-next aria-label="Next slide">&#8594;</button>
-                </div>
-
-                <div class="deck-controls">
-                    <div class="deck-controls__summary">
-                        <p class="deck-controls__eyebrow">Deck Navigation</p>
-                        <p class="deck-controls__count" data-progress-current>01 / 28</p>
-                        <p class="deck-controls__title" data-progress-title>Cover</p>
-                    </div>
-                    <div class="deck-controls__actions">
-                        <button class="button button--ghost" type="button" data-deck-prev>Previous</button>
-                        <button class="button button--ghost" type="button" data-deck-reset>Start Over</button>
-                        <button class="button button--ghost" type="button" data-open-sources>Official Links</button>
-                        <button class="button button--primary" type="button" data-deck-next>Next Slide</button>
-                    </div>
                 </div>
             </section>
         </main>
@@ -1496,6 +1530,9 @@
                     <div class="notes-card__content">
                         <ul class="stock-list">
                             <li>Financial planning photo by Ron Lach on <a href="https://www.pexels.com/photo/couple-sitting-by-table-looking-through-bills-14599163/">Pexels</a>.</li>
+                            <li>Credit review photo by Mikhail Nilov on <a href="https://www.pexels.com/photo/couple-looking-at-their-bills-6964105/">Pexels</a>.</li>
+                            <li>Debt-to-income budgeting photo by Kaboompics.com on <a href="https://www.pexels.com/photo/a-woman-working-at-the-office-5900130/">Pexels</a>.</li>
+                            <li>Payment planning photo by Mikhail Nilov on <a href="https://www.pexels.com/photo/person-using-a-calculator-and-a-laptop-8296991/">Pexels</a>.</li>
                             <li>Preapproval meeting photo by Vitaly Gariev on <a href="https://www.pexels.com/photo/young-couple-meeting-with-real-estate-agent-36729679/">Pexels</a>.</li>
                             <li>Home search photo by Vitaly Gariev on <a href="https://www.pexels.com/photo/young-couple-viewing-home-with-real-estate-agent-36729941/">Pexels</a>.</li>
                             <li>Inspection photo by RDNE Stock Project on <a href="https://www.pexels.com/photo/a-man-in-safety-vest-and-hard-hat-checking-the-front-door-8293673/">Pexels</a>.</li>
@@ -1506,19 +1543,6 @@
             </div>
         </section>
 
-        <footer class="deck-footer">
-            <div class="deck-footer__card">
-                <div class="footer-brand">
-                    <div class="footer-brand__logos">
-                        <img src="../images/branding/platinum-logo-black.png" alt="Platinum Real Estate Group">
-                        <img src="./assets/brand/kw-leading-edge-rgb.png" alt="Keller Williams Leading Edge">
-                    </div>
-                    <p class="footer-brand__text">Joe Pine | Platinum Real Estate Group at Keller Williams Leading Edge<br>401.327.0888 | JoePine@KW.com</p>
-                </div>
-
-                <p class="footer-disclaimer">&copy; <span data-current-year></span> Joe Pine. This roadmap is educational and accuracy-focused, but buyers should confirm contract terms, lender guidance, and current program details before making decisions.</p>
-            </div>
-        </footer>
     </div>
 
     <script src="./roadmap.js"></script>
