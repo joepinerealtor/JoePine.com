@@ -1079,15 +1079,16 @@ function openSources() {
 
 async function shareWorkbook() {
     const firstSlide = slides[0];
-    const shareUrl = new URL(window.location.href);
+    const canonicalHref = document.querySelector('link[rel="canonical"]')?.href;
+    const shareUrl = new URL(canonicalHref || `${window.location.origin}${window.location.pathname}`);
 
     if (firstSlide?.id) {
         shareUrl.hash = firstSlide.id;
     }
 
     const payload = {
-        title: "First-Time Homebuyer Roadmap",
-        text: "Joe Pine's first-time homebuyer roadmap",
+        title: "Joe Pine Realtors First-Time Homebuyer Roadmap",
+        text: "Joe Pine Realtors first-time homebuyer roadmap",
         url: shareUrl.toString()
     };
 
