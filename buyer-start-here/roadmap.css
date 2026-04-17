@@ -1,4 +1,6 @@
 :root {
+    --kw-body-font: "Roboto", Arial, sans-serif;
+    --kw-display-font: "Nimbus Sans", "Nimbus Sans L", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
     --bg: #f3eee7;
     --surface: #fffdf9;
     --surface-strong: #ffffff;
@@ -41,7 +43,7 @@ html {
 body {
     margin: 0;
     color: var(--ink);
-    font-family: "Manrope", "Segoe UI", sans-serif;
+    font-family: var(--kw-body-font);
     background: transparent;
 }
 
@@ -512,10 +514,12 @@ select {
 
 .slide__title {
     margin: 0;
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: var(--kw-display-font);
+    font-weight: 900;
     font-size: clamp(2.4rem, 4vw, 5.2rem);
-    line-height: 0.96;
-    letter-spacing: -0.04em;
+    line-height: 0.94;
+    letter-spacing: -0.05em;
+    overflow-wrap: anywhere;
 }
 
 .slide__title--medium {
@@ -1311,9 +1315,10 @@ select {
 
 .notes-card h2 {
     margin: 0 0 14px;
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: var(--kw-display-font);
+    font-weight: 900;
     font-size: clamp(2rem, 2.8vw, 3rem);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.05em;
 }
 
 .notes-card p {
@@ -2351,10 +2356,11 @@ body.is-slides-open .mobile-sheet {
 
 .story-hero__title {
     margin: 0;
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: var(--kw-display-font);
+    font-weight: 900;
     font-size: clamp(2rem, 7.4vw, 3rem);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+    line-height: 0.94;
+    letter-spacing: -0.05em;
     overflow-wrap: anywhere;
 }
 
