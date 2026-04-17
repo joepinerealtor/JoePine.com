@@ -1220,8 +1220,8 @@ async function shareWorkbook() {
     }
 
     const payload = {
-        title: "Joe Pine Realtors First-Time Homebuyer Roadmap",
-        text: "Joe Pine Realtors first-time homebuyer roadmap",
+        title: "Joe Pine Realtors First-Time Homebuyer Workbook",
+        text: "Joe Pine Realtors first-time homebuyer workbook",
         url: shareUrl.toString()
     };
 
