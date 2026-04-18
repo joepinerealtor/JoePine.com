@@ -53,17 +53,19 @@ h6 {
     overflow: hidden;
     padding: 0;
     border-radius: 24px;
-    border: 1px solid var(--frame-line);
-    background: var(--frame-surface);
-    box-shadow: 0 14px 28px -24px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 28%),
+        linear-gradient(145deg, #c70b18 0%, #b40101 38%, #970010 100%);
+    box-shadow: 0 18px 38px -28px rgba(110, 0, 12, 0.58);
     transition: border-radius 280ms cubic-bezier(0.2, 0.75, 0.2, 1), box-shadow 280ms cubic-bezier(0.2, 0.75, 0.2, 1), border-color 220ms ease;
 }
 
 .site-frame-header::before {
     content: "";
     display: block;
-    height: 6px;
-    background: var(--frame-red);
+    height: 0;
+    background: transparent;
     transition: height 280ms cubic-bezier(0.2, 0.75, 0.2, 1), opacity 220ms ease;
 }
 
@@ -82,7 +84,7 @@ h6 {
     display: inline-flex;
     align-items: center;
     gap: 13px;
-    color: var(--frame-charcoal);
+    color: var(--frame-white);
     text-decoration: none;
     min-width: 0;
     max-width: 100%;
@@ -97,8 +99,8 @@ h6 {
     border-radius: 999px;
     overflow: hidden;
     flex: 0 0 auto;
-    border: 2px solid var(--frame-red);
-    box-shadow: 0 10px 18px -18px rgba(0, 0, 0, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.72);
+    box-shadow: 0 14px 24px -20px rgba(64, 0, 8, 0.7);
     transition: width 280ms cubic-bezier(0.2, 0.75, 0.2, 1), height 280ms cubic-bezier(0.2, 0.75, 0.2, 1), border-width 220ms ease, box-shadow 220ms ease, transform 280ms cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
@@ -128,7 +130,7 @@ h6 {
 }
 
 .site-frame-copy span {
-    color: var(--frame-gray);
+    color: rgba(255, 255, 255, 0.8);
     font-size: clamp(0.74rem, 1.3vw, 0.92rem);
     font-weight: 800;
     letter-spacing: 0.18em;
@@ -150,7 +152,7 @@ h6 {
 
 .site-frame-right a,
 .site-frame-right span {
-    color: var(--frame-charcoal);
+    color: var(--frame-white);
     text-decoration: none;
     font-size: clamp(0.82rem, 1.3vw, 0.96rem);
     font-weight: 800;
@@ -159,7 +161,7 @@ h6 {
 }
 
 .site-frame-right .site-frame-website {
-    color: var(--frame-red);
+    color: rgba(255, 255, 255, 0.92);
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -172,8 +174,8 @@ h6 {
     display: none;
     border: 0;
     border-radius: 999px;
-    background: var(--frame-red);
-    color: var(--frame-white);
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--frame-red);
     padding: 10px 16px;
     font: inherit;
     font-weight: 700;
@@ -190,8 +192,8 @@ h6 {
     width: 100%;
     margin-top: 0;
     padding: 12px 16px 14px;
-    border-top: 1px solid var(--frame-line);
-    background: var(--frame-surface-alt);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(0, 0, 0, 0.05));
     position: relative;
     z-index: 1;
     transition: gap 280ms cubic-bezier(0.2, 0.75, 0.2, 1), padding 280ms cubic-bezier(0.2, 0.75, 0.2, 1), background-color 220ms ease;
@@ -216,10 +218,10 @@ h6 {
     justify-self: unset;
     align-self: unset;
     min-width: 0;
+    background: transparent;
     padding: 0;
     border: 0;
     border-radius: 0;
-    background: transparent;
     box-shadow: none;
     z-index: 1;
     pointer-events: none;
@@ -230,6 +232,8 @@ h6 {
     width: auto;
     max-width: 100%;
     object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
 }
 
 .site-frame-broker-logo-platinum {
@@ -244,11 +248,11 @@ h6 {
     width: 1px;
     height: clamp(28px, 2.2vw, 34px);
     border-radius: 999px;
-    background: rgba(102, 102, 102, 0.28);
+    background: rgba(255, 255, 255, 0.28);
 }
 
 .site-frame-nav a {
-    color: var(--frame-gray);
+    color: rgba(255, 255, 255, 0.88);
     text-decoration: none;
     padding: 9px 12px;
     border-radius: 999px;
@@ -260,11 +264,11 @@ h6 {
 
 .site-frame-wrap.is-condensed .site-frame-header {
     border-radius: 16px;
-    box-shadow: 0 10px 18px -20px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 12px 24px -22px rgba(92, 0, 10, 0.52);
 }
 
 .site-frame-wrap.is-condensed .site-frame-header::before {
-    height: 2px;
+    height: 0;
 }
 
 .site-frame-wrap.is-condensed .site-frame-top {
@@ -280,7 +284,7 @@ h6 {
     width: 34px;
     height: 34px;
     border-width: 1px;
-    box-shadow: 0 8px 12px -14px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 10px 16px -14px rgba(64, 0, 8, 0.62);
 }
 
 .site-frame-wrap.is-condensed .site-frame-copy {
@@ -324,19 +328,19 @@ h6 {
 }
 
 .site-frame-wrap.is-condensed .site-frame-nav a {
-    color: var(--frame-charcoal);
+    color: rgba(255, 255, 255, 0.9);
     padding: 7px 10px;
     font-size: 0.8rem;
     font-weight: 800;
 }
 
 .site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta {
-    color: var(--frame-white);
+    color: var(--frame-red);
 }
 
 .site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta:hover,
 .site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta:focus-visible {
-    color: var(--frame-white);
+    color: var(--frame-red-deep);
 }
 
 .site-frame-wrap.is-condensed .site-frame-broker-strip {
@@ -358,29 +362,30 @@ h6 {
 
 .site-frame-nav a:hover,
 .site-frame-nav a:focus-visible {
-    color: var(--frame-charcoal);
-    background: rgba(180, 1, 1, 0.08);
+    color: var(--frame-white);
+    background: rgba(255, 255, 255, 0.11);
     transform: translateY(-1px);
 }
 
 .site-frame-nav a[aria-current="page"] {
-    color: var(--frame-charcoal);
-    background: rgba(180, 1, 1, 0.12);
+    color: var(--frame-red);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 10px 18px -20px rgba(64, 0, 8, 0.52);
 }
 
 .site-frame-nav .site-frame-cta {
     margin-left: 0;
     justify-self: end;
-    background: var(--frame-red);
-    color: var(--frame-white);
-    box-shadow: 0 18px 30px -24px rgba(143, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--frame-red);
+    box-shadow: 0 18px 30px -24px rgba(64, 0, 8, 0.62);
     white-space: nowrap;
 }
 
 .site-frame-nav .site-frame-cta:hover,
 .site-frame-nav .site-frame-cta:focus-visible {
-    color: var(--frame-white);
-    background: var(--frame-red-deep);
+    color: var(--frame-red-deep);
+    background: #ffffff;
 }
 
 @media (max-width: 760px) {
@@ -420,11 +425,11 @@ h6 {
         justify-self: center;
         margin-top: 2px;
         gap: 12px;
-        padding: 6px 10px;
-        border: 1px solid rgba(204, 204, 204, 0.9);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 10px 18px -22px rgba(0, 0, 0, 0.18);
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
         pointer-events: auto;
     }
 
@@ -452,7 +457,7 @@ h6 {
 
     .site-frame-wrap.is-condensed .site-frame-broker-strip {
         margin-top: 0;
-        padding: 5px 8px;
+        padding: 0;
     }
 
     .site-frame-copy strong {
@@ -513,7 +518,7 @@ h6 {
     .site-frame-broker-strip {
         align-self: center;
         justify-self: center;
-        padding: 6px 10px;
+        padding: 0;
     }
 
     .site-frame-nav a,
