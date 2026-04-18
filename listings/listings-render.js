@@ -746,11 +746,13 @@
             { selector: 'meta[name="description"]', value: description },
             { selector: 'meta[property="og:title"]', value: title },
             { selector: 'meta[property="og:description"]', value: description },
+            { selector: 'meta[property="og:url"]', value: canonicalHref },
             { selector: 'meta[property="og:image"]', value: image.src },
             { selector: 'meta[property="og:image:alt"]', value: image.alt },
             { selector: 'meta[name="twitter:title"]', value: title },
             { selector: 'meta[name="twitter:description"]', value: description },
-            { selector: 'meta[name="twitter:image"]', value: image.src }
+            { selector: 'meta[name="twitter:image"]', value: image.src },
+            { selector: 'meta[name="twitter:image:alt"]', value: image.alt }
         ];
 
         metaUpdates.forEach((update) => {

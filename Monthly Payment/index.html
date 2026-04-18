@@ -3,7 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Payment to Home Price Calculator | Joe Pine</title>
+    <title>Monthly Payment Calculator for RI &amp; MA Buyers | Joe Pine</title>
+    <meta
+        name="description"
+        content="Use Joe Pine's monthly payment calculator to estimate a Rhode Island or Massachusetts home budget based on payment target, down payment, closing costs, taxes, insurance, and loan assumptions."
+    >
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta property="og:title" content="Monthly Payment Calculator for RI &amp; MA Buyers | Joe Pine">
+    <meta property="og:description" content="Estimate a Rhode Island or Massachusetts home budget from your target monthly payment with Joe Pine's buyer-friendly calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joepine.com/Monthly%20Payment/">
+    <meta property="og:site_name" content="Joe Pine Real Estate">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
+    <meta property="og:image:alt" content="Joe Pine sitting on the front steps of a porch">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Monthly Payment Calculator for RI &amp; MA Buyers | Joe Pine">
+    <meta name="twitter:description" content="Estimate a Rhode Island or Massachusetts home budget from your target monthly payment with Joe Pine's buyer-friendly calculator.">
+    <meta name="twitter:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
+    <meta name="twitter:image:alt" content="Joe Pine sitting on the front steps of a porch">
+    <link rel="canonical" href="https://joepine.com/Monthly%20Payment/">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "@id": "https://joepine.com/Monthly%20Payment/#webapp",
+            "url": "https://joepine.com/Monthly%20Payment/",
+            "name": "Monthly Payment Calculator for RI & MA Buyers | Joe Pine",
+            "description": "Use Joe Pine's monthly payment calculator to estimate a Rhode Island or Massachusetts home budget based on payment target, down payment, closing costs, taxes, insurance, and loan assumptions.",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "isPartOf": {
+                "@id": "https://joepine.com/#website"
+            },
+            "about": {
+                "@id": "https://joepine.com/#real-estate-agent"
+            }
+        }
+    </script>
     <script>
         const monthlyPaymentParams = new URLSearchParams(window.location.search);
         const monthlyPaymentEmbed = monthlyPaymentParams.get("embed") || "";
@@ -47,6 +89,42 @@
                 radial-gradient(circle at top right, rgba(0, 0, 0, 0.05), transparent 18%),
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 50%, #fafafa 100%);
             color: var(--kw-ink);
+        }
+        .calculator-intro {
+            width: min(1180px, calc(100% - 32px));
+            margin: 18px auto 0;
+            padding: 18px 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(229, 231, 235, 0.95);
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 18px 36px -30px rgba(15, 23, 42, 0.18);
+        }
+        .calculator-intro p {
+            margin: 0;
+            color: var(--kw-slate);
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 800;
+        }
+        .calculator-intro p + p {
+            margin-top: 10px;
+        }
+        .calculator-intro-kicker {
+            margin: 0 0 8px;
+            color: var(--kw-red);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .calculator-intro h1 {
+            margin: 0 0 8px;
+            font-size: clamp(28px, 4.4vw, 42px);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            font-weight: 900;
         }
         .premium-shadow {
             box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05), 0 2px 10px -5px rgba(0, 0, 0, 0.03);
@@ -95,6 +173,10 @@
         body.is-embed {
             padding: 0 !important;
             background: transparent;
+        }
+        html[data-embed] .calculator-intro,
+        body.is-embed .calculator-intro {
+            display: none;
         }
         html[data-embed] .site-frame-wrap,
         body.is-embed .site-frame-wrap {
@@ -522,6 +604,12 @@
             </nav>
         </header>
     </div>
+    <section class="calculator-intro">
+        <p class="calculator-intro-kicker">Rhode Island + Massachusetts Buyer Calculator</p>
+        <h1>Monthly payment to home price calculator</h1>
+        <p>Use this calculator to estimate how a target monthly payment may translate into a home budget in Rhode Island or Massachusetts.</p>
+        <p>It brings together down payment, closing costs, taxes, insurance, loan type, and rate assumptions so buyers can start with a clearer plan before they browse homes or talk to a lender.</p>
+    </section>
     <div id="root"></div>
 
     <script type="text/babel">

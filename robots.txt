@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+Disallow: /buyer-start-here/index.legacy-2026-04-17.html
+Disallow: /Monthly%20Payment/kw-search.html
+Disallow: /_homes_burnside.html
+Disallow: /_riliving_tour.html
+Disallow: /_edge-mobile-nav/
+Disallow: /tmp-
+Disallow: /buyer-start-here/tmp-
+
+Sitemap: https://joepine.com/sitemap.xml

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoePine.com Repo Summary</title>
+    <style>
+        @page {
+            size: Letter portrait;
+            margin: 0.28in;
+        }
+
+        :root {
+            --ink: #141414;
+            --muted: #5f5f5f;
+            --line: #d7d7d7;
+            --panel: #ffffff;
+            --panel-soft: #f7f7f7;
+            --accent: #b40101;
+            --accent-deep: #820000;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            color: var(--ink);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            font-size: 9.35pt;
+            line-height: 1.25;
+        }
+
+        .page {
+            display: grid;
+            gap: 0.12in;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(2.1in, 0.72fr);
+            gap: 0.12in;
+            align-items: stretch;
+        }
+
+        .title-card,
+        .meta-card,
+        .section,
+        .callout {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--panel);
+        }
+
+        .title-card {
+            padding: 0.16in 0.18in 0.14in;
+            background:
+                radial-gradient(circle at top left, rgba(180, 1, 1, 0.12), transparent 34%),
+                linear-gradient(135deg, #ffffff 0%, #fbf6f6 100%);
+        }
+
+        .meta-card {
+            padding: 0.15in 0.16in;
+            background: linear-gradient(180deg, #fff7f7 0%, #ffffff 100%);
+        }
+
+        .eyebrow {
+            margin: 0 0 0.05in;
+            font-size: 7.9pt;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        h1 {
+            margin: 0 0 0.05in;
+            font-size: 20pt;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+        }
+
+        .subtitle,
+        .meta-card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .meta-card p + p {
+            margin-top: 0.06in;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(2.65in, 0.86fr);
+            gap: 0.12in;
+            align-items: start;
+        }
+
+        .column {
+            display: grid;
+            gap: 0.1in;
+        }
+
+        .section,
+        .callout {
+            padding: 0.12in 0.14in 0.11in;
+        }
+
+        h2 {
+            margin: 0 0 0.06in;
+            font-size: 9.4pt;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+        }
+
+        p {
+            margin: 0;
+        }
+
+        p + p {
+            margin-top: 0.04in;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 0.16in;
+        }
+
+        li + li {
+            margin-top: 0.03in;
+        }
+
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 8.2pt;
+            background: #f4f4f4;
+            border-radius: 6px;
+            padding: 0 0.06in;
+        }
+
+        .callout {
+            background: var(--panel-soft);
+        }
+
+        .small {
+            font-size: 8.3pt;
+            line-height: 1.3;
+            color: var(--muted);
+        }
+
+        .footer {
+            font-size: 7.9pt;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+            padding-top: 0.06in;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="header">
+            <div class="title-card">
+                <p class="eyebrow">One-Page Repo Summary</p>
+                <h1>JoePine.com</h1>
+                <p class="subtitle">
+                    Static real-estate web app for Rhode Island and Massachusetts buyers and sellers,
+                    summarized only from repo evidence.
+                </p>
+            </div>
+            <div class="meta-card">
+                <p><strong>App type:</strong> Static multi-page web app/site</p>
+                <p><strong>Primary surface:</strong> Client-facing real-estate guidance and tools</p>
+                <p><strong>Repo snapshot date:</strong> 2026-04-17</p>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="column">
+                <article class="section">
+                    <h2>What It Is</h2>
+                    <p>
+                        JoePine.com is a branded, client-facing real-estate website for Joe Pine covering Rhode Island and Massachusetts.
+                        It combines educational guides, calculators, search/listing experiences, and process explainers so clients can understand the numbers and the next step.
+                    </p>
+                </article>
+
+                <article class="section">
+                    <h2>Who It's For</h2>
+                    <p>
+                        Primary persona: Rhode Island and Massachusetts home buyers and sellers, especially first-time buyers who want plain-language education, planning tools, and direct access to Joe Pine.
+                    </p>
+                </article>
+
+                <article class="section">
+                    <h2>What It Does</h2>
+                    <ul>
+                        <li>Publishes a 28-slide first-time buyer workbook covering credit, cash to close, assistance, contingencies, and offer-to-closing steps.</li>
+                        <li>Provides a buyer hub with the journey tracker, monthly payment calculator, lender list, inspector list, and attorney options.</li>
+                        <li>Provides a seller hub with the seller journey, seller proceeds calculator, and closing-attorney options.</li>
+                        <li>Wraps Keller Williams home search with a quick payment-based budget estimator and full-search links.</li>
+                        <li>Renders featured listings from repo-managed listing data, including photos, status notes, open-house info, and tour links.</li>
+                        <li>Exports branded calculator worksheets/PDFs; the seller proceeds tool also remembers inputs locally.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="column">
+                <article class="section">
+                    <h2>How It Works</h2>
+                    <ul>
+                        <li><strong>Front end:</strong> static HTML/CSS/JS pages under folders such as <code>buyers/</code>, <code>sellers/</code>, <code>journey/</code>, <code>Monthly Payment/</code>, <code>Seller Net/</code>, <code>search/</code>, and <code>listings/</code>, with shared chrome in <code>site-frame.css</code> and <code>site-frame.js</code>.</li>
+                        <li><strong>Composition:</strong> buyer and seller hubs embed sub-pages in <code>iframe</code>s and resize them with <code>postMessage</code>; redirect/file-preview helpers support local <code>file:</code> viewing.</li>
+                        <li><strong>Client-side data:</strong> content and state live in browser scripts such as <code>script.js</code>, <code>journey.js</code>, <code>listings-data.js</code>, and calculator code inside page HTML; seller proceeds persistence uses cookies plus <code>localStorage</code>.</li>
+                        <li><strong>External services:</strong> Leaflet plus CARTO/OpenStreetMap tiles, Keller Williams search embeds, Mortgage News Daily rates via CodeTabs proxy, and Firebase Auth/Firestore in <code>Monthly Payment/index.html</code> for anonymous auth and lead capture.</li>
+                        <li><strong>Repo-owned backend/build system:</strong> Not found in repo.</li>
+                    </ul>
+                </article>
+
+                <article class="section">
+                    <h2>How To Run</h2>
+                    <ul>
+                        <li><strong>Install/build/start command:</strong> Not found in repo.</li>
+                        <li>Open <code>index.html</code> in a browser for the minimal local preview; route wrappers and <code>site-frame.js</code> include explicit <code>file:</code> handling.</li>
+                        <li>Optional inference from repo structure: serve the folder as static files if you want cleaner route URLs and iframe behavior.</li>
+                    </ul>
+                </article>
+
+                <article class="callout">
+                    <h2>Repo Gaps</h2>
+                    <p class="small">
+                        README usage details, deployment steps, automated tests, and package/dependency manifests were not found in repo.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Evidence: <code>index.html</code>, <code>script.js</code>, <code>buyer-start-here/index.html</code>,
+            <code>buyers/index.html</code>, <code>sellers/index.html</code>, <code>journey/index.html</code>, <code>journey.js</code>,
+            <code>Monthly Payment/index.html</code>, <code>Seller Net/index.html</code>, <code>search/index.html</code>,
+            <code>listings/index.html</code>, <code>listings/listings-data.js</code>, <code>listings/listings-render.js</code>,
+            <code>attorneys/index.html</code>, and <code>inspectors/index.html</code>.
+        </footer>
+    </main>
+</body>
+</html>
