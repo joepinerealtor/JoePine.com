@@ -373,6 +373,14 @@ document.querySelectorAll("[data-site-nav-toggle]").forEach((toggle) => {
             toggle.setAttribute("aria-expanded", "false");
             updateSiteFrameOffset();
 
+            const isContactCta = link.classList.contains("site-frame-cta") && siteContactModalEnabled;
+
+            if (isContactCta) {
+                event.preventDefault();
+                openSiteContactModal();
+                return;
+            }
+
             const linkUrl = new URL(link.href, window.location.href);
             const isSamePageHashLink =
                 linkUrl.hash &&
@@ -393,6 +401,13 @@ document.querySelectorAll(".site-frame-cta").forEach((link) => {
         }
 
         event.preventDefault();
+        event.stopPropagation();
+
+        if (window.location.hash === "#contact") {
+            const cleanUrl = new URL(window.location.href);
+            cleanUrl.hash = "";
+            window.history.replaceState(null, "", `${cleanUrl.pathname}${cleanUrl.search}`);
+        }
 
         document.querySelectorAll(".site-frame-nav.is-open").forEach((nav) => {
             nav.classList.remove("is-open");
@@ -401,6 +416,12 @@ document.querySelectorAll(".site-frame-cta").forEach((link) => {
         document.querySelectorAll("[data-site-nav-toggle]").forEach((toggle) => {
             toggle.setAttribute("aria-expanded", "false");
         });
+
+        if (window.location.hash === "#contact" && window.history?.replaceState) {
+            const url = new URL(window.location.href);
+            url.hash = "";
+            window.history.replaceState(null, "", `${url.pathname}${url.search}`);
+        }
 
         updateSiteFrameOffset();
         openSiteContactModal();
