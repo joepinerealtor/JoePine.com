@@ -9,7 +9,9 @@ const SITE_FRAME_SCROLL_THRESHOLD_ENTER = 120;
 const SITE_FRAME_SCROLL_THRESHOLD_EXIT = 56;
 let siteFrameIsCondensed = false;
 let siteFrameScrollTicking = false;
-const siteContactModalEnabled = document.body.hasAttribute("data-site-contact-modal");
+const siteContactModalEnabled =
+    Boolean(document.querySelector(".site-frame-wrap"))
+    && document.body.getAttribute("data-site-contact-modal") !== "false";
 let siteContactModal = null;
 
 function setSiteHeadLink(rel, href, options = {}) {
