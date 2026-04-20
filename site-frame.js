@@ -9,6 +9,8 @@ const SITE_FRAME_SCROLL_THRESHOLD_ENTER = 120;
 const SITE_FRAME_SCROLL_THRESHOLD_EXIT = 56;
 let siteFrameIsCondensed = false;
 let siteFrameScrollTicking = false;
+const siteContactModalEnabled = document.body.hasAttribute("data-site-contact-modal");
+let siteContactModal = null;
 
 function setSiteHeadLink(rel, href, options = {}) {
     let selector = `link[rel="${rel}"]`;
@@ -183,6 +185,88 @@ function ensureSiteFrameShellLayout() {
     });
 }
 
+function ensureSiteContactModal() {
+    if (!siteContactModalEnabled) {
+        return null;
+    }
+
+    if (siteContactModal instanceof HTMLElement) {
+        return siteContactModal;
+    }
+
+    siteContactModal = document.querySelector(".site-contact-modal");
+
+    if (siteContactModal instanceof HTMLElement) {
+        return siteContactModal;
+    }
+
+    const modal = document.createElement("section");
+    modal.className = "site-contact-modal";
+    modal.setAttribute("aria-label", "Contact Joe Pine");
+    modal.setAttribute("aria-hidden", "true");
+
+    modal.innerHTML = `
+        <div class="site-contact-modal__card">
+            <div class="site-contact-modal__media">
+                <img class="site-contact-modal__photo" src="${new URL("images/photos/joe-front-steps.jpg", siteFrameAssetBase).href}" alt="Joe Pine sitting on the front steps of a home" loading="lazy">
+            </div>
+            <div class="site-contact-modal__body">
+                <div class="site-contact-modal__head">
+                    <div>
+                        <p class="site-contact-modal__eyebrow">Contact Joe</p>
+                        <h2>Talk with Joe Pine</h2>
+                    </div>
+                    <button class="site-contact-modal__close" type="button" data-site-contact-close aria-label="Close contact card">Close</button>
+                </div>
+                <img class="site-contact-modal__logo" src="${new URL("Joe Pine Realtor Red.png", siteFrameAssetBase).href}" alt="Joe Pine Realtor logo">
+                <p class="site-contact-modal__lede">Platinum Real Estate Group at Keller Williams Leading Edge</p>
+                <p class="site-contact-modal__copy">If you want help understanding your next step, you can reach out directly. Questions are welcome whether you are ready now or still figuring out where to begin.</p>
+                <div class="site-contact-modal__links">
+                    <a class="site-contact-link" href="tel:4013270888">
+                        <strong>Call or text</strong>
+                        <span>401.327.0888</span>
+                    </a>
+                    <a class="site-contact-link" href="mailto:JoePine@KW.com?subject=I%20Would%20Like%20To%20Talk%20About%20Buying">
+                        <strong>Email</strong>
+                        <span>JoePine@KW.com</span>
+                    </a>
+                    <a class="site-contact-link" href="${normalizeLocalFileUrl(new URL("index.html#about", siteFrameAssetBase).href)}">
+                        <strong>Learn more about Joe</strong>
+                        <span>Read more on JoePine.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    syncLocalFilePreviewUrls(modal);
+    siteContactModal = modal;
+    return siteContactModal;
+}
+
+function closeSiteContactModal() {
+    const modal = ensureSiteContactModal();
+
+    if (!(modal instanceof HTMLElement)) {
+        return;
+    }
+
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-site-contact-open");
+}
+
+function openSiteContactModal() {
+    const modal = ensureSiteContactModal();
+
+    if (!(modal instanceof HTMLElement)) {
+        return;
+    }
+
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-site-contact-open");
+}
+
 function setSiteFrameCondensed(condensed) {
     if (!siteFrameWrap || siteFrameIsCondensed === condensed) {
         return;
@@ -244,6 +328,7 @@ updateSiteFrameOffset();
 syncLocalFilePreviewUrls();
 ensureSiteFrameFavicon();
 ensureSiteFrameShellLayout();
+ensureSiteContactModal();
 
 window.addEventListener("resize", () => {
     syncSiteFrameCondensed();
@@ -297,4 +382,37 @@ document.querySelectorAll("[data-site-nav-toggle]").forEach((toggle) => {
             }
         });
     });
+});
+
+document.querySelectorAll(".site-frame-cta").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        if (!siteContactModalEnabled) {
+            return;
+        }
+
+        event.preventDefault();
+
+        document.querySelectorAll(".site-frame-nav.is-open").forEach((nav) => {
+            nav.classList.remove("is-open");
+        });
+
+        document.querySelectorAll("[data-site-nav-toggle]").forEach((toggle) => {
+            toggle.setAttribute("aria-expanded", "false");
+        });
+
+        updateSiteFrameOffset();
+        openSiteContactModal();
+    });
+});
+
+siteContactModal?.addEventListener("click", (event) => {
+    if (event.target === siteContactModal || event.target.closest("[data-site-contact-close]")) {
+        closeSiteContactModal();
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && siteContactModal?.getAttribute("aria-hidden") === "false") {
+        closeSiteContactModal();
+    }
 });
