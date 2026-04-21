@@ -338,6 +338,12 @@ h6 {
     font-weight: 800;
 }
 
+.site-frame-wrap.is-condensed .site-frame-nav a[aria-current="page"] {
+    color: var(--frame-red);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 10px 18px -20px rgba(64, 0, 8, 0.52);
+}
+
 .site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta {
     color: var(--frame-red);
 }
@@ -375,6 +381,14 @@ h6 {
     color: var(--frame-red);
     background: rgba(255, 255, 255, 0.96);
     box-shadow: 0 10px 18px -20px rgba(64, 0, 8, 0.52);
+}
+
+.site-frame-nav a[aria-current="page"]:hover,
+.site-frame-nav a[aria-current="page"]:focus-visible,
+.site-frame-wrap.is-condensed .site-frame-nav a[aria-current="page"]:hover,
+.site-frame-wrap.is-condensed .site-frame-nav a[aria-current="page"]:focus-visible {
+    color: var(--frame-red);
+    background: #ffffff;
 }
 
 .site-frame-nav .site-frame-cta {
