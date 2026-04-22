@@ -2,6 +2,7 @@
     const dataStore = window.JOE_PINE_LISTINGS;
     const listings = Array.isArray(dataStore?.listings) ? dataStore.listings.slice() : [];
     const recentSales = Array.isArray(dataStore?.recentSales) ? dataStore.recentSales.slice() : [];
+    const recentSalesSource = dataStore?.recentSalesSource || null;
     const statusOrder = {
         active: 0,
         "coming-soon": 1,
@@ -519,50 +520,97 @@
         const root = document.querySelector("[data-listings-home-featured]");
         const listing = getFeaturedListing();
         const primaryOpenHouse = listing ? getPrimaryOpenHouse(listing) : null;
+        const homepageSales = recentSales.slice(0, 3);
 
         if (!root || !listing) {
             return;
         }
 
         const propertyHref = buildPropertyHref("./listings/property/?slug=", listing.slug);
+        const salesMarkup = homepageSales.length
+            ? [
+                  '<div class="featured-recent-sales">',
+                  '    <div class="featured-recent-sales-header">',
+                  '        <div>',
+                  '            <p class="eyebrow">Recent Closings</p>',
+                  '            <h3>A few recent sales Joe has already helped close.</h3>',
+                  '            <p>Recent sold homes pulled from Joe&rsquo;s Homes.com profile so buyers and sellers can see real recent activity, not just active listings.</p>',
+                  "        </div>",
+                  recentSalesSource?.url
+                      ? `        <a class="button button-secondary" href="${escapeHtml(recentSalesSource.url)}" target="_blank" rel="noreferrer">View Homes.com Profile</a>`
+                      : "",
+                  "    </div>",
+                  recentSalesSource?.label || recentSalesSource?.lastReviewedLabel
+                      ? `    <p class="featured-recent-sales-note">${escapeHtml(
+                            [recentSalesSource?.label, recentSalesSource?.lastReviewedLabel].filter(Boolean).join(" ")
+                        )}</p>`
+                      : "",
+                  '    <div class="featured-recent-sales-grid">',
+                  homepageSales
+                      .map((sale) => {
+                          return [
+                              '        <article class="featured-recent-sale-card">',
+                              '            <div class="featured-recent-sale-media">',
+                              `                <img src="${escapeHtml(sale.imageSrc)}" referrerpolicy="no-referrer" alt="${escapeHtml(sale.imageAlt)}">`,
+                              "            </div>",
+                              '            <div class="featured-recent-sale-body">',
+                              `                <p class="featured-recent-sale-kicker">${escapeHtml(sale.statusLabel || "Closed Sale")}</p>`,
+                              `                <h4>${escapeHtml(sale.title)}</h4>`,
+                              `                <p class="featured-recent-sale-address">${escapeHtml(`${sale.city}, ${sale.state}`)}</p>`,
+                              sale.closedLabel
+                                  ? `                <p class="featured-recent-sale-closed">${escapeHtml(sale.closedLabel)}</p>`
+                                  : "",
+                              `                <p class="featured-recent-sale-price">Sold ${escapeHtml(formatPrice(sale.soldPrice))}</p>`,
+                              "            </div>",
+                              "        </article>"
+                          ].join("");
+                      })
+                      .join(""),
+                  "    </div>",
+                  "</div>"
+              ].join("")
+            : "";
 
         root.innerHTML = [
-            '<div class="featured-listing-shell">',
-            '    <div class="featured-listing-copy">',
-            '        <p class="eyebrow">Featured Listing</p>',
-            '        <div class="featured-listing-status-row">',
-            `            <span class="${buildStatusClass("featured-listing-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
+            '<div class="featured-listing-stack">',
+            '    <div class="featured-listing-shell">',
+            '        <div class="featured-listing-copy">',
+            '            <p class="eyebrow">Featured Listing</p>',
+            '            <div class="featured-listing-status-row">',
+            `                <span class="${buildStatusClass("featured-listing-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
             buildStatusUpdatedLabel(listing)
-                ? `            <span class="featured-listing-status featured-listing-status-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
+                ? `                <span class="featured-listing-status featured-listing-status-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
                 : "",
-            "        </div>",
-            `        <h2>${escapeHtml(listing.headline)}</h2>`,
-            `        <p class="featured-listing-price">${escapeHtml(formatPrice(listing.price))}</p>`,
-            `        <div class="featured-listing-stats" aria-label="${escapeHtml(listing.title)} home facts">`,
-            buildFactChips(listing).map((chip) => `            <span>${escapeHtml(chip)}</span>`).join(""),
-            "        </div>",
-            `        <p class="featured-listing-text">${escapeHtml(listing.summary)}</p>`,
-            '        <ul class="featured-listing-highlights">',
-            listing.highlights.map((item) => `            <li>${escapeHtml(item)}</li>`).join(""),
-            "        </ul>",
-            '        <div class="featured-listing-actions">',
+            "            </div>",
+            `            <h2>${escapeHtml(listing.headline)}</h2>`,
+            `            <p class="featured-listing-price">${escapeHtml(formatPrice(listing.price))}</p>`,
+            `            <div class="featured-listing-stats" aria-label="${escapeHtml(listing.title)} home facts">`,
+            buildFactChips(listing).map((chip) => `                <span>${escapeHtml(chip)}</span>`).join(""),
+            "            </div>",
+            `            <p class="featured-listing-text">${escapeHtml(listing.summary)}</p>`,
+            '            <ul class="featured-listing-highlights">',
+            listing.highlights.map((item) => `                <li>${escapeHtml(item)}</li>`).join(""),
+            "            </ul>",
+            '            <div class="featured-listing-actions">',
             buildButton(propertyHref, "Open Listing Page", "button-primary"),
             buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
             buildButton(listing.links.homes, "View On Homes.com", "button-secondary", ' target="_blank" rel="noreferrer"'),
+            "            </div>",
+            `            <p class="featured-listing-note">${escapeHtml(buildFeaturedStatusNote(listing, primaryOpenHouse))}</p>`,
             "        </div>",
-            `        <p class="featured-listing-note">${escapeHtml(buildFeaturedStatusNote(listing, primaryOpenHouse))}</p>`,
-            "    </div>",
-            '    <div class="featured-media-card">',
-            '        <div class="featured-media-heading">',
-            `            <p>${escapeHtml(listing.areaLabel)}</p>`,
-            `            <strong>${escapeHtml(listing.teaser)}</strong>`,
-            "        </div>",
+            '        <div class="featured-media-card">',
+            '            <div class="featured-media-heading">',
+            `                <p>${escapeHtml(listing.areaLabel)}</p>`,
+            `                <strong>${escapeHtml(listing.teaser)}</strong>`,
+            "            </div>",
             buildCarouselMarkup(listing),
-            '        <div class="featured-media-actions">',
+            '            <div class="featured-media-actions">',
             buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`${listing.title} Showing Request`)}`, "Email Joe About This Home", "button-ink"),
+            "            </div>",
+            `            <p class="featured-media-note">${escapeHtml(listing.locationBlurb)}</p>`,
             "        </div>",
-            `        <p class="featured-media-note">${escapeHtml(listing.locationBlurb)}</p>`,
             "    </div>",
+            salesMarkup,
             "</div>"
         ].join("");
 
