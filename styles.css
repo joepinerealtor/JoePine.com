@@ -798,23 +798,29 @@ img {
 
 .featured-recent-sales-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
     gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(180, 1, 1, 0.34) rgba(0, 0, 0, 0.06);
 }
 
 .featured-recent-sale-card {
-    display: grid;
-    grid-template-columns: 128px minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     border: 1px solid rgba(180, 1, 1, 0.12);
     border-radius: 22px;
     background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
     box-shadow: var(--shadow-soft);
-    min-height: 126px;
+    min-height: 0;
+    scroll-snap-align: start;
 }
 
 .featured-recent-sale-media {
-    height: 100%;
+    height: 144px;
     background: linear-gradient(180deg, #f8f7f7 0%, #f2f2f2 100%);
 }
 
@@ -826,9 +832,8 @@ img {
 
 .featured-recent-sale-body {
     display: grid;
-    align-content: center;
     gap: 4px;
-    padding: 12px 14px 13px;
+    padding: 14px 14px 15px;
 }
 
 .featured-recent-sale-kicker {
@@ -843,7 +848,7 @@ img {
 .featured-recent-sale-body h4 {
     margin: 0;
     font-family: var(--kw-display-font);
-    font-size: 0.98rem;
+    font-size: 1rem;
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1.02;
@@ -861,10 +866,24 @@ img {
 .featured-recent-sale-price {
     margin: 4px 0 0;
     color: var(--terracotta);
-    font-size: 1.08rem;
+    font-size: 1.14rem;
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1.08;
+}
+
+.featured-recent-sales-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.featured-recent-sales-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 999px;
+}
+
+.featured-recent-sales-grid::-webkit-scrollbar-thumb {
+    background: rgba(180, 1, 1, 0.32);
+    border-radius: 999px;
 }
 
 .brand-ribbon h2,
@@ -3313,12 +3332,7 @@ img {
     }
 
     .featured-recent-sales-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .featured-recent-sale-card {
-        grid-template-columns: 118px minmax(0, 1fr);
-        min-height: 118px;
+        grid-auto-columns: minmax(210px, 1fr);
     }
 
     .about-panel {
@@ -3453,12 +3467,7 @@ img {
     }
 
     .featured-recent-sales-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .featured-recent-sale-card {
-        grid-template-columns: 104px minmax(0, 1fr);
-        min-height: 108px;
+        grid-auto-columns: minmax(190px, 1fr);
     }
 
     .brand-ribbon,
