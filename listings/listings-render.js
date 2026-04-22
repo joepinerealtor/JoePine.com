@@ -520,7 +520,7 @@
         const root = document.querySelector("[data-listings-home-featured]");
         const listing = getFeaturedListing();
         const primaryOpenHouse = listing ? getPrimaryOpenHouse(listing) : null;
-        const homepageSales = recentSales.slice(0, 3);
+        const homepageSales = recentSales.slice(0, 6);
 
         if (!root || !listing) {
             return;
@@ -533,8 +533,8 @@
                   '    <div class="featured-recent-sales-header">',
                   '        <div>',
                   '            <p class="eyebrow">Recent Closings</p>',
-                  '            <h3>A few recent sales Joe has already helped close.</h3>',
-                  '            <p>Recent sold homes pulled from Joe&rsquo;s Homes.com profile so buyers and sellers can see real recent activity, not just active listings.</p>',
+                  '            <h3>Recent closings.</h3>',
+                  '            <p>A compact look at a few recent homes Joe has already helped close.</p>',
                   "        </div>",
                   recentSalesSource?.url
                       ? `        <a class="button button-secondary" href="${escapeHtml(recentSalesSource.url)}" target="_blank" rel="noreferrer">View Homes.com Profile</a>`

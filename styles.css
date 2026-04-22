@@ -803,17 +803,18 @@ img {
 }
 
 .featured-recent-sale-card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 128px minmax(0, 1fr);
     overflow: hidden;
     border: 1px solid rgba(180, 1, 1, 0.12);
     border-radius: 22px;
     background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
     box-shadow: var(--shadow-soft);
+    min-height: 126px;
 }
 
 .featured-recent-sale-media {
-    aspect-ratio: 16 / 10;
+    height: 100%;
     background: linear-gradient(180deg, #f8f7f7 0%, #f2f2f2 100%);
 }
 
@@ -825,8 +826,9 @@ img {
 
 .featured-recent-sale-body {
     display: grid;
-    gap: 6px;
-    padding: 16px 16px 18px;
+    align-content: center;
+    gap: 4px;
+    padding: 12px 14px 13px;
 }
 
 .featured-recent-sale-kicker {
@@ -841,10 +843,10 @@ img {
 .featured-recent-sale-body h4 {
     margin: 0;
     font-family: var(--kw-display-font);
-    font-size: 1.1rem;
+    font-size: 0.98rem;
     font-weight: 900;
     letter-spacing: -0.04em;
-    line-height: 1.08;
+    line-height: 1.02;
     text-transform: uppercase;
 }
 
@@ -852,14 +854,14 @@ img {
 .featured-recent-sale-closed {
     margin: 0;
     color: rgba(30, 39, 34, 0.68);
-    font-size: 0.88rem;
-    line-height: 1.5;
+    font-size: 0.82rem;
+    line-height: 1.42;
 }
 
 .featured-recent-sale-price {
     margin: 4px 0 0;
     color: var(--terracotta);
-    font-size: 1.32rem;
+    font-size: 1.08rem;
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1.08;
@@ -3314,6 +3316,11 @@ img {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .featured-recent-sale-card {
+        grid-template-columns: 118px minmax(0, 1fr);
+        min-height: 118px;
+    }
+
     .about-panel {
         justify-content: stretch;
     }
@@ -3447,6 +3454,11 @@ img {
 
     .featured-recent-sales-grid {
         grid-template-columns: 1fr;
+    }
+
+    .featured-recent-sale-card {
+        grid-template-columns: 104px minmax(0, 1fr);
+        min-height: 108px;
     }
 
     .brand-ribbon,
