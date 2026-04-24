@@ -49,9 +49,17 @@ function ensureSiteFrameFavicon() {
         .querySelectorAll('link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]')
         .forEach((link) => link.remove());
 
+    setSiteHeadLink("icon", new URL("favicon-16.png", siteFrameAssetBase).href, {
+        type: "image/png",
+        sizes: "16x16"
+    });
     setSiteHeadLink("icon", new URL("favicon-32.png", siteFrameAssetBase).href, {
         type: "image/png",
         sizes: "32x32"
+    });
+    setSiteHeadLink("icon", new URL("favicon-192.png", siteFrameAssetBase).href, {
+        type: "image/png",
+        sizes: "192x192"
     });
     setSiteHeadLink("shortcut icon", new URL("favicon.ico", siteFrameAssetBase).href, {
         type: "image/x-icon"
