@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-04-21",
-            lastReviewedLabel: "Reviewed April 21, 2026"
+            lastReviewedIso: "2026-05-03",
+            lastReviewedLabel: "Reviewed May 3, 2026"
         },
         listings: [
             {
@@ -27,8 +27,8 @@
                 statusLabel: "Pending",
                 featured: true,
                 listedDate: "2026-03-26",
-                sourceSnapshotDate: "2026-04-16",
-                sourceSnapshotLabel: "April 16, 2026",
+                sourceSnapshotDate: "2026-05-03",
+                sourceSnapshotLabel: "May 3, 2026",
                 price: 344900,
                 pricePerSqFt: 399,
                 beds: 3,
@@ -45,16 +45,7 @@
                     homes: "https://www.homes.com/property/122-leigh-st-warwick-ri/q6rdmyyx3s5qp/",
                     tour3d: "https://tour.riliving.com/122-Leigh-Street-Warwick-RI-02889"
                 },
-                openHouses: [
-                    {
-                        startIso: "2026-04-11T11:30:00-04:00",
-                        endIso: "2026-04-11T13:30:00-04:00",
-                        chipLabel: "Open House: April 11, 2026",
-                        dateLabel: "Saturday, April 11, 2026",
-                        timeLabel: "11:30 AM to 1:30 PM",
-                        fullLabel: "Saturday, April 11, 2026 | 11:30 AM to 1:30 PM"
-                    }
-                ],
+                openHouses: [],
                 highlights: [
                     "Hardwood floors through the main living spaces and bedrooms",
                     "2024 vinyl siding with a transferable warranty",
