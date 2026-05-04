@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-05-03",
-            lastReviewedLabel: "Reviewed May 3, 2026"
+            lastReviewedIso: "2026-05-04",
+            lastReviewedLabel: "Reviewed May 4, 2026"
         },
         listings: [
             {
@@ -227,6 +227,7 @@
                 state: "RI",
                 soldPrice: 320000,
                 statusLabel: "Closed Sale",
+                closedLabel: "Sold Jan 15, 2026",
                 imageSrc: "https://images.homes.com/listings/102/5052681854-468362802/22-edward-st-coventry-ri-primaryphoto.jpg",
                 imageAlt: "22 Edward Street in Coventry, Rhode Island",
                 summary: "A recent Coventry closing featured here as part of the sales portfolio.",
@@ -238,6 +239,7 @@
                 state: "MA",
                 soldPrice: 772500,
                 statusLabel: "Closed Sale",
+                closedLabel: "Sold Feb 20, 2026",
                 imageSrc: "https://images.homes.com/listings/102/6334154954-048126802/108-homestead-ave-rehoboth-ma-primaryphoto.jpg",
                 imageAlt: "108 Homestead Avenue in Rehoboth, Massachusetts",
                 summary: "A recent Rehoboth sale featured here to show the range of homes represented across Massachusetts.",
@@ -249,6 +251,7 @@
                 state: "MA",
                 soldPrice: 400000,
                 statusLabel: "Closed Sale",
+                closedLabel: "Sold Aug 11, 2023",
                 imageSrc: "https://images.homes.com/listings/102/6438161923-296099651/53-plain-st-taunton-ma-primaryphoto.jpg",
                 imageAlt: "53 Plain Street in Taunton, Massachusetts",
                 summary: "A recent Taunton closing included as part of the current sold-home portfolio.",
@@ -260,6 +263,7 @@
                 state: "RI",
                 soldPrice: 390000,
                 statusLabel: "Closed Sale",
+                closedLabel: "Sold Jan 16, 2026",
                 imageSrc: "https://images.homes.com/listings/102/8502557854-762035702/12-dion-dr-harrisville-ri-primaryphoto.jpg",
                 imageAlt: "12 Dion Drive in Harrisville, Rhode Island",
                 summary: "A recent Harrisville sale featured here alongside other recent Rhode Island closings.",
@@ -271,6 +275,7 @@
                 state: "RI",
                 soldPrice: 293000,
                 statusLabel: "Closed Sale",
+                closedLabel: "Sold Jan 31, 2023",
                 imageSrc: "https://images.homes.com/listings/102/4936129004-882649351/18-north-st-riverside-ri-primaryphoto.jpg",
                 imageAlt: "18 North Street in Riverside, Rhode Island",
                 summary: "A recent Riverside closing included in the sold-home portfolio.",
