@@ -246,6 +246,18 @@
                 ctaLabel: "Ask About Similar Homes"
             },
             {
+                title: "1 Holly Street",
+                city: "Attleboro",
+                state: "MA",
+                soldPrice: 387000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold Aug 12, 2025",
+                imageSrc: "https://images.homes.com/listings/102/3475343334-563361891/1-holly-st-attleboro-ma-primaryphoto.jpg",
+                imageAlt: "1 Holly Street in Attleboro, Massachusetts",
+                summary: "A recent Attleboro buyer-side closing featured here as part of the Massachusetts sales portfolio.",
+                ctaLabel: "Ask About Similar Homes"
+            },
+            {
                 title: "53 Plain Street",
                 city: "Taunton",
                 state: "MA",
