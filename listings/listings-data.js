@@ -67,7 +67,7 @@
                     "Refreshed 3-bedroom, 1.5-bath Cape in Riverside",
                     "Bamboo flooring and an open-concept kitchen, dining, and living area",
                     "Fresh paint, new carpet, cosmetic improvements, and an updated full bathroom",
-                    "New electrical panel and high-efficiency Navien heating system installed in 2022",
+                    "Gas baseboard heat, gas water heater, and 100 amp electrical service",
                     "Backyard space, stamped concrete patio, porch, and driveway parking"
                 ],
                 detailIntro: [
@@ -81,8 +81,8 @@
                         items: [
                             "Fresh paint, new carpet, and cosmetic improvements",
                             "Updated full bathroom",
-                            "New electrical panel",
-                            "High-efficiency Navien heating system installed in 2022",
+                            "100 amp electrical service",
+                            "Gas baseboard heat and gas water heater",
                             "Close to the water, parks, shopping, restaurants, and commuter routes"
                         ]
                     },
@@ -112,6 +112,10 @@
                     { label: "Taxes", value: "$4,154 annually" },
                     { label: "Cooling", value: "Window unit cooling" },
                     { label: "Heating", value: "Gas baseboard heat" },
+                    { label: "Water Heater", value: "Gas water heater" },
+                    { label: "Electrical", value: "100 amp service" },
+                    { label: "Foundation", value: "Brick foundation" },
+                    { label: "Exterior", value: "Shingle siding" },
                     { label: "Lot", value: "4,792 sq ft" }
                 ],
                 cta: {
