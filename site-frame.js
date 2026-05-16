@@ -143,6 +143,33 @@ function ensureSiteFrameShellLayout() {
             return;
         }
 
+        if (!nav.querySelector('a[href*="listings"]')) {
+            const listingsLink = document.createElement("a");
+            listingsLink.href = normalizeLocalFileUrl(new URL("listings/", siteFrameAssetBase).href);
+            listingsLink.textContent = "Listings";
+
+            const searchLink = Array.from(nav.querySelectorAll("a")).find((link) => {
+                return link.textContent.trim().toLowerCase() === "search homes";
+            });
+
+            if (searchLink?.parentNode) {
+                searchLink.parentNode.insertBefore(listingsLink, searchLink);
+            } else {
+                nav.insertBefore(listingsLink, nav.querySelector(".site-frame-cta") || null);
+            }
+        }
+
+        nav.querySelectorAll('a[href*="listings"]').forEach((link) => {
+            const linkUrl = new URL(link.href, window.location.href);
+            const isListingsPage = normalizeSiteFramePath(window.location.pathname).startsWith(
+                normalizeSiteFramePath(linkUrl.pathname)
+            );
+
+            if (isListingsPage) {
+                link.setAttribute("aria-current", "page");
+            }
+        });
+
         let linkList = nav.querySelector(".site-frame-link-list");
         const cta = nav.querySelector(".site-frame-cta");
 

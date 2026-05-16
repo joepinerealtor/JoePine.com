@@ -122,7 +122,11 @@
     }
 
     function getHubListings() {
-        return sortListings(listings);
+        return sortListings(listings).filter((listing) => listing.status !== "sold");
+    }
+
+    function getCurrentListings() {
+        return getHubListings();
     }
 
     function buildFactChips(listing) {
@@ -518,15 +522,60 @@
 
     function renderHomeFeatured() {
         const root = document.querySelector("[data-listings-home-featured]");
-        const listing = getFeaturedListing();
-        const primaryOpenHouse = listing ? getPrimaryOpenHouse(listing) : null;
+        const currentListings = getCurrentListings();
         const homepageSales = recentSales.slice(0, 6);
 
-        if (!root || !listing) {
+        if (!root || !currentListings.length) {
             return;
         }
 
-        const propertyHref = buildPropertyHref("./listings/property/?slug=", listing.slug);
+        const listingCards = currentListings
+            .map((listing) => {
+                const primaryOpenHouse = getPrimaryOpenHouse(listing);
+                const propertyHref = buildPropertyHref("./listings/property/?slug=", listing.slug);
+
+                return [
+                    '<article class="featured-listing-shell">',
+                    '    <div class="featured-listing-copy">',
+                    '        <p class="eyebrow">Current Listing</p>',
+                    '        <div class="featured-listing-status-row">',
+                    `            <span class="${buildStatusClass("featured-listing-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
+                    buildStatusUpdatedLabel(listing)
+                        ? `            <span class="featured-listing-status featured-listing-status-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
+                        : "",
+                    "        </div>",
+                    `        <h2>${escapeHtml(listing.headline)}</h2>`,
+                    `        <p class="featured-listing-price">${escapeHtml(formatPrice(listing.price))}</p>`,
+                    `        <div class="featured-listing-stats" aria-label="${escapeHtml(listing.title)} home facts">`,
+                    buildFactChips(listing).map((chip) => `            <span>${escapeHtml(chip)}</span>`).join(""),
+                    "        </div>",
+                    `        <p class="featured-listing-text">${escapeHtml(listing.summary)}</p>`,
+                    '        <ul class="featured-listing-highlights">',
+                    listing.highlights.map((item) => `            <li>${escapeHtml(item)}</li>`).join(""),
+                    "        </ul>",
+                    '        <div class="featured-listing-actions">',
+                    buildButton(propertyHref, "Open Listing Page", "button-primary"),
+                    buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
+                    buildButton(listing.links.homes, "View On Homes.com", "button-secondary", ' target="_blank" rel="noreferrer"'),
+                    "        </div>",
+                    `        <p class="featured-listing-note">${escapeHtml(buildFeaturedStatusNote(listing, primaryOpenHouse))}</p>`,
+                    "    </div>",
+                    '    <div class="featured-media-card">',
+                    '        <div class="featured-media-heading">',
+                    `            <p>${escapeHtml(listing.areaLabel)}</p>`,
+                    `            <strong>${escapeHtml(listing.teaser)}</strong>`,
+                    "        </div>",
+                    buildCarouselMarkup(listing),
+                    '        <div class="featured-media-actions">',
+                    buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`${listing.title} Showing Request`)}`, "Email Joe About This Home", "button-ink"),
+                    "        </div>",
+                    `        <p class="featured-media-note">${escapeHtml(listing.locationBlurb)}</p>`,
+                    "    </div>",
+                    "</article>"
+                ].join("");
+            })
+            .join("");
+
         const salesMarkup = homepageSales.length
             ? [
                   '<div class="featured-recent-sales">',
@@ -573,43 +622,12 @@
 
         root.innerHTML = [
             '<div class="featured-listing-stack">',
-            '    <div class="featured-listing-shell">',
-            '        <div class="featured-listing-copy">',
-            '            <p class="eyebrow">Featured Listing</p>',
-            '            <div class="featured-listing-status-row">',
-            `                <span class="${buildStatusClass("featured-listing-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
-            buildStatusUpdatedLabel(listing)
-                ? `                <span class="featured-listing-status featured-listing-status-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
-                : "",
-            "            </div>",
-            `            <h2>${escapeHtml(listing.headline)}</h2>`,
-            `            <p class="featured-listing-price">${escapeHtml(formatPrice(listing.price))}</p>`,
-            `            <div class="featured-listing-stats" aria-label="${escapeHtml(listing.title)} home facts">`,
-            buildFactChips(listing).map((chip) => `                <span>${escapeHtml(chip)}</span>`).join(""),
-            "            </div>",
-            `            <p class="featured-listing-text">${escapeHtml(listing.summary)}</p>`,
-            '            <ul class="featured-listing-highlights">',
-            listing.highlights.map((item) => `                <li>${escapeHtml(item)}</li>`).join(""),
-            "            </ul>",
-            '            <div class="featured-listing-actions">',
-            buildButton(propertyHref, "Open Listing Page", "button-primary"),
-            buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
-            buildButton(listing.links.homes, "View On Homes.com", "button-secondary", ' target="_blank" rel="noreferrer"'),
-            "            </div>",
-            `            <p class="featured-listing-note">${escapeHtml(buildFeaturedStatusNote(listing, primaryOpenHouse))}</p>`,
-            "        </div>",
-            '        <div class="featured-media-card">',
-            '            <div class="featured-media-heading">',
-            `                <p>${escapeHtml(listing.areaLabel)}</p>`,
-            `                <strong>${escapeHtml(listing.teaser)}</strong>`,
-            "            </div>",
-            buildCarouselMarkup(listing),
-            '            <div class="featured-media-actions">',
-            buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`${listing.title} Showing Request`)}`, "Email Joe About This Home", "button-ink"),
-            "            </div>",
-            `            <p class="featured-media-note">${escapeHtml(listing.locationBlurb)}</p>`,
-            "        </div>",
+            '    <div class="featured-listing-intro">',
+            '        <p class="eyebrow">Current Listings</p>',
+            '        <h2>Joe Pine listings.</h2>',
+            '        <p>Active and pending listings stay visible here until they close.</p>',
             "    </div>",
+            listingCards,
             salesMarkup,
             "</div>"
         ].join("");
@@ -619,58 +637,20 @@
 
     function renderListingsFeatured() {
         const root = document.querySelector("[data-listings-page-featured]");
-        const listing = getFeaturedListing();
-        const primaryOpenHouse = listing ? getPrimaryOpenHouse(listing) : null;
-
-        if (!root || !listing) {
-            return;
+        if (root) {
+            root.innerHTML = "";
         }
-
-        const propertyHref = buildPropertyHref("./property/?slug=", listing.slug);
-
-        root.innerHTML = [
-            '<div class="featured-property">',
-            '    <div class="featured-property-media">',
-            `        <img src="${escapeHtml(listing.images[0].src)}" referrerpolicy="no-referrer" alt="${escapeHtml(listing.images[0].alt)}">`,
-            "    </div>",
-            '    <div class="featured-property-copy">',
-            '        <p class="section-kicker">Featured Listing</p>',
-            '        <div class="listing-card-status-row" style="margin-bottom: 14px;">',
-            `            <span class="${buildStatusClass("listing-card-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
-            buildStatusUpdatedLabel(listing)
-                ? `            <span class="listing-card-status listing-card-status-muted">${escapeHtml(buildStatusUpdatedLabel(listing))}</span>`
-                : "",
-            "        </div>",
-            `        <h2>${escapeHtml(`${listing.title}, ${listing.city}, ${listing.state} ${listing.zip}`)}</h2>`,
-            `        <p class="featured-property-price">${escapeHtml(formatPrice(listing.price))}</p>`,
-            `        <div class="featured-property-chips" aria-label="${escapeHtml(listing.title)} home facts">`,
-            buildFactChips(listing).map((chip) => `            <span>${escapeHtml(chip)}</span>`).join(""),
-            "        </div>",
-            `        <p>${escapeHtml(listing.hubSummary)}</p>`,
-            '        <ul class="featured-property-highlights">',
-            listing.highlights.map((item) => `            <li>${escapeHtml(item)}</li>`).join(""),
-            "        </ul>",
-            '        <div class="featured-property-actions">',
-            buildButton(propertyHref, "View Property Page", "button-primary"),
-            buildButton(listing.links.tour3d, "Open 3D Tour", "button-secondary", ' target="_blank" rel="noreferrer"'),
-            buildButton(`mailto:JoePine@KW.com?subject=${encodeURIComponent(`${listing.title} Showing Request`)}`, "Email Joe", "button-secondary"),
-            "        </div>",
-            `        <p class="featured-property-note">${escapeHtml(buildListingsFeatureNote(listing, primaryOpenHouse))}</p>`,
-            "    </div>",
-            "</div>"
-        ].join("");
     }
 
     function renderListingsGrid() {
         const root = document.querySelector("[data-listings-page-grid]");
         const collection = getHubListings();
-        const secondaryListings = collection.filter((listing) => !listing.featured);
 
         if (!root || !collection.length) {
             return;
         }
 
-        const cards = secondaryListings
+        const cards = collection
             .map((listing) => {
                 const propertyHref = buildPropertyHref("./property/?slug=", listing.slug);
                 const detailChip = getPrimaryOpenHouse(listing)?.chipLabel || listing.statusLabel;
@@ -712,10 +692,10 @@
             '<section class="listing-hub-section">',
             '    <div class="listing-hub-header">',
             '        <p class="section-kicker">Current Listings</p>',
-            '        <h2>Keep every listing in one organized place.</h2>',
-            '        <p>As new listings go live, they can be added to the shared listings data and will appear here automatically without rebuilding this page by hand.</p>',
+            '        <h2>Every current listing in one organized place.</h2>',
+            '        <p>Active and pending listings stay visible here until they close. Once a listing is sold, it moves into recent closings.</p>',
             "    </div>",
-            secondaryListings.length
+            collection.length
                 ? `    <div class="listing-hub-grid">${cards}</div>`
                 : '    <div class="listing-hub-empty">The site is ready for the next listing. As soon as another property is added to the shared data file, it will appear here automatically.</div>',
             "</section>"
@@ -1000,6 +980,7 @@
         recentSales,
         getFeaturedListing,
         getHubListings,
+        getCurrentListings,
         initializeFeaturedCarousels
     };
 })();
