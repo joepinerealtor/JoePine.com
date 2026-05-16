@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-05-04",
-            lastReviewedLabel: "Reviewed May 4, 2026"
+            lastReviewedIso: "2026-05-16",
+            lastReviewedLabel: "Reviewed May 16, 2026"
         },
         listings: [
             {
@@ -182,8 +182,8 @@
                 statusLabel: "Pending",
                 featured: false,
                 listedDate: "2026-03-26",
-                sourceSnapshotDate: "2026-05-04",
-                sourceSnapshotLabel: "May 4, 2026",
+                sourceSnapshotDate: "2026-05-16",
+                sourceSnapshotLabel: "May 16, 2026",
                 price: 344900,
                 pricePerSqFt: 399,
                 beds: 3,
@@ -446,6 +446,18 @@
                 imageSrc: "https://images.homes.com/listings/102/4936129004-882649351/18-north-st-riverside-ri-primaryphoto.jpg",
                 imageAlt: "18 North Street in Riverside, Rhode Island",
                 summary: "A recent Riverside closing included in the sold-home portfolio.",
+                ctaLabel: "Ask About Similar Homes"
+            },
+            {
+                title: "424 Middle Highway",
+                city: "Barrington",
+                state: "RI",
+                soldPrice: 635000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold Jun 28, 2022",
+                imageSrc: "https://images.homes.com/listings/102/6725103482-316129811/424-middle-hwy-barrington-ri-primaryphoto.jpg",
+                imageAlt: "424 Middle Highway in Barrington, Rhode Island",
+                summary: "A recent Barrington multi-family sale included from Joe's Homes.com sold portfolio.",
                 ctaLabel: "Ask About Similar Homes"
             }
         ]
