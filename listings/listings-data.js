@@ -18,7 +18,7 @@
                 headline: "103 Burnside Ave in Riverside is now active.",
                 teaser: "A refreshed Riverside Cape near the water, parks, bike path, and everyday conveniences.",
                 summary:
-                    "This refreshed 3-bedroom, 1.5-bath Riverside Cape pairs an open main-level layout with fresh cosmetic updates, a newer Navien heating system, driveway parking, backyard space, and a location close to the water and East Bay Bike Path.",
+                    "This refreshed 3-bedroom, 1.5-bath Riverside Cape pairs an open main-level layout with practical updates, a new electrical panel, high-efficiency Navien heat, driveway parking, backyard space, and a location close to the water and East Bay Bike Path.",
                 hubSummary:
                     "This Riverside Cape offers 3 bedrooms, 1.5 baths, 1,110 square feet, bamboo flooring, an updated full bath, a newer electrical panel, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 locationBlurb:
@@ -59,11 +59,11 @@
                     "Refreshed 3-bedroom, 1.5-bath Cape in Riverside",
                     "Bamboo flooring and an open-concept kitchen, dining, and living area",
                     "Fresh paint, new carpet, cosmetic improvements, and an updated full bathroom",
-                    "Newer electrical panel and high-efficiency Navien heating system installed in 2022",
+                    "New electrical panel and high-efficiency Navien heating system installed in 2022",
                     "Backyard space, stamped concrete patio, porch, and driveway parking"
                 ],
                 detailIntro: [
-                    "Welcome to 103 Burnside Ave in Riverside, a refreshed 3-bedroom, 1.5-bath Cape with a practical layout and a location close to some of the area's best amenities. Thoughtful updates include fresh paint, new carpet, cosmetic improvements, an updated full bathroom, a newer electrical panel, and a high-efficiency Navien heating system installed in 2022.",
+                    "Welcome to 103 Burnside Ave in Riverside, a refreshed 3-bedroom, 1.5-bath Cape with a practical layout and a location close to some of the area's best amenities. Thoughtful updates include fresh paint, new carpet, cosmetic improvements, an updated full bathroom, a new electrical panel, and a high-efficiency Navien heating system installed in 2022.",
                     "The first floor features bamboo flooring and an open-concept kitchen, dining, and living area, creating a comfortable main-level setup for relaxing, gathering, and entertaining. Appliances are included, and the home also offers three bedrooms upstairs, a full bathroom, and storage or utility space in the full unfinished basement."
                 ],
                 detailSections: [
@@ -73,7 +73,7 @@
                         items: [
                             "Fresh paint, new carpet, and cosmetic improvements",
                             "Updated full bathroom",
-                            "Newer electrical panel",
+                            "New electrical panel",
                             "High-efficiency Navien heating system installed in 2022",
                             "Close to the water, parks, shopping, restaurants, and commuter routes"
                         ]
@@ -122,37 +122,37 @@
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
-                        src: "https://images.homes.com/listings/117/3513533194-816681222/103-burnside-ave-riverside-ri-primaryphoto.jpg",
+                        src: "https://images.homes.com/listings/102/3513533194-816681222/103-burnside-ave-riverside-ri-primaryphoto.jpg",
                         alt: "103 Burnside Ave, Riverside, RI 02915 - photo 1",
                         caption: "Homes.com listing photo 1 for 103 Burnside Ave."
                     },
                     {
-                        src: "https://imagescdn.homes.com/i2/rSwERuxi549X4pIeRqiBc7hsMQ6i-gvZRguQluHLcME/117/103-burnside-ave-riverside-ri-thumb-2.jpg?p=1",
+                        src: "https://imagescdn.homes.com/i2/rSwERuxi549X4pIeRqiBc7hsMQ6i-gvZRguQluHLcME/102/103-burnside-ave-riverside-ri-thumb-2.jpg?p=1",
                         alt: "103 Burnside Ave, Riverside, RI 02915 - photo 2",
                         caption: "Homes.com listing photo 2 for 103 Burnside Ave."
                     },
                     {
-                        src: "https://imagescdn.homes.com/i2/IWVQrIUCGDgeT2U8t3cxZK-f3NFki5yAawgGJyuUfoc/115/103-burnside-ave-riverside-ri-thumb-3.jpg?p=1",
+                        src: "https://imagescdn.homes.com/i2/IWVQrIUCGDgeT2U8t3cxZK-f3NFki5yAawgGJyuUfoc/117/103-burnside-ave-riverside-ri-thumb-3.jpg?p=1",
                         alt: "103 Burnside Ave, Riverside, RI 02915 - photo 3",
                         caption: "Homes.com listing photo 3 for 103 Burnside Ave."
                     },
                     {
-                        src: "https://imagescdn.homes.com/i2/gnnk58adwfswqvewi5MnJRqo5r-s8Orb1CrC4hBTxmc/115/103-burnside-ave-riverside-ri-floorplan-4.svg?p=1",
+                        src: "https://imagescdn.homes.com/i2/gnnk58adwfswqvewi5MnJRqo5r-s8Orb1CrC4hBTxmc/117/103-burnside-ave-riverside-ri-floorplan-4.svg?p=1",
                         alt: "103 Burnside Ave, Riverside, RI 02915 - photo 4",
                         caption: "Homes.com floor plan for 103 Burnside Ave."
                     },
                     {
-                        src: "https://images.homes.com/listings/115/4024533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-5.jpg",
+                        src: "https://images.homes.com/listings/214/4024533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-5.jpg",
                         alt: "103 Burnside Ave, Riverside, RI 02915 - photo 5",
                         caption: "Homes.com listing photo 5 for 103 Burnside Ave."
                     },
                     {
-                        src: "https://images.homes.com/listings/115/5324533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-6.jpg",
+                        src: "https://images.homes.com/listings/214/5324533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-6.jpg",
                         alt: "103 Burnside Ave, Riverside, RI 02915 - photo 6",
                         caption: "Homes.com listing photo 6 for 103 Burnside Ave."
                     },
                     {
-                        src: "https://images.homes.com/listings/115/1724533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-7.jpg",
+                        src: "https://images.homes.com/listings/214/1724533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-7.jpg",
                         alt: "103 Burnside Ave, Riverside, RI 02915 - photo 7",
                         caption: "Homes.com listing photo 7 for 103 Burnside Ave."
                     }
@@ -256,117 +256,42 @@
                     "Seller will pay off the solar loan at closing. Sale is subject to seller finding suitable housing.",
                 schemaDescription:
                     "Move-in ready 3-bedroom, 1.5-bath Cape in Warwick's Hoxie neighborhood with a fenced yard, patio, porch, solar, central air, and updated mechanicals.",
-                featuredImageIndexes: [0, 1, 4, 7, 9, 20],
+                featuredImageIndexes: [0, 1, 3, 4, 5, 6],
                 images: [
                     {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-01.jpg",
+                        src: "https://images.homes.com/listings/102/4805662584-619672812/122-leigh-st-warwick-ri-primaryphoto.jpg",
                         alt: "Front exterior of 122 Leigh Street in Warwick, Rhode Island, at dusk",
                         caption: "Front exterior with driveway and covered porch."
                     },
                     {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-02.jpg",
+                        src: "https://imagescdn.homes.com/i2/tQClB-Yl6FHQqNRXOARUYr-X8JIhfyLZdMfAshhE1Vk/117/122-leigh-st-warwick-ri-thumb-2.jpg?p=1",
+                        alt: "Dining area at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Dining area with hardwood floors and open stair detail."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/gk250b7tIlEaNif3YijAalfMuKpjHES0_Hg8V7kbcl8/117/122-leigh-st-warwick-ri-floorplan-3.svg?p=1",
+                        alt: "Floor plan for 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Floor plan overview."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/214/1905662584-619672812/122-leigh-st-warwick-ri-buildingphoto-4.jpg",
                         alt: "Front porch entry at 122 Leigh Street in Warwick, Rhode Island",
                         caption: "Covered front porch leading into the home."
                     },
                     {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-03.jpg",
-                        alt: "Street-facing porch seating at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Porch seating angle looking back toward the street."
+                        src: "https://images.homes.com/listings/214/6905662584-619672812/122-leigh-st-warwick-ri-buildingphoto-5.jpg",
+                        alt: "Front porch seating at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Street-facing porch seating and covered entry."
                     },
                     {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-04.jpg",
+                        src: "https://images.homes.com/listings/214/2015662584-619672812/122-leigh-st-warwick-ri-buildingphoto-6.jpg",
                         alt: "Wide street view of 122 Leigh Street in Warwick, Rhode Island",
                         caption: "Wider exterior angle showing the home from across the street."
                     },
                     {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-05.jpg",
-                        alt: "Dining room at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Dining area with hardwood floors and open stair detail."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-06.jpg",
-                        alt: "Second dining room angle at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Reverse dining room view with the stair and hallway connection."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-07.jpg",
-                        alt: "Dining room and front entry at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Dining space looking toward the front windows and entry door."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-08.jpg",
-                        alt: "Living room at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Living room with hardwood floors and flexible seating space."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-09.jpg",
-                        alt: "Living room media wall at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Second living room angle showing the media wall and open floor area."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-10.jpg",
-                        alt: "Kitchen and breakfast area at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Eat-in kitchen view with tile flooring and access to the backyard."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-11.jpg",
-                        alt: "Kitchen with stainless appliances at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Galley kitchen with stainless appliances and white cabinetry."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-12.jpg",
-                        alt: "Kitchen counters and sink at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Kitchen prep side with sink, upper cabinets, and open counter space."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-13.jpg",
-                        alt: "Full bathroom vanity at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Full bath vanity area with pedestal sink and natural light."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-14.jpg",
-                        alt: "Full bathroom tub and shower at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Tub and shower area in the main full bathroom."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-15.jpg",
-                        alt: "Upstairs bedroom at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Bedroom with hardwood floors and access to the upper bath area."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-16.jpg",
-                        alt: "Second angle of the upstairs bedroom at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Alternate bedroom angle showing the closet and adjoining rooms."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-17.jpg",
-                        alt: "Storage nook off the upstairs bedroom at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Built-in storage nook tucked off the upper-level bedroom."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-18.jpg",
-                        alt: "Half bathroom upstairs at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Upper-level half bath with vanity storage."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-19.jpg",
-                        alt: "Bedroom or office at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Additional room set up as a home office or bedroom."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-20.jpg",
-                        alt: "Reverse office or bedroom view at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Second angle of the office or bedroom with storage and desk space."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-21.jpg",
-                        alt: "Backyard patio at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Fenced backyard with patio, fire pit, and shed."
-                    },
-                    {
-                        src: "/images/listings/122-leigh-st-warwick-ri/122-leigh-st-warwick-ri-22.jpg",
-                        alt: "Rear exterior of 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Rear exterior angle showing the patio area and yard layout."
+                        src: "https://images.homes.com/listings/214/0115662584-619672812/122-leigh-st-warwick-ri-buildingphoto-7.jpg",
+                        alt: "Second dining area angle at 122 Leigh Street in Warwick, Rhode Island",
+                        caption: "Dining space looking toward the front windows and stair."
                     }
                 ]
             }
