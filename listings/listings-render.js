@@ -75,10 +75,10 @@
         }
 
         if (primaryOpenHouse) {
-            return `${updatePrefix}Open house is scheduled for ${primaryOpenHouse.dateLabel} from ${primaryOpenHouse.timeLabel}. Seller plans to pay off the solar loan at closing.`;
+            return `${updatePrefix}Open house is scheduled for ${primaryOpenHouse.dateLabel} from ${primaryOpenHouse.timeLabel}. ${listing.sourceNote}`;
         }
 
-        return `${updatePrefix}Seller plans to pay off the solar loan at closing. Reach out to Joe for the latest showing availability.`;
+        return `${updatePrefix}${listing.sourceNote}`;
     }
 
     function buildListingsFeatureNote(listing, primaryOpenHouse) {
@@ -235,7 +235,7 @@
             `        <p class="eyebrow">${heading}</p>`,
             `        <h2>${escapeHtml(upcomingOpenHouses[0].dateLabel.replace(/^[A-Za-z]+, /, ""))}</h2>`,
             `        <div class="open-house-stack">${cards}</div>`,
-            '        <p style="margin-top: 10px;">Sale is subject to seller finding suitable housing.</p>'
+            `        <p style="margin-top: 10px;">${escapeHtml(listing.sourceNote)}</p>`
         ].join("");
     }
 
@@ -777,7 +777,7 @@
                 : listing.status === "sold"
                   ? " Recently sold."
                   : "";
-        const description = `Featured listing at ${listing.title} in ${listing.city}, ${listing.state}. ${formatPrice(listing.price)}, ${listing.beds} bedrooms, ${formatBaths(listing.baths)} baths, ${formatNumber(listing.sqft)} square feet, fenced yard, porch, patio, and solar.${statusFragment}${openHouseFragment}`;
+        const description = `Featured listing at ${listing.title} in ${listing.city}, ${listing.state}. ${formatPrice(listing.price)}, ${listing.beds} bedrooms, ${formatBaths(listing.baths)} baths, ${formatNumber(listing.sqft)} square feet. ${listing.schemaDescription}${statusFragment}${openHouseFragment}`;
         const image = listing.images[0];
         const canonicalHref = `https://joepine.com/listings/property/?slug=${encodeURIComponent(listing.slug)}`;
         const schemaNode = document.querySelector("[data-listing-schema]");

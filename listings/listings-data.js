@@ -8,6 +8,161 @@
         },
         listings: [
             {
+                slug: "103-burnside-ave-riverside-ri",
+                title: "103 Burnside Ave",
+                city: "Riverside",
+                state: "RI",
+                zip: "02915",
+                neighborhood: "Riverside",
+                areaLabel: "Riverside, Rhode Island",
+                headline: "103 Burnside Ave in Riverside is now active.",
+                teaser: "A refreshed Riverside Cape near the water, parks, bike path, and everyday conveniences.",
+                summary:
+                    "This refreshed 3-bedroom, 1.5-bath Riverside Cape pairs an open main-level layout with practical updates, driveway parking, backyard space, and a location close to the water and East Bay Bike Path.",
+                hubSummary:
+                    "This Riverside Cape offers 3 bedrooms, 1.5 baths, 1,110 square feet, bamboo flooring, a refreshed kitchen and baths, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
+                locationBlurb:
+                    "Close to the water, East Bay Bike Path, parks, shopping, restaurants, public transportation, and commuter routes.",
+                status: "active",
+                statusLabel: "Active",
+                featured: true,
+                listedDate: "2026-05-14",
+                sourceSnapshotDate: "2026-05-16",
+                sourceSnapshotLabel: "May 16, 2026",
+                price: 409500,
+                pricePerSqFt: 369,
+                beds: 3,
+                baths: 1.5,
+                sqft: 1110,
+                lotSqft: 4792,
+                lotAcres: 0.11,
+                yearBuilt: 1915,
+                taxes: 4154,
+                parking: "2 spaces, no garage",
+                homeType: "Single-family Cape",
+                homeDesign: "Cape Cod Architecture",
+                links: {
+                    homes: "https://www.homes.com/property/103-burnside-ave-riverside-ri/8cp6cs2tngsz7/",
+                    tour3d: ""
+                },
+                openHouses: [
+                    {
+                        startIso: "2026-05-16T10:00:00-04:00",
+                        endIso: "2026-05-16T12:00:00-04:00",
+                        chipLabel: "Open Sat 10AM-12PM",
+                        dateLabel: "Saturday, May 16",
+                        timeLabel: "10:00 AM-12:00 PM",
+                        fullLabel: "Saturday, May 16, 10:00 AM-12:00 PM"
+                    },
+                    {
+                        startIso: "2026-05-17T12:00:00-04:00",
+                        endIso: "2026-05-17T14:00:00-04:00",
+                        chipLabel: "Open Sun 12PM-2PM",
+                        dateLabel: "Sunday, May 17",
+                        timeLabel: "12:00 PM-2:00 PM",
+                        fullLabel: "Sunday, May 17, 12:00 PM-2:00 PM"
+                    }
+                ],
+                highlights: [
+                    "Refreshed 3-bedroom, 1.5-bath Cape in Riverside",
+                    "Bamboo flooring and an open-concept kitchen, dining, and living area",
+                    "Fresh paint, new carpet, cosmetic improvements, and an updated full bathroom",
+                    "New electrical panel and high-efficiency Navien heating system installed in 2022",
+                    "Backyard space, stamped concrete patio, porch, and driveway parking"
+                ],
+                detailIntro: [
+                    "Welcome to 103 Burnside Ave in Riverside, a refreshed 3-bedroom, 1.5-bath Cape with a practical layout and a location close to some of the area's best amenities.",
+                    "The first floor features bamboo flooring and an open-concept kitchen, dining, and living area, creating a comfortable main-level setup for relaxing, gathering, and entertaining. Appliances are included, and the home also offers three bedrooms upstairs, a full bathroom, and storage or utility space in the full unfinished basement."
+                ],
+                detailSections: [
+                    {
+                        eyebrow: "Why It Stands Out",
+                        title: "Fresh updates in a convenient Riverside location.",
+                        items: [
+                            "Fresh paint, new carpet, and cosmetic improvements",
+                            "Updated full bathroom",
+                            "New electrical panel",
+                            "High-efficiency Navien heating system installed in 2022",
+                            "Close to the water, parks, shopping, restaurants, and commuter routes"
+                        ]
+                    },
+                    {
+                        eyebrow: "Layout + Comfort",
+                        title: "Open first floor with useful storage below.",
+                        items: [
+                            "Open-concept kitchen, dining, and living area",
+                            "Bamboo flooring on the first floor",
+                            "Three bedrooms and a full bathroom upstairs",
+                            "Full unfinished basement with interior entry",
+                            "Window-unit cooling and gas baseboard heat"
+                        ]
+                    },
+                    {
+                        eyebrow: "Outdoor + Location",
+                        title: "Outdoor space near East Bay amenities.",
+                        paragraphs: [
+                            "Outside, the home offers backyard space, a stamped concrete patio, driveway parking, porch, and room to unwind or entertain.",
+                            "The Riverside location keeps the water, East Bay Bike Path, parks, shopping, restaurants, public transportation, and commuter routes within easy reach."
+                        ]
+                    }
+                ],
+                facts: [
+                    { label: "Home Type", value: "Single-family Cape" },
+                    { label: "Parking", value: "2 spaces, no garage" },
+                    { label: "Taxes", value: "$4,154 annually" },
+                    { label: "Cooling", value: "Window unit cooling" },
+                    { label: "Heating", value: "Gas baseboard heat" },
+                    { label: "Lot", value: "4,792 sq ft" }
+                ],
+                cta: {
+                    title: "Want to see 103 Burnside in person?",
+                    body:
+                        "Call, text, or email Joe for the open house schedule, private showing options, or questions about the Riverside location and updates."
+                },
+                sourceNote:
+                    "Open house schedule and listing facts were reviewed on Homes.com on May 16, 2026.",
+                schemaDescription:
+                    "Active 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
+                featuredImageIndexes: [0, 1, 2, 4, 5, 6],
+                images: [
+                    {
+                        src: "https://images.homes.com/listings/117/3513533194-816681222/103-burnside-ave-riverside-ri-primaryphoto.jpg",
+                        alt: "103 Burnside Ave, Riverside, RI 02915 - photo 1",
+                        caption: "Homes.com listing photo 1 for 103 Burnside Ave."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/rSwERuxi549X4pIeRqiBc7hsMQ6i-gvZRguQluHLcME/117/103-burnside-ave-riverside-ri-thumb-2.jpg?p=1",
+                        alt: "103 Burnside Ave, Riverside, RI 02915 - photo 2",
+                        caption: "Homes.com listing photo 2 for 103 Burnside Ave."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/IWVQrIUCGDgeT2U8t3cxZK-f3NFki5yAawgGJyuUfoc/115/103-burnside-ave-riverside-ri-thumb-3.jpg?p=1",
+                        alt: "103 Burnside Ave, Riverside, RI 02915 - photo 3",
+                        caption: "Homes.com listing photo 3 for 103 Burnside Ave."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/gnnk58adwfswqvewi5MnJRqo5r-s8Orb1CrC4hBTxmc/115/103-burnside-ave-riverside-ri-floorplan-4.svg?p=1",
+                        alt: "103 Burnside Ave, Riverside, RI 02915 - photo 4",
+                        caption: "Homes.com floor plan for 103 Burnside Ave."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/115/4024533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-5.jpg",
+                        alt: "103 Burnside Ave, Riverside, RI 02915 - photo 5",
+                        caption: "Homes.com listing photo 5 for 103 Burnside Ave."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/115/5324533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-6.jpg",
+                        alt: "103 Burnside Ave, Riverside, RI 02915 - photo 6",
+                        caption: "Homes.com listing photo 6 for 103 Burnside Ave."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/115/1724533194-816681222/103-burnside-ave-riverside-ri-buildingphoto-7.jpg",
+                        alt: "103 Burnside Ave, Riverside, RI 02915 - photo 7",
+                        caption: "Homes.com listing photo 7 for 103 Burnside Ave."
+                    }
+                ]
+            },
+            {
                 slug: "122-leigh-st-warwick-ri",
                 title: "122 Leigh Street",
                 city: "Warwick",
@@ -25,7 +180,7 @@
                     "Close to shopping, dining, I-95, T.F. Green International Airport, Warwick Mall, Warwick City Park, and Oakland Beach.",
                 status: "pending",
                 statusLabel: "Pending",
-                featured: true,
+                featured: false,
                 listedDate: "2026-03-26",
                 sourceSnapshotDate: "2026-05-04",
                 sourceSnapshotLabel: "May 4, 2026",
