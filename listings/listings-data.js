@@ -18,9 +18,9 @@
                 headline: "103 Burnside Ave in Riverside is now active.",
                 teaser: "A refreshed Riverside Cape near the water, parks, bike path, and everyday conveniences.",
                 summary:
-                    "This refreshed 3-bedroom, 1.5-bath Riverside Cape pairs an open main-level layout with practical updates, driveway parking, backyard space, and a location close to the water and East Bay Bike Path.",
+                    "This refreshed 3-bedroom, 1.5-bath Riverside Cape pairs an open main-level layout with fresh cosmetic updates, a newer Navien heating system, driveway parking, backyard space, and a location close to the water and East Bay Bike Path.",
                 hubSummary:
-                    "This Riverside Cape offers 3 bedrooms, 1.5 baths, 1,110 square feet, bamboo flooring, a refreshed kitchen and baths, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
+                    "This Riverside Cape offers 3 bedrooms, 1.5 baths, 1,110 square feet, bamboo flooring, an updated full bath, a newer electrical panel, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 locationBlurb:
                     "Close to the water, East Bay Bike Path, parks, shopping, restaurants, public transportation, and commuter routes.",
                 status: "active",
@@ -47,14 +47,6 @@
                 },
                 openHouses: [
                     {
-                        startIso: "2026-05-16T10:00:00-04:00",
-                        endIso: "2026-05-16T12:00:00-04:00",
-                        chipLabel: "Open Sat 10AM-12PM",
-                        dateLabel: "Saturday, May 16",
-                        timeLabel: "10:00 AM-12:00 PM",
-                        fullLabel: "Saturday, May 16, 10:00 AM-12:00 PM"
-                    },
-                    {
                         startIso: "2026-05-17T12:00:00-04:00",
                         endIso: "2026-05-17T14:00:00-04:00",
                         chipLabel: "Open Sun 12PM-2PM",
@@ -67,11 +59,11 @@
                     "Refreshed 3-bedroom, 1.5-bath Cape in Riverside",
                     "Bamboo flooring and an open-concept kitchen, dining, and living area",
                     "Fresh paint, new carpet, cosmetic improvements, and an updated full bathroom",
-                    "Gas baseboard heat, gas water heater, and 100 amp electrical service",
+                    "Newer electrical panel and high-efficiency Navien heating system installed in 2022",
                     "Backyard space, stamped concrete patio, porch, and driveway parking"
                 ],
                 detailIntro: [
-                    "Welcome to 103 Burnside Ave in Riverside, a refreshed 3-bedroom, 1.5-bath Cape with a practical layout and a location close to some of the area's best amenities.",
+                    "Welcome to 103 Burnside Ave in Riverside, a refreshed 3-bedroom, 1.5-bath Cape with a practical layout and a location close to some of the area's best amenities. Thoughtful updates include fresh paint, new carpet, cosmetic improvements, an updated full bathroom, a newer electrical panel, and a high-efficiency Navien heating system installed in 2022.",
                     "The first floor features bamboo flooring and an open-concept kitchen, dining, and living area, creating a comfortable main-level setup for relaxing, gathering, and entertaining. Appliances are included, and the home also offers three bedrooms upstairs, a full bathroom, and storage or utility space in the full unfinished basement."
                 ],
                 detailSections: [
@@ -81,8 +73,8 @@
                         items: [
                             "Fresh paint, new carpet, and cosmetic improvements",
                             "Updated full bathroom",
-                            "100 amp electrical service",
-                            "Gas baseboard heat and gas water heater",
+                            "Newer electrical panel",
+                            "High-efficiency Navien heating system installed in 2022",
                             "Close to the water, parks, shopping, restaurants, and commuter routes"
                         ]
                     },
@@ -111,9 +103,9 @@
                     { label: "Parking", value: "2 spaces, no garage" },
                     { label: "Taxes", value: "$4,154 annually" },
                     { label: "Cooling", value: "Window unit cooling" },
-                    { label: "Heating", value: "Gas baseboard heat" },
+                    { label: "Heating", value: "High-efficiency Navien gas baseboard heat" },
                     { label: "Water Heater", value: "Gas water heater" },
-                    { label: "Electrical", value: "100 amp service" },
+                    { label: "Electrical", value: "Newer electrical panel with 100 amp service" },
                     { label: "Foundation", value: "Brick foundation" },
                     { label: "Exterior", value: "Shingle siding" },
                     { label: "Lot", value: "4,792 sq ft" }
@@ -126,7 +118,7 @@
                 sourceNote:
                     "Open house schedule and listing facts were reviewed on Homes.com on May 16, 2026.",
                 schemaDescription:
-                    "Active 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
+                    "Active 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
