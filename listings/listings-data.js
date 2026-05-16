@@ -103,9 +103,9 @@
                     { label: "Parking", value: "2 spaces, no garage" },
                     { label: "Taxes", value: "$4,154 annually" },
                     { label: "Cooling", value: "Window unit cooling" },
-                    { label: "Heating", value: "High-efficiency Navien gas baseboard heat" },
+                    { label: "Heating", value: "Gas baseboard heat" },
                     { label: "Water Heater", value: "Gas water heater" },
-                    { label: "Electrical", value: "Newer electrical panel with 100 amp service" },
+                    { label: "Electrical", value: "100 amp service" },
                     { label: "Foundation", value: "Brick foundation" },
                     { label: "Exterior", value: "Shingle siding" },
                     { label: "Lot", value: "4,792 sq ft" }
@@ -201,11 +201,11 @@
                     "Hardwood floors through the main living spaces and bedrooms",
                     "2024 vinyl siding with a transferable warranty",
                     "Fenced backyard, patio, shed, and full front porch",
-                    "High-efficiency gas furnace, high-efficiency hot water heater, central air, and solar"
+                    "High-efficiency gas furnace, gas water heater, central air, and solar"
                 ],
                 detailIntro: [
                     "If you have been looking for a move-in ready Warwick home without condo fees, this Cape is built for that sweet spot. The layout stays bright and approachable, the hardwood floors keep the living spaces feeling warm, and the home works well for a first-time buyer or someone making a simpler next move.",
-                    "Outside, the full front porch, fenced yard, patio, and shed give the home day-to-day flexibility without a lot of extra upkeep. Updates include 2024 vinyl siding with a transferable warranty, a high-efficiency gas furnace, a high-efficiency hot water heater, central air, and solar. The seller will pay off the solar loan at closing."
+                    "Outside, the full front porch, fenced yard, patio, and shed give the home day-to-day flexibility without a lot of extra upkeep. Updates include 2024 vinyl siding with a transferable warranty, a high-efficiency gas furnace, gas water heater, central air, and solar. The seller will pay off the solar loan at closing."
                 ],
                 detailSections: [
                     {
@@ -224,7 +224,7 @@
                         title: "Strong mechanical notes for the next owner.",
                         items: [
                             "High-efficiency gas furnace",
-                            "High-efficiency hot water heater",
+                            "Gas water heater",
                             "Solar system already in place",
                             "100 amp electrical service",
                             "Vinyl siding installed in 2024 with a transferable warranty"
@@ -245,6 +245,8 @@
                     { label: "Taxes", value: "$3,414 annually" },
                     { label: "Cooling", value: "Central air" },
                     { label: "Heating", value: "Forced air, gas" },
+                    { label: "Water Heater", value: "Gas water heater" },
+                    { label: "Electrical", value: "100 amp service" },
                     { label: "Lot", value: "3,049 sq ft" }
                 ],
                 cta: {
