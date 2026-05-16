@@ -656,20 +656,22 @@
                 const detailChip = getPrimaryOpenHouse(listing)?.chipLabel || listing.statusLabel;
 
                 return [
-                    '<article class="listing-card">',
+                    '<article class="listing-card listing-card--photo-first">',
                     '    <div class="listing-card-media">',
                     `        <img src="${escapeHtml(listing.images[0].src)}" referrerpolicy="no-referrer" alt="${escapeHtml(listing.images[0].alt)}">`,
+                    '        <div class="listing-card-photo-overlay">',
+                    '            <div class="listing-card-status-row">',
+                    `                <span class="${buildStatusClass("listing-card-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
+                    listing.neighborhood
+                        ? `                <span class="listing-card-status listing-card-status-muted">${escapeHtml(listing.neighborhood)}</span>`
+                        : "",
+                    "            </div>",
+                    `            <h3>${escapeHtml(listing.title)}</h3>`,
+                    `            <p class="listing-card-price">${escapeHtml(formatPrice(listing.price))}</p>`,
+                    "        </div>",
                     "    </div>",
                     '    <div class="listing-card-body">',
-                    '        <div class="listing-card-status-row">',
-                    `            <span class="${buildStatusClass("listing-card-status", listing.status)}">${escapeHtml(listing.statusLabel)}</span>`,
-                    listing.neighborhood
-                        ? `            <span class="listing-card-status listing-card-status-muted">${escapeHtml(listing.neighborhood)}</span>`
-                        : "",
-                    "        </div>",
-                    `        <h3>${escapeHtml(listing.title)}</h3>`,
                     `        <p class="listing-card-address">${escapeHtml(`${listing.city}, ${listing.state} ${listing.zip}`)}</p>`,
-                    `        <p class="listing-card-price">${escapeHtml(formatPrice(listing.price))}</p>`,
                     '        <div class="listing-card-meta">',
                     `            <span>${escapeHtml(`${listing.beds} beds`)}</span>`,
                     `            <span>${escapeHtml(`${formatBaths(listing.baths)} baths`)}</span>`,
@@ -696,7 +698,7 @@
             '        <p>Active and pending listings stay visible here until they close. Once a listing is sold, it moves into recent closings.</p>',
             "    </div>",
             collection.length
-                ? `    <div class="listing-hub-grid">${cards}</div>`
+                ? `    <div class="listing-hub-grid listing-hub-grid--photo-first">${cards}</div>`
                 : '    <div class="listing-hub-empty">The site is ready for the next listing. As soon as another property is added to the shared data file, it will appear here automatically.</div>',
             "</section>"
         ].join("");

@@ -326,6 +326,11 @@
             gap: 18px;
         }
 
+        .listing-hub-grid--photo-first {
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 22px;
+        }
+
         .listing-hub-empty {
             padding: 18px 20px;
             border-radius: 24px;
@@ -347,6 +352,7 @@
         }
 
         .listing-card-media {
+            position: relative;
             background: #f2f2f2;
         }
 
@@ -357,11 +363,69 @@
             object-fit: cover;
         }
 
+        .listing-card--photo-first {
+            border-radius: 20px;
+        }
+
+        .listing-card--photo-first .listing-card-media {
+            min-height: clamp(360px, 38vw, 560px);
+        }
+
+        .listing-card--photo-first .listing-card-media img {
+            height: clamp(360px, 38vw, 560px);
+        }
+
+        .listing-card-photo-overlay {
+            position: absolute;
+            inset: auto 0 0;
+            display: grid;
+            gap: 10px;
+            padding: 82px 22px 22px;
+            color: #ffffff;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.72) 100%);
+        }
+
+        .listing-card-photo-overlay h3 {
+            margin: 0;
+            max-width: 13ch;
+            font-size: clamp(30px, 4.2vw, 52px);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 800;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        .listing-card-photo-overlay .listing-card-price {
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        .listing-card-photo-overlay .listing-card-status {
+            background: rgba(255, 255, 255, 0.92);
+            border-color: rgba(255, 255, 255, 0.72);
+            color: var(--kw-red);
+            box-shadow: 0 12px 26px -22px rgba(0, 0, 0, 0.9);
+        }
+
+        .listing-card-photo-overlay .listing-card-status--pending {
+            color: #8e5600;
+        }
+
+        .listing-card-photo-overlay .listing-card-status-muted {
+            color: var(--kw-slate);
+        }
+
         .listing-card-body {
             display: flex;
             flex-direction: column;
             gap: 12px;
             padding: 18px;
+        }
+
+        .listing-card--photo-first .listing-card-body {
+            gap: 14px;
+            padding: 18px 20px 20px;
         }
 
         .listing-card-status-row {
@@ -468,6 +532,14 @@
             line-height: 1.6;
             font-size: 14px;
             font-weight: 700;
+        }
+
+        .listing-card--photo-first .listing-card-text {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            color: rgba(77, 77, 77, 0.82);
         }
 
         .listing-card-actions {
@@ -844,6 +916,16 @@
         @media (max-width: 760px) {
             .page-shell {
                 width: calc(100% - 20px);
+            }
+
+            .listing-hub-grid--photo-first {
+                grid-template-columns: 1fr;
+            }
+
+            .listing-card--photo-first .listing-card-media,
+            .listing-card--photo-first .listing-card-media img {
+                height: 360px;
+                min-height: 360px;
             }
 
             .featured-property-copy,
