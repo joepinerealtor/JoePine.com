@@ -15,7 +15,7 @@
                 zip: "02915",
                 neighborhood: "Riverside",
                 areaLabel: "Riverside, Rhode Island",
-                headline: "103 Burnside Ave in Riverside is now active.",
+                headline: "103 Burnside Ave in Riverside is now pending.",
                 teaser: "A refreshed Riverside Cape near the water, parks, bike path, and everyday conveniences.",
                 summary:
                     "This refreshed 3-bedroom, 1.5-bath Riverside Cape pairs an open main-level layout with practical updates, a new electrical panel, high-efficiency Navien heat, driveway parking, backyard space, and a location close to the water and East Bay Bike Path.",
@@ -23,12 +23,12 @@
                     "This Riverside Cape offers 3 bedrooms, 1.5 baths, 1,110 square feet, bamboo flooring, an updated full bath, a newer electrical panel, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 locationBlurb:
                     "Close to the water, East Bay Bike Path, parks, shopping, restaurants, public transportation, and commuter routes.",
-                status: "active",
-                statusLabel: "Active",
+                status: "pending",
+                statusLabel: "Pending",
                 featured: true,
                 listedDate: "2026-05-14",
-                sourceSnapshotDate: "2026-05-16",
-                sourceSnapshotLabel: "May 16, 2026",
+                sourceSnapshotDate: "2026-05-20",
+                sourceSnapshotLabel: "May 20, 2026",
                 price: 409500,
                 pricePerSqFt: 369,
                 beds: 3,
@@ -45,16 +45,7 @@
                     homes: "https://www.homes.com/property/103-burnside-ave-riverside-ri/8cp6cs2tngsz7/",
                     tour3d: ""
                 },
-                openHouses: [
-                    {
-                        startIso: "2026-05-17T12:00:00-04:00",
-                        endIso: "2026-05-17T14:00:00-04:00",
-                        chipLabel: "Open Sun 12PM-2PM",
-                        dateLabel: "Sunday, May 17",
-                        timeLabel: "12:00 PM-2:00 PM",
-                        fullLabel: "Sunday, May 17, 12:00 PM-2:00 PM"
-                    }
-                ],
+                openHouses: [],
                 highlights: [
                     "Refreshed 3-bedroom, 1.5-bath Cape in Riverside",
                     "Bamboo flooring and an open-concept kitchen, dining, and living area",
@@ -113,12 +104,12 @@
                 cta: {
                     title: "Want to see 103 Burnside in person?",
                     body:
-                        "Call, text, or email Joe for the open house schedule, private showing options, or questions about the Riverside location and updates."
+                        "Call, text, or email Joe for current showing options, offer timing, or questions about the Riverside location and updates."
                 },
                 sourceNote:
-                    "Open house schedule and listing facts were reviewed on Homes.com on May 16, 2026.",
+                    "Homes.com property page reviewed on May 20, 2026 showed this listing as Pending with no future open house; property history showed Pending on May 20, 2026.",
                 schemaDescription:
-                    "Active 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
+                    "Pending 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
