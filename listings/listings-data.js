@@ -1,10 +1,10 @@
 (function () {
     window.JOE_PINE_LISTINGS = {
         recentSalesSource: {
-            label: "Recent closings sourced from Joe's Homes.com agent profile.",
+            label: "Recent closings sourced from Joe's Homes.com agent profile and linked listing pages.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-05-16",
-            lastReviewedLabel: "Reviewed May 16, 2026"
+            lastReviewedIso: "2026-05-30",
+            lastReviewedLabel: "Reviewed May 30, 2026"
         },
         listings: [
             {
@@ -27,8 +27,8 @@
                 statusLabel: "Pending",
                 featured: true,
                 listedDate: "2026-05-14",
-                sourceSnapshotDate: "2026-05-20",
-                sourceSnapshotLabel: "May 20, 2026",
+                sourceSnapshotDate: "2026-05-30",
+                sourceSnapshotLabel: "May 30, 2026",
                 price: 409500,
                 pricePerSqFt: 369,
                 beds: 3,
@@ -107,7 +107,7 @@
                         "Call, text, or email Joe for current showing options, offer timing, or questions about the Riverside location and updates."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on May 20, 2026 showed this listing as Pending with no future open house; property history showed Pending on May 20, 2026.",
+                    "Homes.com property page reviewed on May 30, 2026 showed this listing as Pending with no future open house; property history showed Pending on May 20, 2026.",
                 schemaDescription:
                     "Pending 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
@@ -157,7 +157,7 @@
                 zip: "02889",
                 neighborhood: "Hoxie",
                 areaLabel: "Warwick, Rhode Island",
-                headline: "122 Leigh Street in Warwick is now pending.",
+                headline: "122 Leigh Street in Warwick sold on May 29, 2026.",
                 teaser: "Front porch charm, fenced outdoor space, and thoughtful mechanical upgrades.",
                 summary:
                     "This move-in ready Cape in Warwick's Hoxie neighborhood gives buyers a low-maintenance alternative to condo living without giving up outdoor space, charm, or practical updates.",
@@ -165,14 +165,14 @@
                     "This Warwick Cape gives buyers a turn-key option with hardwood floors, a fenced backyard, patio, shed, and front porch, plus newer siding and strong mechanical updates.",
                 locationBlurb:
                     "Close to shopping, dining, I-95, T.F. Green International Airport, Warwick Mall, Warwick City Park, and Oakland Beach.",
-                status: "pending",
-                statusLabel: "Pending",
+                status: "sold",
+                statusLabel: "Sold",
                 featured: false,
                 listedDate: "2026-03-26",
-                sourceSnapshotDate: "2026-05-16",
-                sourceSnapshotLabel: "May 16, 2026",
-                price: 344900,
-                pricePerSqFt: 399,
+                sourceSnapshotDate: "2026-05-30",
+                sourceSnapshotLabel: "May 30, 2026",
+                price: 355000,
+                pricePerSqFt: 411,
                 beds: 3,
                 baths: 1.5,
                 sqft: 864,
@@ -241,14 +241,14 @@
                     { label: "Lot", value: "3,049 sq ft" }
                 ],
                 cta: {
-                    title: "Want to see this one in person?",
+                    title: "Looking for a similar Warwick home?",
                     body:
-                        "Call, text, or email Joe for a private showing, timing questions, or anything you want to know about the home, the solar payoff, or the current seller terms."
+                        "Call, text, or email Joe if you want help finding a similar low-maintenance Warwick home with useful outdoor space and strong mechanical updates."
                 },
                 sourceNote:
-                    "Seller will pay off the solar loan at closing. Sale is subject to seller finding suitable housing.",
+                    "Homes.com reviewed on May 30, 2026 showed this home sold on May 29, 2026 for $355,000.",
                 schemaDescription:
-                    "Move-in ready 3-bedroom, 1.5-bath Cape in Warwick's Hoxie neighborhood with a fenced yard, patio, porch, solar, central air, and updated mechanicals.",
+                    "Sold 3-bedroom, 1.5-bath Cape in Warwick's Hoxie neighborhood with a fenced yard, patio, porch, solar, central air, and updated mechanicals.",
                 featuredImageIndexes: [0, 1, 3, 4, 5, 6],
                 images: [
                     {
@@ -287,9 +287,148 @@
                         caption: "Dining space looking toward the front windows and stair."
                     }
                 ]
+            },
+            {
+                slug: "14-chapel-rd-mattapoisett-ma",
+                title: "14 Chapel Rd",
+                city: "Mattapoisett",
+                state: "MA",
+                zip: "02739",
+                neighborhood: "Mattapoisett",
+                areaLabel: "Mattapoisett, Massachusetts",
+                headline: "14 Chapel Rd in Mattapoisett is pending.",
+                teaser: "A Cape near the beach with expansion potential, a large corner lot, and as-is terms.",
+                summary:
+                    "This 2-bedroom, 1-bath Mattapoisett Cape offers 768 square feet on a 20,541 square foot corner lot, with an unfinished second floor already roughed for plumbing and electrical and public listing notes calling out substantial upside potential.",
+                hubSummary:
+                    "This pending Mattapoisett Cape offers 2 bedrooms, 1 bath, 768 square feet, a 0.47-acre corner lot, wood and laminate flooring, gas baseboard heat, and expansion potential on the unfinished second floor.",
+                locationBlurb:
+                    "Located in desirable Mattapoisett with public listing highlights noting beach proximity and a corner-lot setting.",
+                status: "pending",
+                statusLabel: "Pending",
+                featured: false,
+                listedDate: "2026-05-21",
+                sourceSnapshotDate: "2026-05-30",
+                sourceSnapshotLabel: "May 30, 2026",
+                price: 349900,
+                pricePerSqFt: 456,
+                beds: 2,
+                baths: 1,
+                sqft: 768,
+                lotSqft: 20541,
+                lotAcres: 0.47,
+                yearBuilt: 1966,
+                taxes: 4007,
+                parking: "4 spaces, unpaved parking",
+                homeType: "Single-family Cape",
+                homeDesign: "Cape Cod Architecture",
+                links: {
+                    homes: "https://www.homes.com/property/14-chapel-rd-mattapoisett-ma/9bxrw1qzknj2l/",
+                    tour3d: ""
+                },
+                openHouses: [],
+                highlights: [
+                    "2-bedroom, 1-bath Cape with 768 square feet",
+                    "20,541 square foot corner lot near the beach",
+                    "Unfinished second floor roughed for plumbing and electrical",
+                    "Potential for 2 additional bedrooms and a full bathroom with improvements",
+                    "As-is sale; public listing notes the home will not qualify for FHA financing"
+                ],
+                detailIntro: [
+                    "14 Chapel Rd in Mattapoisett is a pending Cape with a same-owner history, a large corner lot, and public listing notes that emphasize upside potential in a coastal community. The main level includes a living room, eat-in kitchen, full bathroom, and 2 bedrooms.",
+                    "The unfinished second floor is already roughed for plumbing and electrical, giving the next owner a path to explore additional bedrooms and another full bathroom with improvements. The Homes.com listing also notes as-is terms and that the condition will not qualify for FHA financing."
+                ],
+                detailSections: [
+                    {
+                        eyebrow: "Why It Stands Out",
+                        title: "A coastal Cape with room to rethink the layout.",
+                        items: [
+                            "Large 0.47-acre corner lot",
+                            "Public listing highlights beach proximity",
+                            "Full staircase to the unfinished second floor",
+                            "Rough plumbing and electrical already noted upstairs",
+                            "Same-owner home built in 1966"
+                        ]
+                    },
+                    {
+                        eyebrow: "Layout + Potential",
+                        title: "Main-level living plus unfinished space above.",
+                        items: [
+                            "Living room, eat-in kitchen, full bathroom, and 2 bedrooms on the main level",
+                            "Unfinished second floor with potential for 2 additional full-size bedrooms",
+                            "Potential for an added full bathroom with improvements",
+                            "Full basement",
+                            "Wood and laminate flooring"
+                        ]
+                    },
+                    {
+                        eyebrow: "Terms + Condition",
+                        title: "Pending with as-is notes.",
+                        paragraphs: [
+                            "Homes.com showed the property as Pending on May 30, 2026, with property history showing Pending on May 26, 2026 after the May 21, 2026 list date.",
+                            "The public listing states the property is being sold as is and, due to condition, will not qualify for FHA financing."
+                        ]
+                    }
+                ],
+                facts: [
+                    { label: "Home Type", value: "Single-family Cape" },
+                    { label: "Parking", value: "4 spaces, unpaved parking" },
+                    { label: "Taxes", value: "$4,007 annually" },
+                    { label: "Cooling", value: "No cooling" },
+                    { label: "Heating", value: "Baseboard, natural gas" },
+                    { label: "Water Heater", value: "Gas water heater" },
+                    { label: "Electrical", value: "Fuses" },
+                    { label: "Foundation", value: "Concrete perimeter" },
+                    { label: "Roof", value: "Shingle roof" },
+                    { label: "Lot", value: "20,541 sq ft" }
+                ],
+                cta: {
+                    title: "Want to talk through 14 Chapel?",
+                    body:
+                        "Call, text, or email Joe for current showing options, financing considerations, or questions about the Mattapoisett location and renovation potential."
+                },
+                sourceNote:
+                    "Homes.com reviewed on May 30, 2026 showed this listing as Pending with no future open house; property history showed Pending on May 26, 2026.",
+                schemaDescription:
+                    "Pending 2-bedroom, 1-bath Mattapoisett Cape with 768 square feet, a 20,541 square foot corner lot, unfinished second-floor expansion potential, gas baseboard heat, and as-is public listing terms.",
+                featuredImageIndexes: [0, 1, 2, 3],
+                images: [
+                    {
+                        src: "https://imagescdn.homes.com/i2/qrCir8yhbalRZpbYK7to0EogvRrodae2vS7aBjer0u4/102/14-chapel-rd-mattapoisett-ma-thumb-2.jpg?p=1",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - exterior photo",
+                        caption: "Exterior view of the Cape and chimney."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/JHy2gMfHs9IwIgpxE08o2DA3q6Fd5Pq7GTAOtTRBHVU/117/14-chapel-rd-mattapoisett-ma-thumb-3.jpg?p=1",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - living room photo",
+                        caption: "Living room with wood flooring and stair access."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/214/1477867294-244031422/14-chapel-rd-mattapoisett-ma-buildingphoto-6.jpg",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - side exterior photo",
+                        caption: "Side exterior view with deck and stone steps."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/214/6477867294-244031422/14-chapel-rd-mattapoisett-ma-buildingphoto-7.jpg",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - rear exterior photo",
+                        caption: "Rear and side exterior view of the wooded lot setting."
+                    }
+                ]
             }
         ],
         recentSales: [
+            {
+                title: "122 Leigh Street",
+                city: "Warwick",
+                state: "RI",
+                soldPrice: 355000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold May 29, 2026",
+                imageSrc: "https://images.homes.com/listings/102/4805662584-619672812/122-leigh-st-warwick-ri-primaryphoto.jpg",
+                imageAlt: "122 Leigh Street in Warwick, Rhode Island",
+                summary: "A recent Warwick closing featured here after Homes.com showed the Hoxie Cape sold on May 29, 2026.",
+                ctaLabel: "Ask About Similar Homes"
+            },
             {
                 title: "22 Edward Street",
                 city: "Coventry",
