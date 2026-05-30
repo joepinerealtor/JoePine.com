@@ -418,6 +418,18 @@
         ],
         recentSales: [
             {
+                title: "680 Hazard Rd",
+                city: "West Greenwich",
+                state: "RI",
+                soldPrice: 425000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold May 29, 2026",
+                imageSrc: "https://ap.rdcpix.com/5f58de56650c6f55dace88e36cb7f51el-m3138658988rd-w960_h720.webp",
+                imageAlt: "680 Hazard Rd in West Greenwich, Rhode Island",
+                summary: "A recent West Greenwich buyer-side closing on a 3-bedroom ranch set on a wooded 2.01-acre lot.",
+                ctaLabel: "Ask About Similar Homes"
+            },
+            {
                 title: "122 Leigh Street",
                 city: "Warwick",
                 state: "RI",
