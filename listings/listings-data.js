@@ -389,7 +389,7 @@
                         eyebrow: "Terms + Condition",
                         title: "Pending with as-is notes.",
                         paragraphs: [
-                            "Homes.com showed the property as Pending on May 30, 2026, with property history showing Pending on May 26, 2026 after the May 21, 2026 list date.",
+                            "Homes.com showed the property as Pending on June 11, 2026, with property history showing Pending on May 26, 2026 after the May 21, 2026 list date.",
                             "The public listing states the property is being sold as is and, due to condition, will not qualify for FHA financing."
                         ]
                     }
