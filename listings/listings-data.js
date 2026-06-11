@@ -351,7 +351,7 @@
                 homeType: "Single-family Cape",
                 homeDesign: "Cape Cod Architecture",
                 mls: "73522727",
-                apn: "MATT-000030-000000-000290",
+                apn: "M:3.0 L:29.0,1085001",
                 links: {
                     homes: "https://www.homes.com/property/14-chapel-rd-mattapoisett-ma/9bxrw1qzknj2l/",
                     tour3d: ""
@@ -412,7 +412,7 @@
                     { label: "Roof", value: "Shingle roof" },
                     { label: "Lot", value: "20,541 sq ft" },
                     { label: "MLS", value: "73522727" },
-                    { label: "APN", value: "MATT-000030-000000-000290" }
+                    { label: "APN", value: "M:3.0 L:29.0,1085001" }
                 ],
                 cta: {
                     title: "Want to talk through 14 Chapel?",
