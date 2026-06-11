@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile and linked listing pages.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-06-10",
-            lastReviewedLabel: "Reviewed June 10, 2026"
+            lastReviewedIso: "2026-06-11",
+            lastReviewedLabel: "Reviewed June 11, 2026"
         },
         listings: [
             {
@@ -27,8 +27,8 @@
                 statusLabel: "For Sale",
                 featured: true,
                 listedDate: "2026-06-10",
-                sourceSnapshotDate: "2026-06-10",
-                sourceSnapshotLabel: "June 10, 2026",
+                sourceSnapshotDate: "2026-06-11",
+                sourceSnapshotLabel: "June 11, 2026",
                 price: 462500,
                 pricePerSqFt: 483,
                 beds: 2,
@@ -128,7 +128,7 @@
                         "Call, text, or email Joe for current showing options, open house details, or questions about the Bay Spring location, Barrington schools, and East Bay access."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on June 10, 2026 showed this listing as For Sale with open houses on June 13 and June 14, 2026.",
+                    "Homes.com property page reviewed on June 11, 2026 showed this listing as For Sale with open houses on June 13 and June 14, 2026.",
                 schemaDescription:
                     "Active fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
@@ -190,8 +190,8 @@
                 statusLabel: "Pending",
                 featured: true,
                 listedDate: "2026-05-14",
-                sourceSnapshotDate: "2026-06-10",
-                sourceSnapshotLabel: "June 10, 2026",
+                sourceSnapshotDate: "2026-06-11",
+                sourceSnapshotLabel: "June 11, 2026",
                 price: 409500,
                 pricePerSqFt: 369,
                 beds: 3,
@@ -270,7 +270,7 @@
                         "Call, text, or email Joe for current showing options, offer timing, or questions about the Riverside location and updates."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on June 10, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 20, 2026.",
+                    "Homes.com property page reviewed on June 11, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 20, 2026.",
                 schemaDescription:
                     "Pending 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
@@ -332,8 +332,8 @@
                 statusLabel: "Pending",
                 featured: false,
                 listedDate: "2026-05-21",
-                sourceSnapshotDate: "2026-06-10",
-                sourceSnapshotLabel: "June 10, 2026",
+                sourceSnapshotDate: "2026-06-11",
+                sourceSnapshotLabel: "June 11, 2026",
                 price: 349900,
                 pricePerSqFt: 456,
                 beds: 2,
@@ -412,7 +412,7 @@
                         "Call, text, or email Joe for current showing options, financing considerations, or questions about the Mattapoisett location and renovation potential."
                 },
                 sourceNote:
-                    "Homes.com reviewed on June 10, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 26, 2026.",
+                    "Homes.com reviewed on June 11, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 26, 2026.",
                 schemaDescription:
                     "Pending 2-bedroom, 1-bath Mattapoisett Cape with 768 square feet, a 20,541 square foot corner lot, unfinished second-floor expansion potential, gas baseboard heat, and as-is public listing terms.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
