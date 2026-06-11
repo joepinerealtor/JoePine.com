@@ -16,13 +16,13 @@
                 neighborhood: "Bay Spring",
                 areaLabel: "Barrington, Rhode Island",
                 headline: "34 Lake Ave in Barrington is for sale.",
-                teaser: "A Bay Spring Cape with wood floors, a porch, marina access nearby, and weekend open houses.",
+                teaser: "A fully updated, move-in ready Bay Spring Cape with a polished kitchen, dining room, mudroom, parking, and a manageable yard.",
                 summary:
-                    "This 2-bedroom, 1-bath Bay Spring home offers 958 square feet, Cape Cod and Colonial character, wood flooring, a masonry fireplace, a mud room, full unfinished basement access, porch space, and parking for 4 cars near the marina.",
+                    "This fully updated, move-in ready 2-bedroom, 1-bath Bay Spring home offers 958 square feet, a kitchen with stainless steel appliances, warm wood countertops, tile flooring, pot filler, and center island, plus a dedicated dining room, rear mudroom, off-street parking, and a manageable yard.",
                 hubSummary:
-                    "This active Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a 4,792 square foot lot, wood flooring, a masonry fireplace, porch space, forced-air gas heat, and parking for 4 cars in Bay Spring.",
+                    "This active Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a fully updated move-in ready layout, stainless steel kitchen appliances, warm wood countertops, a center island, dedicated dining room, rear mudroom, off-street parking, and a manageable yard in Bay Spring.",
                 locationBlurb:
-                    "Located in Barrington's Bay Spring neighborhood with marina access nearby.",
+                    "Located in Barrington's Bay Spring neighborhood near parks, recreation, the East Bay Bike Path, and connections to Providence, Warren, Bristol, and the broader East Bay.",
                 status: "active",
                 statusLabel: "For Sale",
                 featured: true,
@@ -66,37 +66,37 @@
                     }
                 ],
                 highlights: [
-                    "2-bedroom, 1-full-bath home in Barrington's Bay Spring neighborhood",
-                    "Wood flooring, masonry fireplace, mud room, and porch",
-                    "Full unfinished basement with interior and exterior entry",
-                    "Forced-air gas heat, gas water heater, 100 amp service, and no cooling",
-                    "Parking for 4 cars, no garage, with marina access nearby"
+                    "Fully updated, move-in ready 2-bedroom, 1-full-bath home in Barrington's Bay Spring neighborhood",
+                    "Kitchen with stainless steel appliances, warm wood countertops, tile flooring, pot filler, and center island",
+                    "Dedicated dining room and rear mudroom for practical everyday flow",
+                    "Off-street parking and a manageable yard",
+                    "Near parks, recreation, the East Bay Bike Path, and Barrington schools"
                 ],
                 detailIntro: [
-                    "Welcome to 34 Lake Ave in Barrington's Bay Spring neighborhood, an active 2-bedroom, 1-bath home with 958 square feet, Cape Cod and Colonial architectural details, wood flooring, a masonry fireplace, and practical everyday spaces including a mud room and porch.",
-                    "The full unfinished basement fills the entire footprint and includes both interior and exterior entry. The home also offers forced-air gas heat, a gas water heater, 100 amp electrical service, a brick foundation, parking for 4 cars, and marina access nearby."
+                    "Welcome to 34 Lake Ave in Barrington's Bay Spring neighborhood, a fully updated, move-in ready 2-bedroom, 1-bath home with 958 square feet and a practical layout designed for everyday ease.",
+                    "The kitchen features stainless steel appliances, warm wood countertops, tile flooring, a pot filler, and a center island, with a dedicated dining room nearby and a rear mudroom adding useful transition space. Outside, the home offers off-street parking and a manageable yard near parks, recreation, the East Bay Bike Path, Barrington schools, and connections to Providence, Warren, Bristol, and the broader East Bay."
                 ],
                 detailSections: [
                     {
                         eyebrow: "Why It Stands Out",
-                        title: "Bay Spring location with classic Barrington character.",
+                        title: "Move-in ready updates in a connected Bay Spring location.",
                         items: [
+                            "Fully updated, move-in ready interior",
                             "Bay Spring neighborhood setting",
-                            "Cape Cod and Colonial architectural notes",
-                            "Wood flooring and masonry fireplace",
-                            "Porch and mud room",
-                            "Marina access nearby"
+                            "Nearby parks and recreation",
+                            "Close to the East Bay Bike Path",
+                            "Barrington schools and easy connections across the East Bay"
                         ]
                     },
                     {
-                        eyebrow: "Layout + Systems",
-                        title: "Two-story home with full basement utility.",
+                        eyebrow: "Kitchen + Layout",
+                        title: "Polished kitchen with practical daily spaces.",
                         items: [
                             "2 bedrooms and 1 full bathroom",
                             "958 square feet on a 4,792 square foot lot",
-                            "Full unfinished basement with interior and exterior entry",
-                            "Forced-air gas heat and no cooling",
-                            "Gas water heater and 100 amp service"
+                            "Stainless steel appliances, warm wood countertops, and tile flooring",
+                            "Pot filler and center island",
+                            "Dedicated dining room and rear mudroom"
                         ]
                     },
                     {
@@ -125,12 +125,12 @@
                 cta: {
                     title: "Want to see 34 Lake Ave?",
                     body:
-                        "Call, text, or email Joe for current showing options, open house details, or questions about the Bay Spring neighborhood."
+                        "Call, text, or email Joe for current showing options, open house details, or questions about the Bay Spring location, Barrington schools, and East Bay access."
                 },
                 sourceNote:
                     "Homes.com property page reviewed on June 10, 2026 showed this listing as For Sale with open houses on June 13 and June 14, 2026.",
                 schemaDescription:
-                    "Active 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, wood flooring, a masonry fireplace, mud room, full unfinished basement, porch, forced-air gas heat, parking for 4 cars, and marina access nearby.",
+                    "Active fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
@@ -313,145 +313,6 @@
                 ]
             },
             {
-                slug: "122-leigh-st-warwick-ri",
-                title: "122 Leigh Street",
-                city: "Warwick",
-                state: "RI",
-                zip: "02889",
-                neighborhood: "Hoxie",
-                areaLabel: "Warwick, Rhode Island",
-                headline: "122 Leigh Street in Warwick sold on May 29, 2026.",
-                teaser: "Front porch charm, fenced outdoor space, and thoughtful mechanical upgrades.",
-                summary:
-                    "This move-in ready Cape in Warwick's Hoxie neighborhood gives buyers a low-maintenance alternative to condo living without giving up outdoor space, charm, or practical updates.",
-                hubSummary:
-                    "This Warwick Cape gives buyers a turn-key option with hardwood floors, a fenced backyard, patio, shed, and front porch, plus newer siding and strong mechanical updates.",
-                locationBlurb:
-                    "Close to shopping, dining, I-95, T.F. Green International Airport, Warwick Mall, Warwick City Park, and Oakland Beach.",
-                status: "sold",
-                statusLabel: "Sold",
-                featured: false,
-                listedDate: "2026-03-26",
-                sourceSnapshotDate: "2026-05-30",
-                sourceSnapshotLabel: "May 30, 2026",
-                price: 355000,
-                pricePerSqFt: 411,
-                beds: 3,
-                baths: 1.5,
-                sqft: 864,
-                lotSqft: 3049,
-                lotAcres: 0.07,
-                yearBuilt: 1930,
-                taxes: 3414,
-                parking: "2 spaces, no garage",
-                homeType: "Single-family Cape",
-                homeDesign: "Cape Cod Architecture",
-                links: {
-                    homes: "https://www.homes.com/property/122-leigh-st-warwick-ri/q6rdmyyx3s5qp/",
-                    tour3d: "https://tour.riliving.com/122-Leigh-Street-Warwick-RI-02889"
-                },
-                openHouses: [],
-                highlights: [
-                    "Hardwood floors through the main living spaces and bedrooms",
-                    "2024 vinyl siding with a transferable warranty",
-                    "Fenced backyard, patio, shed, and full front porch",
-                    "High-efficiency gas furnace, gas water heater, central air, and solar"
-                ],
-                detailIntro: [
-                    "If you have been looking for a move-in ready Warwick home without condo fees, this Cape is built for that sweet spot. The layout stays bright and approachable, the hardwood floors keep the living spaces feeling warm, and the home works well for a first-time buyer or someone making a simpler next move.",
-                    "Outside, the full front porch, fenced yard, patio, and shed give the home day-to-day flexibility without a lot of extra upkeep. Updates include 2024 vinyl siding with a transferable warranty, a high-efficiency gas furnace, gas water heater, central air, and solar. The seller will pay off the solar loan at closing."
-                ],
-                detailSections: [
-                    {
-                        eyebrow: "Why It Stands Out",
-                        title: "Turn-key updates with useful outdoor space.",
-                        items: [
-                            "Hardwood floors through the main living spaces and bedrooms",
-                            "Front porch, fenced backyard, patio, and storage shed",
-                            "Seller to pay off the solar loan in full at closing",
-                            "Good fit for buyers who want easier maintenance than a larger single-family home",
-                            "3D tour available online"
-                        ]
-                    },
-                    {
-                        eyebrow: "Efficiency + Comfort",
-                        title: "Strong mechanical notes for the next owner.",
-                        items: [
-                            "High-efficiency gas furnace",
-                            "Gas water heater",
-                            "Solar system already in place",
-                            "100 amp electrical service",
-                            "Vinyl siding installed in 2024 with a transferable warranty"
-                        ]
-                    },
-                    {
-                        eyebrow: "Location + Terms",
-                        title: "Close to the everyday stops buyers actually use.",
-                        paragraphs: [
-                            "Close to shopping, dining, I-95, T.F. Green International Airport, Warwick Mall, Warwick City Park, and Oakland Beach, this home makes it easy to balance commute convenience with local recreation.",
-                            "Sale is subject to seller finding suitable housing. Open house details shown here update with the current schedule for the home."
-                        ]
-                    }
-                ],
-                facts: [
-                    { label: "Home Type", value: "Single-family Cape" },
-                    { label: "Parking", value: "2 spaces, no garage" },
-                    { label: "Taxes", value: "$3,414 annually" },
-                    { label: "Cooling", value: "Central air" },
-                    { label: "Heating", value: "Forced air, gas" },
-                    { label: "Water Heater", value: "Gas water heater" },
-                    { label: "Electrical", value: "100 amp service" },
-                    { label: "Lot", value: "3,049 sq ft" }
-                ],
-                cta: {
-                    title: "Looking for a similar Warwick home?",
-                    body:
-                        "Call, text, or email Joe if you want help finding a similar low-maintenance Warwick home with useful outdoor space and strong mechanical updates."
-                },
-                sourceNote:
-                    "Homes.com reviewed on May 30, 2026 showed this home sold on May 29, 2026 for $355,000.",
-                schemaDescription:
-                    "Sold 3-bedroom, 1.5-bath Cape in Warwick's Hoxie neighborhood with a fenced yard, patio, porch, solar, central air, and updated mechanicals.",
-                featuredImageIndexes: [0, 1, 3, 4, 5, 6],
-                images: [
-                    {
-                        src: "https://images.homes.com/listings/102/4805662584-619672812/122-leigh-st-warwick-ri-primaryphoto.jpg",
-                        alt: "Front exterior of 122 Leigh Street in Warwick, Rhode Island, at dusk",
-                        caption: "Front exterior with driveway and covered porch."
-                    },
-                    {
-                        src: "https://imagescdn.homes.com/i2/tQClB-Yl6FHQqNRXOARUYr-X8JIhfyLZdMfAshhE1Vk/117/122-leigh-st-warwick-ri-thumb-2.jpg?p=1",
-                        alt: "Dining area at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Dining area with hardwood floors and open stair detail."
-                    },
-                    {
-                        src: "https://imagescdn.homes.com/i2/gk250b7tIlEaNif3YijAalfMuKpjHES0_Hg8V7kbcl8/117/122-leigh-st-warwick-ri-floorplan-3.svg?p=1",
-                        alt: "Floor plan for 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Floor plan overview."
-                    },
-                    {
-                        src: "https://images.homes.com/listings/214/1905662584-619672812/122-leigh-st-warwick-ri-buildingphoto-4.jpg",
-                        alt: "Front porch entry at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Covered front porch leading into the home."
-                    },
-                    {
-                        src: "https://images.homes.com/listings/214/6905662584-619672812/122-leigh-st-warwick-ri-buildingphoto-5.jpg",
-                        alt: "Front porch seating at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Street-facing porch seating and covered entry."
-                    },
-                    {
-                        src: "https://images.homes.com/listings/214/2015662584-619672812/122-leigh-st-warwick-ri-buildingphoto-6.jpg",
-                        alt: "Wide street view of 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Wider exterior angle showing the home from across the street."
-                    },
-                    {
-                        src: "https://images.homes.com/listings/214/0115662584-619672812/122-leigh-st-warwick-ri-buildingphoto-7.jpg",
-                        alt: "Second dining area angle at 122 Leigh Street in Warwick, Rhode Island",
-                        caption: "Dining space looking toward the front windows and stair."
-                    }
-                ]
-            },
-            {
                 slug: "14-chapel-rd-mattapoisett-ma",
                 title: "14 Chapel Rd",
                 city: "Mattapoisett",
@@ -554,17 +415,32 @@
                     "Homes.com reviewed on June 10, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 26, 2026.",
                 schemaDescription:
                     "Pending 2-bedroom, 1-bath Mattapoisett Cape with 768 square feet, a 20,541 square foot corner lot, unfinished second-floor expansion potential, gas baseboard heat, and as-is public listing terms.",
-                featuredImageIndexes: [0, 1, 2, 3],
+                featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
+                        src: "https://images.homes.com/listings/102/7277867294-244031422/14-chapel-rd-mattapoisett-ma-primaryphoto.jpg",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - front exterior photo",
+                        caption: "Primary exterior photo of 14 Chapel Rd."
+                    },
+                    {
                         src: "https://imagescdn.homes.com/i2/qrCir8yhbalRZpbYK7to0EogvRrodae2vS7aBjer0u4/102/14-chapel-rd-mattapoisett-ma-thumb-2.jpg?p=1",
-                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - exterior photo",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - exterior photo with chimney",
                         caption: "Exterior view of the Cape and chimney."
                     },
                     {
                         src: "https://imagescdn.homes.com/i2/JHy2gMfHs9IwIgpxE08o2DA3q6Fd5Pq7GTAOtTRBHVU/117/14-chapel-rd-mattapoisett-ma-thumb-3.jpg?p=1",
                         alt: "14 Chapel Rd, Mattapoisett, MA 02739 - living room photo",
                         caption: "Living room with wood flooring and stair access."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/vc2pgp3ZWpeswQYdpYk6B2AIyhRKZ9kdYfn9PAV1Y9k/117/14-chapel-rd-mattapoisett-ma-floorplan-4.svg?p=1",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - floor plan",
+                        caption: "Homes.com floor plan for 14 Chapel Rd."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/214/3377867294-244031422/14-chapel-rd-mattapoisett-ma-buildingphoto-5.jpg",
+                        alt: "14 Chapel Rd, Mattapoisett, MA 02739 - building photo 5",
+                        caption: "Homes.com building photo 5 for 14 Chapel Rd."
                     },
                     {
                         src: "https://images.homes.com/listings/214/1477867294-244031422/14-chapel-rd-mattapoisett-ma-buildingphoto-6.jpg",
