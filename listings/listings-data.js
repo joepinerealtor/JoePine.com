@@ -204,6 +204,8 @@
                 parking: "2 spaces, no garage",
                 homeType: "Single-family Cape",
                 homeDesign: "Cape Cod Architecture",
+                mls: "1412150",
+                apn: "EPRO-000412-000002-000014",
                 links: {
                     homes: "https://www.homes.com/property/103-burnside-ave-riverside-ri/8cp6cs2tngsz7/",
                     tour3d: ""
@@ -262,7 +264,9 @@
                     { label: "Electrical", value: "100 amp service" },
                     { label: "Foundation", value: "Brick foundation" },
                     { label: "Exterior", value: "Shingle siding" },
-                    { label: "Lot", value: "4,792 sq ft" }
+                    { label: "Lot", value: "4,792 sq ft" },
+                    { label: "MLS", value: "1412150" },
+                    { label: "APN", value: "EPRO-000412-000002-000014" }
                 ],
                 cta: {
                     title: "Want to see 103 Burnside in person?",
@@ -346,6 +350,8 @@
                 parking: "4 spaces, unpaved parking",
                 homeType: "Single-family Cape",
                 homeDesign: "Cape Cod Architecture",
+                mls: "73522727",
+                apn: "MATT-000030-000000-000290",
                 links: {
                     homes: "https://www.homes.com/property/14-chapel-rd-mattapoisett-ma/9bxrw1qzknj2l/",
                     tour3d: ""
@@ -404,7 +410,9 @@
                     { label: "Electrical", value: "Fuses" },
                     { label: "Foundation", value: "Concrete perimeter" },
                     { label: "Roof", value: "Shingle roof" },
-                    { label: "Lot", value: "20,541 sq ft" }
+                    { label: "Lot", value: "20,541 sq ft" },
+                    { label: "MLS", value: "73522727" },
+                    { label: "APN", value: "MATT-000030-000000-000290" }
                 ],
                 cta: {
                     title: "Want to talk through 14 Chapel?",
