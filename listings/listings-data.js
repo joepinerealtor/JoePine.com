@@ -3,10 +3,173 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile and linked listing pages.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-05-30",
-            lastReviewedLabel: "Reviewed May 30, 2026"
+            lastReviewedIso: "2026-06-10",
+            lastReviewedLabel: "Reviewed June 10, 2026"
         },
         listings: [
+            {
+                slug: "34-lake-ave-barrington-ri",
+                title: "34 Lake Ave",
+                city: "Barrington",
+                state: "RI",
+                zip: "02806",
+                neighborhood: "Bay Spring",
+                areaLabel: "Barrington, Rhode Island",
+                headline: "34 Lake Ave in Barrington is for sale.",
+                teaser: "A Bay Spring Cape with wood floors, a porch, marina access nearby, and weekend open houses.",
+                summary:
+                    "This 2-bedroom, 1-bath Bay Spring home offers 958 square feet, Cape Cod and Colonial character, wood flooring, a masonry fireplace, a mud room, full unfinished basement access, porch space, and parking for 4 cars near the marina.",
+                hubSummary:
+                    "This active Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a 4,792 square foot lot, wood flooring, a masonry fireplace, porch space, forced-air gas heat, and parking for 4 cars in Bay Spring.",
+                locationBlurb:
+                    "Located in Barrington's Bay Spring neighborhood with marina access nearby.",
+                status: "active",
+                statusLabel: "For Sale",
+                featured: true,
+                listedDate: "2026-06-10",
+                sourceSnapshotDate: "2026-06-10",
+                sourceSnapshotLabel: "June 10, 2026",
+                price: 462500,
+                pricePerSqFt: 483,
+                beds: 2,
+                baths: 1,
+                sqft: 958,
+                lotSqft: 4792,
+                lotAcres: 0.11,
+                yearBuilt: 1920,
+                taxes: 5660,
+                parking: "4 spaces, no garage",
+                homeType: "Single Family",
+                homeDesign: "Cape Cod Architecture and Colonial Architecture",
+                mls: "1414279",
+                apn: "BARR-000001-000000-000013",
+                links: {
+                    homes: "https://www.homes.com/property/34-lake-ave-barrington-ri/gk6s2ewznpmrq/",
+                    tour3d: ""
+                },
+                openHouses: [
+                    {
+                        startIso: "2026-06-13T10:00:00-04:00",
+                        endIso: "2026-06-13T12:00:00-04:00",
+                        chipLabel: "Open Sat 10:00 AM-12:00 PM",
+                        dateLabel: "Saturday, June 13",
+                        timeLabel: "10:00 AM-12:00 PM",
+                        fullLabel: "Saturday, June 13, 10:00 AM-12:00 PM"
+                    },
+                    {
+                        startIso: "2026-06-14T12:00:00-04:00",
+                        endIso: "2026-06-14T14:00:00-04:00",
+                        chipLabel: "Open Sun 12:00 PM-2:00 PM",
+                        dateLabel: "Sunday, June 14",
+                        timeLabel: "12:00 PM-2:00 PM",
+                        fullLabel: "Sunday, June 14, 12:00 PM-2:00 PM"
+                    }
+                ],
+                highlights: [
+                    "2-bedroom, 1-full-bath home in Barrington's Bay Spring neighborhood",
+                    "Wood flooring, masonry fireplace, mud room, and porch",
+                    "Full unfinished basement with interior and exterior entry",
+                    "Forced-air gas heat, gas water heater, 100 amp service, and no cooling",
+                    "Parking for 4 cars, no garage, with marina access nearby"
+                ],
+                detailIntro: [
+                    "Welcome to 34 Lake Ave in Barrington's Bay Spring neighborhood, an active 2-bedroom, 1-bath home with 958 square feet, Cape Cod and Colonial architectural details, wood flooring, a masonry fireplace, and practical everyday spaces including a mud room and porch.",
+                    "The full unfinished basement fills the entire footprint and includes both interior and exterior entry. The home also offers forced-air gas heat, a gas water heater, 100 amp electrical service, a brick foundation, parking for 4 cars, and marina access nearby."
+                ],
+                detailSections: [
+                    {
+                        eyebrow: "Why It Stands Out",
+                        title: "Bay Spring location with classic Barrington character.",
+                        items: [
+                            "Bay Spring neighborhood setting",
+                            "Cape Cod and Colonial architectural notes",
+                            "Wood flooring and masonry fireplace",
+                            "Porch and mud room",
+                            "Marina access nearby"
+                        ]
+                    },
+                    {
+                        eyebrow: "Layout + Systems",
+                        title: "Two-story home with full basement utility.",
+                        items: [
+                            "2 bedrooms and 1 full bathroom",
+                            "958 square feet on a 4,792 square foot lot",
+                            "Full unfinished basement with interior and exterior entry",
+                            "Forced-air gas heat and no cooling",
+                            "Gas water heater and 100 amp service"
+                        ]
+                    },
+                    {
+                        eyebrow: "Showing Schedule",
+                        title: "Weekend open houses are scheduled.",
+                        paragraphs: [
+                            "Homes.com showed open houses for Saturday, June 13 from 10:00 AM to 12:00 PM and Sunday, June 14 from 12:00 PM to 2:00 PM.",
+                            "Call, text, or email Joe for current showing options or questions about the Bay Spring location."
+                        ]
+                    }
+                ],
+                facts: [
+                    { label: "Home Type", value: "Single Family" },
+                    { label: "Parking", value: "4 spaces, no garage" },
+                    { label: "Taxes", value: "$5,660 annually" },
+                    { label: "Cooling", value: "No cooling" },
+                    { label: "Heating", value: "Forced air, gas" },
+                    { label: "Water Heater", value: "Gas water heater" },
+                    { label: "Electrical", value: "100 amp service" },
+                    { label: "Foundation", value: "Brick foundation" },
+                    { label: "Basement", value: "Full unfinished basement" },
+                    { label: "Lot", value: "4,792 sq ft" },
+                    { label: "MLS", value: "1414279" },
+                    { label: "APN", value: "BARR-000001-000000-000013" }
+                ],
+                cta: {
+                    title: "Want to see 34 Lake Ave?",
+                    body:
+                        "Call, text, or email Joe for current showing options, open house details, or questions about the Bay Spring neighborhood."
+                },
+                sourceNote:
+                    "Homes.com property page reviewed on June 10, 2026 showed this listing as For Sale with open houses on June 13 and June 14, 2026.",
+                schemaDescription:
+                    "Active 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, wood flooring, a masonry fireplace, mud room, full unfinished basement, porch, forced-air gas heat, parking for 4 cars, and marina access nearby.",
+                featuredImageIndexes: [0, 1, 2, 4, 5, 6],
+                images: [
+                    {
+                        src: "https://images.homes.com/listings/117/2248086594-055961522/34-lake-ave-barrington-ri-primaryphoto.jpg",
+                        alt: "34 Lake Ave, Barrington, RI 02806 - photo 1",
+                        caption: "Homes.com listing photo 1 for 34 Lake Ave."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/7akcFrPgsmH91aBQnXsAKrclUCluQOogrL0IQq0-D0I/117/34-lake-ave-barrington-ri-thumb-2.jpg?p=1",
+                        alt: "34 Lake Ave, Barrington, RI 02806 - photo 2",
+                        caption: "Homes.com listing photo 2 for 34 Lake Ave."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/wfr_rYdg3iWBM_vTj3kVpVTZyndkpkXGXbHxgClAC2s/115/34-lake-ave-barrington-ri-thumb-3.jpg?p=1",
+                        alt: "34 Lake Ave, Barrington, RI 02806 - photo 3",
+                        caption: "Homes.com listing photo 3 for 34 Lake Ave."
+                    },
+                    {
+                        src: "https://imagescdn.homes.com/i2/KbN1amsPAQwKcFlRkHrLD--tLT3HszkgIqhs7yHePzo/115/34-lake-ave-barrington-ri-floorplan-4.svg?p=1",
+                        alt: "34 Lake Ave, Barrington, RI 02806 - floor plan",
+                        caption: "Homes.com floor plan for 34 Lake Ave."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/115/4599086594-055961522/34-lake-ave-barrington-ri-buildingphoto-5.jpg",
+                        alt: "34 Lake Ave, Barrington, RI 02806 - photo 5",
+                        caption: "Homes.com listing photo 5 for 34 Lake Ave."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/115/8421186594-055961522/34-lake-ave-barrington-ri-buildingphoto-6.jpg",
+                        alt: "34 Lake Ave, Barrington, RI 02806 - photo 6",
+                        caption: "Homes.com listing photo 6 for 34 Lake Ave."
+                    },
+                    {
+                        src: "https://images.homes.com/listings/115/4762186594-055961522/34-lake-ave-barrington-ri-buildingphoto-7.jpg",
+                        alt: "34 Lake Ave, Barrington, RI 02806 - photo 7",
+                        caption: "Homes.com listing photo 7 for 34 Lake Ave."
+                    }
+                ]
+            },
             {
                 slug: "103-burnside-ave-riverside-ri",
                 title: "103 Burnside Ave",
@@ -27,8 +190,8 @@
                 statusLabel: "Pending",
                 featured: true,
                 listedDate: "2026-05-14",
-                sourceSnapshotDate: "2026-05-30",
-                sourceSnapshotLabel: "May 30, 2026",
+                sourceSnapshotDate: "2026-06-10",
+                sourceSnapshotLabel: "June 10, 2026",
                 price: 409500,
                 pricePerSqFt: 369,
                 beds: 3,
@@ -107,7 +270,7 @@
                         "Call, text, or email Joe for current showing options, offer timing, or questions about the Riverside location and updates."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on May 30, 2026 showed this listing as Pending with no future open house; property history showed Pending on May 20, 2026.",
+                    "Homes.com property page reviewed on June 10, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 20, 2026.",
                 schemaDescription:
                     "Pending 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
@@ -308,8 +471,8 @@
                 statusLabel: "Pending",
                 featured: false,
                 listedDate: "2026-05-21",
-                sourceSnapshotDate: "2026-05-30",
-                sourceSnapshotLabel: "May 30, 2026",
+                sourceSnapshotDate: "2026-06-10",
+                sourceSnapshotLabel: "June 10, 2026",
                 price: 349900,
                 pricePerSqFt: 456,
                 beds: 2,
@@ -388,7 +551,7 @@
                         "Call, text, or email Joe for current showing options, financing considerations, or questions about the Mattapoisett location and renovation potential."
                 },
                 sourceNote:
-                    "Homes.com reviewed on May 30, 2026 showed this listing as Pending with no future open house; property history showed Pending on May 26, 2026.",
+                    "Homes.com reviewed on June 10, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 26, 2026.",
                 schemaDescription:
                     "Pending 2-bedroom, 1-bath Mattapoisett Cape with 768 square feet, a 20,541 square foot corner lot, unfinished second-floor expansion potential, gas baseboard heat, and as-is public listing terms.",
                 featuredImageIndexes: [0, 1, 2, 3],
