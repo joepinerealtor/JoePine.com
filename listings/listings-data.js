@@ -27,10 +27,10 @@
                 statusLabel: "For Sale",
                 featured: true,
                 listedDate: "2026-06-10",
-                sourceSnapshotDate: "2026-06-11",
-                sourceSnapshotLabel: "June 11, 2026",
-                price: 462500,
-                pricePerSqFt: 483,
+                sourceSnapshotDate: "2026-06-21",
+                sourceSnapshotLabel: "June 21, 2026",
+                price: 429900,
+                pricePerSqFt: 449,
                 beds: 2,
                 baths: 1,
                 sqft: 958,
@@ -47,24 +47,7 @@
                     homes: "https://www.homes.com/property/34-lake-ave-barrington-ri/gk6s2ewznpmrq/",
                     tour3d: ""
                 },
-                openHouses: [
-                    {
-                        startIso: "2026-06-13T10:00:00-04:00",
-                        endIso: "2026-06-13T12:00:00-04:00",
-                        chipLabel: "Open Sat 10:00 AM-12:00 PM",
-                        dateLabel: "Saturday, June 13",
-                        timeLabel: "10:00 AM-12:00 PM",
-                        fullLabel: "Saturday, June 13, 10:00 AM-12:00 PM"
-                    },
-                    {
-                        startIso: "2026-06-14T12:00:00-04:00",
-                        endIso: "2026-06-14T14:00:00-04:00",
-                        chipLabel: "Open Sun 12:00 PM-2:00 PM",
-                        dateLabel: "Sunday, June 14",
-                        timeLabel: "12:00 PM-2:00 PM",
-                        fullLabel: "Sunday, June 14, 12:00 PM-2:00 PM"
-                    }
-                ],
+                openHouses: [],
                 highlights: [
                     "Fully updated, move-in ready 2-bedroom, 1-full-bath home in Barrington's Bay Spring neighborhood",
                     "Kitchen with stainless steel appliances, warm wood countertops, tile flooring, pot filler, and center island",
@@ -101,9 +84,9 @@
                     },
                     {
                         eyebrow: "Showing Schedule",
-                        title: "Weekend open houses are scheduled.",
+                        title: "Private showings are available.",
                         paragraphs: [
-                            "Homes.com showed open houses for Saturday, June 13 from 10:00 AM to 12:00 PM and Sunday, June 14 from 12:00 PM to 2:00 PM.",
+                            "Homes.com showed no future listing-specific open house on June 21, 2026 after the June 13 and June 14 open houses had passed.",
                             "Call, text, or email Joe for current showing options or questions about the Bay Spring location."
                         ]
                     }
@@ -128,7 +111,7 @@
                         "Call, text, or email Joe for current showing options, open house details, or questions about the Bay Spring location, Barrington schools, and East Bay access."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on June 11, 2026 showed this listing as For Sale with open houses on June 13 and June 14, 2026.",
+                    "Homes.com property page reviewed on June 21, 2026 showed this listing as For Sale at $429,900 after a June 18, 2026 price change, with no future listing-specific open house shown.",
                 schemaDescription:
                     "Active fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
