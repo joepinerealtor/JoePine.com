@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile and linked listing pages.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-06-11",
-            lastReviewedLabel: "Reviewed June 11, 2026"
+            lastReviewedIso: "2026-06-21",
+            lastReviewedLabel: "Reviewed June 21, 2026"
         },
         listings: [
             {
