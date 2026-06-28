@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect With Joe Pine | Reviews, Resources &amp; Contact</title>
+    <meta
+        name="description"
+        content="Quick links to review Joe Pine, read client reviews, search homes, use buyer and seller resources, and connect with Joe Pine REALTOR in Rhode Island and Massachusetts."
+    >
+    <meta name="robots" content="noindex,follow">
+    <meta property="og:title" content="Connect With Joe Pine">
+    <meta property="og:description" content="Review, contact, and connect with Joe Pine REALTOR in Rhode Island and Massachusetts.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joepine.com/connect/">
+    <meta property="og:site_name" content="Joe Pine Real Estate">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
+    <meta property="og:image:alt" content="Joe Pine sitting on the front steps of a porch">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Connect With Joe Pine">
+    <meta name="twitter:description" content="Review, contact, and connect with Joe Pine REALTOR in Rhode Island and Massachusetts.">
+    <meta name="twitter:image" content="https://joepine.com/images/photos/joe-front-steps.jpg">
+    <meta name="twitter:image:alt" content="Joe Pine sitting on the front steps of a porch">
+    <link rel="canonical" href="https://joepine.com/connect/">
+    <link rel="icon" href="../favicon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../favicon-192.png" sizes="192x192" type="image/png">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="theme-color" content="#b40101">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #b40101;
+            --red-deep: #8f0000;
+            --ink: #050505;
+            --muted: #666666;
+            --line: #d6d6d6;
+            --surface: #ffffff;
+            --surface-soft: #f7f7f7;
+            --shadow: 0 24px 50px -38px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: #f3f3f3;
+        }
+
+        body {
+            min-height: 100%;
+            margin: 0;
+            font-family: "Roboto", Arial, sans-serif;
+            color: var(--ink);
+            background:
+                linear-gradient(180deg, #ffffff 0%, #f7f7f7 56%, #ececec 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img,
+        svg {
+            display: block;
+        }
+
+        .connect-shell {
+            width: min(100%, 760px);
+            margin: 0 auto;
+            padding: 0 16px 20px;
+        }
+
+        .connect-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            margin: 0 -16px 18px;
+            color: #ffffff;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 32%),
+                linear-gradient(145deg, #181818 0%, #080808 58%, #2a0205 100%);
+            box-shadow: var(--shadow);
+        }
+
+        .connect-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.09) 0 1px, transparent 1.4px),
+                radial-gradient(circle at 78% 66%, rgba(180, 1, 1, 0.12) 0 1px, transparent 1.5px),
+                repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 18px),
+                repeating-linear-gradient(45deg, rgba(180, 1, 1, 0.035) 0 1px, transparent 1px 24px);
+            background-size: 13px 13px, 17px 17px, auto, auto;
+            opacity: 0.58;
+            pointer-events: none;
+        }
+
+        .connect-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.06), transparent 30%),
+                radial-gradient(circle at 86% 88%, rgba(180, 1, 1, 0.3), transparent 38%);
+            pointer-events: none;
+        }
+
+        .connect-hero-inner {
+            display: grid;
+            justify-items: center;
+            gap: 14px;
+            padding: 28px 22px 24px;
+            text-align: center;
+        }
+
+        .headshot {
+            width: clamp(118px, 34vw, 166px);
+            aspect-ratio: 1;
+            padding: 4px;
+            border-radius: 999px;
+            background: #ffffff;
+            box-shadow: 0 20px 42px -28px rgba(0, 0, 0, 0.55);
+        }
+
+        .headshot img {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+            object-position: 48% 16%;
+        }
+
+        .brand-lockup {
+            display: grid;
+            justify-items: center;
+            gap: 7px;
+        }
+
+        .connect-name {
+            margin: 0;
+            color: #ffffff;
+            font-size: clamp(2.2rem, 9vw, 3.45rem);
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+        }
+
+        .connect-name span {
+            color: var(--red);
+        }
+
+        .connect-role {
+            display: grid;
+            grid-template-columns: 64px auto 64px;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+            font-size: clamp(0.96rem, 4vw, 1.34rem);
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.32em;
+        }
+
+        .connect-role::before,
+        .connect-role::after {
+            content: "";
+            height: 2px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .connect-market {
+            margin: 0;
+            color: var(--red);
+            font-size: clamp(0.9rem, 3.8vw, 1.16rem);
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0.24em;
+        }
+
+        .brand-lockup p {
+            max-width: 34rem;
+            margin: 6px 0 0;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: clamp(1rem, 3.8vw, 1.2rem);
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        .primary-action,
+        .link-row {
+            display: grid;
+            grid-template-columns: 46px minmax(0, 1fr) 20px;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            min-height: 66px;
+            border-radius: 8px;
+            transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        }
+
+        .primary-action {
+            margin: 0 0 14px;
+            padding: 12px 16px;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--red-deep) 0%, var(--red) 58%, #ce0f18 100%);
+            box-shadow: 0 18px 34px -28px rgba(180, 1, 1, 0.78);
+        }
+
+        .link-stack {
+            display: grid;
+            gap: 10px;
+        }
+
+        .link-row {
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 14px 28px -27px rgba(0, 0, 0, 0.2);
+        }
+
+        .primary-action:hover,
+        .primary-action:focus-visible,
+        .link-row:hover,
+        .link-row:focus-visible {
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .primary-action:focus-visible,
+        .link-row:focus-visible {
+            box-shadow: 0 0 0 3px rgba(180, 1, 1, 0.2), 0 18px 34px -28px rgba(0, 0, 0, 0.3);
+        }
+
+        .link-row:hover {
+            border-color: rgba(180, 1, 1, 0.36);
+        }
+
+        .icon-box {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            color: currentColor;
+        }
+
+        .link-row .icon-box {
+            color: var(--red);
+            background: #f4f4f4;
+        }
+
+        .icon-box svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2.35;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .icon-box .icon-fill {
+            fill: currentColor;
+            stroke: none;
+        }
+
+        .link-copy {
+            display: grid;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .link-copy strong {
+            overflow-wrap: anywhere;
+            font-size: clamp(1.02rem, 4.5vw, 1.2rem);
+            line-height: 1.15;
+            font-weight: 900;
+        }
+
+        .link-copy span {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.35;
+            font-weight: 700;
+        }
+
+        .primary-action .link-copy span {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .chevron {
+            color: currentColor;
+            opacity: 0.72;
+        }
+
+        .chevron svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .quick-contact {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin: 18px 0 10px;
+        }
+
+        .mini-link {
+            display: grid;
+            justify-items: center;
+            gap: 8px;
+            padding: 14px 10px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #ffffff;
+            color: var(--ink);
+            text-align: center;
+            font-weight: 900;
+            box-shadow: 0 14px 28px -27px rgba(0, 0, 0, 0.2);
+        }
+
+        .mini-link svg {
+            width: 23px;
+            height: 23px;
+            color: var(--red);
+            stroke: currentColor;
+            stroke-width: 2.35;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .footer {
+            margin: 22px -16px 0;
+            padding: 24px 18px 20px;
+            background:
+                linear-gradient(180deg, #ffffff 0%, #eeeeee 100%);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .broker-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 560px;
+            margin: 0 auto 18px;
+        }
+
+        .broker-logos img {
+            width: min(100%, 390px);
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        .compliance-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            margin-bottom: 14px;
+        }
+
+        .compliance-logos img {
+            width: auto;
+            max-height: 38px;
+            object-fit: contain;
+        }
+
+        .footer p {
+            max-width: 38rem;
+            margin: 0 auto;
+            color: #555555;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .direct-url {
+            margin-top: 12px;
+            color: #111111;
+            font-size: 0.9rem;
+            font-weight: 900;
+        }
+
+        @media (min-width: 680px) {
+            .connect-shell {
+                padding-top: 28px;
+                padding-bottom: 34px;
+            }
+
+            .connect-hero {
+                margin: 0 0 20px;
+                border-radius: 18px;
+            }
+
+            .connect-hero-inner {
+                padding: 34px 34px 30px;
+            }
+
+            .primary-action,
+            .link-row {
+                min-height: 72px;
+            }
+
+            .footer {
+                margin-right: 0;
+                margin-left: 0;
+                border-radius: 14px;
+                border: 1px solid rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .connect-shell {
+                padding-right: 12px;
+                padding-left: 12px;
+            }
+
+            .connect-hero,
+            .footer {
+                margin-right: -12px;
+                margin-left: -12px;
+            }
+
+            .primary-action,
+            .link-row {
+                grid-template-columns: 42px minmax(0, 1fr) 18px;
+                gap: 10px;
+            }
+
+            .icon-box {
+                width: 42px;
+                height: 42px;
+            }
+
+            .link-copy span {
+                font-size: 0.78rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="connect-shell" aria-label="Joe Pine quick links">
+        <section class="connect-hero" aria-labelledby="connect-title">
+            <div class="connect-hero-inner">
+                <div class="headshot">
+                    <img src="../Monthly%20Payment/Joe%20%281%29.JPG" alt="Joe Pine sitting in a chair" fetchpriority="high">
+                </div>
+                <div class="brand-lockup">
+                    <h1 class="connect-name">JOE <span>PINE</span></h1>
+                    <div class="connect-role">REALTOR&reg;</div>
+                    <p class="connect-market">RI &amp; MA</p>
+                    <p id="connect-title">Real estate guidance in Rhode Island &amp; Massachusetts.</p>
+                </div>
+            </div>
+        </section>
+
+        <a class="primary-action" href="https://g.page/r/CZT2ZUf_uZu9EBM/review" target="_blank" rel="noopener noreferrer">
+            <span class="icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path class="icon-fill" d="M12 2.8l2.86 5.79 6.39.93-4.62 4.5 1.09 6.36L12 17.37l-5.72 3.01 1.09-6.36-4.62-4.5 6.39-.93L12 2.8z"/></svg>
+            </span>
+            <span class="link-copy">
+                <strong>Leave a Review</strong>
+                <span>Share what it was like working together</span>
+            </span>
+            <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+
+        <section class="link-stack" aria-label="Quick links">
+            <a class="link-row" href="https://www.google.com/maps/place/Joe+Pine+-+Keller+Williams+Leading+Edge/@41.9101149,-71.5214186,739m/data=!3m1!1e3!4m8!3m7!1s0x89e44129c3fe9a81:0xbd9bb9ff4765f694!8m2!3d41.9101149!4d-71.5214186!9m1!1b1!16s%2Fg%2F11z8s5xrp0?entry=ttu&amp;g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 8h8M8 12h6"/></svg></span>
+                <span class="link-copy"><strong>Read Reviews</strong><span>See client feedback on Google</span></span>
+                <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+            </a>
+
+            <a class="link-row" href="../buyers/">
+                <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                <span class="link-copy"><strong>Buyer Resources</strong><span>Payments, lenders, inspections, and next steps</span></span>
+                <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+            </a>
+
+            <a class="link-row" href="../sellers/">
+                <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.6 13.4L13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r=".8"/></svg></span>
+                <span class="link-copy"><strong>Seller Resources</strong><span>Pricing, proceeds, and selling strategy</span></span>
+                <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+            </a>
+
+            <a class="link-row" href="https://www.instagram.com/joepine_realtor/" target="_blank" rel="noopener noreferrer">
+                <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span>
+                <span class="link-copy"><strong>Instagram</strong><span>@joepine_realtor</span></span>
+                <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+            </a>
+
+            <a class="link-row" href="https://www.facebook.com/joepinerealtor/" target="_blank" rel="noopener noreferrer">
+                <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="icon-fill" d="M14 8.7V7.1c0-.7.48-1.1 1.18-1.1H17V3.05C16.69 3.01 15.63 3 14.95 3c-2.7 0-4.55 1.65-4.55 4.68V8.7H7.5V12h2.9v9H14v-9h2.75l.44-3.3H14z"/></svg></span>
+                <span class="link-copy"><strong>Facebook</strong><span>Follow Joe's real estate updates</span></span>
+                <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+            </a>
+
+        </section>
+
+        <section class="quick-contact" aria-label="Direct contact">
+            <a class="mini-link" href="tel:4013270888">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.66 2.81a2 2 0 0 1-.45 2.11L8.05 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.31 1.85.53 2.81.66A2 2 0 0 1 22 16.92z"/></svg>
+                Call Joe
+            </a>
+            <a class="mini-link" href="mailto:JoePine@KW.com?subject=I%20Found%20Your%20Connect%20Page">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                Email Joe
+            </a>
+        </section>
+
+        <footer class="footer">
+            <div class="broker-logos" aria-label="Brokerage logo">
+                <img src="./assets/kw-leading-edge.png" alt="Keller Williams Leading Edge">
+            </div>
+            <div class="compliance-logos" aria-label="Compliance logos">
+                <img src="../images/branding/equal-housing-mark-official.png" alt="Equal Housing Opportunity">
+                <img src="../images/branding/realtor-mark-official.jpg" alt="REALTOR">
+            </div>
+            <p>Joe Pine, REALTOR&reg; RI &amp; MA. Keller Williams Leading Edge. Each office is independently owned and operated.</p>
+            <p class="direct-url">joepine.com/connect/</p>
+        </footer>
+    </main>
+</body>
+</html>
