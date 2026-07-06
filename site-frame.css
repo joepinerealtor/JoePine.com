@@ -360,6 +360,17 @@ h6 {
     box-shadow: 0 10px 18px -20px rgba(64, 0, 8, 0.52);
 }
 
+.site-frame-wrap.is-condensed .site-frame-nav .site-frame-portal-link--client {
+    color: var(--frame-red);
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.site-frame-wrap.is-condensed .site-frame-nav .site-frame-portal-link--client:hover,
+.site-frame-wrap.is-condensed .site-frame-nav .site-frame-portal-link--client:focus-visible {
+    color: var(--frame-red-deep);
+    background: #ffffff;
+}
+
 .site-frame-wrap.is-condensed .site-frame-nav .site-frame-cta {
     color: var(--frame-white);
     background: rgba(255, 255, 255, 0.1);
