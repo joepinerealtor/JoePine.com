@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile and linked listing pages.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-06-21",
-            lastReviewedLabel: "Reviewed June 21, 2026"
+            lastReviewedIso: "2026-07-06",
+            lastReviewedLabel: "Reviewed July 6, 2026"
         },
         listings: [
             {
@@ -15,20 +15,20 @@
                 zip: "02806",
                 neighborhood: "Bay Spring",
                 areaLabel: "Barrington, Rhode Island",
-                headline: "34 Lake Ave in Barrington is for sale.",
+                headline: "34 Lake Ave in Barrington is under contract.",
                 teaser: "A fully updated, move-in ready Bay Spring Cape with a polished kitchen, dining room, mudroom, parking, and a manageable yard.",
                 summary:
                     "This fully updated, move-in ready 2-bedroom, 1-bath Bay Spring home offers 958 square feet, a kitchen with stainless steel appliances, warm wood countertops, tile flooring, pot filler, and center island, plus a dedicated dining room, rear mudroom, off-street parking, and a manageable yard.",
                 hubSummary:
-                    "This active Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a fully updated move-in ready layout, stainless steel kitchen appliances, warm wood countertops, a center island, dedicated dining room, rear mudroom, off-street parking, and a manageable yard in Bay Spring.",
+                    "This under-contract Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a fully updated move-in ready layout, stainless steel kitchen appliances, warm wood countertops, a center island, dedicated dining room, rear mudroom, off-street parking, and a manageable yard in Bay Spring.",
                 locationBlurb:
                     "Located in Barrington's Bay Spring neighborhood near parks, recreation, the East Bay Bike Path, and connections to Providence, Warren, Bristol, and the broader East Bay.",
-                status: "active",
-                statusLabel: "For Sale",
+                status: "under-contract",
+                statusLabel: "Under Contract",
                 featured: true,
                 listedDate: "2026-06-10",
-                sourceSnapshotDate: "2026-06-21",
-                sourceSnapshotLabel: "June 21, 2026",
+                sourceSnapshotDate: "2026-07-06",
+                sourceSnapshotLabel: "July 6, 2026",
                 price: 429900,
                 pricePerSqFt: 449,
                 beds: 2,
@@ -86,8 +86,8 @@
                         eyebrow: "Showing Schedule",
                         title: "Private showings are available.",
                         paragraphs: [
-                            "Homes.com showed no future listing-specific open house on June 21, 2026 after the June 13 and June 14 open houses had passed.",
-                            "Call, text, or email Joe for current showing options or questions about the Bay Spring location."
+                            "Homes.com showed 34 Lake Ave as under contract on July 6, 2026, with no future listing-specific open house shown.",
+                            "Call, text, or email Joe for current status details, backup-interest guidance, or questions about the Bay Spring location."
                         ]
                     }
                 ],
@@ -106,14 +106,14 @@
                     { label: "APN", value: "BARR-000001-000000-000013" }
                 ],
                 cta: {
-                    title: "Want to see 34 Lake Ave?",
+                    title: "Have questions about 34 Lake Ave?",
                     body:
-                        "Call, text, or email Joe for current showing options, open house details, or questions about the Bay Spring location, Barrington schools, and East Bay access."
+                        "Call, text, or email Joe for current status details, backup-interest guidance, or questions about the Bay Spring location, Barrington schools, and East Bay access."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on June 21, 2026 showed this listing as For Sale at $429,900 after a June 18, 2026 price change, with no future listing-specific open house shown.",
+                    "Homes.com property page reviewed on July 6, 2026 showed this listing as Under Contract at $429,900 after a June 18, 2026 price change, with no future listing-specific open house shown.",
                 schemaDescription:
-                    "Active fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
+                    "Under-contract fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
@@ -161,22 +161,22 @@
                 zip: "02915",
                 neighborhood: "Riverside",
                 areaLabel: "Riverside, Rhode Island",
-                headline: "103 Burnside Ave in Riverside is now pending.",
+                headline: "103 Burnside Ave in Riverside has sold.",
                 teaser: "A refreshed Riverside Cape near the water, parks, bike path, and everyday conveniences.",
                 summary:
                     "This refreshed 3-bedroom, 1.5-bath Riverside Cape pairs an open main-level layout with practical updates, a new electrical panel, high-efficiency Navien heat, driveway parking, backyard space, and a location close to the water and East Bay Bike Path.",
                 hubSummary:
-                    "This Riverside Cape offers 3 bedrooms, 1.5 baths, 1,110 square feet, bamboo flooring, an updated full bath, a newer electrical panel, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
+                    "This sold Riverside Cape offered 3 bedrooms, 1.5 baths, 1,110 square feet, bamboo flooring, an updated full bath, a newer electrical panel, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 locationBlurb:
                     "Close to the water, East Bay Bike Path, parks, shopping, restaurants, public transportation, and commuter routes.",
-                status: "pending",
-                statusLabel: "Pending",
-                featured: true,
+                status: "sold",
+                statusLabel: "Sold",
+                featured: false,
                 listedDate: "2026-05-14",
-                sourceSnapshotDate: "2026-06-11",
-                sourceSnapshotLabel: "June 11, 2026",
-                price: 409500,
-                pricePerSqFt: 369,
+                sourceSnapshotDate: "2026-07-06",
+                sourceSnapshotLabel: "July 6, 2026",
+                price: 430000,
+                pricePerSqFt: 387,
                 beds: 3,
                 baths: 1.5,
                 sqft: 1110,
@@ -202,7 +202,7 @@
                     "Backyard space, stamped concrete patio, porch, and driveway parking"
                 ],
                 detailIntro: [
-                    "Welcome to 103 Burnside Ave in Riverside, a refreshed 3-bedroom, 1.5-bath Cape with a practical layout and a location close to some of the area's best amenities. Thoughtful updates include fresh paint, new carpet, cosmetic improvements, an updated full bathroom, a new electrical panel, and a high-efficiency Navien heating system installed in 2022.",
+                    "103 Burnside Ave in Riverside is a recently sold 3-bedroom, 1.5-bath Cape with a practical layout and a location close to some of the area's best amenities. Thoughtful updates include fresh paint, new carpet, cosmetic improvements, an updated full bathroom, a new electrical panel, and a high-efficiency Navien heating system installed in 2022.",
                     "The first floor features bamboo flooring and an open-concept kitchen, dining, and living area, creating a comfortable main-level setup for relaxing, gathering, and entertaining. Appliances are included, and the home also offers three bedrooms upstairs, a full bathroom, and storage or utility space in the full unfinished basement."
                 ],
                 detailSections: [
@@ -252,14 +252,14 @@
                     { label: "APN", value: "EPRO-000412-000002-000014" }
                 ],
                 cta: {
-                    title: "Want to see 103 Burnside in person?",
+                    title: "Want homes like 103 Burnside?",
                     body:
-                        "Call, text, or email Joe for current showing options, offer timing, or questions about the Riverside location and updates."
+                        "Call, text, or email Joe for help finding similar Riverside homes, pricing context, or questions about the location and updates."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on June 11, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 20, 2026.",
+                    "Homes.com property page reviewed on July 6, 2026 showed this listing sold on June 30, 2026 for $430,000, 5% above list price, with a $387 per square foot sale price.",
                 schemaDescription:
-                    "Pending 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
+                    "Sold 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
@@ -307,22 +307,22 @@
                 zip: "02739",
                 neighborhood: "Mattapoisett",
                 areaLabel: "Mattapoisett, Massachusetts",
-                headline: "14 Chapel Rd in Mattapoisett is pending.",
+                headline: "14 Chapel Rd in Mattapoisett has sold.",
                 teaser: "A Cape near the beach with expansion potential, a large corner lot, and as-is terms.",
                 summary:
                     "This 2-bedroom, 1-bath Mattapoisett Cape offers 768 square feet on a 20,541 square foot corner lot, with an unfinished second floor already roughed for plumbing and electrical and public listing notes calling out substantial upside potential.",
                 hubSummary:
-                    "This pending Mattapoisett Cape offers 2 bedrooms, 1 bath, 768 square feet, a 0.47-acre corner lot, wood and laminate flooring, gas baseboard heat, and expansion potential on the unfinished second floor.",
+                    "This sold Mattapoisett Cape offered 2 bedrooms, 1 bath, 768 square feet, a 0.47-acre corner lot, wood and laminate flooring, gas baseboard heat, and expansion potential on the unfinished second floor.",
                 locationBlurb:
                     "Located in desirable Mattapoisett with public listing highlights noting beach proximity and a corner-lot setting.",
-                status: "pending",
-                statusLabel: "Pending",
+                status: "sold",
+                statusLabel: "Sold",
                 featured: false,
                 listedDate: "2026-05-21",
-                sourceSnapshotDate: "2026-06-11",
-                sourceSnapshotLabel: "June 11, 2026",
-                price: 349900,
-                pricePerSqFt: 456,
+                sourceSnapshotDate: "2026-07-06",
+                sourceSnapshotLabel: "July 6, 2026",
+                price: 363000,
+                pricePerSqFt: 473,
                 beds: 2,
                 baths: 1,
                 sqft: 768,
@@ -348,7 +348,7 @@
                     "As-is sale; public listing notes the home will not qualify for FHA financing"
                 ],
                 detailIntro: [
-                    "14 Chapel Rd in Mattapoisett is a pending Cape with a same-owner history, a large corner lot, and public listing notes that emphasize upside potential in a coastal community. The main level includes a living room, eat-in kitchen, full bathroom, and 2 bedrooms.",
+                    "14 Chapel Rd in Mattapoisett is a recently sold Cape with a same-owner history, a large corner lot, and public listing notes that emphasized upside potential in a coastal community. The main level includes a living room, eat-in kitchen, full bathroom, and 2 bedrooms.",
                     "The unfinished second floor is already roughed for plumbing and electrical, giving the next owner a path to explore additional bedrooms and another full bathroom with improvements. The Homes.com listing also notes as-is terms and that the condition will not qualify for FHA financing."
                 ],
                 detailSections: [
@@ -376,9 +376,9 @@
                     },
                     {
                         eyebrow: "Terms + Condition",
-                        title: "Pending with as-is notes.",
+                        title: "Sold with as-is listing notes.",
                         paragraphs: [
-                            "Homes.com showed the property as Pending on June 11, 2026, with property history showing Pending on May 26, 2026 after the May 21, 2026 list date.",
+                            "Homes.com showed the property as sold on June 25, 2026 for $363,000, 4% above list price, after 5 days on market.",
                             "The public listing states the property is being sold as is and, due to condition, will not qualify for FHA financing."
                         ]
                     }
@@ -400,12 +400,12 @@
                 cta: {
                     title: "Want to talk through 14 Chapel?",
                     body:
-                        "Call, text, or email Joe for current showing options, financing considerations, or questions about the Mattapoisett location and renovation potential."
+                        "Call, text, or email Joe for help finding similar coastal homes, financing considerations, or questions about the Mattapoisett location and renovation potential."
                 },
                 sourceNote:
-                    "Homes.com reviewed on June 11, 2026 showed this listing as Pending with no listing-specific future open house shown; property history showed Pending on May 26, 2026.",
+                    "Homes.com reviewed on July 6, 2026 showed this listing sold on June 25, 2026 for $363,000, 4% above list price, with a $473 per square foot sale price.",
                 schemaDescription:
-                    "Pending 2-bedroom, 1-bath Mattapoisett Cape with 768 square feet, a 20,541 square foot corner lot, unfinished second-floor expansion potential, gas baseboard heat, and as-is public listing terms.",
+                    "Sold 2-bedroom, 1-bath Mattapoisett Cape with 768 square feet, a 20,541 square foot corner lot, unfinished second-floor expansion potential, gas baseboard heat, and as-is public listing terms.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
@@ -447,6 +447,30 @@
             }
         ],
         recentSales: [
+            {
+                title: "103 Burnside Ave",
+                city: "Riverside",
+                state: "RI",
+                soldPrice: 430000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold Jun 30, 2026",
+                imageSrc: "https://images.homes.com/listings/102/3513533194-816681222/103-burnside-ave-riverside-ri-primaryphoto.jpg",
+                imageAlt: "103 Burnside Ave in Riverside, Rhode Island",
+                summary: "A recent Riverside closing shown on Joe's Homes.com profile after selling 5% above list price.",
+                ctaLabel: "Ask About Similar Homes"
+            },
+            {
+                title: "14 Chapel Rd",
+                city: "Mattapoisett",
+                state: "MA",
+                soldPrice: 363000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold Jun 25, 2026",
+                imageSrc: "https://images.homes.com/listings/102/7277867294-244031422/14-chapel-rd-mattapoisett-ma-primaryphoto.jpg",
+                imageAlt: "14 Chapel Rd in Mattapoisett, Massachusetts",
+                summary: "A recent Mattapoisett closing shown on Joe's Homes.com profile after selling 4% above list price.",
+                ctaLabel: "Ask About Similar Homes"
+            },
             {
                 title: "680 Hazard Rd",
                 city: "West Greenwich",
