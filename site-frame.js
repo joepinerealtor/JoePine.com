@@ -186,6 +186,38 @@ function ensureSiteFrameShellLayout() {
             nav.insertBefore(linkList, cta || null);
         }
 
+        nav.querySelectorAll('[data-site-portal-link="agent"]').forEach((link) => link.remove());
+
+        let actionList = nav.querySelector(".site-frame-action-list");
+        if (!actionList) {
+            actionList = document.createElement("div");
+            actionList.className = "site-frame-action-list";
+            nav.appendChild(actionList);
+        }
+
+        let clientPortalLink = nav.querySelector('[data-site-portal-link="client"]');
+        if (!clientPortalLink) {
+            clientPortalLink = document.createElement("a");
+            clientPortalLink.href = "https://client.joepine.com/";
+            clientPortalLink.textContent = "Client Login";
+            clientPortalLink.className = "site-frame-portal-link site-frame-portal-link--client";
+            clientPortalLink.setAttribute("data-site-portal-link", "client");
+            clientPortalLink.setAttribute("aria-label", "Open the Joe Pine client portal");
+        }
+
+        if (cta) {
+            actionList.append(clientPortalLink, cta);
+        } else {
+            actionList.appendChild(clientPortalLink);
+        }
+
+        if (top && !top.querySelector("[data-site-mobile-client-login]")) {
+            const mobileClientLink = clientPortalLink.cloneNode(true);
+            mobileClientLink.className = "site-frame-mobile-client-login";
+            mobileClientLink.setAttribute("data-site-mobile-client-login", "");
+            top.insertBefore(mobileClientLink, top.querySelector("[data-site-nav-toggle]") || top.querySelector(".site-frame-right") || null);
+        }
+
         nav.querySelectorAll(".site-frame-broker-strip").forEach((strip) => strip.remove());
 
         if (!top || top.querySelector(".site-frame-broker-strip")) {
