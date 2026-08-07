@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile and linked listing pages.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-07-06",
-            lastReviewedLabel: "Reviewed July 6, 2026"
+            lastReviewedIso: "2026-08-07",
+            lastReviewedLabel: "Reviewed August 7, 2026"
         },
         listings: [
             {
@@ -15,20 +15,20 @@
                 zip: "02806",
                 neighborhood: "Bay Spring",
                 areaLabel: "Barrington, Rhode Island",
-                headline: "34 Lake Ave in Barrington is under contract.",
+                headline: "34 Lake Ave in Barrington is pending.",
                 teaser: "A fully updated, move-in ready Bay Spring Cape with a polished kitchen, dining room, mudroom, parking, and a manageable yard.",
                 summary:
                     "This fully updated, move-in ready 2-bedroom, 1-bath Bay Spring home offers 958 square feet, a kitchen with stainless steel appliances, warm wood countertops, tile flooring, pot filler, and center island, plus a dedicated dining room, rear mudroom, off-street parking, and a manageable yard.",
                 hubSummary:
-                    "This under-contract Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a fully updated move-in ready layout, stainless steel kitchen appliances, warm wood countertops, a center island, dedicated dining room, rear mudroom, off-street parking, and a manageable yard in Bay Spring.",
+                    "This pending Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a fully updated move-in ready layout, stainless steel kitchen appliances, warm wood countertops, a center island, dedicated dining room, rear mudroom, off-street parking, and a manageable yard in Bay Spring.",
                 locationBlurb:
                     "Located in Barrington's Bay Spring neighborhood near parks, recreation, the East Bay Bike Path, and connections to Providence, Warren, Bristol, and the broader East Bay.",
-                status: "under-contract",
-                statusLabel: "Under Contract",
+                status: "pending",
+                statusLabel: "Pending",
                 featured: true,
                 listedDate: "2026-06-10",
-                sourceSnapshotDate: "2026-07-06",
-                sourceSnapshotLabel: "July 6, 2026",
+                sourceSnapshotDate: "2026-08-07",
+                sourceSnapshotLabel: "August 7, 2026",
                 price: 429900,
                 pricePerSqFt: 449,
                 beds: 2,
@@ -86,7 +86,7 @@
                         eyebrow: "Showing Schedule",
                         title: "Private showings are available.",
                         paragraphs: [
-                            "Homes.com showed 34 Lake Ave as under contract on July 6, 2026, with no future listing-specific open house shown.",
+                            "Homes.com showed 34 Lake Ave as pending on August 7, 2026, with no future listing-specific open house shown.",
                             "Call, text, or email Joe for current status details, backup-interest guidance, or questions about the Bay Spring location."
                         ]
                     }
@@ -111,9 +111,9 @@
                         "Call, text, or email Joe for current status details, backup-interest guidance, or questions about the Bay Spring location, Barrington schools, and East Bay access."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on July 6, 2026 showed this listing as Under Contract at $429,900 after a June 18, 2026 price change, with no future listing-specific open house shown.",
+                    "Homes.com property page reviewed on August 7, 2026 showed this listing as Pending at $429,900 after a June 18, 2026 price change, with no future listing-specific open house shown.",
                 schemaDescription:
-                    "Under-contract fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
+                    "Pending fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
@@ -447,6 +447,18 @@
             }
         ],
         recentSales: [
+            {
+                title: "217 Evergreen St",
+                city: "Pawtucket",
+                state: "RI",
+                soldPrice: 365000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold Jul 30, 2026",
+                imageSrc: "https://images.homes.com/listings/210/9049393694-407359522/217-evergreen-st-pawtucket-ri-primaryphoto.jpg",
+                imageAlt: "217 Evergreen St in Pawtucket, Rhode Island",
+                summary: "A recent Pawtucket buyer-side closing shown on Joe's Homes.com profile after selling 2% above list price.",
+                ctaLabel: "Ask About Similar Homes"
+            },
             {
                 title: "103 Burnside Ave",
                 city: "Riverside",
