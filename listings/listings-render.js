@@ -583,7 +583,7 @@
                   '        <div>',
                   '            <p class="eyebrow">Recent Closings</p>',
                   '            <h3>Recent closings.</h3>',
-                  '            <p>A compact look at a few recent homes Joe has already helped close.</p>',
+                  '            <p>A compact look at a few recent homes Elevate Team Leader Joe Pine has helped close.</p>',
                   "        </div>",
                   recentSalesSource?.url
                       ? `        <a class="button button-secondary" href="${escapeHtml(recentSalesSource.url)}" target="_blank" rel="noreferrer">View Homes.com Profile</a>`
@@ -624,7 +624,7 @@
             '<div class="featured-listing-stack">',
             '    <div class="featured-listing-intro">',
             '        <p class="eyebrow">Current Listings</p>',
-            '        <h2>Joe Pine listings.</h2>',
+            '        <h2>Elevate listings.</h2>',
             '        <p>Active and pending listings stay visible here until they close.</p>',
             "    </div>",
             listingCards,

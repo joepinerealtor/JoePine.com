@@ -138,10 +138,43 @@ function ensureSiteFrameShellLayout() {
     document.querySelectorAll(".site-frame-wrap").forEach((wrap) => {
         const top = wrap.querySelector(".site-frame-top");
         const nav = wrap.querySelector(".site-frame-nav");
+        const brand = top?.querySelector(".site-frame-brand");
 
         if (!nav) {
             return;
         }
+
+        if (brand) {
+            brand.replaceChildren();
+            brand.setAttribute("aria-label", "Elevate Real Estate Team home");
+
+            const brandLogo = document.createElement("img");
+            brandLogo.className = "site-frame-brand-logo";
+            brandLogo.src = new URL(
+                "images/branding/elevate-logo-white.png",
+                siteFrameAssetBase
+            ).href;
+            brandLogo.alt = "Elevate Real Estate Team";
+            brand.appendChild(brandLogo);
+        }
+
+        nav.querySelectorAll("a").forEach((link) => {
+            const href = link.getAttribute("href") || "";
+
+            if (href.includes("buyer-start-here")) {
+                link.textContent = "Start Here";
+            } else if (href.includes("/buyers")) {
+                link.textContent = "Buy";
+            } else if (href.includes("/sellers")) {
+                link.textContent = "Sell";
+            } else if (href === "#about" || href.endsWith("/#about")) {
+                link.textContent = "Meet the Team Leader";
+            }
+        });
+
+        nav.querySelectorAll(".site-frame-cta").forEach((link) => {
+            link.textContent = "Contact Elevate";
+        });
 
         if (!nav.querySelector('a[href*="listings"]')) {
             const listingsLink = document.createElement("a");
@@ -202,7 +235,7 @@ function ensureSiteFrameShellLayout() {
             clientPortalLink.textContent = "Client Login";
             clientPortalLink.className = "site-frame-portal-link site-frame-portal-link--client";
             clientPortalLink.setAttribute("data-site-portal-link", "client");
-            clientPortalLink.setAttribute("aria-label", "Open the Joe Pine client portal");
+            clientPortalLink.setAttribute("aria-label", "Open the Elevate client portal");
         }
 
         if (cta) {
@@ -226,19 +259,7 @@ function ensureSiteFrameShellLayout() {
 
         const brokerStrip = document.createElement("div");
         brokerStrip.className = "site-frame-broker-strip";
-        brokerStrip.setAttribute("aria-label", "Brokerage logos");
-
-        const elevateLogo = document.createElement("img");
-        elevateLogo.className = "site-frame-broker-logo site-frame-broker-logo-elevate";
-        elevateLogo.src = new URL(
-            "images/branding/elevate-logo-white.png",
-            siteFrameAssetBase
-        ).href;
-        elevateLogo.alt = "Elevate Real Estate Team";
-
-        const separator = document.createElement("span");
-        separator.className = "site-frame-broker-separator";
-        separator.setAttribute("aria-hidden", "true");
+        brokerStrip.setAttribute("aria-label", "Brokerage support");
 
         const kwLogo = document.createElement("img");
         kwLogo.className = "site-frame-broker-logo site-frame-broker-logo-kw";
@@ -248,7 +269,7 @@ function ensureSiteFrameShellLayout() {
         ).href;
         kwLogo.alt = "Keller Williams Leading Edge";
 
-        brokerStrip.append(elevateLogo, separator, kwLogo);
+        brokerStrip.appendChild(kwLogo);
         const rightBlock = top.querySelector(".site-frame-right");
         top.insertBefore(brokerStrip, rightBlock || null);
     });
