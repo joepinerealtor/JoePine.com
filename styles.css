@@ -68,7 +68,7 @@ img {
 
 .page-shell {
     width: calc(100% - 32px);
-    max-width: none;
+    max-width: 1480px;
     margin: 0 auto;
     padding: 20px 0 40px;
     position: relative;
@@ -460,8 +460,8 @@ img {
 .featured-listing-shell {
     display: grid;
     grid-template-columns: minmax(0, 0.98fr) minmax(360px, 1.02fr);
-    gap: 28px;
-    padding: 30px;
+    gap: 40px;
+    padding: 38px;
     border: 1px solid var(--line);
     border-radius: 30px;
     background: #ffffff;
@@ -799,8 +799,8 @@ img {
 .featured-recent-sales-grid {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(220px, 1fr);
-    gap: 14px;
+    grid-auto-columns: minmax(270px, 300px);
+    gap: 18px;
     overflow-x: auto;
     padding-bottom: 6px;
     scrollbar-width: thin;
@@ -1301,8 +1301,8 @@ img {
     display: grid;
     grid-template-columns: 228px minmax(0, 1fr);
     gap: 24px;
-    align-items: stretch;
-    height: min(880px, 80vh);
+    align-items: start;
+    height: auto;
     margin-top: 22px;
 }
 
@@ -1365,19 +1365,19 @@ img {
 
 .home-showcase-panel-frame {
     min-height: 0;
+    min-width: 0;
     padding: 28px;
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.24);
     background: #ffffff;
     box-shadow: var(--shadow-soft);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .home-showcase-panel {
-    height: 100%;
-    overflow: auto;
-    padding-right: 14px;
-    scrollbar-gutter: stable;
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
 }
 
 .home-showcase-panel-heading {
@@ -1408,48 +1408,10 @@ img {
     gap: 20px;
 }
 
-@media (min-width: 1181px) {
-    .home-showcase-panel[data-home-panel="about"] {
-        display: grid;
-        grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.96fr);
-        column-gap: 24px;
-        row-gap: 18px;
-        align-content: start;
-    }
-
-    .home-showcase-panel[data-home-panel="about"] .home-showcase-panel-heading {
-        grid-column: 1;
-        margin-bottom: 0;
-        max-width: none;
-    }
-
-    .home-showcase-panel[data-home-panel="about"] .home-showcase-about-layout,
-    .home-showcase-panel[data-home-panel="about"] .home-showcase-about-top {
-        display: contents;
-    }
-
-    .home-showcase-panel[data-home-panel="about"] .home-showcase-about-copy {
-        grid-column: 1;
-        align-self: start;
-    }
-
-    .home-showcase-panel[data-home-panel="about"] .home-showcase-about-photo {
-        grid-column: 2;
-        grid-row: 1 / span 2;
-        align-self: start;
-        margin-top: 4px;
-    }
-
-    .home-showcase-panel[data-home-panel="about"] .about-panel,
-    .home-showcase-panel[data-home-panel="about"] .home-showcase-instagram-card {
-        grid-column: 1 / -1;
-    }
-}
-
 .home-showcase-about-top {
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
-    gap: 20px;
+    gap: 28px;
     align-items: start;
 }
 
@@ -2508,6 +2470,17 @@ img {
     line-height: 1.35;
 }
 
+.home-showcase-panel .about-panel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+}
+
+.home-showcase-panel .about-detail {
+    max-width: none;
+    min-height: 0;
+}
+
 .home-showcase-instagram-card {
     grid-column: 1 / -1;
     display: grid;
@@ -3339,6 +3312,10 @@ img {
         justify-content: stretch;
     }
 
+    .home-showcase-panel .about-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .about-detail {
         flex-basis: calc(50% - 8px);
         max-width: none;
@@ -3637,6 +3614,10 @@ img {
 }
 
 @media (max-width: 420px) {
+    .home-showcase-panel .about-panel {
+        grid-template-columns: 1fr;
+    }
+
     .about-detail {
         flex-basis: 100%;
     }
