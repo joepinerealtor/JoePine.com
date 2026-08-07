@@ -28,14 +28,14 @@
     <link rel="icon" href="../favicon-192.png" sizes="192x192" type="image/png">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <meta name="theme-color" content="#b40101">
+    <meta name="theme-color" content="#d9083c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --red: #b40101;
-            --red-deep: #8f0000;
+            --red: #d9083c;
+            --red-deep: #202020;
             --ink: #050505;
             --muted: #666666;
             --line: #d6d6d6;
@@ -56,7 +56,7 @@
         body {
             min-height: 100%;
             margin: 0;
-            font-family: "Roboto", Arial, sans-serif;
+            font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
             color: var(--ink);
             background:
                 linear-gradient(180deg, #ffffff 0%, #f7f7f7 56%, #ececec 100%);
@@ -97,9 +97,9 @@
             z-index: -1;
             background:
                 radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.09) 0 1px, transparent 1.4px),
-                radial-gradient(circle at 78% 66%, rgba(180, 1, 1, 0.12) 0 1px, transparent 1.5px),
+                radial-gradient(circle at 78% 66%, rgba(217, 8, 60, 0.12) 0 1px, transparent 1.5px),
                 repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 18px),
-                repeating-linear-gradient(45deg, rgba(180, 1, 1, 0.035) 0 1px, transparent 1px 24px);
+                repeating-linear-gradient(45deg, rgba(217, 8, 60, 0.035) 0 1px, transparent 1px 24px);
             background-size: 13px 13px, 17px 17px, auto, auto;
             opacity: 0.58;
             pointer-events: none;
@@ -112,7 +112,7 @@
             z-index: -1;
             background:
                 radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.06), transparent 30%),
-                radial-gradient(circle at 86% 88%, rgba(180, 1, 1, 0.3), transparent 38%);
+                radial-gradient(circle at 86% 88%, rgba(217, 8, 60, 0.3), transparent 38%);
             pointer-events: none;
         }
 
@@ -214,7 +214,7 @@
             padding: 12px 16px;
             color: #ffffff;
             background: linear-gradient(135deg, var(--red-deep) 0%, var(--red) 58%, #ce0f18 100%);
-            box-shadow: 0 18px 34px -28px rgba(180, 1, 1, 0.78);
+            box-shadow: 0 18px 34px -28px rgba(217, 8, 60, 0.78);
         }
 
         .link-stack {
@@ -239,11 +239,11 @@
 
         .primary-action:focus-visible,
         .link-row:focus-visible {
-            box-shadow: 0 0 0 3px rgba(180, 1, 1, 0.2), 0 18px 34px -28px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 0 3px rgba(217, 8, 60, 0.2), 0 18px 34px -28px rgba(0, 0, 0, 0.3);
         }
 
         .link-row:hover {
-            border-color: rgba(180, 1, 1, 0.36);
+            border-color: rgba(217, 8, 60, 0.36);
         }
 
         .icon-box {

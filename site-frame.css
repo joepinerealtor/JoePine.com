@@ -1,16 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 :root {
-    --kw-body-font: "Roboto", Arial, sans-serif;
-    --kw-display-font: "Nimbus Sans", "Nimbus Sans L", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-    --frame-red: #b40101;
-    --frame-red-deep: #8f0000;
-    --frame-charcoal: #000000;
-    --frame-gray: #666666;
-    --frame-muted: #999999;
-    --frame-surface: #ffffff;
-    --frame-surface-alt: #f7f7f7;
-    --frame-line: #cccccc;
+    --kw-body-font: "Montserrat", "Segoe UI", Arial, sans-serif;
+    --kw-display-font: "Montserrat", "Segoe UI", Arial, sans-serif;
+    --frame-red: #d9083c;
+    --frame-red-deep: #202020;
+    --frame-charcoal: #202020;
+    --frame-gray: #5f5f5f;
+    --frame-muted: #7a7a7a;
+    --frame-surface: #f7f5f1;
+    --frame-surface-alt: #ffffff;
+    --frame-line: #dedbd5;
     --frame-white: #ffffff;
     --site-frame-offset: 170px;
 }
@@ -58,10 +58,8 @@ h6 {
     padding: 0;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 28%),
-        linear-gradient(145deg, #c70b18 0%, #b40101 38%, #970010 100%);
-    box-shadow: 0 18px 38px -28px rgba(110, 0, 12, 0.58);
+    background: #202020;
+    box-shadow: 0 18px 38px -28px rgba(32, 32, 32, 0.62);
     transition: border-radius 280ms cubic-bezier(0.2, 0.75, 0.2, 1), box-shadow 280ms cubic-bezier(0.2, 0.75, 0.2, 1), border-color 220ms ease;
 }
 
@@ -248,16 +246,16 @@ h6 {
     width: auto;
     max-width: 100%;
     object-fit: contain;
-    filter: brightness(0) invert(1);
     opacity: 0.95;
 }
 
-.site-frame-broker-logo-platinum {
-    height: clamp(30px, 2.4vw, 36px);
+.site-frame-broker-logo-elevate {
+    height: clamp(36px, 3vw, 46px);
 }
 
 .site-frame-broker-logo-kw {
     height: clamp(32px, 2.6vw, 38px);
+    filter: brightness(0) invert(1);
 }
 
 .site-frame-broker-separator {
@@ -390,8 +388,8 @@ h6 {
     padding: 0;
 }
 
-.site-frame-wrap.is-condensed .site-frame-broker-logo-platinum {
-    height: clamp(22px, 1.55vw, 26px);
+.site-frame-wrap.is-condensed .site-frame-broker-logo-elevate {
+    height: clamp(26px, 1.85vw, 32px);
 }
 
 .site-frame-wrap.is-condensed .site-frame-broker-logo-kw {
@@ -681,12 +679,12 @@ h6 {
         padding: 5px 8px;
     }
 
-    .site-frame-broker-logo-platinum {
-        height: 16px;
+    .site-frame-broker-logo-elevate {
+        height: 28px;
     }
 
     .site-frame-broker-logo-kw {
-        height: 17px;
+        height: 23px;
     }
 
     .site-frame-toggle {
@@ -695,7 +693,7 @@ h6 {
     }
 
     .site-frame-right {
-        gap: 1px;
+        gap: 2px 12px;
         margin-top: 0;
         padding-top: 0;
     }
@@ -788,7 +786,7 @@ h6 {
     padding: 10px 18px;
     border: 0;
     border-radius: 999px;
-    background: linear-gradient(145deg, #d44a44 0%, #b40101 100%);
+    background: #d9083c;
     color: var(--frame-white);
     font: inherit;
     font-weight: 800;

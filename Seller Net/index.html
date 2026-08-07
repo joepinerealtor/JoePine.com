@@ -52,13 +52,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
-            font-family: "Roboto", Arial, sans-serif;
+            font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
             background:
-                radial-gradient(circle at top left, rgba(180, 1, 1, 0.1), transparent 24%),
+                radial-gradient(circle at top left, rgba(217, 8, 60, 0.1), transparent 24%),
                 linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%);
         }
         .kw-gradient-header {
-            background: linear-gradient(90deg, #b40101 0%, #8f0000 42%, #8f0000 100%);
+            background: #202020;
         }
         .kw-display {
             font-style: italic;
@@ -70,7 +70,7 @@
             letter-spacing: 0.18em;
             text-transform: uppercase;
         }
-        .input-group:focus-within label { color: #b40101; }
+        .input-group:focus-within label { color: #d9083c; }
         
         /* Type Selection Toggles */
         .type-toggle {
@@ -90,7 +90,7 @@
         }
         .type-btn.active {
             background: white;
-            color: #b40101;
+            color: #d9083c;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
@@ -106,8 +106,8 @@
             white-space: nowrap;
         }
         .state-btn.active {
-            background-color: #b40101;
-            border-color: #b40101;
+            background-color: #d9083c;
+            border-color: #d9083c;
             color: white;
             box-shadow: 0 4px 10px 0px rgba(185, 33, 43, 0.2);
         }
@@ -195,7 +195,7 @@
                     </span>
                     <span class="site-frame-copy">
                         <strong>Joe Pine</strong>
-                        <span>REALTOR&reg; RI &amp; MA</span>
+                        <span>Team Leader of Elevate</span>
                     </span>
                 </a>
 
@@ -212,7 +212,7 @@
 <div class="site-frame-right">
 <a href="tel:4013270888">401.327.0888</a>
 <a href="mailto:JoePine@KW.com">JoePine@KW.com</a>
-<span class="site-frame-brokerage">Platinum Real Estate Group-Keller Williams Leading Edge</span>
+<span class="site-frame-brokerage">Elevate Real Estate Team at Keller Williams Leading Edge</span>
 <a class="site-frame-website" href="https://www.JoePine.com" target="_blank" rel="noreferrer">www.JoePine.com</a>
 </div>
             </div>
@@ -239,7 +239,7 @@
         <div class="p-5 md:p-6 main-grid grid grid-cols-1 lg:grid-cols-12 gap-8">
             <!-- Left Column: Inputs -->
             <div id="input-column" class="lg:col-span-5 space-y-6">
-                <div class="flex flex-col sm:items-start justify-between border-b-2 border-[#b40101] pb-3 gap-3">
+                <div class="flex flex-col sm:items-start justify-between border-b-2 border-[#d9083c] pb-3 gap-3">
                     <h2 class="kw-display text-lg text-slate-800 uppercase">Sale Details</h2>
                     <div class="flex gap-2 w-full">
                         <button id="btnRI" onclick="setState('RI')" class="state-btn active flex-1">Rhode Island</button>
@@ -251,16 +251,16 @@
                     <div class="input-group">
                         <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-0.5">Sales Price</label>
                         <div class="relative flex items-center">
-                            <span class="absolute left-0 text-[#b40101] font-bold text-lg">$</span>
-                            <input type="number" id="salesPrice" value="" placeholder="0" class="w-full pl-8 py-2 border-b-2 border-slate-100 focus:border-[#b40101] outline-none transition-all font-black text-slate-900 text-lg">
+                            <span class="absolute left-0 text-[#d9083c] font-bold text-lg">$</span>
+                            <input type="number" id="salesPrice" value="" placeholder="0" class="w-full pl-8 py-2 border-b-2 border-slate-100 focus:border-[#d9083c] outline-none transition-all font-black text-slate-900 text-lg">
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-0.5">Seller Credits</label>
                         <div class="relative flex items-center">
-                            <span class="absolute left-0 text-[#b40101] font-bold text-base">$</span>
-                            <input type="number" id="sellerCredits" value="" placeholder="0" class="w-full pl-8 py-1.5 border-b-2 border-slate-100 focus:border-[#b40101] outline-none transition-all font-bold text-slate-900 text-base">
+                            <span class="absolute left-0 text-[#d9083c] font-bold text-base">$</span>
+                            <input type="number" id="sellerCredits" value="" placeholder="0" class="w-full pl-8 py-1.5 border-b-2 border-slate-100 focus:border-[#d9083c] outline-none transition-all font-bold text-slate-900 text-base">
                         </div>
                     </div>
 
@@ -274,8 +274,8 @@
                             </div>
                         </div>
                         <div class="relative flex items-center">
-                            <span id="listingSymbol" class="absolute left-0 text-[#b40101] font-bold text-base hidden">$</span>
-                            <input type="number" id="listingCommValue" value="" placeholder="0" step="0.1" class="w-full py-1.5 border-b-2 border-slate-100 focus:border-[#b40101] outline-none transition-all font-bold text-slate-900 text-base">
+                            <span id="listingSymbol" class="absolute left-0 text-[#d9083c] font-bold text-base hidden">$</span>
+                            <input type="number" id="listingCommValue" value="" placeholder="0" step="0.1" class="w-full py-1.5 border-b-2 border-slate-100 focus:border-[#d9083c] outline-none transition-all font-bold text-slate-900 text-base">
                         </div>
                     </div>
 
@@ -294,8 +294,8 @@
                             </div>
                         </div>
                         <div class="relative flex items-center">
-                            <span id="buyerSymbol" class="absolute left-0 text-[#b40101] font-bold text-base hidden">$</span>
-                            <input type="number" id="buyerCommValue" value="" placeholder="0" step="0.1" class="w-full py-1.5 border-b-2 border-slate-100 focus:border-[#b40101] outline-none transition-all font-black text-slate-900 text-base">
+                            <span id="buyerSymbol" class="absolute left-0 text-[#d9083c] font-bold text-base hidden">$</span>
+                            <input type="number" id="buyerCommValue" value="" placeholder="0" step="0.1" class="w-full py-1.5 border-b-2 border-slate-100 focus:border-[#d9083c] outline-none transition-all font-black text-slate-900 text-base">
                         </div>
                     </div>
 
@@ -303,7 +303,7 @@
                     <div class="input-group">
                         <label id="taxLabel" class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-0.5">RI Transfer Tax (Fixed Cost)</label>
                         <div class="relative flex items-center">
-                            <span class="absolute left-0 text-[#b40101] font-bold text-base">$</span>
+                            <span class="absolute left-0 text-[#d9083c] font-bold text-base">$</span>
                             <input type="number" id="transferTax" class="w-full pl-7 py-1.5 border-b-2 border-slate-100 outline-none font-bold text-slate-900 text-base bg-slate-50" readonly>
                         </div>
                         <p id="taxHelpText" class="text-[10px] text-slate-400 mt-1 font-medium italic uppercase tracking-wider">Rate: $3.75 per $500 sales price</p>
@@ -312,15 +312,15 @@
                     <div class="input-group">
                         <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-0.5">Mortgage Payoff (Est.)</label>
                         <div class="relative flex items-center">
-                            <span class="absolute left-0 text-[#b40101] font-bold text-base">$</span>
-                            <input type="number" id="mortgagePayoff" value="" placeholder="0" class="w-full pl-8 py-1.5 border-b-2 border-slate-100 focus:border-[#b40101] outline-none transition-all font-black text-slate-900 text-base">
+                            <span class="absolute left-0 text-[#d9083c] font-bold text-base">$</span>
+                            <input type="number" id="mortgagePayoff" value="" placeholder="0" class="w-full pl-8 py-1.5 border-b-2 border-slate-100 focus:border-[#d9083c] outline-none transition-all font-black text-slate-900 text-base">
                         </div>
                     </div>
 
                     <div class="input-group">
                         <div class="flex items-center justify-between gap-3 mb-2">
                             <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Additional Payoffs (Est.)</label>
-                            <button type="button" onclick="addAdditionalPayoff()" class="kw-kicker shrink-0 rounded-full border border-[#b40101]/20 bg-[#b40101]/5 px-3 py-1.5 text-[10px] text-[#b40101] transition hover:bg-[#b40101] hover:text-white">Add Payoff</button>
+                            <button type="button" onclick="addAdditionalPayoff()" class="kw-kicker shrink-0 rounded-full border border-[#d9083c]/20 bg-[#d9083c]/5 px-3 py-1.5 text-[10px] text-[#d9083c] transition hover:bg-[#d9083c] hover:text-white">Add Payoff</button>
                         </div>
                         <div id="additionalPayoffsEmpty" class="rounded-2xl border border-dashed border-slate-200 bg-slate-50/70 px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                             No additional payoffs added.
@@ -331,8 +331,8 @@
                     <div class="input-group">
                         <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-0.5">Closing Cost (Est.)</label>
                         <div class="relative flex items-center">
-                            <span class="absolute left-0 text-[#b40101] font-bold text-base">$</span>
-                            <input type="number" id="miscCosts" value="" placeholder="0" class="w-full pl-8 py-1.5 border-b-2 border-slate-100 focus:border-[#b40101] outline-none transition-all font-black text-slate-900 text-base">
+                            <span class="absolute left-0 text-[#d9083c] font-bold text-base">$</span>
+                            <input type="number" id="miscCosts" value="" placeholder="0" class="w-full pl-8 py-1.5 border-b-2 border-slate-100 focus:border-[#d9083c] outline-none transition-all font-black text-slate-900 text-base">
                         </div>
                     </div>
                 </div>
@@ -353,7 +353,7 @@
                     <!-- Results Content -->
                     <div class="p-5 md:p-6 space-y-6 print:p-4 print:space-y-2">
                         <div id="resultsCard">
-                            <h2 class="kw-display text-lg text-slate-900 mb-4 print:mb-2 border-b-4 border-[#b40101] pb-2 uppercase">Estimated Net Proceeds</h2>
+                            <h2 class="kw-display text-lg text-slate-900 mb-4 print:mb-2 border-b-4 border-[#d9083c] pb-2 uppercase">Estimated Net Proceeds</h2>
                             
                             <div class="space-y-5 print:space-y-1">
                                 <div class="flex justify-between items-center text-lg print:text-lg pb-3 border-b-2 border-slate-200">
@@ -364,7 +364,7 @@
                                 <div class="space-y-4 pt-1 print:space-y-1">
                                     <div class="flex justify-between items-center text-base print:text-sm">
                                         <span class="text-slate-600 font-semibold">Seller Credits</span>
-                                        <span class="text-[#b40101] font-black" id="dispSellerCredits">$0.00</span>
+                                        <span class="text-[#d9083c] font-black" id="dispSellerCredits">$0.00</span>
                                     </div>
                                     
                                     <div class="flex justify-between items-center">
@@ -372,7 +372,7 @@
                                             <span class="text-slate-600 font-semibold text-base print:text-sm">Listing Broker Commission</span>
                                             <p class="text-[11px] print:text-[9px] text-slate-400 italic font-medium" id="dispListingBasis">Based on Gross Sales Price</p>
                                         </div>
-                                        <span class="text-[#b40101] font-black text-base print:text-sm" id="dispListingComm">$0.00</span>
+                                        <span class="text-[#d9083c] font-black text-base print:text-sm" id="dispListingComm">$0.00</span>
                                     </div>
 
                                     <div class="flex justify-between items-center">
@@ -380,7 +380,7 @@
                                             <span class="text-slate-600 font-semibold text-base print:text-sm">Buyer Broker Commission</span>
                                             <p class="text-[11px] print:text-[9px] text-slate-400 italic font-medium" id="dispBuyerBasis">Based on Gross Sales Price</p>
                                         </div>
-                                        <span class="text-[#b40101] font-black text-base print:text-sm" id="dispBuyerComm">$0.00</span>
+                                        <span class="text-[#d9083c] font-black text-base print:text-sm" id="dispBuyerComm">$0.00</span>
                                     </div>
 
                                     <div class="flex justify-between items-center">
@@ -388,26 +388,26 @@
                                             <span id="resTaxLabel" class="text-slate-600 font-semibold text-base print:text-sm">RI Transfer Tax</span>
                                             <p id="resTaxHelp" class="text-[10px] print:text-[9px] text-slate-400 italic text-right uppercase tracking-wider font-medium">Calculated at $3.75 per $500 sales price</p>
                                         </div>
-                                        <span class="text-[#b40101] font-black text-base print:text-sm" id="dispTransferTax">$0.00</span>
+                                        <span class="text-[#d9083c] font-black text-base print:text-sm" id="dispTransferTax">$0.00</span>
                                     </div>
                                     <div class="flex justify-between items-center text-base print:text-sm">
                                         <span class="text-slate-600 font-semibold">Mortgage Payoff</span>
-                                        <span class="text-[#b40101] font-black" id="dispMortgage">$0.00</span>
+                                        <span class="text-[#d9083c] font-black" id="dispMortgage">$0.00</span>
                                     </div>
                                     <div id="additionalPayoffSummaryRow" class="hidden flex justify-between items-start gap-4 text-base print:text-sm">
                                         <div class="min-w-0 flex-1">
                                             <span class="text-slate-600 font-semibold">Additional Payoffs</span>
                                             <div id="dispAdditionalPayoffMeta" class="mt-1 hidden space-y-2 text-[11px] print:text-[9px] text-slate-400 font-medium"></div>
                                         </div>
-                                        <span class="shrink-0 pt-0.5 text-[#b40101] font-black" id="dispAdditionalPayoff">$0.00</span>
+                                        <span class="shrink-0 pt-0.5 text-[#d9083c] font-black" id="dispAdditionalPayoff">$0.00</span>
                                     </div>
                                     <div class="flex justify-between items-center text-base print:text-sm">
                                         <span class="text-slate-600 font-semibold">Closing Cost</span>
-                                        <span class="text-[#b40101] font-black" id="dispMisc">$0.00</span>
+                                        <span class="text-[#d9083c] font-black" id="dispMisc">$0.00</span>
                                     </div>
                                 </div>
 
-                                <div class="mt-6 pt-6 print:mt-2 print:pt-2 border-t-4 border-[#b40101]">
+                                <div class="mt-6 pt-6 print:mt-2 print:pt-2 border-t-4 border-[#d9083c]">
                                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
                                         <span id="netLabel" class="kw-display text-lg text-slate-900 uppercase leading-tight">Estimated Net to Seller</span>
                                         <span class="text-3xl font-black text-green-700 print:text-3xl transition-colors" id="dispTotalNet">$0.00</span>
@@ -421,7 +421,7 @@
                             <div id="branding-row-target" class="flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between mb-6 print:mb-2 branding-row">
                                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-5 w-full md:w-auto logo-stack">
                                     <img src="KellerWilliams_Realty_LeadingEdge_Logo_RGB (2).png" alt="Keller Williams Logo" class="h-10 w-auto max-w-[220px] print:h-8" onerror="this.style.display='none'">
-                                    <img src="Platinum Logo Black Transparent (1) (1).png" alt="Platinum Real Estate Group Logo" class="h-14 w-auto max-w-[140px] print:h-10" onerror="this.style.display='none'">
+                                    <img src="../images/branding/elevate-logo-dark.png" alt="Elevate Real Estate Team Logo" class="h-14 w-auto max-w-[140px] print:h-10" onerror="this.style.display='none'">
                                 </div>
 
                                 <div class="flex flex-row items-center gap-6 contact-side-wrapper">
@@ -429,18 +429,19 @@
                                         <img 
                                             src="Joe (1) (1).JPG" 
                                             alt="Joe Pine" 
-                                            onerror="this.src='https://ui-avatars.com/api/?name=Joe+Pine&background=B9212B&color=fff&size=200'"
+                                            onerror="this.src='https://ui-avatars.com/api/?name=Joe+Pine&background=D9083C&color=fff&size=200'"
                                             class="w-full h-full object-cover rounded-full border-4 border-white shadow-xl print:shadow-none print:border-slate-200"
                                         >
                                     </div>
                                     <div class="text-left space-y-0.5 contact-block">
                                         <p class="font-black text-xl text-slate-900 uppercase tracking-tighter print:text-lg kw-red-text leading-tight">Joe Pine</p>
-                                        <p class="text-slate-700 font-black text-sm print:text-xs uppercase tracking-widest leading-tight text-nowrap">REALTOR&reg; RI &amp; MA</p>
+                                        <p class="text-slate-700 font-black text-sm print:text-xs uppercase tracking-widest leading-tight">Team Leader of Elevate</p>
+                                        <p class="text-slate-600 font-bold text-xs print:text-[10px] uppercase tracking-widest leading-tight">REALTOR&reg; RI &amp; MA</p>
                                         <div class="text-slate-600 text-xs print:text-[10px] space-y-1 font-semibold leading-normal">
                                             <p>401.327.0888</p>
                                             <p>JoePine@KW.com</p>
                                             <p>28 Thurber Blvd, Smithfield, RI 02917</p>
-                                            <p class="text-[#b40101] font-black text-sm print:text-[10px] mt-0.5 underline">www.JoePine.com</p>
+                                            <p class="text-[#d9083c] font-black text-sm print:text-[10px] mt-0.5 underline">www.JoePine.com</p>
                                             <div class="pt-1 text-[10px] print:text-[9px] text-slate-500 leading-snug">
                                                 <p>Massachusetts Real Estate License #1001085-RE-RS</p>
                                                 <p>Rhode Island Real Estate License #RES.0044759</p>
@@ -463,9 +464,9 @@
                 <!-- Shared Buttons -->
                 <div class="flex flex-wrap justify-center gap-2 mt-3 hide-on-print pb-5">
                     <button onclick="window.print()" class="action-btn kw-kicker bg-black text-white hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[11px]">Print</button>
-                    <button onclick="saveAsPDF()" class="action-btn kw-kicker bg-[#b40101] text-white hover:bg-red-800 transition-all flex items-center justify-center gap-2 text-[11px] shadow-md">Save as PDF</button>
+                    <button onclick="saveAsPDF()" class="action-btn kw-kicker bg-[#d9083c] text-white hover:bg-[#202020] transition-all flex items-center justify-center gap-2 text-[11px] shadow-md">Save as PDF</button>
                     <button onclick="saveSnapshot()" class="action-btn kw-kicker bg-slate-800 text-white hover:bg-slate-900 transition-all flex items-center justify-center gap-2 text-[11px]">Save as Image</button>
-                    <button onclick="sendEmail()" class="action-btn kw-kicker bg-[#b40101] text-white hover:bg-red-800 transition-all flex items-center justify-center gap-2 text-[11px] shadow-md">Share via Email</button>
+                    <button onclick="sendEmail()" class="action-btn kw-kicker bg-[#d9083c] text-white hover:bg-[#202020] transition-all flex items-center justify-center gap-2 text-[11px] shadow-md">Share via Email</button>
                     <button onclick="shareText()" class="action-btn kw-kicker bg-slate-200 text-slate-800 hover:bg-slate-300 transition-all flex items-center justify-center gap-2 text-[11px]">Share via Text</button>
                 </div>
             </div>
@@ -683,17 +684,17 @@
             row.innerHTML = `
                 <div class="sm:col-span-5">
                     <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-0.5">Payoff Item</label>
-                    <input type="text" placeholder="HELOC, Solar, Lien, Etc." class="additional-payoff-label w-full py-1.5 border-b-2 border-slate-100 bg-transparent focus:border-[#b40101] outline-none transition-all font-bold text-slate-900 text-base">
+                    <input type="text" placeholder="HELOC, Solar, Lien, Etc." class="additional-payoff-label w-full py-1.5 border-b-2 border-slate-100 bg-transparent focus:border-[#d9083c] outline-none transition-all font-bold text-slate-900 text-base">
                 </div>
                 <div class="sm:col-span-5">
                     <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-0.5">Amount</label>
                     <div class="relative flex items-center">
-                        <span class="absolute left-0 text-[#b40101] font-bold text-base">$</span>
-                        <input type="number" placeholder="0" class="additional-payoff-amount w-full pl-8 py-1.5 border-b-2 border-slate-100 bg-transparent focus:border-[#b40101] outline-none transition-all font-black text-slate-900 text-base">
+                        <span class="absolute left-0 text-[#d9083c] font-bold text-base">$</span>
+                        <input type="number" placeholder="0" class="additional-payoff-amount w-full pl-8 py-1.5 border-b-2 border-slate-100 bg-transparent focus:border-[#d9083c] outline-none transition-all font-black text-slate-900 text-base">
                     </div>
                 </div>
                 <div class="sm:col-span-2 flex sm:justify-end">
-                    <button type="button" aria-label="Delete payoff" title="Delete payoff" class="additional-payoff-remove inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 transition-all hover:border-[#b40101]/30 hover:bg-[#b40101]/5 hover:text-[#b40101] focus:border-[#b40101]/30 focus:bg-[#b40101]/5 focus:text-[#b40101] focus:outline-none">
+                    <button type="button" aria-label="Delete payoff" title="Delete payoff" class="additional-payoff-remove inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 transition-all hover:border-[#d9083c]/30 hover:bg-[#d9083c]/5 hover:text-[#d9083c] focus:border-[#d9083c]/30 focus:bg-[#d9083c]/5 focus:text-[#d9083c] focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M3 6h18"></path>
                             <path d="M8 6V4h8v2"></path>
@@ -857,11 +858,11 @@
             
             if (finalNet < 0) {
                 totalNetEl.classList.remove('text-green-700');
-                totalNetEl.classList.add('text-[#b40101]');
+                totalNetEl.classList.add('text-[#d9083c]');
                 netLabelEl.innerText = "Estimated Due From Seller";
             } else {
                 totalNetEl.classList.add('text-green-700');
-                totalNetEl.classList.remove('text-[#b40101]');
+                totalNetEl.classList.remove('text-[#d9083c]');
                 netLabelEl.innerText = "Estimated Net to Seller";
             }
 
@@ -994,9 +995,10 @@
                 label + ": " + totalNet + "\n\n" +
                 "Please let me know if you have any questions. I am always happy to help!\n\n" +
                 "Joe Pine\n" +
+                "Team Leader of Elevate\n" +
                 "REALTOR\u00AE RI & MA\n" +
                 "Keller Williams Leading Edge\n" +
-                "Platinum Real Estate Group\n" +
+                "Elevate Real Estate Team\n" +
                 "401.327.0888\n" +
                 "JoePine@KW.com\n" +
                 "www.JoePine.com"

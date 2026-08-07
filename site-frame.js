@@ -228,13 +228,13 @@ function ensureSiteFrameShellLayout() {
         brokerStrip.className = "site-frame-broker-strip";
         brokerStrip.setAttribute("aria-label", "Brokerage logos");
 
-        const platinumLogo = document.createElement("img");
-        platinumLogo.className = "site-frame-broker-logo site-frame-broker-logo-platinum";
-        platinumLogo.src = new URL(
-            "images/branding/platinum-logo-black.png",
+        const elevateLogo = document.createElement("img");
+        elevateLogo.className = "site-frame-broker-logo site-frame-broker-logo-elevate";
+        elevateLogo.src = new URL(
+            "images/branding/elevate-logo-white.png",
             siteFrameAssetBase
         ).href;
-        platinumLogo.alt = "Platinum Real Estate Group";
+        elevateLogo.alt = "Elevate Real Estate Team";
 
         const separator = document.createElement("span");
         separator.className = "site-frame-broker-separator";
@@ -248,7 +248,7 @@ function ensureSiteFrameShellLayout() {
         ).href;
         kwLogo.alt = "Keller Williams Leading Edge";
 
-        brokerStrip.append(platinumLogo, separator, kwLogo);
+        brokerStrip.append(elevateLogo, separator, kwLogo);
         const rightBlock = top.querySelector(".site-frame-right");
         top.insertBefore(brokerStrip, rightBlock || null);
     });
@@ -287,8 +287,8 @@ function ensureSiteContactModal() {
                     </div>
                     <button class="site-contact-modal__close" type="button" data-site-contact-close aria-label="Close contact card">Close</button>
                 </div>
-                <img class="site-contact-modal__logo" src="${new URL("Joe Pine Realtor Red.png", siteFrameAssetBase).href}" alt="Joe Pine Realtor logo">
-                <p class="site-contact-modal__lede">Platinum Real Estate Group at Keller Williams Leading Edge</p>
+                <img class="site-contact-modal__logo" src="${new URL("images/branding/elevate-logo-dark.png", siteFrameAssetBase).href}" alt="Elevate Real Estate Team logo">
+                <p class="site-contact-modal__lede">Joe Pine, Team Leader of Elevate at Keller Williams Leading Edge</p>
                 <p class="site-contact-modal__copy">If you want help understanding your next step, you can reach out directly. Questions are welcome whether you are ready now or still figuring out where to begin.</p>
                 <div class="site-contact-modal__links">
                     <a class="site-contact-link" href="tel:4013270888">

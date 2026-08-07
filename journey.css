@@ -1,7 +1,7 @@
 :root {
-    --journey-red: #b40101;
-    --journey-red-bright: #b40101;
-    --journey-red-deep: #8f0000;
+    --journey-red: #d9083c;
+    --journey-red-bright: #d9083c;
+    --journey-red-deep: #202020;
     --journey-red-soft: #f8e7e7;
     --journey-ink: #000000;
     --journey-gray: #666666;
@@ -19,7 +19,7 @@
 
 body {
     margin: 0;
-    font-family: var(--kw-body-font, "Roboto", Arial, sans-serif);
+    font-family: var(--kw-body-font, "Montserrat", "Segoe UI", Arial, sans-serif);
     color: var(--journey-ink);
     background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
 }
@@ -77,7 +77,7 @@ img {
 .tracker-copy-card h3,
 .journey-cta h2 {
     margin: 0;
-    font-family: var(--kw-display-font, "Nimbus Sans", "Nimbus Sans L", "Arial Narrow", "Helvetica Neue", Arial, sans-serif);
+    font-family: var(--kw-display-font, "Montserrat", "Segoe UI", Arial, sans-serif);
     font-weight: 900;
     letter-spacing: -0.05em;
     text-transform: uppercase;
@@ -147,7 +147,7 @@ img {
     border-radius: 26px;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 18%),
-        linear-gradient(135deg, #8f0000 0%, #b40101 52%, #b40101 100%);
+        #d9083c;
     box-shadow: 0 32px 58px -34px rgba(100, 10, 20, 0.5);
 }
 
@@ -547,7 +547,7 @@ img {
     margin-top: 0;
     padding: 14px 16px;
     border-radius: 20px;
-    background: linear-gradient(135deg, var(--journey-red-deep) 0%, var(--journey-red) 100%);
+    background: var(--journey-red);
     color: #ffffff;
 }
 
@@ -637,7 +637,7 @@ img {
 
 .tracker-nav-button-primary,
 .journey-button-primary {
-    background: linear-gradient(135deg, var(--journey-red-deep) 0%, var(--journey-red) 60%, var(--journey-red-bright) 100%);
+    background: var(--journey-red);
     color: #ffffff;
     box-shadow: 0 18px 30px -24px rgba(143, 0, 0, 0.58);
 }
@@ -698,7 +698,7 @@ img {
     justify-content: flex-start;
 }
 
-.journey-footer-logo-platinum {
+.journey-footer-logo-elevate {
     justify-content: flex-end;
 }
 
@@ -712,7 +712,7 @@ img {
     max-height: 56px;
 }
 
-.journey-footer-logo-platinum img {
+.journey-footer-logo-elevate img {
     max-height: 74px;
 }
 
@@ -823,7 +823,7 @@ img {
     }
 
     .journey-footer-logo-kw,
-    .journey-footer-logo-platinum {
+    .journey-footer-logo-elevate {
         justify-content: center;
     }
 }
