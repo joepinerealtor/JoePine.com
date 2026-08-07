@@ -158,7 +158,9 @@ function ensureSiteFrameShellLayout() {
             brand.appendChild(brandLogo);
         }
 
-        nav.querySelectorAll("a").forEach((link) => {
+        const navLinks = Array.from(nav.querySelectorAll("a"));
+
+        navLinks.forEach((link) => {
             const href = link.getAttribute("href") || "";
 
             if (href.includes("buyer-start-here")) {
@@ -176,7 +178,12 @@ function ensureSiteFrameShellLayout() {
             link.textContent = "Contact Elevate";
         });
 
-        if (!nav.querySelector('a[href*="listings"]')) {
+        const listingsLinks = navLinks.filter((link) => {
+            return link.textContent.trim().toLowerCase() === "listings" || link.href.includes("listings");
+        });
+
+        if (!listingsLinks.length) {
+
             const listingsLink = document.createElement("a");
             listingsLink.href = normalizeLocalFileUrl(new URL("listings/", siteFrameAssetBase).href);
             listingsLink.textContent = "Listings";
@@ -192,7 +199,9 @@ function ensureSiteFrameShellLayout() {
             }
         }
 
-        nav.querySelectorAll('a[href*="listings"]').forEach((link) => {
+        Array.from(nav.querySelectorAll("a")).filter((link) => {
+            return link.textContent.trim().toLowerCase() === "listings" || link.href.includes("listings");
+        }).forEach((link) => {
             const linkUrl = new URL(link.href, window.location.href);
             const isListingsPage = normalizeSiteFramePath(window.location.pathname).startsWith(
                 normalizeSiteFramePath(linkUrl.pathname)

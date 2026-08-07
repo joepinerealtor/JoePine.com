@@ -3,8 +3,8 @@
         recentSalesSource: {
             label: "Recent closings sourced from Joe's Homes.com agent profile and linked listing pages.",
             url: "https://www.homes.com/real-estate-agents/joseph-pine/r0tjpy1/",
-            lastReviewedIso: "2026-07-06",
-            lastReviewedLabel: "Reviewed July 6, 2026"
+            lastReviewedIso: "2026-08-07",
+            lastReviewedLabel: "Reviewed August 7, 2026"
         },
         listings: [
             {
@@ -15,20 +15,20 @@
                 zip: "02806",
                 neighborhood: "Bay Spring",
                 areaLabel: "Barrington, Rhode Island",
-                headline: "34 Lake Ave in Barrington is under contract.",
+                headline: "34 Lake Ave in Barrington is pending.",
                 teaser: "A fully updated, move-in ready Bay Spring Cape with a polished kitchen, dining room, mudroom, parking, and a manageable yard.",
                 summary:
                     "This fully updated, move-in ready 2-bedroom, 1-bath Bay Spring home offers 958 square feet, a kitchen with stainless steel appliances, warm wood countertops, tile flooring, pot filler, and center island, plus a dedicated dining room, rear mudroom, off-street parking, and a manageable yard.",
                 hubSummary:
-                    "This under-contract Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a fully updated move-in ready layout, stainless steel kitchen appliances, warm wood countertops, a center island, dedicated dining room, rear mudroom, off-street parking, and a manageable yard in Bay Spring.",
+                    "This pending Barrington listing offers 2 bedrooms, 1 full bath, 958 square feet, a fully updated move-in ready layout, stainless steel kitchen appliances, warm wood countertops, a center island, dedicated dining room, rear mudroom, off-street parking, and a manageable yard in Bay Spring.",
                 locationBlurb:
                     "Located in Barrington's Bay Spring neighborhood near parks, recreation, the East Bay Bike Path, and connections to Providence, Warren, Bristol, and the broader East Bay.",
-                status: "under-contract",
-                statusLabel: "Under Contract",
+                status: "pending",
+                statusLabel: "Pending",
                 featured: true,
                 listedDate: "2026-06-10",
-                sourceSnapshotDate: "2026-07-06",
-                sourceSnapshotLabel: "July 6, 2026",
+                sourceSnapshotDate: "2026-08-07",
+                sourceSnapshotLabel: "August 7, 2026",
                 price: 429900,
                 pricePerSqFt: 449,
                 beds: 2,
@@ -86,7 +86,7 @@
                         eyebrow: "Showing Schedule",
                         title: "Private showings are available.",
                         paragraphs: [
-                            "Homes.com showed 34 Lake Ave as under contract on July 6, 2026, with no future listing-specific open house shown.",
+                            "Homes.com showed 34 Lake Ave as pending on August 7, 2026, with a pending event dated July 15, 2026 and no future listing-specific open house shown.",
                             "Call, text, or email Joe for current status details, backup-interest guidance, or questions about the Bay Spring location."
                         ]
                     }
@@ -111,9 +111,9 @@
                         "Call, text, or email Joe for current status details, backup-interest guidance, or questions about the Bay Spring location, Barrington schools, and East Bay access."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on July 6, 2026 showed this listing as Under Contract at $429,900 after a June 18, 2026 price change, with no future listing-specific open house shown.",
+                    "Homes.com property page reviewed on August 7, 2026 showed this listing as Pending at $429,900 after a July 15, 2026 pending event and June 18, 2026 price change, with no future listing-specific open house shown.",
                 schemaDescription:
-                    "Under-contract fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
+                    "Pending fully updated, move-in ready 2-bedroom, 1-bath Barrington home in Bay Spring with 958 square feet, stainless steel appliances, warm wood countertops, tile flooring, pot filler, center island, dedicated dining room, rear mudroom, off-street parking, a manageable yard, and access to parks, recreation, the East Bay Bike Path, Providence, Warren, Bristol, the East Bay, and Barrington schools.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
                 images: [
                     {
@@ -173,8 +173,8 @@
                 statusLabel: "Sold",
                 featured: false,
                 listedDate: "2026-05-14",
-                sourceSnapshotDate: "2026-07-06",
-                sourceSnapshotLabel: "July 6, 2026",
+                sourceSnapshotDate: "2026-08-07",
+                sourceSnapshotLabel: "August 7, 2026",
                 price: 430000,
                 pricePerSqFt: 387,
                 beds: 3,
@@ -257,7 +257,7 @@
                         "Call, text, or email Joe for help finding similar Riverside homes, pricing context, or questions about the location and updates."
                 },
                 sourceNote:
-                    "Homes.com property page reviewed on July 6, 2026 showed this listing sold on June 30, 2026 for $430,000, 5% above list price, with a $387 per square foot sale price.",
+                    "Homes.com property page reviewed on August 7, 2026 showed this listing sold on June 30, 2026 for $430,000, 5% above list price, with a $387 per square foot sale price.",
                 schemaDescription:
                     "Sold 3-bedroom, 1.5-bath Riverside Cape with 1,110 square feet, bamboo flooring, refreshed finishes, a newer electrical panel, high-efficiency Navien heat, a stamped concrete patio, driveway parking, and a location near the water and East Bay Bike Path.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
@@ -319,8 +319,8 @@
                 statusLabel: "Sold",
                 featured: false,
                 listedDate: "2026-05-21",
-                sourceSnapshotDate: "2026-07-06",
-                sourceSnapshotLabel: "July 6, 2026",
+                sourceSnapshotDate: "2026-08-07",
+                sourceSnapshotLabel: "August 7, 2026",
                 price: 363000,
                 pricePerSqFt: 473,
                 beds: 2,
@@ -334,7 +334,7 @@
                 homeType: "Single-family Cape",
                 homeDesign: "Cape Cod Architecture",
                 mls: "73522727",
-                apn: "M:3.0 L:29.0,1085001",
+                apn: "MATT-000030-000000-000290",
                 links: {
                     homes: "https://www.homes.com/property/14-chapel-rd-mattapoisett-ma/9bxrw1qzknj2l/",
                     tour3d: ""
@@ -395,7 +395,7 @@
                     { label: "Roof", value: "Shingle roof" },
                     { label: "Lot", value: "20,541 sq ft" },
                     { label: "MLS", value: "73522727" },
-                    { label: "APN", value: "M:3.0 L:29.0,1085001" }
+                    { label: "APN", value: "MATT-000030-000000-000290" }
                 ],
                 cta: {
                     title: "Want to talk through 14 Chapel?",
@@ -403,7 +403,7 @@
                         "Call, text, or email Joe for help finding similar coastal homes, financing considerations, or questions about the Mattapoisett location and renovation potential."
                 },
                 sourceNote:
-                    "Homes.com reviewed on July 6, 2026 showed this listing sold on June 25, 2026 for $363,000, 4% above list price, with a $473 per square foot sale price.",
+                    "Homes.com reviewed on August 7, 2026 showed this listing sold on June 25, 2026 for $363,000, 4% above list price, with a $473 per square foot sale price.",
                 schemaDescription:
                     "Sold 2-bedroom, 1-bath Mattapoisett Cape with 768 square feet, a 20,541 square foot corner lot, unfinished second-floor expansion potential, gas baseboard heat, and as-is public listing terms.",
                 featuredImageIndexes: [0, 1, 2, 4, 5, 6],
@@ -447,6 +447,18 @@
             }
         ],
         recentSales: [
+            {
+                title: "217 Evergreen St",
+                city: "Pawtucket",
+                state: "RI",
+                soldPrice: 365000,
+                statusLabel: "Closed Sale",
+                closedLabel: "Sold Jul 30, 2026",
+                imageSrc: "https://images.homes.com/listings/210/9049393694-407359522/217-evergreen-st-pawtucket-ri-primaryphoto.jpg",
+                imageAlt: "217 Evergreen St in Pawtucket, Rhode Island",
+                summary: "A recent Pawtucket buyer-side closing shown on Joe's Homes.com profile after selling 2% above list price.",
+                ctaLabel: "Ask About Similar Homes"
+            },
             {
                 title: "103 Burnside Ave",
                 city: "Riverside",
